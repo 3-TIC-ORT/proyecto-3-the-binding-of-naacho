@@ -9,7 +9,7 @@ public class RoomSpawner : MonoBehaviour
     // 1 Down door     2 Top door        3  Left door       4 Right door
 
     private RoomTemplates templates;
-    private bool spawned = false;
+    public bool spawned = false;
     void Start()
     {
         grid = GameObject.Find("Grid");
@@ -54,9 +54,13 @@ public class RoomSpawner : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("SpawnPoint") && col.GetComponent<RoomSpawner>().spawned)
+        if (col.gameObject.CompareTag("SpawnPoint"))
         {
-            Destroy(gameObject); 
+            if (col.GetComponent<RoomSpawner>().spawned==false && !spawned)
+            {
+                Instantiate(templates.closedRoom,transform.position,Quaternion.identity, grid.transform);
+            }
+            spawned=true;
         }
     }
 }
