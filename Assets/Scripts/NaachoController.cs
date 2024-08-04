@@ -37,16 +37,21 @@ public class NaachoController : MonoBehaviour
         int horizontalMovement = 0;
         int verticalMovement = 0;
 
-        if(Input.GetKey(KeyCode.LeftArrow))
+        if(Input.GetKey(KeyCode.LeftArrow)) {
             horizontalMovement = -1;
-        else if(Input.GetKey(KeyCode.RightArrow))
+            verticalMovement = 0;
+        }
+        else if(Input.GetKey(KeyCode.RightArrow)) {
             horizontalMovement = 1;
-        
-        if(Input.GetKey(KeyCode.UpArrow))
+            verticalMovement = 0;
+        } else if(Input.GetKey(KeyCode.UpArrow)) {
+            horizontalMovement = 0;
             verticalMovement = 1;
-        else if(Input.GetKey(KeyCode.DownArrow))
+        }
+        else if(Input.GetKey(KeyCode.DownArrow)) {
+            horizontalMovement = 0;
             verticalMovement = -1;
-
+        }
         return new Vector2(horizontalMovement, verticalMovement);
     }
 
