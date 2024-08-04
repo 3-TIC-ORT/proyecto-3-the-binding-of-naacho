@@ -7,6 +7,7 @@ public class NaachoController : MonoBehaviour
     public int Speed;
     public float Friction;
     public float shootDelay;
+    public float ProjectileLifespan;
     private float ShootTimeCounter = 0;
     private Projectile ProjectileScript;
     private Rigidbody2D rb2D;
@@ -59,7 +60,7 @@ public class NaachoController : MonoBehaviour
 
     void Shoot(Vector2 direction, Vector2 velocity, int speed)
     {
-        ProjectileScript.createProjectile("Naacho Projectile", transform.position, new Vector2(0.5f, 0.5f), false, direction.normalized, speed, velocity);
+        ProjectileScript.createProjectile("Naacho Projectile", transform.position, new Vector2(0.5f, 0.5f), false, direction.normalized, speed, velocity, ProjectileLifespan);
     }
 
     // Update is called once per frame

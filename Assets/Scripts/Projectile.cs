@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public Sprite proj_sprite;
 
-    public void createProjectile(string name, Vector2 position, Vector2 scale, bool enemy, Vector2 direction, int speed, Vector2 extraVelocity)
+    public void createProjectile(string name, Vector2 position, Vector2 scale, bool enemy, Vector2 direction, int speed, Vector2 extraVelocity, float lifespan)
     {
         GameObject proj = new GameObject(name);
         Rigidbody2D proj_rb2D = proj.AddComponent<Rigidbody2D>();
