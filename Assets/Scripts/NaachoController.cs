@@ -38,6 +38,6 @@ public class NaachoController : MonoBehaviour
         if(movement.x != 0 || movement.y != 0)
             rb2D.velocity = movement * Speed * Time.deltaTime;
         else
-            rb2D.velocity *= Friction;
+            rb2D.velocity *= Friction * Time.deltaTime;
     }
 }
