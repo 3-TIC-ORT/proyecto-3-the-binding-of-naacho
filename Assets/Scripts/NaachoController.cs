@@ -6,6 +6,7 @@ public class NaachoController : MonoBehaviour
 {
     public int Speed;
     public float Friction;
+    public Projectile ProjectileScript;
     private Rigidbody2D rb2D;
     // Start is called before the first frame update
     void Start()
