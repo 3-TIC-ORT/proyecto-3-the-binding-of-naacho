@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
         Rigidbody2D proj_rb2D = proj.AddComponent<Rigidbody2D>();
         
         proj.transform.localScale = scale;
-
+        proj_rb2D.gravityScale = 0;
         proj.AddComponent<BoxCollider2D>().isTrigger = true;
 
         proj_rb2D.velocity = direction * speed + extraVelocity;

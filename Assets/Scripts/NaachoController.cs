@@ -6,6 +6,8 @@ public class NaachoController : MonoBehaviour
 {
     public int Speed;
     public float Friction;
+    public float shootDelay;
+    private float ShootTimeCounter = 0;
     private Projectile ProjectileScript;
     private Rigidbody2D rb2D;
     // Start is called before the first frame update
@@ -63,6 +65,8 @@ public class NaachoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ShootTimeCounter += Time.deltaTime;
+
         Vector2 movement = getMovement().normalized;
         if(movement.x != 0 || movement.y != 0)
             rb2D.velocity = movement * Speed * Time.deltaTime;
@@ -71,6 +75,13 @@ public class NaachoController : MonoBehaviour
         
         Vector2 shoorDir = getShootDir();
         if (shoorDir.x != 0 || shoorDir.y != 0)
-            Shoot(shoorDir, rb2D.velocity / 2, 10);
+        {
+            if (ShootTimeCounter >= shootDelay)
+            {
+                Shoot(shoorDir, rb2D.velocity, 10);
+                ShootTimeCounter = 0;
+            }
+
+        }
     }
 }
