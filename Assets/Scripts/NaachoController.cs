@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NaachoController : MonoBehaviour
 {
+    public int Speed;
+    public float Friction;
+    private Rigidbody2D rb2D;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,7 @@ public class NaachoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float verticalMovement = Input.GetAxis("Vertical");
+        float horizontalMovement = Input.GetAxis("Horizontal");
     }
 }
