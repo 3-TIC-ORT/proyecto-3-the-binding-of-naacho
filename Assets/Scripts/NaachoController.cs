@@ -10,7 +10,7 @@ public class NaachoController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -18,5 +18,10 @@ public class NaachoController : MonoBehaviour
     {
         float verticalMovement = Input.GetAxis("Vertical");
         float horizontalMovement = Input.GetAxis("Horizontal");
+    
+        if(verticalMovement != 0 || horizontalMovement != 0)
+            rb2D.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * Speed;
+        else
+            rb2D.velocity *= Friction;
     }
 }
