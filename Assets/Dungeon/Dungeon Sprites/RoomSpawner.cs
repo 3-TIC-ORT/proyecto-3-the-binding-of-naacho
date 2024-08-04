@@ -25,8 +25,6 @@ public class RoomSpawner : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.0001f);
             if (colliders.Length <=1)
             {
-                Debug.Log("ASD");
-
                 if (openingDirection == 1)
                 {
                     int rand = Random.Range(0, templates.downRooms.Length);
