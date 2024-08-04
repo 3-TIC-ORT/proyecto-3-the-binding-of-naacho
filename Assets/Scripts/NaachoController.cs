@@ -20,7 +20,7 @@ public class NaachoController : MonoBehaviour
         float horizontalMovement = Input.GetAxis("Horizontal");
     
         if(verticalMovement != 0 || horizontalMovement != 0)
-            rb2D.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * Speed;
+            rb2D.velocity = new Vector2(horizontalMovement, verticalMovement).normalized * Speed * Time.deltaTime;
         else
             rb2D.velocity *= Friction;
     }
