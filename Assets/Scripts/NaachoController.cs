@@ -38,9 +38,9 @@ public class NaachoController : MonoBehaviour
         int verticalMovement = 0;
 
         if(Input.GetKey(KeyCode.LeftArrow))
-            horizontalMovement = 1;
-        else if(Input.GetKey(KeyCode.RightArrow))
             horizontalMovement = -1;
+        else if(Input.GetKey(KeyCode.RightArrow))
+            horizontalMovement = 1;
         
         if(Input.GetKey(KeyCode.UpArrow))
             verticalMovement = 1;
@@ -50,9 +50,9 @@ public class NaachoController : MonoBehaviour
         return new Vector2(horizontalMovement, verticalMovement);
     }
 
-    void Shoot(Vector2 direction, Vector2 velocity) 
+    void Shoot(Vector2 direction, Vector2 velocity, int speed)
     {
-        ProjectileScript.createProjectile("Naacho Projectile", transform.position, new Vector2(1, 1), false, direction, 10, velocity);
+        ProjectileScript.createProjectile("Naacho Projectile", transform.position, new Vector2(0.5f, 0.5f), false, direction.normalized, speed, velocity);
     }
 
     // Update is called once per frame
@@ -66,6 +66,6 @@ public class NaachoController : MonoBehaviour
         
         Vector2 shoorDir = getShootDir();
         if (shoorDir.x != 0 || shoorDir.y != 0)
-            Shoot(shoorDir, Vector2.zero);
+            Shoot(shoorDir, rb2D.velocity / 2, 10);
     }
 }

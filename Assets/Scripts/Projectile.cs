@@ -22,31 +22,4 @@ public class Projectile : MonoBehaviour
 
         proj_spr.sprite = proj_sprite;
     }
-    Vector2 getShootDir()
-    {
-        int horizontalMovement = 0;
-        int verticalMovement = 0;
-
-        if(Input.GetKey(KeyCode.LeftArrow))
-            horizontalMovement = 1;
-        else if(Input.GetKey(KeyCode.RightArrow))
-            horizontalMovement = -1;
-        
-        if(Input.GetKey(KeyCode.UpArrow))
-            verticalMovement = 1;
-        else if(Input.GetKey(KeyCode.DownArrow))
-            verticalMovement = -1;
-
-        return new Vector2(horizontalMovement, verticalMovement);
-    }
-
-    void Shoot(Vector2 direction, Vector2 velocity) 
-    {
-        createProjectile("Naacho Projectile", transform.position, new Vector2(1, 1), false, direction, 10, velocity);
-    }
-    private void Update() {
-        Vector2 shoorDir = getShootDir();
-        if (shoorDir.x != 0 || shoorDir.y != 0)
-            Shoot(shoorDir, Vector2.zero);
-    }
 }
