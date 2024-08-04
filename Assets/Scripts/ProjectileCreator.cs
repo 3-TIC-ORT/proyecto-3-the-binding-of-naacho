@@ -10,6 +10,9 @@ public class ProjectileCreator : MonoBehaviour
     {
         GameObject proj = new GameObject(name);
         Rigidbody2D proj_rb2D = proj.AddComponent<Rigidbody2D>();
+        ProjectileScript proj_script = proj.AddComponent<ProjectileScript>();
+
+        proj_script.TotalLifespan = lifespan;
         
         proj.transform.localScale = scale;
         proj_rb2D.gravityScale = 0;
