@@ -9,13 +9,13 @@ public class NaachoController : MonoBehaviour
     public float shootDelay;
     public float ProjectileLifespan;
     private float ShootTimeCounter = 0;
-    private Projectile ProjectileScript;
+    private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
     // Start is called before the first frame update
     void Start()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
-        ProjectileScript = gameObject.GetComponent<Projectile>();
+        ProjectileScript = gameObject.GetComponent<ProjectileCreator>();
     }
 
     Vector2 getMovement() 
