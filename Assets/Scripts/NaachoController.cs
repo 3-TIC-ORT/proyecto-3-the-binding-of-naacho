@@ -8,6 +8,7 @@ public class NaachoController : MonoBehaviour
     public float Friction;
     public float shootDelay;
     public float ProjectileLifespan;
+
     private float ShootTimeCounter = 0;
     private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
@@ -74,12 +75,12 @@ public class NaachoController : MonoBehaviour
         else
             rb2D.velocity *= Friction * Time.deltaTime;
         
-        Vector2 shoorDir = getShootDir();
-        if (shoorDir.x != 0 || shoorDir.y != 0)
+        Vector2 ShootDir = getShootDir();
+        if (ShootDir.x != 0 || ShootDir.y != 0)
         {
             if (ShootTimeCounter >= shootDelay)
             {
-                Shoot(shoorDir, rb2D.velocity, 10, new Vector2(0.5f, 0.5f));
+                Shoot(ShootDir, rb2D.velocity, 10, new Vector2(0.5f, 0.5f));
                 ShootTimeCounter = 0;
             }
 
