@@ -13,10 +13,11 @@ public class RoomConector : MonoBehaviour
     }
 
 
-    private void OnCollisionStay2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("SpawnPoint"))
         {
+            Debug.Log("DKSADKAS");
             if (pointDirection==1)
             {
                 Collider2D[] colliders = Physics2D.OverlapCircleAll((Vector2)transform.position-Vector2.down*5, 1);
