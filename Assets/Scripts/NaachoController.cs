@@ -58,9 +58,9 @@ public class NaachoController : MonoBehaviour
         return new Vector2(horizontalMovement, verticalMovement);
     }
 
-    void Shoot(Vector2 direction, Vector2 velocity, int speed)
+    void Shoot(Vector2 direction, Vector2 velocity, int speed, Vector2 size)
     {
-        ProjectileScript.createProjectile("Naacho Projectile", transform.position, new Vector2(0.5f, 0.5f), false, direction.normalized, speed, velocity, ProjectileLifespan);
+        ProjectileScript.createProjectile("Naacho Projectile", transform.position, size, false, direction.normalized, speed, velocity, ProjectileLifespan);
     }
 
     // Update is called once per frame
@@ -79,7 +79,7 @@ public class NaachoController : MonoBehaviour
         {
             if (ShootTimeCounter >= shootDelay)
             {
-                Shoot(shoorDir, rb2D.velocity, 10);
+                Shoot(shoorDir, rb2D.velocity, 10, new Vector2(0.5f, 0.5f));
                 ShootTimeCounter = 0;
             }
 
