@@ -10,6 +10,8 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] rightRooms;
 
     public GameObject closedRoom;
+
+    public GameObject roomConector;
     void Start()
     {
         

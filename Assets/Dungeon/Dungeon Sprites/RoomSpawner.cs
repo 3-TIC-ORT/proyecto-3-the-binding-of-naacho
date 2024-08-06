@@ -15,6 +15,7 @@ public class RoomSpawner : MonoBehaviour
         grid = GameObject.Find("Grid");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn", 0.1f);
+        Invoke("SpawnRoomConectors", 3);
     }
 
     void Spawn()
@@ -60,5 +61,10 @@ public class RoomSpawner : MonoBehaviour
             }
             spawned=true;
         }
+    }
+
+    private void SpawnRoomConectors()
+    {
+        Instantiate(templates.roomConector, transform.position, Quaternion.identity);
     }
 }
