@@ -110,8 +110,7 @@ public class RoomConector : MonoBehaviour
                 }
                 colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.down * 5, 1);
                 collidersList = new List<Collider2D>(colliders);
-            }
-
+            } 
 
         }
 
