@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected enum ColliderType {
+    public enum ColliderType {
         Box,
         Capsule,
         Circle,
@@ -25,16 +25,20 @@ public class Enemy : MonoBehaviour
     protected Collider2D Col2D;
     protected Rigidbody2D rb2D;
 
-    Enemy(ColliderType colType, Sprite sprite, float hp = 3f, float dp = 0.5f, uint speed = 350, string name = "Enemy") {
+    Enemy(Sprite sprite, float hp = 3f, float dp = 0.5f, uint speed = 350, string name = "Enemy") {
         HealthPoints = hp;
         DamagePoints = dp;
         Speed = speed;
-        
+        EnemySprite = sprite;
+
+    }
+
+    public void InitEnemy(ColliderType colType) {
         EnemyObj = new GameObject(name);
         projectileCreator = EnemyObj.AddComponent<ProjectileCreator>();
 
         SpRenderer = EnemyObj.AddComponent<SpriteRenderer>();
-        SpRenderer.sprite = sprite;
+        SpRenderer.sprite = EnemySprite;
 
         rb2D = EnemyObj.AddComponent<Rigidbody2D>();
 
