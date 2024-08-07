@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected enum ColliderTypes {
+    protected enum ColliderType {
         Box,
         Capsule,
         Circle,
@@ -22,10 +22,11 @@ public class Enemy : MonoBehaviour
 
     protected ProjectileCreator projectileCreator;
     protected Sprite EnemySprite;
+    protected SpriteRenderer SpRenderer;
     protected Collider2D Col2D;
     protected Rigidbody2D rb2D;
 
-    Enemy(Collider2D Col2D, Sprite sprite, float hp = 3f, float dp = 0.5f, uint speed = 350, string name = "Enemy") {
+    Enemy(ColliderType Col2D, Sprite sprite, float hp = 3f, float dp = 0.5f, uint speed = 350, string name = "Enemy") {
         
     }
 
