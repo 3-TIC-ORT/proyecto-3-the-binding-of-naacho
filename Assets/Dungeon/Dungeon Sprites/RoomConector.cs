@@ -25,11 +25,19 @@ public class RoomConector : MonoBehaviour
         Debug.Log("DKSADKAS");
         if (pointDirection == 1)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.down * 5, 1);
-            List<Collider2D> collidersList = new List<Collider2D>(colliders);
+            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.down * 5, new Vector2(1,1),0);
+            List<Collider2D> collidersList = new List<Collider2D>();
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Room"))
+                {
+                    collidersList.Add(collider);
+                }
+            }
             while (collidersList.Count > 0)
             {
                 Vector3 collisionPoint = colliders[0].transform.position;
+      
                 List<Tilemap> gridChildren = GetChildren(grid);
                 foreach (Tilemap tilemap in gridChildren)
                 {
@@ -41,19 +49,34 @@ public class RoomConector : MonoBehaviour
                     }
                     
                 }
-                colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.down * 5, 1);
-                collidersList = new List<Collider2D>(colliders);
+                colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.down * 5, new Vector2(1, 1), 0);
+                collidersList = new List<Collider2D>();
+                foreach (Collider2D collider in colliders)
+                {
+                    if (collider.CompareTag("Room"))
+                    {
+                        collidersList.Add(collider);
+                    }
+                }
 
             }
 
         }
         else if (pointDirection == 2)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.up * 5, 1);
-            List<Collider2D> collidersList = new List<Collider2D>(colliders);
+            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.up * 5, new Vector2(1, 1), 0);
+            List<Collider2D> collidersList = new List<Collider2D>();
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Room"))
+                {
+                    collidersList.Add(collider);
+                }
+            }
             while (collidersList.Count > 0)
             {
                 Vector3 collisionPoint = colliders[0].transform.position;
+
                 List<Tilemap> gridChildren = GetChildren(grid);
                 foreach (Tilemap tilemap in gridChildren)
                 {
@@ -63,19 +86,36 @@ public class RoomConector : MonoBehaviour
                     {
                         tilemap.SetTile(gridCollisionPoint, null);
                     }
+
                 }
-                colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.down * 5, 1);
-                collidersList = new List<Collider2D>(colliders);
+                colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.up * 5, new Vector2(1, 1), 0);
+                collidersList = new List<Collider2D>();
+                foreach (Collider2D collider in colliders)
+                {
+                    if (collider.CompareTag("Room"))
+                    {
+                        collidersList.Add(collider);
+                    }
+                }
+
             }
 
         }
         else if (pointDirection == 3)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.left * 5, 1);
-            List<Collider2D> collidersList = new List<Collider2D>(colliders);
+            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.left * 5, new Vector2(1, 1), 0);
+            List<Collider2D> collidersList = new List<Collider2D>();
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Room"))
+                {
+                    collidersList.Add(collider);
+                }
+            }
             while (collidersList.Count > 0)
             {
                 Vector3 collisionPoint = colliders[0].transform.position;
+
                 List<Tilemap> gridChildren = GetChildren(grid);
                 foreach (Tilemap tilemap in gridChildren)
                 {
@@ -85,19 +125,36 @@ public class RoomConector : MonoBehaviour
                     {
                         tilemap.SetTile(gridCollisionPoint, null);
                     }
+
                 }
+                colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.left * 5, new Vector2(1, 1), 0);
+                collidersList = new List<Collider2D>();
+                foreach (Collider2D collider in colliders)
+                {
+                    if (collider.CompareTag("Room"))
+                    {
+                        collidersList.Add(collider);
+                    }
+                }
+
             }
-            colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.down * 5, 1);
-            collidersList = new List<Collider2D>(colliders);
 
         }
         else if (pointDirection == 4)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.right * 5, 1);
-            List<Collider2D> collidersList = new List<Collider2D>(colliders);
+            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.right * 5, new Vector2(1, 1), 0);
+            List<Collider2D> collidersList = new List<Collider2D>();
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Room"))
+                {
+                    collidersList.Add(collider);
+                }
+            }
             while (collidersList.Count > 0)
             {
                 Vector3 collisionPoint = colliders[0].transform.position;
+
                 List<Tilemap> gridChildren = GetChildren(grid);
                 foreach (Tilemap tilemap in gridChildren)
                 {
@@ -107,10 +164,19 @@ public class RoomConector : MonoBehaviour
                     {
                         tilemap.SetTile(gridCollisionPoint, null);
                     }
+
                 }
-                colliders = Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.down * 5, 1);
-                collidersList = new List<Collider2D>(colliders);
-            } 
+                colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.right * 5, new Vector2(1, 1), 0);
+                collidersList = new List<Collider2D>();
+                foreach (Collider2D collider in colliders)
+                {
+                    if (collider.CompareTag("Room"))
+                    {
+                        collidersList.Add(collider);
+                    }
+                }
+
+            }
 
         }
 
