@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    protected enum ColliderTypes {
+        Box,
+        Capsule,
+        Circle,
+    }
+
     protected string Name;
 
     protected GameObject EnemyObj;
