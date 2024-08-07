@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build;
@@ -11,9 +12,7 @@ public class Enemy : MonoBehaviour
         Circle,
     }
 
-    protected string Name;
-
-    protected GameObject EnemyObj;
+    public GameObject EnemyObj;
 
     protected float HealthPoints;
     protected float DamagePoints;
@@ -26,18 +25,40 @@ public class Enemy : MonoBehaviour
     protected Collider2D Col2D;
     protected Rigidbody2D rb2D;
 
-    Enemy(ColliderType Col2D, Sprite sprite, float hp = 3f, float dp = 0.5f, uint speed = 350, string name = "Enemy") {
+    Enemy(ColliderType colType, Sprite sprite, float hp = 3f, float dp = 0.5f, uint speed = 350, string name = "Enemy") {
+        HealthPoints = hp;
+        DamagePoints = dp;
+        Speed = speed;
         
+        EnemyObj = new GameObject(name);
+        projectileCreator = EnemyObj.AddComponent<ProjectileCreator>();
+
+        SpRenderer = EnemyObj.AddComponent<SpriteRenderer>();
+        SpRenderer.sprite = sprite;
+
+        rb2D = EnemyObj.AddComponent<Rigidbody2D>();
+
+        switch(colType) {
+            case ColliderType.Box:
+                Col2D = EnemyObj.AddComponent<BoxCollider2D>();
+                break;
+            case ColliderType.Capsule:
+                Col2D = EnemyObj.AddComponent<CapsuleCollider2D>();
+                break;
+            case ColliderType.Circle:
+                Col2D = EnemyObj.AddComponent<CircleCollider2D>();
+                break;
+        }
     }
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         
     }
