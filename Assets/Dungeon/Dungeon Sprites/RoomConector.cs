@@ -36,7 +36,7 @@ public class RoomConector : MonoBehaviour
             }
             while (collidersList.Count > 0)
             {
-                Vector3 collisionPoint = colliders[0].transform.position;
+                Vector3 collisionPoint = collidersList[0].transform.position;
       
                 List<Tilemap> gridChildren = GetChildren(grid);
                 foreach (Tilemap tilemap in gridChildren)
@@ -75,7 +75,7 @@ public class RoomConector : MonoBehaviour
             }
             while (collidersList.Count > 0)
             {
-                Vector3 collisionPoint = colliders[0].transform.position;
+                Vector3 collisionPoint = collidersList[0].transform.position;
 
                 List<Tilemap> gridChildren = GetChildren(grid);
                 foreach (Tilemap tilemap in gridChildren)
@@ -114,7 +114,7 @@ public class RoomConector : MonoBehaviour
             }
             while (collidersList.Count > 0)
             {
-                Vector3 collisionPoint = colliders[0].transform.position;
+                Vector3 collisionPoint = collidersList[0].transform.position;
 
                 List<Tilemap> gridChildren = GetChildren(grid);
                 foreach (Tilemap tilemap in gridChildren)
@@ -153,7 +153,7 @@ public class RoomConector : MonoBehaviour
             }
             while (collidersList.Count > 0)
             {
-                Vector3 collisionPoint = colliders[0].transform.position;
+                Vector3 collisionPoint = collidersList[0].transform.position;
 
                 List<Tilemap> gridChildren = GetChildren(grid);
                 foreach (Tilemap tilemap in gridChildren)
