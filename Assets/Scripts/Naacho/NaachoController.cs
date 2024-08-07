@@ -44,8 +44,7 @@ public class NaachoController : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftArrow)) {
             horizontalMovement = -1;
             verticalMovement = 0;
-        }
-        else if(Input.GetKey(KeyCode.RightArrow)) {
+        } else if(Input.GetKey(KeyCode.RightArrow)) {
             horizontalMovement = 1;
             verticalMovement = 0;
         } else if(Input.GetKey(KeyCode.UpArrow)) {
@@ -61,7 +60,15 @@ public class NaachoController : MonoBehaviour
 
     void Shoot(Vector2 direction, Vector2 velocity, int speed, Vector2 size)
     {
-        ProjectileScript.createProjectile("Naacho Projectile", transform.position, size, false, direction.normalized, speed, velocity, ProjectileLifespan);
+        ProjectileScript.createProjectile(
+            "Naacho Projectile", 
+            transform.position, 
+            size, 
+            false, 
+            direction.normalized, 
+            speed, velocity, 
+            ProjectileLifespan
+        );
     }
 
     // Update is called once per frame
@@ -73,7 +80,7 @@ public class NaachoController : MonoBehaviour
         if(movement.x != 0 || movement.y != 0)
             rb2D.velocity = movement * Speed * Time.deltaTime;
         else
-            rb2D.velocity *= Friction * Time.deltaTime;
+            rb2D.velocity *= Friction;
         
         Vector2 ShootDir = getShootDir();
         if (ShootDir.x != 0 || ShootDir.y != 0)
