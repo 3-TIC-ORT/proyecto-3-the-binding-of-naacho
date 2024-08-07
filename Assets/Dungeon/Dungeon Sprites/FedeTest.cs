@@ -19,7 +19,7 @@ public class FedeTest : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
 
-        Vector3 collisionPoint = col.transform.position;
+        Vector3 collisionPoint = col.contacts[0].point;
         Debug.Log(collisionPoint);
         List<Tilemap> gridChildren = GetChildren(grid);
 
