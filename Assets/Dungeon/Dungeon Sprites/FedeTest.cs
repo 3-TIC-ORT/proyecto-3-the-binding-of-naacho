@@ -16,10 +16,10 @@ public class FedeTest : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
 
-        Vector3 collisionPoint = col.contacts[0].point;
+        Vector3 collisionPoint = col.ClosestPoint(transform.position);
         Debug.Log(collisionPoint);
         List<Tilemap> gridChildren = GetChildren(grid);
 
