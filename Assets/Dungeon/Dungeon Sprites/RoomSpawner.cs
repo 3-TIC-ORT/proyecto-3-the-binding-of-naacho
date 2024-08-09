@@ -24,7 +24,7 @@ public class RoomSpawner : MonoBehaviour
         {
             // Verificar si el espacio está vacío antes de instanciar
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.0001f);
-            if (colliders.Length <=1)
+            if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsLimit)
             {
                 if (openingDirection == 1)
                 {
@@ -47,6 +47,37 @@ public class RoomSpawner : MonoBehaviour
                     Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity, grid.transform);
                 }
                 spawned = true;
+                templates.roomsGenerated++;
+            }
+            else if(colliders.Length <= 1 && templates.roomsGenerated >= templates.roomsLimit)
+            {
+                if (openingDirection == 1)
+                {
+                    List<GameObject> downList = new List<GameObject>(templates.downRooms);
+                    GameObject downRoom = downList.Find(go => go.name == "D");
+                    Instantiate(downRoom, transform.position, Quaternion.identity, grid.transform);
+
+                }
+                else if (openingDirection == 2)
+                {
+                    List<GameObject> upList = new List<GameObject>(templates.topRooms);
+                    GameObject upRoom = upList.Find(go => go.name == "T");
+                    Instantiate(upRoom, transform.position, Quaternion.identity, grid.transform);
+                }
+                else if (openingDirection == 3)
+                {
+                    List<GameObject> leftList = new List<GameObject>(templates.leftRooms);
+                    GameObject leftRoom = leftList.Find(go => go.name == "L");
+                    Instantiate(leftRoom, transform.position, Quaternion.identity, grid.transform);
+                }
+                else if (openingDirection == 4)
+                {
+                    List<GameObject> rightList = new List<GameObject>(templates.rightRooms);
+                    GameObject rightRoom = rightList.Find(go => go.name == "R");
+                    Instantiate(rightRoom, transform.position, Quaternion.identity, grid.transform);
+                }
+                spawned = true;
+                templates.roomsGenerated++;
             }
         }
 
