@@ -24,7 +24,32 @@ public class RoomSpawner : MonoBehaviour
         {
             // Verificar si el espacio está vacío antes de instanciar
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.0001f);
-            if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsLimit)
+            if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomMin)
+            {
+                if (openingDirection == 1)
+                {
+                    int rand = Random.Range(0, templates.NTdownRooms.Length);
+                    Instantiate(templates.NTdownRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                }
+                else if (openingDirection == 2)
+                {
+                    int rand = Random.Range(0, templates.NTtopRooms.Length);
+                    Instantiate(templates.NTtopRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                }
+                else if (openingDirection == 3)
+                {
+                    int rand = Random.Range(0, templates.NTleftRooms.Length);
+                    Instantiate(templates.NTleftRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                }
+                else if (openingDirection == 4)
+                {
+                    int rand = Random.Range(0, templates.NTrightRooms.Length);
+                    Instantiate(templates.NTrightRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                }
+                spawned = true;
+                templates.roomsGenerated++;
+            }
+            else if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsLimit)
             {
                 if (openingDirection == 1)
                 {
