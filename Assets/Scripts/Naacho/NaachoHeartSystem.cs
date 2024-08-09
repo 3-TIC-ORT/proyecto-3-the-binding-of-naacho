@@ -43,12 +43,17 @@ public class NaachoHeartSystem : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        LifeAmount = 0;
+    float GetLifeAmount() {
+        float amount = 0;
         for(int i = 0; Life.Capacity - 1 > i; i++) {
             LifeAmount += Life[i].Amount;
         }
+        return amount;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        LifeAmount = GetLifeAmount();
     }
 }
