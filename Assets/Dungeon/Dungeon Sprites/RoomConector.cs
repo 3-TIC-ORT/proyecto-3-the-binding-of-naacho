@@ -24,7 +24,7 @@ public class RoomConector : MonoBehaviour
             else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * 5);
             spawnPointMoved = true;
         }
-        else if (!col.gameObject.CompareTag("SpawnPoint") && !doorsDestroyed)
+        else if (!col.gameObject.CompareTag("SpawnPoint") && !col.gameObject.CompareTag("RoomConector") && !doorsDestroyed)
         {
             ConnectRooms(col);
         }
