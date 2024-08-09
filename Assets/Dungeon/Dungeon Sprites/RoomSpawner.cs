@@ -10,6 +10,7 @@ public class RoomSpawner : MonoBehaviour
 
     private RoomTemplates templates;
     public bool spawned = false;
+    public bool spawnedClosedRoom=false;
     void Start()
     {
         grid = GameObject.Find("Grid");
@@ -114,13 +115,20 @@ public class RoomSpawner : MonoBehaviour
             if (col.GetComponent<RoomSpawner>().spawned==false && !spawned)
             {
                 Instantiate(templates.closedRoom,transform.position,Quaternion.identity, grid.transform);
+                spawnedClosedRoom = true;
+                col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
+                col.GetComponent<RoomSpawner>().spawned = true;
             }
-            spawned=true;
+            else if (spawnedClosedRoom && !col.GetComponent<RoomSpawner>().spawned)
+            {
+                col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
+            }
+            else if (!col.GetComponent<RoomSpawner>().spawnedClosedRoom) spawned = true;
         }
     }
 
     private void SpawnRoomConectors()
     {
-        Instantiate(templates.roomConector, transform.position, Quaternion.identity);
+        if (!spawnedClosedRoom) Instantiate(templates.roomConector, transform.position, Quaternion.identity);
     }
 }

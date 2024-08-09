@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 30
-  roomMin: 15
+  roomsLimit: 60
+  roomMin: 50
   downRooms:
   - {fileID: 717600851557498300, guid: fbaa1b0b924e49a48bf0b878301b3883, type: 3}
   - {fileID: 717600851557498300, guid: 3ba82cabdd8608e4fa43aae5b4bb2781, type: 3}
@@ -171,12 +171,14 @@ MonoBehaviour:
   - {fileID: 717600851557498300, guid: a6dd4a221df950649838387b2b702182, type: 3}
   - {fileID: 717600851557498300, guid: 7bb51e8b97a65824c925bc6d54759e38, type: 3}
   - {fileID: 717600851557498300, guid: a6dd4a221df950649838387b2b702182, type: 3}
+  - {fileID: 717600851557498300, guid: 9c2b0a09d09635d448b2e8582f6218ac, type: 3}
   rightRooms:
   - {fileID: 717600851557498300, guid: 3ba82cabdd8608e4fa43aae5b4bb2781, type: 3}
   - {fileID: 717600851557498300, guid: a6dd4a221df950649838387b2b702182, type: 3}
   - {fileID: 717600851557498300, guid: ebd7f77500f7f3c4ab6033b4251e822d, type: 3}
   - {fileID: 717600851557498300, guid: 3e47ecd3c9377cb4ea73ca707ff8c512, type: 3}
   - {fileID: 717600851557498300, guid: a6dd4a221df950649838387b2b702182, type: 3}
+  - {fileID: 717600851557498300, guid: e020611e36e6f884f809f884be80d47f, type: 3}
   closedRoom: {fileID: 717600851557498300, guid: e9b780b5af6e5f6479bd3bd14881a87a, type: 3}
   NTdownRooms:
   - {fileID: 717600851557498300, guid: 3ba82cabdd8608e4fa43aae5b4bb2781, type: 3}
