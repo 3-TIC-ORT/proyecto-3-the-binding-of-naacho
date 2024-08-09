@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -19,11 +21,11 @@ class Heart {
         Amount = amount;
     }
 
-    protected void Damage(float dp = .5f) {
+    public void Damage(float dp = .5f) {
         Amount -= dp;
     }
 
-    protected void Heal(float hp = .5f) {
+    public void Heal(float hp = .5f) {
         Amount = (Amount + hp <= 1f) ? Amount + hp : Amount;
     }
 }
@@ -33,6 +35,7 @@ public class NaachoHeartSystem : MonoBehaviour
     public int startingLife = 3;
     List<Heart> Life;
     public float LifeAmount;
+    public float LifePlaceholder;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +48,8 @@ public class NaachoHeartSystem : MonoBehaviour
 
     float GetLifeAmount() {
         float amount = 0;
-        for(int i = 0; Life.Capacity - 1 > i; i++) {
-            LifeAmount += Life[i].Amount;
+        foreach(Heart h in Life) {
+            amount += h.Amount;
         }
         return amount;
     }
@@ -56,4 +59,27 @@ public class NaachoHeartSystem : MonoBehaviour
     {
         LifeAmount = GetLifeAmount();
     }
+
+    int Damage(float dp, int counter = 1) {
+        /*if(Life[Life.Capacity-counter].Amount - dp >= 0) {
+            Life[Life.Capacity-counter].Amount -= dp;
+            return 0;
+        }
+        else if(Life[Life.Capacity-counter].Amount - dp/2 >= 0) {
+            Life[Life.Capacity-counter].Amount -= dp/2;
+            return Damage(dp/2, counter++);
+        } else return 0;*/
+        LifePlaceholder -= dp;
+        if(LifePlaceholder < 0) {
+            print("ded");
+        }
+        return 0;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.CompareTag("Enemy")) {
+            Damage(.5f);
+        }
+    }
+
 }
