@@ -6,7 +6,8 @@ public class RoomConector : MonoBehaviour
 {
     public int pointDirection;
     private GameObject grid;
-    
+    bool doorsDestroyed=false;
+    bool spawnPointMoved=false;
     void Start()
     {
         grid = GameObject.Find("Grid");
@@ -15,170 +16,44 @@ public class RoomConector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("SpawnPoint"))
+        if (col.gameObject.CompareTag("SpawnPoint") && !spawnPointMoved)
         {
-            ConnectRooms();
+            if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * 5);
+            else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * 5);
+            else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * 5);
+            else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * 5);
+            spawnPointMoved = true;
+        }
+        else if (!col.gameObject.CompareTag("SpawnPoint") && !doorsDestroyed)
+        {
+            ConnectRooms(col);
         }
     }
-    private void ConnectRooms()
+    private void ConnectRooms(Collider2D col)
     {
-        Debug.Log("DKSADKAS");
-        if (pointDirection == 1)
+        doorsDestroyed = true;
+        Vector2[] movimientosPeristalticosArray = { Vector2.right, Vector2.up, Vector2.left, Vector2.left, Vector2.down, Vector2.down, Vector2.right, Vector2.right };
+        List<Vector2> movimientosPeristalticos = new List<Vector2>(movimientosPeristalticosArray);
+        foreach (Vector2 mov in movimientosPeristalticos)
         {
-            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.down * 5, new Vector2(1,1),0);
-            List<Collider2D> collidersList = new List<Collider2D>();
-            foreach (Collider2D collider in colliders)
+            Vector3 collisionPoint = col.ClosestPoint(transform.position);
+            Debug.Log(collisionPoint);
+            List<Tilemap> gridChildren = GetChildren(grid);
+
+            foreach (Tilemap tilemap in gridChildren)
             {
-                if (collider.CompareTag("Room"))
+                Debug.Log(tilemap);
+                Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
+                TileBase wall = tilemap.GetTile(gridCollisionPoint);
+                if (wall != null)
                 {
-                    collidersList.Add(collider);
-                }
-            }
-            while (collidersList.Count > 0)
-            {
-                Vector3 collisionPoint = collidersList[0].transform.position;
-      
-                List<Tilemap> gridChildren = GetChildren(grid);
-                foreach (Tilemap tilemap in gridChildren)
-                {
-                    Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
-                    TileBase wall = tilemap.GetTile(gridCollisionPoint);
-                    if (wall != null)
-                    {
-                        tilemap.SetTile(gridCollisionPoint, null);
-                    }
-                    
-                }
-                colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.down * 5, new Vector2(1, 1), 0);
-                collidersList = new List<Collider2D>();
-                foreach (Collider2D collider in colliders)
-                {
-                    if (collider.CompareTag("Room"))
-                    {
-                        collidersList.Add(collider);
-                    }
+                    tilemap.SetTile(gridCollisionPoint, null);
                 }
 
             }
-
+            transform.position += (Vector3)mov * 0.37f;
         }
-        else if (pointDirection == 2)
-        {
-            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.up * 5, new Vector2(1, 1), 0);
-            List<Collider2D> collidersList = new List<Collider2D>();
-            foreach (Collider2D collider in colliders)
-            {
-                if (collider.CompareTag("Room"))
-                {
-                    collidersList.Add(collider);
-                }
-            }
-            while (collidersList.Count > 0)
-            {
-                Vector3 collisionPoint = collidersList[0].transform.position;
 
-                List<Tilemap> gridChildren = GetChildren(grid);
-                foreach (Tilemap tilemap in gridChildren)
-                {
-                    Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
-                    TileBase wall = tilemap.GetTile(gridCollisionPoint);
-                    if (wall != null)
-                    {
-                        tilemap.SetTile(gridCollisionPoint, null);
-                    }
-
-                }
-                colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.up * 5, new Vector2(1, 1), 0);
-                collidersList = new List<Collider2D>();
-                foreach (Collider2D collider in colliders)
-                {
-                    if (collider.CompareTag("Room"))
-                    {
-                        collidersList.Add(collider);
-                    }
-                }
-
-            }
-
-        }
-        else if (pointDirection == 3)
-        {
-            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.left * 5, new Vector2(1, 1), 0);
-            List<Collider2D> collidersList = new List<Collider2D>();
-            foreach (Collider2D collider in colliders)
-            {
-                if (collider.CompareTag("Room"))
-                {
-                    collidersList.Add(collider);
-                }
-            }
-            while (collidersList.Count > 0)
-            {
-                Vector3 collisionPoint = collidersList[0].transform.position;
-
-                List<Tilemap> gridChildren = GetChildren(grid);
-                foreach (Tilemap tilemap in gridChildren)
-                {
-                    Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
-                    TileBase wall = tilemap.GetTile(gridCollisionPoint);
-                    if (wall != null)
-                    {
-                        tilemap.SetTile(gridCollisionPoint, null);
-                    }
-
-                }
-                colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.left * 5, new Vector2(1, 1), 0);
-                collidersList = new List<Collider2D>();
-                foreach (Collider2D collider in colliders)
-                {
-                    if (collider.CompareTag("Room"))
-                    {
-                        collidersList.Add(collider);
-                    }
-                }
-
-            }
-
-        }
-        else if (pointDirection == 4)
-        {
-            Collider2D[] colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.right * 5, new Vector2(1, 1), 0);
-            List<Collider2D> collidersList = new List<Collider2D>();
-            foreach (Collider2D collider in colliders)
-            {
-                if (collider.CompareTag("Room"))
-                {
-                    collidersList.Add(collider);
-                }
-            }
-            while (collidersList.Count > 0)
-            {
-                Vector3 collisionPoint = collidersList[0].transform.position;
-
-                List<Tilemap> gridChildren = GetChildren(grid);
-                foreach (Tilemap tilemap in gridChildren)
-                {
-                    Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
-                    TileBase wall = tilemap.GetTile(gridCollisionPoint);
-                    if (wall != null)
-                    {
-                        tilemap.SetTile(gridCollisionPoint, null);
-                    }
-
-                }
-                colliders = Physics2D.OverlapBoxAll((Vector2)transform.position + Vector2.right * 5, new Vector2(1, 1), 0);
-                collidersList = new List<Collider2D>();
-                foreach (Collider2D collider in colliders)
-                {
-                    if (collider.CompareTag("Room"))
-                    {
-                        collidersList.Add(collider);
-                    }
-                }
-
-            }
-
-        }
 
 
     }

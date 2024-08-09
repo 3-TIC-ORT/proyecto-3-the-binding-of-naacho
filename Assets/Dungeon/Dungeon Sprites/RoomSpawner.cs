@@ -65,6 +65,6 @@ public class RoomSpawner : MonoBehaviour
 
     private void SpawnRoomConectors()
     {
-        //Instantiate(templates.roomConector, transform.position, Quaternion.identity);
+        Instantiate(templates.roomConector, transform.position, Quaternion.identity);
     }
 }
