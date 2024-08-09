@@ -36,7 +36,7 @@ public class EnemyTest : MonoBehaviour
     void Start() {
         enemy = new List<EnemTest>();
         for(int i = 0; i < EnemyAmount; i++) {
-            enemy.Add(new EnemTest(enemySprite, speed: 250));
+            enemy.Add(new EnemTest(enemySprite, speed: 150));
             enemy[i].InitEnemy(Enemy.ColliderType.Box, new Vector2(i, -i), new Vector2(0.75f, 0.75f));
             enemy[i].Start();
         }
