@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -38,9 +37,9 @@ public class NaachoHeartSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Life = new List<Heart>(startingLife);
-        for(int i = 0; Life.Capacity > i; i++) {
-            Life[i] = new Heart();
+        Life = new List<Heart>();
+        for(int i = 0; startingLife > i; i++) {
+            Life.Add(new Heart());
         }
     }
 
@@ -48,7 +47,7 @@ public class NaachoHeartSystem : MonoBehaviour
     void Update()
     {
         LifeAmount = 0;
-        for(int i = 0; Life.Capacity > i; i++) {
+        for(int i = 0; Life.Capacity - 1 > i; i++) {
             LifeAmount += Life[i].Amount;
         }
     }
