@@ -12,8 +12,9 @@ internal class EnemTest : Enemy
     public override void Start()
     {
         base.Start();
+        EnemyObj.layer = 0;
         rb2D.freezeRotation = true;
-        Col2D.isTrigger = true;
+        Col2D.isTrigger = false;
     }
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ internal class EnemTest : Enemy
     {
         base.Update();
         Vector2 playerDir = (Vector2)(EnemyObj.transform.position - Player.transform.position).normalized;
-        rb2D.velocity = -Speed * playerDir * Time.deltaTime;
+        rb2D.velocity = -Speed * Time.deltaTime * playerDir;
     }
 }
 
@@ -34,7 +35,7 @@ public class EnemyTest : MonoBehaviour
         enemy = new List<EnemTest>();
         for(int i = 0; i < EnemyAmount; i++) {
             enemy.Add(new EnemTest(enemySprite, speed: 250));
-            enemy[i].InitEnemy(Enemy.ColliderType.Box, new Vector2(1, 1));
+            enemy[i].InitEnemy(Enemy.ColliderType.Box, new Vector2(i, -i), new Vector2(0.5f, 0.5f));
             enemy[i].Start();
         }
     }

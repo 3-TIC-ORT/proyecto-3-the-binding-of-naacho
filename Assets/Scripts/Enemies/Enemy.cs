@@ -37,7 +37,7 @@ public class Enemy// : MonoBehaviour
         EnemySprite = sprite;
     }
 
-    public void InitEnemy(ColliderType colType, Vector2 pos) {
+    public void InitEnemy(ColliderType colType, Vector2 pos, Vector2 scale) {
         EnemyObj = new GameObject(Name);
         projectileCreator = EnemyObj.AddComponent<ProjectileCreator>();
 
@@ -61,6 +61,8 @@ public class Enemy// : MonoBehaviour
         EnemyObj.transform.position = pos;
 
         EnemyObj.tag = "Enemy";
+
+        EnemyObj.transform.localScale = scale;
     }
 
     // Start is called before the first frame update

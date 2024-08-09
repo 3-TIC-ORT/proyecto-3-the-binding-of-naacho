@@ -78,7 +78,7 @@ public class NaachoController : MonoBehaviour
 
         Vector2 movement = getMovement().normalized;
         if(movement.x != 0 || movement.y != 0)
-            rb2D.velocity = movement * Speed * Time.deltaTime;
+            rb2D.velocity = Speed * Time.deltaTime * movement;
         else
             rb2D.velocity *= Friction;
         
