@@ -12,10 +12,11 @@ internal class EnemTest : Enemy
     public override void Start()
     {
         base.Start();
+        SpRenderer.color = new Color(.2f, .8f, .14f);
         EnemyObj.layer = 0;
         rb2D.freezeRotation = true;
         Col2D.isTrigger = false;
-        Col2D.size = Vector2.one * .95f;
+        Col2D.size = Vector2.one * .9f;
     }
 
     // Update is called once per frame
