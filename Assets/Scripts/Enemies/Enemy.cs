@@ -24,7 +24,7 @@ public class Enemy// : MonoBehaviour
     protected ProjectileCreator projectileCreator;
     protected Sprite EnemySprite;
     protected SpriteRenderer SpRenderer;
-    protected Collider2D Col2D;
+    protected BoxCollider2D Col2D;
     protected Rigidbody2D rb2D;
 
     protected GameObject Player; 
@@ -46,17 +46,7 @@ public class Enemy// : MonoBehaviour
 
         rb2D = EnemyObj.AddComponent<Rigidbody2D>();
 
-        switch(colType) {
-            case ColliderType.Box:
-                Col2D = EnemyObj.AddComponent<BoxCollider2D>();
-                break;
-            case ColliderType.Capsule:
-                Col2D = EnemyObj.AddComponent<CapsuleCollider2D>();
-                break;
-            case ColliderType.Circle:
-                Col2D = EnemyObj.AddComponent<CircleCollider2D>();
-                break;
-        }
+        Col2D = EnemyObj.AddComponent<BoxCollider2D>();
 
         EnemyObj.transform.position = pos;
 

@@ -15,6 +15,7 @@ internal class EnemTest : Enemy
         EnemyObj.layer = 0;
         rb2D.freezeRotation = true;
         Col2D.isTrigger = false;
+        Col2D.size = Vector2.one * .95f;
     }
 
     // Update is called once per frame
