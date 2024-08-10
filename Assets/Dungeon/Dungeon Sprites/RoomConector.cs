@@ -6,6 +6,7 @@ public class RoomConector : MonoBehaviour
 {
     public int pointDirection;
     private GameObject grid;
+    public TileBase tileConector;
     bool doorsDestroyed=false;
     bool spawnPointMoved=false;
     void Start()
@@ -44,6 +45,7 @@ public class RoomConector : MonoBehaviour
             if (wall != null)
             {
                 tilemap.SetTile(gridCollisionPoint, null);
+                tilemap.SetTile(gridCollisionPoint, tileConector);
             }
             transform.position += (Vector3)mov * 0.37f;
         }
@@ -62,6 +64,6 @@ public class RoomConector : MonoBehaviour
     }
     void DestroyThis()
     {
-        Destroy(gameObject);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }

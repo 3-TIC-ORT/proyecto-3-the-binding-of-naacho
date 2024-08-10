@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointDirection: 0
+  tileConector: {fileID: 11400000, guid: 64761d2b0f1f8424a93312a3e7a0b744, type: 2}
 --- !u!61 &8348292914006823559
 BoxCollider2D:
   m_ObjectHideFlags: 0
