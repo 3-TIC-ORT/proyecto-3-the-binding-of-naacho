@@ -11,6 +11,7 @@ public class RoomConector : MonoBehaviour
     void Start()
     {
         grid = GameObject.Find("Grid");
+        Invoke("DestroyThis", 2);
     }
 
 
@@ -65,5 +66,9 @@ public class RoomConector : MonoBehaviour
             children.Add(child.gameObject.GetComponent<Tilemap>());
         }
         return children;
+    }
+    void DestroyThis()
+    {
+        Destroy(gameObject);
     }
 }
