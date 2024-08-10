@@ -38,19 +38,12 @@ public class RoomConector : MonoBehaviour
         foreach (Vector2 mov in movimientosPeristalticos)
         {
             Vector3 collisionPoint = col.ClosestPoint(transform.position);
-            Debug.Log(collisionPoint);
-            List<Tilemap> gridChildren = GetChildren(grid);
-
-            foreach (Tilemap tilemap in gridChildren)
+            Tilemap tilemap = col.GetComponent<Tilemap>();
+            Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
+            TileBase wall = tilemap.GetTile(gridCollisionPoint);
+            if (wall != null)
             {
-                Debug.Log(tilemap);
-                Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
-                TileBase wall = tilemap.GetTile(gridCollisionPoint);
-                if (wall != null)
-                {
-                    tilemap.SetTile(gridCollisionPoint, null);
-                }
-
+                tilemap.SetTile(gridCollisionPoint, null);
             }
             transform.position += (Vector3)mov * 0.37f;
         }
