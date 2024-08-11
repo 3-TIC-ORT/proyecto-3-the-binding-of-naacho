@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySprite: {fileID: 7482667652216324306, guid: f1644865047eb2348a3a231ede64ec73, type: 3}
-  EnemyAmount: 3
+  EnemyAmount: 2
 --- !u!4 &1287723739
 Transform:
   m_ObjectHideFlags: 0
