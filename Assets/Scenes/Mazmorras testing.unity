@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 25
-  roomMin: 10
+  roomsLimit: 200
+  roomMin: 20
   downRooms:
   - {fileID: 717600851557498300, guid: fbaa1b0b924e49a48bf0b878301b3883, type: 3}
   - {fileID: 717600851557498300, guid: 3ba82cabdd8608e4fa43aae5b4bb2781, type: 3}
