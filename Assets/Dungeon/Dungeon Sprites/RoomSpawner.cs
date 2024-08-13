@@ -11,6 +11,7 @@ public class RoomSpawner : MonoBehaviour
     private RoomTemplates templates;
     public bool spawned = false;
     public bool spawnedClosedRoom=false;
+    public bool bossRoom = false;
     void Start()
     {
         grid = GameObject.Find("Grid");
@@ -56,21 +57,25 @@ public class RoomSpawner : MonoBehaviour
                 {
                     int rand = Random.Range(0, templates.downRooms.Length);
                     Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    SpawnBoosRoom(rand,templates.downRooms,"D",false);
                 }
                 else if (openingDirection == 2)
                 {
                     int rand = Random.Range(0, templates.topRooms.Length);
                     Instantiate(templates.topRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    SpawnBoosRoom(rand, templates.topRooms, "T",false);
                 }
                 else if (openingDirection == 3)
                 {
                     int rand = Random.Range(0, templates.leftRooms.Length);
                     Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    SpawnBoosRoom(rand, templates.leftRooms, "L",false);
                 }
                 else if (openingDirection == 4)
                 {
                     int rand = Random.Range(0, templates.rightRooms.Length);
                     Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    SpawnBoosRoom(rand, templates.rightRooms, "R", false);
                 }
                 spawned = true;
                 templates.roomsGenerated++;
@@ -82,6 +87,7 @@ public class RoomSpawner : MonoBehaviour
                     List<GameObject> downList = new List<GameObject>(templates.downRooms);
                     GameObject downRoom = downList.Find(go => go.name == "D");
                     Instantiate(downRoom, transform.position, Quaternion.identity, grid.transform);
+                    SpawnBoosRoom(1607, templates.downRooms, "D", true);
 
                 }
                 else if (openingDirection == 2)
@@ -89,18 +95,21 @@ public class RoomSpawner : MonoBehaviour
                     List<GameObject> upList = new List<GameObject>(templates.topRooms);
                     GameObject upRoom = upList.Find(go => go.name == "T");
                     Instantiate(upRoom, transform.position, Quaternion.identity, grid.transform);
+                    SpawnBoosRoom(1607, templates.downRooms, "D", true);
                 }
                 else if (openingDirection == 3)
                 {
                     List<GameObject> leftList = new List<GameObject>(templates.leftRooms);
                     GameObject leftRoom = leftList.Find(go => go.name == "L");
                     Instantiate(leftRoom, transform.position, Quaternion.identity, grid.transform);
+                    SpawnBoosRoom(1607, templates.downRooms, "D", true);
                 }
                 else if (openingDirection == 4)
                 {
                     List<GameObject> rightList = new List<GameObject>(templates.rightRooms);
                     GameObject rightRoom = rightList.Find(go => go.name == "R");
                     Instantiate(rightRoom, transform.position, Quaternion.identity, grid.transform);
+                    SpawnBoosRoom(1607, templates.downRooms, "D", true);
                 }
                 spawned = true;
                 templates.roomsGenerated++;
@@ -127,6 +136,24 @@ public class RoomSpawner : MonoBehaviour
         }
     }
 
+    // NO siempre crear una BossRoom
+    public void SpawnBoosRoom(int rand,GameObject[] rooms, string room, bool closing)
+    {
+        if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom)
+        {
+            templates.bossRoomSpawned = true;
+            bossRoom = true;
+            Debug.Log("SOY LA BOSS ROOM");
+            GameObject.Find("FedeTest").transform.position = transform.position;
+        }
+        else if (closing)
+        {
+            templates.bossRoomSpawned = true;
+            bossRoom = true;
+            Debug.Log("SOY LA BOSS ROOM");
+            GameObject.Find("FedeTest").transform.position = transform.position;
+        }
+    }
     private void SpawnRoomConectors()
     {
         if (!spawnedClosedRoom) Instantiate(templates.roomConector, transform.position, Quaternion.identity);

@@ -7,6 +7,7 @@ public class RoomTemplates : MonoBehaviour
     public int roomsGenerated = 0;
     public int roomsLimit; // No es preciso
     public int roomMin;
+    public bool bossRoomSpawned=false;
     [Header("Room List")]
     public GameObject[] downRooms;
     public GameObject[] topRooms;
