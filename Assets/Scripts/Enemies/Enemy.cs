@@ -65,4 +65,8 @@ public class Enemy// : MonoBehaviour
     public virtual void Update()
     {
     }
+
+    public virtual void OnCollisionEnter2D(Collision2D other) {
+        
+    }
 }

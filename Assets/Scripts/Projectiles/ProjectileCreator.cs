@@ -23,6 +23,8 @@ public class ProjectileCreator : MonoBehaviour
 
         SpriteRenderer proj_spr = proj.AddComponent<SpriteRenderer>();
 
+        proj.tag = (enemy) ? "Enemy" : "Projectile";
+
         proj_spr.sprite = proj_sprite;
     }
 }
