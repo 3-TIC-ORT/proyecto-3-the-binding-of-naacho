@@ -8,7 +8,7 @@ public class NaachoController : MonoBehaviour
     public float Friction;
     public float shootDelay;
     public float ProjectileLifespan;
-
+    public float Damage;
     private float ShootTimeCounter = 0;
     private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
@@ -67,7 +67,8 @@ public class NaachoController : MonoBehaviour
             false, 
             direction.normalized, 
             speed, velocity, 
-            ProjectileLifespan
+            ProjectileLifespan,
+            Damage
         );
     }
 

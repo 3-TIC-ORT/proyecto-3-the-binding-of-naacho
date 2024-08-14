@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     public float TotalLifespan;
+    public float Damage = .5f;
     private float lifespan = 0;
 
     // Update is called once per frame
