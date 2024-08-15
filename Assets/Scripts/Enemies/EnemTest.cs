@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemTest : Enemy
 {
+    private Color defaultColor;
     // Start is called before the first frame update
     public override void Start()
     {
         transform.position = new Vector2(0, 5);
         base.Start();
-        EnemyObj.layer = 8;
+        gameObject.layer = 8;
         Col2D.size = Vector2.one * .9f;
+        defaultColor = SpRenderer.color;
     }
 
     // Update is called once per frame
@@ -29,5 +31,15 @@ public class EnemTest : Enemy
     public override void Damage(float dp)
     {
         base.Damage(dp);
+        StartCoroutine(VisualDamage());
+    }
+
+    IEnumerator VisualDamage() {
+        SpRenderer.color = Color.red;
+
+        while(SpRenderer.color.r > defaultColor.r) {
+            SpRenderer.color = new Color(SpRenderer.color.r - .02f, defaultColor.g, defaultColor.b);
+            yield return null;
+        }
     }
 }
