@@ -121,7 +121,8 @@ public class RoomSpawner : MonoBehaviour
     {
         if (col.gameObject.CompareTag("SpawnPoint"))
         {
-            if (col.GetComponent<RoomSpawner>().spawned==false && !spawned)
+            Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
+            if (col.GetComponent<RoomSpawner>().spawned==false && !spawned && colliders.Length<=2)
             {
                 Instantiate(templates.closedRoom,transform.position,Quaternion.identity, grid.transform);
                 spawnedClosedRoom = true;
@@ -131,12 +132,13 @@ public class RoomSpawner : MonoBehaviour
             else if (spawnedClosedRoom && !col.GetComponent<RoomSpawner>().spawned)
             {
                 col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
+                col.GetComponent<RoomSpawner>().spawned = true;
             }
-            else if (!col.GetComponent<RoomSpawner>().spawnedClosedRoom) spawned = true;
+            
         }
     }
 
-    // NO siempre crear una BossRoom
+    // NO siempre crea una BossRoom
     public void SpawnBoosRoom(int rand,GameObject[] rooms, string room, bool closing)
     {
         if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom)
