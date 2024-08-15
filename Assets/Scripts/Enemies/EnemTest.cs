@@ -7,12 +7,9 @@ public class EnemTest : Enemy
     // Start is called before the first frame update
     public override void Start()
     {
-        InitEnemy(Vector2.left, Vector2.one);
+        transform.position = new Vector2(0, 5);
         base.Start();
-        SpRenderer.color = new Color(.2f, .8f, .14f);
-        SpRenderer.sprite = EnemySprite;
         EnemyObj.layer = 8;
-        rb2D.freezeRotation = true;
         Col2D.size = Vector2.one * .9f;
     }
 
@@ -20,7 +17,17 @@ public class EnemTest : Enemy
     public override void Update()
     {
         base.Update();
-        Vector2 playerDir = (Vector2)(Player.transform.position - EnemyObj.transform.position).normalized;
+        Vector2 playerDir = (Vector2)(Player.transform.position - transform.position).normalized;
         rb2D.velocity = Speed * Time.deltaTime * playerDir;
+    }
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+    }
+
+    public override void Damage(float dp)
+    {
+        base.Damage(dp);
     }
 }
