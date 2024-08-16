@@ -99,7 +99,7 @@ public class NaachoController : MonoBehaviour
         {
             if (ShootTimeCounter >= shootDelay)
             {
-                Shoot(ShootDir, rb2D.velocity/2, 10, new Vector2(0.25f, 0.25f));
+                Shoot(ShootDir, rb2D.velocity/4, 10, new Vector2(0.25f, 0.25f));
                 ShootTimeCounter = 0;
             }
 
