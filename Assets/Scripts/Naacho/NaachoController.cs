@@ -81,11 +81,19 @@ public class NaachoController : MonoBehaviour
         ShootTimeCounter += Time.deltaTime;
 
         Vector2 movement = getMovement().normalized;
-        if(movement.x != 0 || movement.y != 0)
+        if (movement.x != 0 || movement.y != 0)
+        {
             rb2D.velocity = Speed * Time.deltaTime * movement;
+            animator.SetFloat("DirY", movement.y);
+            animator.SetBool("Idle", false);
+        }
         else
+        {
             rb2D.velocity *= Friction;
-        
+            animator.SetFloat("DirY", movement.y);
+            animator.SetBool("Idle", true);
+        }
+
         Vector2 ShootDir = getShootDir();
         if (ShootDir.x != 0 || ShootDir.y != 0)
         {
