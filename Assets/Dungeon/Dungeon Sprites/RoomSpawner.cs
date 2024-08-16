@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
@@ -17,7 +18,7 @@ public class RoomSpawner : MonoBehaviour
         grid = GameObject.Find("Grid");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn", 0.1f);
-        Invoke("SpawnRoomConectors", 3);
+        StartCoroutine(WaitForSpawnRoomConectors());
     }
 
     void Spawn()
@@ -122,12 +123,23 @@ public class RoomSpawner : MonoBehaviour
         if (col.gameObject.CompareTag("SpawnPoint"))
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
+
+            if (col.gameObject.CompareTag("RoomConector") && spawnedClosedRoom)
+            {
+                col.GetComponent<RoomConector>().doorsDestroyed = true;
+                col.GetComponent<RoomConector>().spawnPointMoved = true;
+            }
             if (col.GetComponent<RoomSpawner>().spawned==false && !spawned && colliders.Length<=2)
             {
+                grid = GameObject.Find("Grid");
+                templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+                
                 Instantiate(templates.closedRoom,transform.position,Quaternion.identity, grid.transform);
                 spawnedClosedRoom = true;
                 col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
                 col.GetComponent<RoomSpawner>().spawned = true;
+                
+                
             }
             else if (spawnedClosedRoom && !col.GetComponent<RoomSpawner>().spawned)
             {
@@ -146,7 +158,7 @@ public class RoomSpawner : MonoBehaviour
             templates.bossRoomSpawned = true;
             bossRoom = true;
             Debug.Log("SOY LA BOSS ROOM");
-            GameObject.Find("FedeTest").transform.position = transform.position;
+            GameObject.Find("FedeTest").transform.position = transform.position+Vector3.right*3;
         }
         else if (closing)
         {
@@ -155,6 +167,20 @@ public class RoomSpawner : MonoBehaviour
             Debug.Log("SOY LA BOSS ROOM");
             GameObject.Find("FedeTest").transform.position = transform.position;
         }
+    }
+    IEnumerator WaitForSpawnRoomConectors()
+    {
+        int localRoomsGenerated = templates.roomsGenerated;
+        int lastLocalRoomsGenerated = -1;
+        while (lastLocalRoomsGenerated != localRoomsGenerated)
+        {
+            lastLocalRoomsGenerated = localRoomsGenerated;
+            yield return new WaitForSecondsRealtime(2f);
+            localRoomsGenerated = templates.roomsGenerated;
+        }
+        if (spawnedClosedRoom) StopCoroutine(WaitForSpawnRoomConectors());
+        yield return new WaitForSecondsRealtime(1f);
+        SpawnRoomConectors();
     }
     private void SpawnRoomConectors()
     {

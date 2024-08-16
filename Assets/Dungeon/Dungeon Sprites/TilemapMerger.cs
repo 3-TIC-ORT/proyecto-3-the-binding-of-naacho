@@ -5,19 +5,34 @@ using UnityEngine.Tilemaps;
 
 public class TilemapMerger : MonoBehaviour
 {
+    private RoomTemplates templates;
     public Grid grid; // Asigna aquí tu Grid
     public Tilemap targetTilemap; // El Tilemap donde se fusionarán todos los tiles
 
     void Start()
     {
-        Invoke("MergeTilemaps", 5);
+        templates = GetComponent<RoomTemplates>();
+        StartCoroutine(WaitForMergeTilemaps());
     }
 
+    IEnumerator WaitForMergeTilemaps()
+    {
+        int localRoomsGenerated = templates.roomsGenerated;
+        int lastLocalRoomsGenerated = -1;
+        while (lastLocalRoomsGenerated != localRoomsGenerated)
+        {
+            lastLocalRoomsGenerated = localRoomsGenerated;
+            yield return new WaitForSecondsRealtime(2f);
+            localRoomsGenerated = templates.roomsGenerated;
+        }
+        yield return new WaitForSecondsRealtime(3f);
+        MergeTilemaps();
+    }
     void MergeTilemaps()
     {
+        Debug.Log("ASD");
         List<Tilemap> childTilemaps = new List<Tilemap>();
 
-        // Recolecta todos los Tilemaps hijos
         foreach (Transform child in grid.transform)
         {
             Tilemap tilemap = child.GetComponent<Tilemap>();
@@ -30,23 +45,46 @@ public class TilemapMerger : MonoBehaviour
         // Transfiere los tiles de cada Tilemap hijo al Tilemap objetivo
         foreach (Tilemap tilemap in childTilemaps)
         {
-            BoundsInt bounds = tilemap.cellBounds;
-
-            // Itera sobre cada posición en los límites del Tilemap
-            foreach (Vector3Int pos in bounds.allPositionsWithin)
+            List<Tilemap> closedTilemaps = new List<Tilemap>();
+            if (tilemap.name!="Closed")
             {
-                if (tilemap.HasTile(pos))
+                BoundsInt bounds = tilemap.cellBounds;
+
+                // Itera sobre cada posición en los límites del Tilemap
+                foreach (Vector3Int pos in bounds.allPositionsWithin)
                 {
-                    TileBase tile = tilemap.GetTile(pos);
-                    Vector2 worldPosition = tilemap.CellToWorld(pos);
-                    Vector3Int whereToSet = targetTilemap.WorldToCell(worldPosition);
-                    targetTilemap.SetTile(whereToSet, tile); // Coloca el tile en el Tilemap objetivo
-                    tilemap.SetTile(pos, null); // Elimina el tile del Tilemap hijo
+                    if (tilemap.HasTile(pos))
+                    {
+                        TileBase tile = tilemap.GetTile(pos);
+                        Vector2 worldPosition = tilemap.CellToWorld(pos);
+                        Vector3Int whereToSet = targetTilemap.WorldToCell(worldPosition);
+                        targetTilemap.SetTile(whereToSet, tile);
+                        tilemap.SetTile(pos, null); 
+                    }
+                }
+            }
+            else closedTilemaps.Add(tilemap);
+            if (closedTilemaps.Count > 0)
+            {
+                foreach (Tilemap closedTilemap in closedTilemaps) 
+                {
+                    BoundsInt bounds = closedTilemap.cellBounds;
+
+                    foreach (Vector3Int pos in bounds.allPositionsWithin)
+                    {
+                        if (closedTilemap.HasTile(pos))
+                        {
+                            TileBase tile = closedTilemap.GetTile(pos);
+                            Vector2 worldPosition = closedTilemap.CellToWorld(pos);
+                            Vector3Int whereToSet = targetTilemap.WorldToCell(worldPosition);
+                            targetTilemap.SetTile(whereToSet, tile);
+                            closedTilemap.SetTile(pos, null);
+                        }
+                    }
                 }
             }
         }
 
-        // Actualiza el mapa para asegurarse de que todos los tiles se muestran correctamente
         targetTilemap.RefreshAllTiles();
     }
 }

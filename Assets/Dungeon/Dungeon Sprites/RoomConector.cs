@@ -7,8 +7,8 @@ public class RoomConector : MonoBehaviour
     public int pointDirection;
     private GameObject grid;
     public TileBase tileConector;
-    bool doorsDestroyed=false;
-    bool spawnPointMoved=false;
+    public bool doorsDestroyed=false;
+    public bool spawnPointMoved=false;
     void Start()
     {
         grid = GameObject.Find("Grid");
@@ -26,7 +26,7 @@ public class RoomConector : MonoBehaviour
             else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * 5);
             spawnPointMoved = true;
         }
-        else if (!col.gameObject.CompareTag("SpawnPoint") && !col.gameObject.CompareTag("RoomConector") && !doorsDestroyed)
+        else if (!col.gameObject.CompareTag("SpawnPoint") && !col.gameObject.CompareTag("RoomConector") && !doorsDestroyed && col.name!="Closed")
         {
             ConnectRooms(col);
         }
