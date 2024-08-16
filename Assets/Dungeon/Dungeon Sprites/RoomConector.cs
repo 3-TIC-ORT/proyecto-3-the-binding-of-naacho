@@ -12,36 +12,23 @@ public class RoomConector : MonoBehaviour
     void Start()
     {
         grid = GameObject.Find("Grid");
-        Invoke("DestroyThis", 2);
+        Invoke("DestroyThis", 5);
     }
 
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Collider2D[] colliders= Physics2D.OverlapBoxAll(transform.position, new Vector2(0.3f, 0.3f), 0);
-        List<Collider2D> collidersList = new List<Collider2D>();
-        List<Collider2D> finalCollidersList = new List<Collider2D>();
-
+      
         if (col.gameObject.CompareTag("SpawnPoint") && col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom==false && !spawnPointMoved)
         {
             if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * 5);
             else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * 5);
             else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * 5);
             else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * 5);
-            colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.3f, 0.3f), 0);
-            collidersList = new List<Collider2D>(colliders);
-            finalCollidersList = new List<Collider2D>(collidersList);
-            foreach (Collider2D collider in collidersList)
-            {
-                if (collider.gameObject.CompareTag("RoomConector"))
-                {
-                    finalCollidersList.Remove(collider);
-                }
-            }
-
+            
             spawnPointMoved = true;
         }
-        else if (!col.gameObject.CompareTag("SpawnPoint") && !col.gameObject.CompareTag("RoomConector") && !doorsDestroyed && col.name!="Closed(Closed)" && finalCollidersList.Count>1)
+        else if (!col.gameObject.CompareTag("SpawnPoint") && !col.gameObject.CompareTag("RoomConector") && !doorsDestroyed && col.name!="Closed(Closed)")
         {
             ConnectRooms(col);
         }
@@ -53,16 +40,32 @@ public class RoomConector : MonoBehaviour
         List<Vector2> movimientosPeristalticos = new List<Vector2>(movimientosPeristalticosArray);
         foreach (Vector2 mov in movimientosPeristalticos)
         {
-            Vector3 collisionPoint = col.ClosestPoint(transform.position);
-            Tilemap tilemap = col.GetComponent<Tilemap>();
-            Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
-            TileBase wall = tilemap.GetTile(gridCollisionPoint);
-            if (wall != null)
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.1f, 0.1f), 0);
+            List<Collider2D> collidersList = new List<Collider2D>(colliders);
+            foreach (Collider2D localCollider in colliders)
             {
-                tilemap.SetTile(gridCollisionPoint, null);
-                tilemap.SetTile(gridCollisionPoint, tileConector);
+                Debug.Log(localCollider);
+
+                if (localCollider.gameObject.CompareTag("RoomConector"))
+                {
+                    collidersList.Remove(localCollider);
+                }
             }
-            transform.position += (Vector3)mov * 0.37f;
+            if (collidersList.Count>0)
+            {
+
+                Collider2D collider = collidersList[0];
+                Vector3 collisionPoint = collider.ClosestPoint(transform.position);
+                Tilemap tilemap = collider.GetComponent<Tilemap>();
+                Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
+                TileBase wall = tilemap.GetTile(gridCollisionPoint);
+                if (wall != null)
+                {
+                    tilemap.SetTile(gridCollisionPoint, null);
+                    tilemap.SetTile(gridCollisionPoint, tileConector);
+                }
+                transform.position += (Vector3)mov * 0.37f;
+            }
         }
 
 

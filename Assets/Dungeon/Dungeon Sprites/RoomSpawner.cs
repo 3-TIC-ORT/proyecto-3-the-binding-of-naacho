@@ -124,22 +124,38 @@ public class RoomSpawner : MonoBehaviour
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 
-            if (col.gameObject.CompareTag("RoomConector") && spawnedClosedRoom)
+            
+            if (col.GetComponent<RoomSpawner>().spawned == false && !spawned)
             {
-                col.GetComponent<RoomConector>().doorsDestroyed = true;
-                col.GetComponent<RoomConector>().spawnPointMoved = true;
-            }
-            if (col.GetComponent<RoomSpawner>().spawned == false && !spawned && colliders.Length <= 2)
-            {
-                grid = GameObject.Find("Grid");
-                templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+                if (colliders.Length <= 2)
+                {
+                    grid = GameObject.Find("Grid");
+                    templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
 
-                Instantiate(templates.closedRoom, transform.position, Quaternion.identity, grid.transform);
-                spawnedClosedRoom = true;
-                col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
-                col.GetComponent<RoomSpawner>().spawned = true;
+                    Instantiate(templates.closedRoom, transform.position, Quaternion.identity, grid.transform);
+                    spawnedClosedRoom = true;
+                    col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
+                    col.GetComponent<RoomSpawner>().spawned = true;
+                }
+                else
+                {
+                    bool noSpawnedOne = true;
+                    foreach (Collider2D collider in colliders)
+                    {
+                        if (collider.gameObject.GetComponent<RoomSpawner>().spawned == true) noSpawnedOne = false;
+                    }
+                    if (noSpawnedOne==true)
+                    {
+                        grid = GameObject.Find("Grid");
+                        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
 
-
+                        Instantiate(templates.closedRoom, transform.position, Quaternion.identity, grid.transform);
+                        spawnedClosedRoom = true;
+                        col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
+                        col.GetComponent<RoomSpawner>().spawned = true;
+                    }
+                }
+            
             }
             else if (spawnedClosedRoom && !col.GetComponent<RoomSpawner>().spawned)
             {
@@ -147,8 +163,11 @@ public class RoomSpawner : MonoBehaviour
                 col.GetComponent<RoomSpawner>().spawned = true;
             }
             else col.GetComponent<RoomSpawner>().spawned = true;
-
-
+        }
+        if (col.gameObject.CompareTag("RoomConector") && spawnedClosedRoom)
+        {
+            col.GetComponent<RoomConector>().doorsDestroyed = true;
+            col.GetComponent<RoomConector>().spawnPointMoved = true;
         }
     }
 

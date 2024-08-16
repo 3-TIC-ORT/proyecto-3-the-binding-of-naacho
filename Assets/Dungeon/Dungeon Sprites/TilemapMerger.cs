@@ -25,7 +25,7 @@ public class TilemapMerger : MonoBehaviour
             yield return new WaitForSecondsRealtime(2f);
             localRoomsGenerated = templates.roomsGenerated;
         }
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(10f);
         MergeTilemaps();
     }
     void MergeTilemaps()
