@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 906ea5695bb0c4c67bfcea092f0af493
+guid: 22bc07e3ef9024f57a20b018660213a4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,8 +49,8 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 76, z: 112, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -110,232 +110,211 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Naacho-Standing
+      name: Naacho espaldas-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 76
+        y: 75
         width: 37
-        height: 38
+        height: 35
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3426e2ad3db5c4fc7986a41bd33851a8
-      internalID: -359468502
+      spriteID: d74e57a00b97f4db09af57ea326e4763
+      internalID: -766650078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_1
+      name: Naacho espaldas-Sheet_1
       rect:
         serializedVersion: 2
         x: 37
-        y: 76
+        y: 75
         width: 37
-        height: 38
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0469c8d79f42e40a6a59f0bd344e5aa8
-      internalID: -878924380
+      spriteID: 8d00a545ce3e048aa9535d948352881c
+      internalID: 1789332286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_2
+      name: Naacho espaldas-Sheet_2
       rect:
         serializedVersion: 2
         x: 74
-        y: 76
+        y: 75
         width: 37
-        height: 38
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ceda9b320a464bd0b6dd1f27dd858b9
-      internalID: 1149827773
+      spriteID: b8712a8d200ed48b9bd22259d4608775
+      internalID: -2009908323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_3
+      name: Naacho espaldas-Sheet_3
       rect:
         serializedVersion: 2
         x: 111
-        y: 76
+        y: 74
         width: 37
-        height: 38
+        height: 37
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c2d0497ecae42d8a3a9199457fd471
-      internalID: 182485126
+      spriteID: 285a733a0d57449e797e778a6f4c7612
+      internalID: 247101735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_4
+      name: Naacho espaldas-Sheet_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 38
+        y: 37
         width: 37
-        height: 38
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e47bf17571a9a4d618ba2edd19a612ae
-      internalID: 509740013
+      spriteID: 47a2bff9f4b84435abe836b02d972029
+      internalID: -712716861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_5
+      name: Naacho espaldas-Sheet_5
       rect:
         serializedVersion: 2
         x: 37
         y: 38
         width: 37
-        height: 38
+        height: 35
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10b8f7a68b48547a8a10d8b39b0aa56b
-      internalID: 1827698940
+      spriteID: edc2d5ffd44594479b10f66dbf585227
+      internalID: 67579845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_6
+      name: Naacho espaldas-Sheet_6
       rect:
         serializedVersion: 2
         x: 74
         y: 38
         width: 37
-        height: 38
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e72590f81e252463b85e28829aa20948
-      internalID: 477037881
+      spriteID: c60852119ebbd47aa892556d398a3cb8
+      internalID: 1481706188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_7
+      name: Naacho espaldas-Sheet_7
       rect:
         serializedVersion: 2
         x: 111
         y: 38
         width: 37
-        height: 38
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 868ed23ec87414782b8e93b0c2a623d1
-      internalID: 499392418
+      spriteID: bbc62c541a6e3477fbcb00b8519ea2a8
+      internalID: 203447984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_8
+      name: Naacho espaldas-Sheet_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 38
-        height: 38
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 96c94b5764a044bd8924b6a26f347abe
-      internalID: -242106667
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: The walking of Naacho-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 0
         width: 37
-        height: 38
+        height: 37
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51328d09d3e844ddf8e3e64de64895ea
-      internalID: 76101753
+      spriteID: 43b47bb7c9d0b42579b7093c06990bf2
+      internalID: 1194385635
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The walking of Naacho-Sheet_10
+      name: Naacho espaldas-Sheet_9
       rect:
         serializedVersion: 2
-        x: 75
-        y: 0
-        width: 36
-        height: 38
+        x: 37
+        y: 1
+        width: 37
+        height: 36
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6c8a174082b74ac6b6ff0729f23b4e7
-      internalID: -161282447
+      spriteID: 619fb254d20aa41e6a3820959ab00b89
+      internalID: 1027214548
       vertices: []
       indices: 
       edges: []
@@ -344,24 +323,23 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Naacho-Standing: -359468502
-      The walking of Naacho-Sheet_1: -878924380
-      The walking of Naacho-Sheet_10: -161282447
-      The walking of Naacho-Sheet_2: 1149827773
-      The walking of Naacho-Sheet_3: 182485126
-      The walking of Naacho-Sheet_4: 509740013
-      The walking of Naacho-Sheet_5: 1827698940
-      The walking of Naacho-Sheet_6: 477037881
-      The walking of Naacho-Sheet_7: 499392418
-      The walking of Naacho-Sheet_8: -242106667
-      The walking of Naacho-Sheet_9: 76101753
+      Naacho espaldas-Sheet_0: -766650078
+      Naacho espaldas-Sheet_1: 1789332286
+      Naacho espaldas-Sheet_2: -2009908323
+      Naacho espaldas-Sheet_3: 247101735
+      Naacho espaldas-Sheet_4: -712716861
+      Naacho espaldas-Sheet_5: 67579845
+      Naacho espaldas-Sheet_6: 1481706188
+      Naacho espaldas-Sheet_7: 203447984
+      Naacho espaldas-Sheet_8: 1194385635
+      Naacho espaldas-Sheet_9: 1027214548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

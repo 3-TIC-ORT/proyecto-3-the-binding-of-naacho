@@ -85,12 +85,14 @@ public class NaachoController : MonoBehaviour
         {
             rb2D.velocity = Speed * Time.deltaTime * movement;
             animator.SetFloat("DirY", movement.y);
+            animator.SetFloat("DirX", movement.x);
             animator.SetBool("Idle", false);
         }
         else
         {
             rb2D.velocity *= Friction;
-            animator.SetFloat("DirY", movement.y);
+            animator.SetFloat("DirY", 0);
+            animator.SetFloat("DirX", 0);
             animator.SetBool("Idle", true);
         }
 
