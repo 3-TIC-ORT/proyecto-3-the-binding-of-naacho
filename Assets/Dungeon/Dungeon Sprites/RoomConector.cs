@@ -18,15 +18,30 @@ public class RoomConector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        Collider2D[] colliders= Physics2D.OverlapBoxAll(transform.position, new Vector2(0.3f, 0.3f), 0);
+        List<Collider2D> collidersList = new List<Collider2D>();
+        List<Collider2D> finalCollidersList = new List<Collider2D>();
+
         if (col.gameObject.CompareTag("SpawnPoint") && col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom==false && !spawnPointMoved)
         {
             if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * 5);
             else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * 5);
             else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * 5);
             else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * 5);
+            colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.3f, 0.3f), 0);
+            collidersList = new List<Collider2D>(colliders);
+            finalCollidersList = new List<Collider2D>(collidersList);
+            foreach (Collider2D collider in collidersList)
+            {
+                if (collider.gameObject.CompareTag("RoomConector"))
+                {
+                    finalCollidersList.Remove(collider);
+                }
+            }
+
             spawnPointMoved = true;
         }
-        else if (!col.gameObject.CompareTag("SpawnPoint") && !col.gameObject.CompareTag("RoomConector") && !doorsDestroyed && col.name!="Closed")
+        else if (!col.gameObject.CompareTag("SpawnPoint") && !col.gameObject.CompareTag("RoomConector") && !doorsDestroyed && col.name!="Closed(Closed)" && finalCollidersList.Count>1)
         {
             ConnectRooms(col);
         }

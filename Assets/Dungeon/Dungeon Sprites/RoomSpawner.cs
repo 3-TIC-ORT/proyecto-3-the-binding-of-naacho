@@ -129,24 +129,26 @@ public class RoomSpawner : MonoBehaviour
                 col.GetComponent<RoomConector>().doorsDestroyed = true;
                 col.GetComponent<RoomConector>().spawnPointMoved = true;
             }
-            if (col.GetComponent<RoomSpawner>().spawned==false && !spawned && colliders.Length<=2)
+            if (col.GetComponent<RoomSpawner>().spawned == false && !spawned && colliders.Length <= 2)
             {
                 grid = GameObject.Find("Grid");
                 templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-                
-                Instantiate(templates.closedRoom,transform.position,Quaternion.identity, grid.transform);
+
+                Instantiate(templates.closedRoom, transform.position, Quaternion.identity, grid.transform);
                 spawnedClosedRoom = true;
                 col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
                 col.GetComponent<RoomSpawner>().spawned = true;
-                
-                
+
+
             }
             else if (spawnedClosedRoom && !col.GetComponent<RoomSpawner>().spawned)
             {
                 col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
                 col.GetComponent<RoomSpawner>().spawned = true;
             }
-            
+            else col.GetComponent<RoomSpawner>().spawned = true;
+
+
         }
     }
 
