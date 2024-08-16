@@ -38,7 +38,7 @@ public class EnemTest : Enemy
         SpRenderer.color = Color.red;
 
         while(SpRenderer.color.r > defaultColor.r) {
-            SpRenderer.color = new Color(SpRenderer.color.r - .02f, defaultColor.g, defaultColor.b);
+            SpRenderer.color = new Color(SpRenderer.color.r - .025f, defaultColor.g, defaultColor.b);
             yield return null;
         }
     }

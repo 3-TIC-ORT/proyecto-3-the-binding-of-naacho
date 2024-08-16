@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 1110950101}
   - component: {fileID: 1110950106}
   - component: {fileID: 1110950107}
+  - component: {fileID: 1110950108}
   m_Layer: 0
   m_Name: Naacho
   m_TagString: Player
@@ -159,9 +160,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 350
   Friction: 0.9
-  shootDelay: 0.5
+  shootDelay: 0.25
   ProjectileLifespan: 1
-  Damage: 0
+  Damage: 1
 --- !u!50 &1110950102
 Rigidbody2D:
   serializedVersion: 4
@@ -329,6 +330,27 @@ MonoBehaviour:
   startingLife: 100
   LifeAmount: 0
   LifePlaceholder: 100
+--- !u!95 &1110950108
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110950100}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0166d934675e3478abfa238b1cdb906f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1501687714
 GameObject:
   m_ObjectHideFlags: 0

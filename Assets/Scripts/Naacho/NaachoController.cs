@@ -12,11 +12,14 @@ public class NaachoController : MonoBehaviour
     private float ShootTimeCounter = 0;
     private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb2D = gameObject.GetComponent<Rigidbody2D>();
-        ProjectileScript = gameObject.GetComponent<ProjectileCreator>();
+        rb2D = GetComponent<Rigidbody2D>();
+        ProjectileScript = GetComponent<ProjectileCreator>();
+        animator = GetComponent<Animator>();
     }
 
     Vector2 getMovement() 
@@ -88,7 +91,7 @@ public class NaachoController : MonoBehaviour
         {
             if (ShootTimeCounter >= shootDelay)
             {
-                Shoot(ShootDir, rb2D.velocity, 10, new Vector2(0.25f, 0.25f));
+                Shoot(ShootDir, rb2D.velocity/2, 10, new Vector2(0.25f, 0.25f));
                 ShootTimeCounter = 0;
             }
 
