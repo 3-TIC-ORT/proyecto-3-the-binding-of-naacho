@@ -43,11 +43,12 @@ public class TilemapMerger : MonoBehaviour
         }
 
         // Transfiere los tiles de cada Tilemap hijo al Tilemap objetivo
+        List<Tilemap> closedTilemaps = new List<Tilemap>();
         foreach (Tilemap tilemap in childTilemaps)
         {
-            List<Tilemap> closedTilemaps = new List<Tilemap>();
-            if (tilemap.name!="Closed")
+            if (tilemap.name!="Closed(Clone)")
             {
+                //Debug.Log(tilemap.name);
                 BoundsInt bounds = tilemap.cellBounds;
 
                 // Itera sobre cada posición en los límites del Tilemap
@@ -64,22 +65,24 @@ public class TilemapMerger : MonoBehaviour
                 }
             }
             else closedTilemaps.Add(tilemap);
-            if (closedTilemaps.Count > 0)
+            
+        }
+        if (closedTilemaps.Count > 0)
+        {
+            Debug.Log(closedTilemaps.Count);
+            foreach (Tilemap closedTilemap in closedTilemaps)
             {
-                foreach (Tilemap closedTilemap in closedTilemaps) 
-                {
-                    BoundsInt bounds = closedTilemap.cellBounds;
+                BoundsInt bounds = closedTilemap.cellBounds;
 
-                    foreach (Vector3Int pos in bounds.allPositionsWithin)
+                foreach (Vector3Int pos in bounds.allPositionsWithin)
+                {
+                    if (closedTilemap.HasTile(pos))
                     {
-                        if (closedTilemap.HasTile(pos))
-                        {
-                            TileBase tile = closedTilemap.GetTile(pos);
-                            Vector2 worldPosition = closedTilemap.CellToWorld(pos);
-                            Vector3Int whereToSet = targetTilemap.WorldToCell(worldPosition);
-                            targetTilemap.SetTile(whereToSet, tile);
-                            closedTilemap.SetTile(pos, null);
-                        }
+                        TileBase tile = closedTilemap.GetTile(pos);
+                        Vector2 worldPosition = closedTilemap.CellToWorld(pos);
+                        Vector3Int whereToSet = targetTilemap.WorldToCell(worldPosition);
+                        targetTilemap.SetTile(whereToSet, tile);
+                        closedTilemap.SetTile(pos, null);
                     }
                 }
             }
