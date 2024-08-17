@@ -23,10 +23,10 @@ public class RoomConector : MonoBehaviour
       
         if (col.gameObject.CompareTag("SpawnPoint") && col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom==false && !col.gameObject.GetComponent<RoomSpawner>().bossRoom && !spawnPointMoved)
         {
-            if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * 5);
-            else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * 5);
-            else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * 5);
-            else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * 5);
+            if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * 10);
+            else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * 10);
+            else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * 13);
+            else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * 13);
             
             spawnPointMoved = true;
         }
