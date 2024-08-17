@@ -21,7 +21,7 @@ public class RoomConector : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
       
-        if (col.gameObject.CompareTag("SpawnPoint") && col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom==false && !spawnPointMoved)
+        if (col.gameObject.CompareTag("SpawnPoint") && col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom==false && !col.gameObject.GetComponent<RoomSpawner>().bossRoom && !spawnPointMoved)
         {
             if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * 5);
             else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * 5);
