@@ -200,7 +200,7 @@ public class RoomSpawner : MonoBehaviour
             localRoomsGenerated = templates.roomsGenerated;
         }
         if (spawnedClosedRoom) StopCoroutine(WaitForSpawnRoomConectors());
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(5f);
         SpawnRoomConectors();
     }
     private void SpawnRoomConectors()

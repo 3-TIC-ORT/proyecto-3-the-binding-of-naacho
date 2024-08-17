@@ -7,11 +7,13 @@ public class RoomConector : MonoBehaviour
     public int pointDirection;
     private GameObject grid;
     public TileBase tileConector;
+    private Tilemap targetTilemap;
     public bool doorsDestroyed=false;
     public bool spawnPointMoved=false;
     void Start()
     {
         grid = GameObject.Find("Grid");
+        targetTilemap=GameObject.Find("Entry Room").GetComponent<Tilemap>();
         Invoke("DestroyThis", 5);
     }
 
@@ -28,7 +30,7 @@ public class RoomConector : MonoBehaviour
             
             spawnPointMoved = true;
         }
-        else if (!col.gameObject.CompareTag("SpawnPoint") && !col.gameObject.CompareTag("RoomConector") && !doorsDestroyed && col.name!="Closed(Closed)")
+        else if (spawnPointMoved && !doorsDestroyed && col.name!="Closed(Closed)")
         {
             ConnectRooms(col);
         }
@@ -40,32 +42,20 @@ public class RoomConector : MonoBehaviour
         List<Vector2> movimientosPeristalticos = new List<Vector2>(movimientosPeristalticosArray);
         foreach (Vector2 mov in movimientosPeristalticos)
         {
-            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.1f, 0.1f), 0);
-            List<Collider2D> collidersList = new List<Collider2D>(colliders);
-            foreach (Collider2D localCollider in colliders)
+            //Collider2D collider = Physics2D.OverlapBox(transform.position, new Vector2(0.1f, 0.1f), 0);
+            //Vector3 collisionPoint = collider.ClosestPoint(transform.position);
+            //Tilemap tilemap = collider.GetComponent<Tilemap>();
+            //Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
+            //TileBase wall = tilemap.GetTile(gridCollisionPoint);
+            Vector3Int gridPoint = targetTilemap.WorldToCell(transform.position);
+            TileBase tile = targetTilemap.GetTile(gridPoint);
+            if (tile != null && tile!=tileConector)
             {
-                Debug.Log(localCollider);
-
-                if (localCollider.gameObject.CompareTag("RoomConector"))
-                {
-                    collidersList.Remove(localCollider);
-                }
+                targetTilemap.SetTile(gridPoint, null);
+                targetTilemap.SetTile(gridPoint, tileConector);
             }
-            if (collidersList.Count>0)
-            {
-
-                Collider2D collider = collidersList[0];
-                Vector3 collisionPoint = collider.ClosestPoint(transform.position);
-                Tilemap tilemap = collider.GetComponent<Tilemap>();
-                Vector3Int gridCollisionPoint = tilemap.WorldToCell(collisionPoint);
-                TileBase wall = tilemap.GetTile(gridCollisionPoint);
-                if (wall != null)
-                {
-                    tilemap.SetTile(gridCollisionPoint, null);
-                    tilemap.SetTile(gridCollisionPoint, tileConector);
-                }
-                transform.position += (Vector3)mov * 0.37f;
-            }
+            transform.position += (Vector3)mov * 0.37f;
+            
         }
 
 

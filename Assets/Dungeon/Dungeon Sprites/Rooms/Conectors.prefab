@@ -443,6 +443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomConector
       objectReference: {fileID: 0}
+    - target: {fileID: 7267168768725885106, guid: d741101fa4660824c91f2378c5fadc24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9184588602966927105, guid: d741101fa4660824c91f2378c5fadc24, type: 3}
       propertyPath: pointDirection
       value: 4
@@ -508,6 +512,10 @@ PrefabInstance:
     - target: {fileID: 7267168768725885106, guid: d741101fa4660824c91f2378c5fadc24, type: 3}
       propertyPath: m_Name
       value: RoomConector (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7267168768725885106, guid: d741101fa4660824c91f2378c5fadc24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9184588602966927105, guid: d741101fa4660824c91f2378c5fadc24, type: 3}
       propertyPath: pointDirection
