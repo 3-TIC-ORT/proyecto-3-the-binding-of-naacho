@@ -40,10 +40,6 @@ public class Enemy : MonoBehaviour
     {
     }
 
-<<<<<<< HEAD
-    public virtual void OnCollisionEnter2D(Collision2D other) {
-        
-=======
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Projectile"))
@@ -56,6 +52,5 @@ public class Enemy : MonoBehaviour
     {
         HealthPoints -= dp;
         if (HealthPoints < 0) Destroy(gameObject);
->>>>>>> enemy-rework
     }
 }
