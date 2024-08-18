@@ -12,11 +12,14 @@ public class NaachoController : MonoBehaviour
     private float ShootTimeCounter = 0;
     private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb2D = gameObject.GetComponent<Rigidbody2D>();
-        ProjectileScript = gameObject.GetComponent<ProjectileCreator>();
+        rb2D = GetComponent<Rigidbody2D>();
+        ProjectileScript = GetComponent<ProjectileCreator>();
+        animator = GetComponent<Animator>();
     }
 
     Vector2 getMovement() 
@@ -78,17 +81,27 @@ public class NaachoController : MonoBehaviour
         ShootTimeCounter += Time.deltaTime;
 
         Vector2 movement = getMovement().normalized;
-        if(movement.x != 0 || movement.y != 0)
+        if (movement.x != 0 || movement.y != 0)
+        {
             rb2D.velocity = Speed * Time.deltaTime * movement;
+            animator.SetFloat("DirY", movement.y);
+            animator.SetFloat("DirX", movement.x);
+            animator.SetBool("Idle", false);
+        }
         else
+        {
             rb2D.velocity *= Friction;
-        
+            animator.SetFloat("DirY", 0);
+            animator.SetFloat("DirX", 0);
+            animator.SetBool("Idle", true);
+        }
+
         Vector2 ShootDir = getShootDir();
         if (ShootDir.x != 0 || ShootDir.y != 0)
         {
             if (ShootTimeCounter >= shootDelay)
             {
-                Shoot(ShootDir, rb2D.velocity, 10, new Vector2(0.25f, 0.25f));
+                Shoot(ShootDir, rb2D.velocity/4, 10, new Vector2(0.25f, 0.25f));
                 ShootTimeCounter = 0;
             }
 

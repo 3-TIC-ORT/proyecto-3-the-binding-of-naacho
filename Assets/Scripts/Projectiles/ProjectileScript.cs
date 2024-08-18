@@ -15,4 +15,9 @@ public class ProjectileScript : MonoBehaviour
        if(lifespan >= TotalLifespan)
             Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (!other.gameObject.CompareTag("Player"))
+            Destroy(gameObject);
+    }
 }

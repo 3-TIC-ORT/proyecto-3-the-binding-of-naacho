@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 enum HeartTypes
 {
@@ -71,7 +66,7 @@ public class NaachoHeartSystem : MonoBehaviour
         } else return 0;*/
         LifePlaceholder -= dp;
         if(LifePlaceholder < 0) {
-            print("ded");
+            SceneManager.LoadScene("NaachoPrueba");
         }
         return 0;
     }
