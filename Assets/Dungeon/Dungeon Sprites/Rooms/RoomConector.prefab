@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9184588602966927105}
   - component: {fileID: 8348292914006823559}
   - component: {fileID: 2412405733112049578}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RoomConector
   m_TagString: RoomConector
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointDirection: 0
   tileConector: {fileID: 11400000, guid: 13b4583337fc1e34f8c0a5c3a94185cd, type: 2}
+  doorsDestroyed: 0
+  spawnPointMoved: 0
+  colisioneperonosecumplio: 0
 --- !u!61 &8348292914006823559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63,7 +66,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -118,5 +121,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
