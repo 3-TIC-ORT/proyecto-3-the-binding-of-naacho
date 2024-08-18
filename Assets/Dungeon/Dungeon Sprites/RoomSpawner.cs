@@ -52,6 +52,7 @@ public class RoomSpawner : MonoBehaviour
                 spawned = true;
                 templates.roomsGenerated++;
             }
+            // La primera habitación de cierre (D, T, R, L) será la BossRoom
             else if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsLimit)
             {
                 if (openingDirection == 1)
@@ -81,11 +82,14 @@ public class RoomSpawner : MonoBehaviour
                 spawned = true;
                 templates.roomsGenerated++;
             }
+            // El primer argumento de SpawnBossRoom es el cumpleaños de Feli, es así para que el primer if de la función de false.
             else if(colliders.Length <= 1 && templates.roomsGenerated >= templates.roomsLimit)
             {
                 if (openingDirection == 1)
                 {
                     List<GameObject> downList = new List<GameObject>(templates.downRooms);
+                    // Expresión lambda. go es como la variable de i en un for. Se transforma en cada elemento de la lista y devuelve
+                    // al elemento que cumpla la condición.
                     GameObject downRoom = downList.Find(go => go.name == "D");
                     Instantiate(downRoom, transform.position, Quaternion.identity, grid.transform);
                     SpawnBoosRoom(1607, templates.downRooms, "D", true);
@@ -124,9 +128,10 @@ public class RoomSpawner : MonoBehaviour
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 
-
+            // Si hay dos spawnPoints sin haber spawneado ninguna room
             if (col.GetComponent<RoomSpawner>().spawned == false && !spawned)
             {
+                // Si solo son spawnPoints, spawnea la closedRoom
                 if (colliders.Length <= 2)
                 {
                     grid = GameObject.Find("Grid");
@@ -139,32 +144,39 @@ public class RoomSpawner : MonoBehaviour
                 }
                 else
                 {
+                    // Puede ocurrir que haya un spawnPoint spawned y que otros dos spawnPoints que se acaban de generar
+                    // hayan aparecido arriba del primero spawnPoint.
                     bool noSpawnedOne = true;
+                    // Ver que no haya ningún spawnPoint que ya haya spawneado una room.
                     foreach (Collider2D collider in colliders)
                     {
                         if (collider.gameObject.GetComponent<RoomSpawner>().spawned == true) noSpawnedOne = false;
                     }
                     if (noSpawnedOne == true)
                     {
+                        Debug.Log("PRUEBA FEDE FUNCIONA");
                         grid = GameObject.Find("Grid");
                         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
 
                         Instantiate(templates.closedRoom, transform.position, Quaternion.identity, grid.transform);
                         spawnedClosedRoom = true;
-                        col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
                         col.GetComponent<RoomSpawner>().spawned = true;
                     }
                 }
 
             }
+            // Si soy un closedRoom y me aparece un spawnPoint entonces que no haga nada
             else if (spawnedClosedRoom && !col.GetComponent<RoomSpawner>().spawned)
             {
                 col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
                 col.GetComponent<RoomSpawner>().spawned = true;
             }
+            // Si soy la bossRoom y me aparece un spawnPoint destruilo para que no joda. Así no puede hacer aparecer roomConectores
             else if (bossRoom && !col.GetComponent<RoomSpawner>().spawned) Destroy(col.gameObject);
+            // Si soy un spawnPoint normal que toco a otro spawnPoint que no spawneo entonces su spawned va a ser true
             else col.GetComponent<RoomSpawner>().spawned = true;
         }
+        // Si toco a  un roomConector y soy una closedRoom le seteo su doorsDestroyed y spawnPointMoved a true para que no hada nada más
         if (col.gameObject.CompareTag("RoomConector") && spawnedClosedRoom)
         {
             col.GetComponent<RoomConector>().doorsDestroyed = true;
@@ -175,6 +187,7 @@ public class RoomSpawner : MonoBehaviour
     // NO siempre crea una BossRoom
     public void SpawnBoosRoom(int rand,GameObject[] rooms, string room, bool closing)
     {
+        // Si spawnee una room con una sola puerta y soy la primera en hacerlo entonces seré la bossRoom
         if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom)
         {
             templates.bossRoomSpawned = true;
@@ -182,7 +195,9 @@ public class RoomSpawner : MonoBehaviour
             Debug.Log("SOY LA BOSS ROOM");
             GameObject.Find("FedeTest").transform.position = transform.position+Vector3.right*3;
         }
-        else if (closing)
+        // closing es true cuando ya se superó el roomsLimit. Si por casualidad antes de esto no se creo ninguna room con una sola puerta
+        // entonces seré la bossRoom.
+        else if (closing && !templates.bossRoomSpawned)
         {
             templates.bossRoomSpawned = true;
             bossRoom = true;
@@ -190,6 +205,7 @@ public class RoomSpawner : MonoBehaviour
             GameObject.Find("FedeTest").transform.position = transform.position;
         }
     }
+    // Espera a que no se generen más rooms para llamar a los roomConectors
     IEnumerator WaitForSpawnRoomConectors()
     {
         int localRoomsGenerated = templates.roomsGenerated;
@@ -204,6 +220,7 @@ public class RoomSpawner : MonoBehaviour
         yield return new WaitForSecondsRealtime(5f);
         SpawnRoomConectors();
     }
+    // Si no soy ni la bossRoom ni una closedRoom (no queremos conectarlas con habitaciones) entonces spawnea roomConectores
     private void SpawnRoomConectors()
     {
         if (!spawnedClosedRoom && !bossRoom) Instantiate(templates.roomConector, transform.position, Quaternion.identity);

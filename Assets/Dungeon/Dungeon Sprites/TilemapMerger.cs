@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.PlayerSettings;
+using UnityEngine.XR;
 
 public class TilemapMerger : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class TilemapMerger : MonoBehaviour
         templates = GetComponent<RoomTemplates>();
         StartCoroutine(WaitForMergeTilemaps());
     }
-
+    // Espera a que no se generen más rooms para llamar a MergeTilemaps()
     IEnumerator WaitForMergeTilemaps()
     {
         int localRoomsGenerated = templates.roomsGenerated;
@@ -28,6 +30,7 @@ public class TilemapMerger : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         MergeTilemaps();
     }
+    // Pone todos los tiles de todos los tilemaps en el tilemap EntryRoom
     void MergeTilemaps()
     {
         Debug.Log("ASD");
@@ -42,10 +45,12 @@ public class TilemapMerger : MonoBehaviour
             }
         }
 
-        // Transfiere los tiles de cada Tilemap hijo al Tilemap objetivo
+
+        // Lista de los closedTilemaps
         List<Tilemap> closedTilemaps = new List<Tilemap>();
+        // Transfiere los tiles de cada Tilemap hijo al EntryRoom
         foreach (Tilemap tilemap in childTilemaps)
-        {
+        {   // Si no es un closedRoom
             if (tilemap.name!="Closed(Clone)")
             {
                 //Debug.Log(tilemap.name);
@@ -64,11 +69,16 @@ public class TilemapMerger : MonoBehaviour
                     }
                 }
             }
+            // Añade el closedRoom a closedTilemaps 
             else closedTilemaps.Add(tilemap);
             
         }
         if (closedTilemaps.Count > 0)
         {
+            // Lo mismo que el otro foreach pero para los closedRooms
+            // La razón de esto es asegurarse que los tiles de los closedRoom "predominen". Si no, podría pasar que
+            // se pongan los tiles del closedRoom en la Entry Room y que después estos tiles sean tapados por los tiles
+            // de la puerta de otra room
             Debug.Log(closedTilemaps.Count);
             foreach (Tilemap closedTilemap in closedTilemaps)
             {
@@ -87,7 +97,7 @@ public class TilemapMerger : MonoBehaviour
                 }
             }
         }
-
+        // Por si acaso xd
         targetTilemap.RefreshAllTiles();
     }
 }
