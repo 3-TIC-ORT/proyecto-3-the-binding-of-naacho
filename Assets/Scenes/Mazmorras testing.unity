@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 30
-  roomMin: 20
+  roomsLimit: 300
+  roomMin: 200
   bossRoomSpawned: 0
   downRooms:
   - {fileID: 717600851557498300, guid: 7a6dd635cd6c1b94e9b67c62146f06b0, type: 3}
@@ -181,7 +181,7 @@ MonoBehaviour:
   - {fileID: 717600851557498300, guid: 2713a42df6ceaad4a90d2a82372d8a13, type: 3}
   - {fileID: 717600851557498300, guid: 06c28bc77234d6f43a02dd4d159139af, type: 3}
   - {fileID: 717600851557498300, guid: d442cf98f06365f418c83e205bb07fc5, type: 3}
-  closedRoom: {fileID: 717600851557498300, guid: c8dd86376f89969448ca2d8859709959, type: 3}
+  closedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   NTdownRooms:
   - {fileID: 717600851557498300, guid: b1c0db167cda20b41bbbe8b225df0ed0, type: 3}
   - {fileID: 717600851557498300, guid: 51184675479db4246a8a3c73be02051b, type: 3}
@@ -200,7 +200,7 @@ MonoBehaviour:
   - {fileID: 717600851557498300, guid: 06c28bc77234d6f43a02dd4d159139af, type: 3}
   - {fileID: 717600851557498300, guid: 2713a42df6ceaad4a90d2a82372d8a13, type: 3}
   - {fileID: 717600851557498300, guid: 06c28bc77234d6f43a02dd4d159139af, type: 3}
-  NTclosedRoom: {fileID: 717600851557498300, guid: c8dd86376f89969448ca2d8859709959, type: 3}
+  NTclosedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
 --- !u!4 &160267593
 Transform:
