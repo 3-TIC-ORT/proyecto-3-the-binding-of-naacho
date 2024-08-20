@@ -13,6 +13,7 @@ public class RoomSpawner : MonoBehaviour
     public bool spawned = false;
     public bool spawnedClosedRoom=false;
     public bool bossRoom = false;
+    public bool treasureRoom = false;
     void Start()
     {
         grid = GameObject.Find("Grid");
@@ -27,7 +28,7 @@ public class RoomSpawner : MonoBehaviour
         {
             // Verificar si el espacio está vacío antes de instanciar
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.0001f);
-            if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomMin)
+            if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsMin)
             {
                 if (openingDirection == 1)
                 {
@@ -59,25 +60,25 @@ public class RoomSpawner : MonoBehaviour
                 {
                     int rand = Random.Range(0, templates.downRooms.Length);
                     Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity, grid.transform);
-                    SpawnBoosRoom(rand,templates.downRooms,"D",false);
+                    SpawnSpecialRoom(rand,templates.downRooms,"D",false);
                 }
                 else if (openingDirection == 2)
                 {
                     int rand = Random.Range(0, templates.topRooms.Length);
                     Instantiate(templates.topRooms[rand], transform.position, Quaternion.identity, grid.transform);
-                    SpawnBoosRoom(rand, templates.topRooms, "T",false);
+                    SpawnSpecialRoom(rand, templates.topRooms, "T",false);
                 }
                 else if (openingDirection == 3)
                 {
                     int rand = Random.Range(0, templates.leftRooms.Length);
                     Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity, grid.transform);
-                    SpawnBoosRoom(rand, templates.leftRooms, "L",false);
+                    SpawnSpecialRoom(rand, templates.leftRooms, "L",false);
                 }
                 else if (openingDirection == 4)
                 {
                     int rand = Random.Range(0, templates.rightRooms.Length);
                     Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity, grid.transform);
-                    SpawnBoosRoom(rand, templates.rightRooms, "R", false);
+                    SpawnSpecialRoom(rand, templates.rightRooms, "R", false);
                 }
                 spawned = true;
                 templates.roomsGenerated++;
@@ -92,7 +93,7 @@ public class RoomSpawner : MonoBehaviour
                     // al elemento que cumpla la condición.
                     GameObject downRoom = downList.Find(go => go.name == "D");
                     Instantiate(downRoom, transform.position, Quaternion.identity, grid.transform);
-                    SpawnBoosRoom(1607, templates.downRooms, "D", true);
+                    SpawnSpecialRoom(1607, templates.downRooms, "D", true);
 
                 }
                 else if (openingDirection == 2)
@@ -100,21 +101,21 @@ public class RoomSpawner : MonoBehaviour
                     List<GameObject> upList = new List<GameObject>(templates.topRooms);
                     GameObject upRoom = upList.Find(go => go.name == "T");
                     Instantiate(upRoom, transform.position, Quaternion.identity, grid.transform);
-                    SpawnBoosRoom(1607, templates.downRooms, "D", true);
+                    SpawnSpecialRoom(1607, templates.downRooms, "D", true);
                 }
                 else if (openingDirection == 3)
                 {
                     List<GameObject> leftList = new List<GameObject>(templates.leftRooms);
                     GameObject leftRoom = leftList.Find(go => go.name == "L");
                     Instantiate(leftRoom, transform.position, Quaternion.identity, grid.transform);
-                    SpawnBoosRoom(1607, templates.downRooms, "D", true);
+                    SpawnSpecialRoom(1607, templates.downRooms, "D", true);
                 }
                 else if (openingDirection == 4)
                 {
                     List<GameObject> rightList = new List<GameObject>(templates.rightRooms);
                     GameObject rightRoom = rightList.Find(go => go.name == "R");
                     Instantiate(rightRoom, transform.position, Quaternion.identity, grid.transform);
-                    SpawnBoosRoom(1607, templates.downRooms, "D", true);
+                    SpawnSpecialRoom(1607, templates.downRooms, "D", true);
                 }
                 spawned = true;
                 templates.roomsGenerated++;
@@ -185,25 +186,31 @@ public class RoomSpawner : MonoBehaviour
     }
 
     // NO siempre crea una BossRoom
-    public void SpawnBoosRoom(int rand,GameObject[] rooms, string room, bool closing)
+    public void SpawnSpecialRoom(int rand,GameObject[] rooms, string room, bool closing)
     {
+        if (!templates.treasureRoomSpawned && rooms[rand].name == room) SpawnTreasureRoom();
+
+        else if (closing && !templates.treasureRoomSpawned) SpawnTreasureRoom();
+
         // Si spawnee una room con una sola puerta y soy la primera en hacerlo entonces seré la bossRoom
-        if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom)
-        {
-            templates.bossRoomSpawned = true;
-            bossRoom = true;
-            Debug.Log("SOY LA BOSS ROOM");
-            GameObject.Find("FedeTest").transform.position = transform.position+Vector3.right*3;
-        }
+        else if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom) SpawnBossRoom();
+
         // closing es true cuando ya se superó el roomsLimit. Si por casualidad antes de esto no se creo ninguna room con una sola puerta
         // entonces seré la bossRoom.
-        else if (closing && !templates.bossRoomSpawned)
-        {
-            templates.bossRoomSpawned = true;
-            bossRoom = true;
-            Debug.Log("SOY LA BOSS ROOM");
-            GameObject.Find("FedeTest").transform.position = transform.position;
-        }
+        else if (closing && !templates.bossRoomSpawned) SpawnBossRoom();
+    }
+    public void SpawnTreasureRoom()
+    {
+        templates.treasureRoomSpawned = true;
+        treasureRoom = true;
+        Debug.Log("SOY LA TREASURE ROOM");
+        GameObject.Find("FedeTest").transform.position = transform.position + Vector3.right * 3;
+    }
+    public void SpawnBossRoom()
+    {
+        templates.bossRoomSpawned = true;
+        bossRoom = true;
+        Debug.Log("SOY LA BOSS ROOM");
     }
     // Espera a que no se generen más rooms para llamar a los roomConectors
     IEnumerator WaitForSpawnRoomConectors()
@@ -218,6 +225,8 @@ public class RoomSpawner : MonoBehaviour
         }
         if (spawnedClosedRoom) StopCoroutine(WaitForSpawnRoomConectors());
         yield return new WaitForSecondsRealtime(5f);
+        if (templates.minCompleted) SpawnRoomConectors();
+        else WaitForSpawnRoomConectors();
         SpawnRoomConectors();
     }
     // Si no soy ni la bossRoom ni una closedRoom (no queremos conectarlas con habitaciones) entonces spawnea roomConectores

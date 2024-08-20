@@ -23,8 +23,8 @@ public class RoomConector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        // Si colisiono con un spawnPoint que no sea una closedRoom ni una bossRoom entonces me voy a mover a mi dirección respectiva.
-        if (col.gameObject.CompareTag("SpawnPoint") && col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom == false && !col.gameObject.GetComponent<RoomSpawner>().bossRoom && !spawnPointMoved)
+        // Si colisiono con un spawnPoint que no sea una closedRoom, una bossRoom o una treasureRoom entonces me voy a mover a mi dirección respectiva.
+        if (col.gameObject.CompareTag("SpawnPoint") && col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom == false && !col.gameObject.GetComponent<RoomSpawner>().bossRoom && !col.gameObject.GetComponent<RoomSpawner>().treasureRoom && !spawnPointMoved)
         {
             if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * 10);
             else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * 10);
@@ -92,7 +92,7 @@ public class RoomConector : MonoBehaviour
                 targetTilemap.SetTile(gridPoint, tileConector);
             }
             transform.position += (Vector3)mov;
-            yield return new WaitForSecondsRealtime(0.005f);
+            yield return new WaitForSecondsRealtime(0.0000001f);
 
         }
     }

@@ -28,7 +28,8 @@ public class TilemapMerger : MonoBehaviour
             localRoomsGenerated = templates.roomsGenerated;
         }
         yield return new WaitForSecondsRealtime(1f);
-        MergeTilemaps();
+        if (templates.minCompleted) MergeTilemaps();
+        else WaitForMergeTilemaps();
     }
     // Pone todos los tiles de todos los tilemaps en el tilemap EntryRoom
     void MergeTilemaps()

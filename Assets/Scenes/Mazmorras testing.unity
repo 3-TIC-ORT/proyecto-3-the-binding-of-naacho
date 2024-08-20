@@ -154,8 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 300
-  roomMin: 200
+  roomsLimit: 40
+  roomsMin: 20
+  minCompleted: 0
+  treasureRoomSpawned: 0
   bossRoomSpawned: 0
   downRooms:
   - {fileID: 717600851557498300, guid: 7a6dd635cd6c1b94e9b67c62146f06b0, type: 3}
