@@ -59,7 +59,6 @@ public class NaachoHeartSystem : MonoBehaviour
     int FindLastFullHeart() {
         int heartIdx = Life.Length-1;
         while(heartIdx >= 0) {
-            print(heartIdx);
             if(Life[heartIdx] == null) --heartIdx;
             else if(Life[heartIdx].Amount <= 0 ) --heartIdx;
             else return heartIdx;
