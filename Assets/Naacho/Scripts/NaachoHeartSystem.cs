@@ -31,7 +31,6 @@ public class NaachoHeartSystem : MonoBehaviour
     public int startingLife = 3;
     Heart[] Life;
     public float LifeAmount;
-    public float LifePlaceholder;
 
     // Start is called before the first frame update
     void Start()
@@ -78,11 +77,6 @@ public class NaachoHeartSystem : MonoBehaviour
             hrt.Amount -= dp;
             return 0;
         } else return 0;
-        /*LifePlaceholder -= dp;
-        if(LifePlaceholder < 0) {
-            SceneManager.LoadScene("NaachoPrueba");
-        }
-        return 0;*/
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
