@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 enum HeartTypes
@@ -66,6 +68,22 @@ public class NaachoHeartSystem : MonoBehaviour
         Heart hrt = Life[heartIdx];
         if(hrt.Amount - dp >= 0) {
             hrt.Amount -= dp;
+        }
+    }
+    void Heal(float hp = .5f) {
+        int heartIdx = FindLastFullHeart();
+
+        // Check if last found heart is full, if so add 1 to the idx
+        heartIdx = (Life[heartIdx].Amount != 1) ? heartIdx : heartIdx + 1; // Shouldn't get index error if checked it isn't full health before pickup
+
+        Heart hrt = Life[heartIdx];
+        float prevHp = hrt.Amount;
+        if(hrt.Amount + hp <= 1) {
+            hrt.Amount += hp;
+        } else {
+            hrt.Amount = 1;
+            if(hp - hrt.Amount > 0)
+                Heal(hp-hrt.Amount);
         }
     }
 
