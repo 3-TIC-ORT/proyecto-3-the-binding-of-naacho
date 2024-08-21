@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 enum HeartTypes
@@ -24,12 +20,21 @@ public class NaachoHeartSystem : MonoBehaviour
 {
     public int startingLife = 3;
     Heart[] Life;
+    public const int MAX_LIFE = 12;
     public float LifeAmount;
+
+    public int GetMaxLife() {
+        int heartIdx = 0;
+        for(;Life[heartIdx] != null && heartIdx < Life.Length; heartIdx++) {
+            if(Life[heartIdx] == null) return heartIdx;
+        }
+        return heartIdx;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Life = new Heart[12];
+        Life = new Heart[MAX_LIFE];
         for(int i = 0; startingLife > i; i++) {
             Life[i] = new Heart();
         }
@@ -50,7 +55,7 @@ public class NaachoHeartSystem : MonoBehaviour
         LifeAmount = GetLifeAmount();
     }
 
-    int FindLastFullHeart() {
+    public int FindLastFullHeart() {
         int heartIdx = Life.Length-1;
         while(heartIdx >= 0) {
             if(Life[heartIdx] == null) --heartIdx;
@@ -70,7 +75,7 @@ public class NaachoHeartSystem : MonoBehaviour
             hrt.Amount -= dp;
         }
     }
-    void Heal(float hp = .5f) {
+    public void Heal(float hp = .5f) {
         int heartIdx = FindLastFullHeart();
 
         // Check if last found heart is full, if so add 1 to the idx
