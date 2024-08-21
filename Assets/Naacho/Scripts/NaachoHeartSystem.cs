@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,29 +22,29 @@ class Heart {
     }
 
     public void Heal(float hp = .5f) {
-        Amount = (Amount + hp <= 1f) ? Amount + hp : Amount;
+        Amount += hp;
     }
 }
 
 public class NaachoHeartSystem : MonoBehaviour
 {
     public int startingLife = 3;
-    List<Heart> Life;
+    Heart[] Life;
     public float LifeAmount;
-    public float LifePlaceholder;
 
     // Start is called before the first frame update
     void Start()
     {
-        Life = new List<Heart>();
+        Life = new Heart[12];
         for(int i = 0; startingLife > i; i++) {
-            Life.Add(new Heart());
+            Life[i] = new Heart();
         }
     }
 
     float GetLifeAmount() {
         float amount = 0;
         foreach(Heart h in Life) {
+            if(h == null) continue;
             amount += h.Amount;
         }
         return amount;
@@ -55,20 +56,27 @@ public class NaachoHeartSystem : MonoBehaviour
         LifeAmount = GetLifeAmount();
     }
 
-    int Damage(float dp, int counter = 1) {
-        /*if(Life[Life.Capacity-counter].Amount - dp >= 0) {
-            Life[Life.Capacity-counter].Amount -= dp;
-            return 0;
+    int FindLastFullHeart() {
+        int heartIdx = Life.Length-1;
+        while(heartIdx >= 0) {
+            print(heartIdx);
+            if(Life[heartIdx] == null) --heartIdx;
+            else if(Life[heartIdx].Amount <= 0 ) --heartIdx;
+            else return heartIdx;
         }
-        else if(Life[Life.Capacity-counter].Amount - dp/2 >= 0) {
-            Life[Life.Capacity-counter].Amount -= dp/2;
-            return Damage(dp/2, counter++);
-        } else return 0;*/
-        LifePlaceholder -= dp;
-        if(LifePlaceholder < 0) {
+
+        return -1;
+    }
+
+    int Damage(float dp = .5f) {
+        int heartIdx = FindLastFullHeart();
+        if(heartIdx == -1 || Life[heartIdx].Amount <= 0) 
             SceneManager.LoadScene("NaachoPrueba");
-        }
-        return 0;
+        Heart hrt = Life[heartIdx];
+        if(hrt.Amount - dp >= 0) {
+            hrt.Amount -= dp;
+            return 0;
+        } else return 0;
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
