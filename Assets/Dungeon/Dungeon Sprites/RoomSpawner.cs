@@ -175,7 +175,6 @@ public class RoomSpawner : MonoBehaviour
             // Si soy la bossRoom y me aparece un spawnPoint destruilo para que no joda. Así no puede hacer aparecer roomConectores
             else if (bossRoom && !col.GetComponent<RoomSpawner>().spawned) Destroy(col.gameObject);
             // Si soy un spawnPoint normal que toco a otro spawnPoint que no spawneo entonces su spawned va a ser true
-            else if (treasureRoom && !col.GetComponent<RoomSpawner>().spawned) Destroy(col.gameObject);
             else col.GetComponent<RoomSpawner>().spawned = true;
         }
         // Si toco a  un roomConector y soy una closedRoom le seteo su doorsDestroyed y spawnPointMoved a true para que no hada nada más
@@ -207,14 +206,13 @@ public class RoomSpawner : MonoBehaviour
         templates.treasureRoomSpawned = true;
         treasureRoom = true;
         Debug.Log("SOY LA TREASURE ROOM");
-        GameObject.Find("TreasureRoom").transform.position = transform.position;
+        GameObject.Find("FedeTest").transform.position = transform.position + Vector3.right * 3;
     }
     public void SpawnBossRoom()
     {
         templates.bossRoomSpawned = true;
         bossRoom = true;
         Debug.Log("SOY LA BOSS ROOM");
-        GameObject.Find("BossRoom").transform.position = transform.position;
     }
     // Espera a que no se generen más rooms para llamar a los roomConectors
     IEnumerator WaitForSpawnRoomConectors()
