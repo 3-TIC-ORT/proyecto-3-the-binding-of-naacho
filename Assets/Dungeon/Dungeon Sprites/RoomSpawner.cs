@@ -188,16 +188,18 @@ public class RoomSpawner : MonoBehaviour
     // NO siempre crea una BossRoom
     public void SpawnSpecialRoom(int rand,GameObject[] rooms, string room, bool closing)
     {
-        if (!templates.treasureRoomSpawned && rooms[rand].name == room) SpawnTreasureRoom();
-
-        else if (closing && !templates.treasureRoomSpawned) SpawnTreasureRoom();
-
-        // Si spawnee una room con una sola puerta y soy la primera en hacerlo entonces seré la bossRoom
-        else if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom) SpawnBossRoom();
+        if (closing && !templates.treasureRoomSpawned) SpawnTreasureRoom();
 
         // closing es true cuando ya se superó el roomsLimit. Si por casualidad antes de esto no se creo ninguna room con una sola puerta
         // entonces seré la bossRoom.
         else if (closing && !templates.bossRoomSpawned) SpawnBossRoom();
+
+        else if (!templates.treasureRoomSpawned && rooms[rand].name == room) SpawnTreasureRoom();
+
+        // Si spawnee una room con una sola puerta y soy la primera en hacerlo entonces seré la bossRoom
+        else if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom) SpawnBossRoom();
+
+        
     }
     public void SpawnTreasureRoom()
     {
@@ -226,12 +228,11 @@ public class RoomSpawner : MonoBehaviour
         if (spawnedClosedRoom) StopCoroutine(WaitForSpawnRoomConectors());
         yield return new WaitForSecondsRealtime(5f);
         if (templates.minCompleted) SpawnRoomConectors();
-        else WaitForSpawnRoomConectors();
-        SpawnRoomConectors();
+        else StartCoroutine(WaitForSpawnRoomConectors());
     }
     // Si no soy ni la bossRoom ni una closedRoom (no queremos conectarlas con habitaciones) entonces spawnea roomConectores
     private void SpawnRoomConectors()
     {
-        if (!spawnedClosedRoom && !bossRoom) Instantiate(templates.roomConector, transform.position, Quaternion.identity);
+        if (!spawnedClosedRoom && !bossRoom && !treasureRoom) Instantiate(templates.roomConector, transform.position, Quaternion.identity);
     }
 }

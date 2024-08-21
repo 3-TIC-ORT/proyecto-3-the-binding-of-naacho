@@ -29,7 +29,7 @@ public class TilemapMerger : MonoBehaviour
         }
         yield return new WaitForSecondsRealtime(1f);
         if (templates.minCompleted) MergeTilemaps();
-        else WaitForMergeTilemaps();
+        else StartCoroutine(WaitForMergeTilemaps());
     }
     // Pone todos los tiles de todos los tilemaps en el tilemap EntryRoom
     void MergeTilemaps()
