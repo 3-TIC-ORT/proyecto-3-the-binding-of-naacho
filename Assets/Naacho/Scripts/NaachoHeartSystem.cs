@@ -16,14 +16,6 @@ class Heart {
         heartType = ht;
         Amount = amount;
     }
-
-    public void Damage(float dp = .5f) {
-        Amount -= dp;
-    }
-
-    public void Heal(float hp = .5f) {
-        Amount += hp;
-    }
 }
 
 public class NaachoHeartSystem : MonoBehaviour
@@ -67,15 +59,14 @@ public class NaachoHeartSystem : MonoBehaviour
         return -1;
     }
 
-    int Damage(float dp = .5f) {
+    void Damage(float dp = .5f) {
         int heartIdx = FindLastFullHeart();
         if(heartIdx == -1 || Life[heartIdx].Amount <= 0) 
             SceneManager.LoadScene("NaachoPrueba");
         Heart hrt = Life[heartIdx];
         if(hrt.Amount - dp >= 0) {
             hrt.Amount -= dp;
-            return 0;
-        } else return 0;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
