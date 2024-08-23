@@ -46,7 +46,7 @@ public class NaachoHeartSystem : MonoBehaviour
         }
     }
 
-    float GetLifeAmount() {
+    public float GetLifeAmount() {
         float amount = 0;
         foreach(Heart h in Life) {
             if(h == null) continue;
