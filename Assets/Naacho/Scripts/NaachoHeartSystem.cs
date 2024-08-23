@@ -27,6 +27,7 @@ public class NaachoHeartSystem : MonoBehaviour
     Heart[] Life;
     public const int MAX_LIFE = 12;
     public float LifeAmount;
+    public float LifePlaceholder;
 
     public int GetMaxLife() {
         int heartIdx = 0;
