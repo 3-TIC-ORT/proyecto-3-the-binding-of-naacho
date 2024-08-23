@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,10 @@ enum HeartTypes
 class Heart {
     public HeartTypes heartType = HeartTypes.Normal;
     public float Amount;
+
+    public bool NotIsFull() {
+        return Amount < 1f;
+    }
 
     public Heart(float amount = 1f, HeartTypes ht = HeartTypes.Normal) {
         heartType = ht;
@@ -49,6 +54,10 @@ public class NaachoHeartSystem : MonoBehaviour
         return amount;
     }
 
+    public float GetLifeAmontIdx(int idx) {
+        return Life[idx].Amount;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -79,16 +88,20 @@ public class NaachoHeartSystem : MonoBehaviour
         int heartIdx = FindLastFullHeart();
 
         // Check if last found heart is full, if so add 1 to the idx
-        heartIdx = (Life[heartIdx].Amount != 1) ? heartIdx : heartIdx + 1; // Shouldn't get index error if checked it isn't full health before pickup
+        heartIdx = (Life[heartIdx].NotIsFull()) ? heartIdx : heartIdx + 1; // Shouldn't get index error if checked it isn't full health before pickup
+
+        print("healing at index " + heartIdx);
 
         Heart hrt = Life[heartIdx];
         float prevHp = hrt.Amount;
         if(hrt.Amount + hp <= 1) {
             hrt.Amount += hp;
+            print("heart now at " + hrt.Amount + " hp");
         } else {
             hrt.Amount = 1;
-            if(hp - hrt.Amount > 0)
-                Heal(hp-hrt.Amount);
+            print("heart now at " + hrt.Amount + " hp");
+            if (hp - prevHp > 0)
+                Heal(hp-prevHp);
         }
     }
 

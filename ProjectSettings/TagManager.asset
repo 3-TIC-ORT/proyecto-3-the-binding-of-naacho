@@ -10,6 +10,7 @@ TagManager:
   - Room
   - RoomConector
   - Projectile
+  - Pickup
   layers:
   - Default
   - TransparentFX
