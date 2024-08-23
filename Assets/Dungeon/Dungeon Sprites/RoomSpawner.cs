@@ -8,7 +8,6 @@ public class RoomSpawner : MonoBehaviour
     private GameObject grid;
     public int openingDirection;
     // 1 Down door     2 Top door        3  Left door       4 Right door
-
     private RoomTemplates templates;
     public bool spawned = false;
     public bool spawnedClosedRoom=false;
