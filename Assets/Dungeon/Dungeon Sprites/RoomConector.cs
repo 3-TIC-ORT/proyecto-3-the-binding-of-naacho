@@ -43,7 +43,6 @@ public class RoomConector : MonoBehaviour
             ConnectRooms(col);
         }
         
-    
     }
     private void ConnectRooms(Collider2D col)
     {

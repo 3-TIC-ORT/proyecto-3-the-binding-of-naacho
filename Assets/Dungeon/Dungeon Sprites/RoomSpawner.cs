@@ -174,6 +174,7 @@ public class RoomSpawner : MonoBehaviour
             }
             // Si soy la bossRoom y me aparece un spawnPoint destruilo para que no joda. Así no puede hacer aparecer roomConectores
             else if (bossRoom && !col.GetComponent<RoomSpawner>().spawned) Destroy(col.gameObject);
+            else if (treasureRoom && !col.GetComponent<RoomSpawner>().spawned) Destroy(col.gameObject);
             // Si soy un spawnPoint normal que toco a otro spawnPoint que no spawneo entonces su spawned va a ser true
             else col.GetComponent<RoomSpawner>().spawned = true;
         }
