@@ -33,7 +33,7 @@ public class RoomConector : MonoBehaviour
             else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * templates.centerBetweenVerticaltalRooms);
             else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * templates.centerBetweenHorizontalRooms);
             else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * templates.centerBetweenHorizontalRooms);
-
+            targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), tileConector);
             spawnPointMoved = true;
         }
         // Una vez que me moví, si colisiono con una pared de Room entonces voy a empezar a destruirla

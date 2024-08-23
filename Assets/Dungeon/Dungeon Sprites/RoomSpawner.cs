@@ -206,13 +206,14 @@ public class RoomSpawner : MonoBehaviour
         templates.treasureRoomSpawned = true;
         treasureRoom = true;
         Debug.Log("SOY LA TREASURE ROOM");
-        GameObject.Find("FedeTest").transform.position = transform.position + Vector3.right * 3;
+        GameObject.Find("TreasureRoomImage").transform.position = transform.position;
     }
     public void SpawnBossRoom()
     {
         templates.bossRoomSpawned = true;
         bossRoom = true;
         Debug.Log("SOY LA BOSS ROOM");
+        GameObject.Find("BossRoomImage").transform.position = transform.position;
     }
     // Espera a que no se generen más rooms para llamar a los roomConectors
     IEnumerator WaitForSpawnRoomConectors()
