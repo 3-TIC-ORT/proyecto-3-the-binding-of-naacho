@@ -26,19 +26,25 @@ public class RoomConector : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         // Si colisiono con un spawnPoint que no sea una closedRoom, una bossRoom o una treasureRoom entonces me voy a mover a mi dirección respectiva.
-        if (col.gameObject.CompareTag("SpawnPoint") && col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom == false && !col.gameObject.GetComponent<RoomSpawner>().bossRoom && !col.gameObject.GetComponent<RoomSpawner>().treasureRoom && !spawnPointMoved)
+        if (col.gameObject.CompareTag("SpawnPoint"))
         {
-            // Se posiciona el roomConector en el centro del área de las dos habitaciones que debería ser borrada.
-            if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * templates.centerBetweenVerticaltalRooms);
-            else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * templates.centerBetweenVerticaltalRooms);
-            else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * templates.centerBetweenHorizontalRooms);
-            else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * templates.centerBetweenHorizontalRooms);
-            targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), tileConector);
-            spawnPointMoved = true;
+            bool isClosedRoom = col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom;
+            bool isBossRoom = col.gameObject.GetComponent<RoomSpawner>().bossRoom;
+            bool isTreasureRoom = col.gameObject.GetComponent<RoomSpawner>().treasureRoom;
+            if (!isClosedRoom && !isBossRoom && !isTreasureRoom && !spawnPointMoved)
+            {
+                // Se posiciona el roomConector en el centro del área de las dos habitaciones que debería ser borrada.
+                if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * templates.centerBetweenVerticaltalRooms);
+                else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * templates.centerBetweenVerticaltalRooms);
+                else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * templates.centerBetweenHorizontalRooms);
+                else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * templates.centerBetweenHorizontalRooms);
+                targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), tileConector);
+                spawnPointMoved = true;
+            }
         }
         // Una vez que me moví, si colisiono con una pared de Room entonces voy a empezar a destruirla
         // ACLARACIÓN: Por la forma en la que lo hice, los roomConectors solo detectan los extremos o bordes de los tiles al colisionar#####
-        else if (spawnPointMoved && !doorsDestroyed && col.name != "Closed(Closed)" && col.gameObject.CompareTag("Room"))
+        else if (spawnPointMoved && !doorsDestroyed && col.gameObject.CompareTag("Room"))
         {
             ConnectRooms(col);
         }
