@@ -8,7 +8,6 @@ public class EnemTest : Enemy
     // Start is called before the first frame update
     public override void Start()
     {
-        transform.position = new Vector2(0, 5);
         base.Start();
         gameObject.layer = 8;
         Col2D.size = Vector2.one * .9f;
