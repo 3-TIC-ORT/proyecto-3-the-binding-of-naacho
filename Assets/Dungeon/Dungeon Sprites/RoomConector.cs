@@ -42,19 +42,8 @@ public class RoomConector : MonoBehaviour
         {
             ConnectRooms(col);
         }
-        // Por la razón del comentario de arriba, compruebo que yo no esté completamente adentro de wall tiles
-        // Si lo estoy, destruyo las paredes.
-        else
-        {
-            Vector3Int gridPoint = targetTilemap.WorldToCell(transform.position);
-            TileBase tile = targetTilemap.GetTile(gridPoint);
-            // Si el tile en el que estoy existe, no es piso, no es una pared de closedRoom, me moví y no llame a ConnectRooms, llama
-            // a ConnectRooms.
-            if (tile!=null && tile!=tileConector && col.name != "Closed(Closed)" && spawnPointMoved && !doorsDestroyed)
-            {
-                ConnectRooms(col);
-            }
-        }
+        
+    
     }
     private void ConnectRooms(Collider2D col)
     {
