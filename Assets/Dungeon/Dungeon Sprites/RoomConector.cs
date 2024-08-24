@@ -41,6 +41,7 @@ public class RoomConector : MonoBehaviour
                 targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), tileConector);
                 spawnPointMoved = true;
             }
+            else if (!spawnPointMoved) Destroy(gameObject);
         }
         // Una vez que me moví, si colisiono con una pared de Room entonces voy a empezar a destruirla
         // ACLARACIÓN: Por la forma en la que lo hice, los roomConectors solo detectan los extremos o bordes de los tiles al colisionar#####
