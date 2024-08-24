@@ -126,10 +126,11 @@ public class RoomSpawner : MonoBehaviour
     {
         if (col.gameObject.CompareTag("SpawnPoint"))
         {
+            bool colIsSpawned = col.GetComponent<RoomSpawner>().spawned;
             Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 
             // Si hay dos spawnPoints sin haber spawneado ninguna room
-            if (col.GetComponent<RoomSpawner>().spawned == false && !spawned)
+            if (!colIsSpawned && !spawned)
             {
                 // Si solo son spawnPoints, spawnea la closedRoom
                 if (colliders.Length <= 2)
@@ -166,14 +167,14 @@ public class RoomSpawner : MonoBehaviour
 
             }
             // Si soy un closedRoom y me aparece un spawnPoint entonces que no haga nada
-            else if (spawnedClosedRoom && !col.GetComponent<RoomSpawner>().spawned)
+            else if (spawnedClosedRoom && !colIsSpawned)
             {
                 col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
                 col.GetComponent<RoomSpawner>().spawned = true;
             }
             // Si soy la bossRoom y me aparece un spawnPoint destruilo para que no joda. Así no puede hacer aparecer roomConectores
-            else if (bossRoom && !col.GetComponent<RoomSpawner>().spawned) Destroy(col.gameObject);
-            else if (treasureRoom && !col.GetComponent<RoomSpawner>().spawned) Destroy(col.gameObject);
+            else if (bossRoom && !colIsSpawned) Destroy(col.gameObject);
+            else if (treasureRoom && !colIsSpawned) Destroy(col.gameObject);
             // Si soy un spawnPoint normal que toco a otro spawnPoint que no spawneo entonces su spawned va a ser true
             else col.GetComponent<RoomSpawner>().spawned = true;
         }
