@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 public class RoomTemplates : MonoBehaviour
 {
     public int roomsGenerated = 0;
@@ -58,6 +59,10 @@ public class RoomTemplates : MonoBehaviour
         if (roomsGenerated < roomsMin)
         {
             CreateRoom();
+        }
+        else if (roomsGenerated > roomsMin && !treasureRoomSpawned && !bossRoomSpawned)
+        {
+            SceneManager.LoadScene("Mazmorras testing");
         }
         else minCompleted = true;
         yield return new WaitForSecondsRealtime(1f);

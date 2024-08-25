@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 400
-  roomsMin: 350
+  roomsLimit: 13
+  roomsMin: 7
   minCompleted: 0
   treasureRoomSpawned: 0
   bossRoomSpawned: 0
