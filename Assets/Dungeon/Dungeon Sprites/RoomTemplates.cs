@@ -56,11 +56,11 @@ public class RoomTemplates : MonoBehaviour
             lastRoomsGenerated = roomsGenerated;
             yield return new WaitForSecondsRealtime(2f);
         }
-        if (roomsGenerated < roomsMin)
+        if (roomsGenerated <= roomsMin)
         {
             CreateRoom();
         }
-        else if (roomsGenerated > roomsMin && !treasureRoomSpawned && !bossRoomSpawned)
+        else if (roomsGenerated >= roomsMin && (!treasureRoomSpawned || !bossRoomSpawned))
         {
             SceneManager.LoadScene("Mazmorras testing");
         }

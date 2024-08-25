@@ -28,11 +28,11 @@ public class TilemapMerger : MonoBehaviour
             localRoomsGenerated = templates.roomsGenerated;
         }
         yield return new WaitForSecondsRealtime(1f);
-        if (templates.minCompleted) MergeTilemaps();
+        if (templates.minCompleted) OrderTilemaps();
         else StartCoroutine(WaitForMergeTilemaps());
     }
     // Pone todos los tiles de todos los tilemaps en el tilemap EntryRoom
-    void MergeTilemaps()
+    void OrderTilemaps()
     {
         Debug.Log("ASD");
         List<Tilemap> childTilemaps = new List<Tilemap>();
@@ -49,56 +49,62 @@ public class TilemapMerger : MonoBehaviour
 
         // Lista de los closedTilemaps
         List<Tilemap> closedTilemaps = new List<Tilemap>();
+        List<Tilemap> oneDoorTilemaps = new List<Tilemap>();
+        List<Tilemap> normalTilemaps = new List<Tilemap>();
         // Transfiere los tiles de cada Tilemap hijo al EntryRoom
         foreach (Tilemap tilemap in childTilemaps)
-        {   // Si no es un closedRoom
-            if (tilemap.name!="Closed(Clone)")
-            {
-                //Debug.Log(tilemap.name);
-                BoundsInt bounds = tilemap.cellBounds;
+        {   
+            string tilemapName = tilemap.name;
+            string tilemapTag = tilemap.tag;
 
-                // Itera sobre cada posición en los límites del Tilemap
-                foreach (Vector3Int pos in bounds.allPositionsWithin)
-                {
-                    if (tilemap.HasTile(pos))
-                    {
-                        TileBase tile = tilemap.GetTile(pos);
-                        Vector2 worldPosition = tilemap.CellToWorld(pos);
-                        Vector3Int whereToSet = targetTilemap.WorldToCell(worldPosition);
-                        targetTilemap.SetTile(whereToSet, tile);
-                        tilemap.SetTile(pos, null); 
-                    }
-                }
+            if (tilemapName == "Closed(Clone)")
+            {
+                // Añade el closedRoom a closedTilemaps 
+                closedTilemaps.Add(tilemap);
             }
-            // Añade el closedRoom a closedTilemaps 
-            else closedTilemaps.Add(tilemap);
+            else if (tilemapTag=="1DoorRoom")
+            {
+                // Añade el 1DoorRoom a oneDoorTilemaps 
+                oneDoorTilemaps.Add(tilemap);
+            }
+            // Si no es un closedRoom ni una 1DoorRoom
+            else
+            {
+                normalTilemaps.Add(tilemap);
+            }
+            
             
         }
-        if (closedTilemaps.Count > 0)
-        {
-            // Lo mismo que el otro foreach pero para los closedRooms
-            // La razón de esto es asegurarse que los tiles de los closedRoom "predominen". Si no, podría pasar que
-            // se pongan los tiles del closedRoom en la Entry Room y que después estos tiles sean tapados por los tiles
-            // de la puerta de otra room
-            Debug.Log(closedTilemaps.Count);
-            foreach (Tilemap closedTilemap in closedTilemaps)
-            {
-                BoundsInt bounds = closedTilemap.cellBounds;
+        // La razón de esto es asegurarse que los tiles de los closedRoom "predominen". Si no, podría pasar que
+        // se pongan los tiles del closedRoom en la Entry Room y que después estos tiles sean tapados por los tiles
+        // de la puerta de otra room
+        if (normalTilemaps.Count > 0) MergeTilemaps(normalTilemaps);
 
-                foreach (Vector3Int pos in bounds.allPositionsWithin)
+        if (oneDoorTilemaps.Count > 0) MergeTilemaps(oneDoorTilemaps);
+        
+        if (closedTilemaps.Count > 0) MergeTilemaps(closedTilemaps);
+        
+        // Por si acaso xd
+        targetTilemap.RefreshAllTiles();
+    }
+    private void MergeTilemaps(List<Tilemap> tilemaps)
+    {
+        
+        foreach (Tilemap tilemap in tilemaps)
+        {
+            BoundsInt bounds = tilemap.cellBounds;
+
+            foreach (Vector3Int pos in bounds.allPositionsWithin)
+            {
+                if (tilemap.HasTile(pos))
                 {
-                    if (closedTilemap.HasTile(pos))
-                    {
-                        TileBase tile = closedTilemap.GetTile(pos);
-                        Vector2 worldPosition = closedTilemap.CellToWorld(pos);
-                        Vector3Int whereToSet = targetTilemap.WorldToCell(worldPosition);
-                        targetTilemap.SetTile(whereToSet, tile);
-                        closedTilemap.SetTile(pos, null);
-                    }
+                    TileBase tile = tilemap.GetTile(pos);
+                    Vector2 worldPosition = tilemap.CellToWorld(pos);
+                    Vector3Int whereToSet = targetTilemap.WorldToCell(worldPosition);
+                    targetTilemap.SetTile(whereToSet, tile);
+                    tilemap.SetTile(pos, null);
                 }
             }
         }
-        // Por si acaso xd
-        targetTilemap.RefreshAllTiles();
     }
 }
