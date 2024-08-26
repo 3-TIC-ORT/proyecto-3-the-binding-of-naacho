@@ -26,15 +26,16 @@ public class RoomTemplates : MonoBehaviour
     public GameObject NTclosedRoom;
     [Header("Other")]
     public GameObject roomConector;
+    public GameObject lWithSpawnPoint;
     [Tooltip
     (
-        "Es el área entre la puerta de una room y la otra, siempre que ambas estén horizontalmente alineadas. " +
+        "Es el ï¿½rea entre la puerta de una room y la otra, siempre que ambas estï¿½n horizontalmente alineadas. " +
         "No modifica su volumen al cambiarlo, esto es para los roomConectors. No cambiar si no se van a cambiar las rooms a mano. " 
     )]
     public Vector3Int horizontalDoorToDoorRoomArea;
     [Tooltip
     (
-        "Es el área entre la puerta de una room y la otra, siempre que ambas estén verticalmente alineadas. " +
+        "Es el ï¿½rea entre la puerta de una room y la otra, siempre que ambas estï¿½n verticalmente alineadas. " +
         "No modifica su volumen al cambiarlo, esto es para los roomConectors. No cambiar si no se van a cambiar las rooms a mano. "
     )]
     public Vector3Int verticalDoorToDoorRoomArea;
@@ -47,14 +48,14 @@ public class RoomTemplates : MonoBehaviour
         grid = GameObject.Find("Grid");
         StartCoroutine(PreventClosing());
     }
-    // Se fija que cuando no se generan más rooms que la roomMin haya sido respetado.
+    // Se fija que cuando no se generan mï¿½s rooms que la roomMin haya sido respetado.
     IEnumerator PreventClosing()
     {
         int lastRoomsGenerated = -1;
         while (lastRoomsGenerated != roomsGenerated)
         {
             lastRoomsGenerated = roomsGenerated;
-            yield return new WaitForSecondsRealtime(2f);
+            yield return new WaitForSecondsRealtime(2.5f);
         }
         if (roomsGenerated <= roomsMin)
         {
@@ -67,10 +68,10 @@ public class RoomTemplates : MonoBehaviour
         else minCompleted = true;
         yield return new WaitForSecondsRealtime(1f);
     }
-    // Si la mazmorra se autocerró, cree una room en el tilemap más a la izquierda existente.
+    // Si la mazmorra se autocerrï¿½, cree una room en el tilemap mï¿½s a la izquierda existente.
     private void CreateRoom()
     {
-        Debug.Log("Se creo una room porque la mazmorra se cerró sola :v");
+        Debug.Log("Se creo una room porque la mazmorra se cerrï¿½ sola :v");
         List<GameObject> tilemaps = GetChildren(grid);
         float lefterX = 1607;
         Vector2 lefterRoomPosition=Vector2.zero;
@@ -93,7 +94,7 @@ public class RoomTemplates : MonoBehaviour
             
         }
         List<GameObject> listLeftRooms = new List<GameObject>(leftRooms);
-        Instantiate(listLeftRooms.Find(go => go.name == "L"), lefterRoomPosition + (Vector2.left*26), Quaternion.identity,grid.transform);
+        Instantiate(lWithSpawnPoint, lefterRoomPosition + (Vector2.left*26), Quaternion.identity,grid.transform);
         StartCoroutine(PreventClosing());
     }
 
