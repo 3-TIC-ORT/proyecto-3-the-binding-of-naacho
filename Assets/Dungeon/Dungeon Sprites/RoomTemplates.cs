@@ -26,6 +26,7 @@ public class RoomTemplates : MonoBehaviour
     public GameObject NTclosedRoom;
     [Header("Other")]
     public GameObject roomConector;
+    public GameObject LWithSpawnPoint;
     [Tooltip
     (
         "Es el área entre la puerta de una room y la otra, siempre que ambas estén horizontalmente alineadas. " +
@@ -93,7 +94,7 @@ public class RoomTemplates : MonoBehaviour
             
         }
         List<GameObject> listLeftRooms = new List<GameObject>(leftRooms);
-        Instantiate(listLeftRooms.Find(go => go.name == "L"), lefterRoomPosition + (Vector2.left*26), Quaternion.identity,grid.transform);
+        Instantiate(LWithSpawnPoint, lefterRoomPosition + (Vector2.left*26), Quaternion.identity,grid.transform);
         StartCoroutine(PreventClosing());
     }
 
