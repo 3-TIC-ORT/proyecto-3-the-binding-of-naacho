@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 13
-  roomsMin: 7
+  roomsLimit: 50
+  roomsMin: 40
   minCompleted: 0
   treasureRoomSpawned: 0
   bossRoomSpawned: 0
@@ -204,6 +204,7 @@ MonoBehaviour:
   - {fileID: 717600851557498300, guid: 06c28bc77234d6f43a02dd4d159139af, type: 3}
   NTclosedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
+  LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 12, y: 8, z: 1}
   verticalDoorToDoorRoomArea: {x: 14, y: 12, z: 1}
   centerBetweenHorizontalRooms: 13
