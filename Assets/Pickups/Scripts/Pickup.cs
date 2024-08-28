@@ -8,4 +8,5 @@ public abstract class Pickup : MonoBehaviour
         if(other.gameObject.CompareTag("Player")) {
             Destroy(gameObject);
         }
-    }}
+    }
+}

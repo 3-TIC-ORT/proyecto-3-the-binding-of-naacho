@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public enum ColliderType {
         Box,
@@ -60,7 +60,7 @@ public abstract class Enemy : MonoBehaviour
 
         while (SpRenderer.color.r > defaultColor.r)
         {
-            SpRenderer.color = new Color(SpRenderer.color.r - .025f, defaultColor.g, defaultColor.b);
+            SpRenderer.color = new Color(SpRenderer.color.r - .001f, defaultColor.g, defaultColor.b);
             yield return null;
         }
         SpRenderer.color = defaultColor;

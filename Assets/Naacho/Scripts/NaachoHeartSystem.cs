@@ -89,8 +89,7 @@ public class NaachoHeartSystem : MonoBehaviour
     public void Heal(float hp = .5f) {
         int heartIdx = FindLastFullHeart();
 
-        // Check if last found heart is full, if so add 1 to the idx
-        heartIdx = (Life[heartIdx].NotIsFull()) ? heartIdx : heartIdx + 1; // Shouldn't get index error if checked it isn't full health before pickup
+        heartIdx = (Life[heartIdx].NotIsFull()) ? heartIdx : heartIdx + 1;
 
         for(int i = 0; i < Life.Length-1; i++) {
             if(Life[i] == null && i == heartIdx) return;
