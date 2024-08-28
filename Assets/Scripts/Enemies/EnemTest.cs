@@ -26,10 +26,4 @@ public class EnemTest : Enemy
         base.OnTriggerEnter2D(collision);
     }
 
-    public override void Damage(float dp)
-    {
-        base.Damage(dp);
-        StartCoroutine(VisualDamage());
-    }
-
 }

@@ -52,15 +52,17 @@ public class Enemy : MonoBehaviour
     public virtual void Damage(float dp)
     {
         HealthPoints -= dp;
+        StartCoroutine(VisualDamage());
         if (HealthPoints < 0) Destroy(gameObject);
     }
     public virtual IEnumerator VisualDamage()
     {
         SpRenderer.color = Color.red;
 
-        while (SpRenderer.color.r > defaultColor.r)
+        while (SpRenderer.color.g + SpRenderer.color.b < 2f)
         {
-            SpRenderer.color = new Color(SpRenderer.color.r - .001f, defaultColor.g, defaultColor.b);
+            print("hello");
+            SpRenderer.color = new Color(SpRenderer.color.r, SpRenderer.color.g+0.05f, SpRenderer.color.b+0.05f);
             yield return null;
         }
         SpRenderer.color = defaultColor;
