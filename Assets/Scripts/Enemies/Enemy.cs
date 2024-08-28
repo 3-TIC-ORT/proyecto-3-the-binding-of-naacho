@@ -21,6 +21,7 @@ public abstract class Enemy : MonoBehaviour
     public uint Speed;
 
     protected SpriteRenderer SpRenderer;
+    protected Color defaultColor;
     protected BoxCollider2D Col2D;
     protected Rigidbody2D rb2D;
 
@@ -52,5 +53,16 @@ public abstract class Enemy : MonoBehaviour
     {
         HealthPoints -= dp;
         if (HealthPoints < 0) Destroy(gameObject);
+    }
+    public virtual IEnumerator VisualDamage()
+    {
+        SpRenderer.color = Color.red;
+
+        while (SpRenderer.color.r > defaultColor.r)
+        {
+            SpRenderer.color = new Color(SpRenderer.color.r - .025f, defaultColor.g, defaultColor.b);
+            yield return null;
+        }
+        SpRenderer.color = defaultColor;
     }
 }

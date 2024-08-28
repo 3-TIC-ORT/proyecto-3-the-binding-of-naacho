@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemTest : Enemy
 {
-    private Color defaultColor;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -33,12 +32,4 @@ public class EnemTest : Enemy
         StartCoroutine(VisualDamage());
     }
 
-    IEnumerator VisualDamage() {
-        SpRenderer.color = Color.red;
-
-        while(SpRenderer.color.r > defaultColor.r) {
-            SpRenderer.color = new Color(SpRenderer.color.r - .025f, defaultColor.g, defaultColor.b);
-            yield return null;
-        }
-    }
 }

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -90,6 +91,11 @@ public class NaachoHeartSystem : MonoBehaviour
 
         // Check if last found heart is full, if so add 1 to the idx
         heartIdx = (Life[heartIdx].NotIsFull()) ? heartIdx : heartIdx + 1; // Shouldn't get index error if checked it isn't full health before pickup
+
+        for(int i = 0; i < Life.Length-1; i++) {
+            print(Life[i]);
+            if(Life[i] == null && i == heartIdx) return;
+        }
 
         print("healing at index " + heartIdx);
 
