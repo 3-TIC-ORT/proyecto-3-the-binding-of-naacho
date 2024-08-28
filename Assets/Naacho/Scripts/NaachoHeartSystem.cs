@@ -3,12 +3,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum HeartTypes
+public enum HeartTypes
 {
    Normal,
 }
 
-class Heart {
+public class Heart {
     public HeartTypes heartType = HeartTypes.Normal;
     public float Amount;
 
@@ -20,12 +20,16 @@ class Heart {
         heartType = ht;
         Amount = amount;
     }
+
+    public bool isEmpty(){
+        return Amount == 0;
+    }
 }
 
 public class NaachoHeartSystem : MonoBehaviour
 {
     public int startingLife = 3;
-    Heart[] Life;
+    public Heart[] Life;
     public const int MAX_LIFE = 12;
     public float LifeAmount;
     public float LifePlaceholder;
