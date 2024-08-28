@@ -93,20 +93,16 @@ public class NaachoHeartSystem : MonoBehaviour
         heartIdx = (Life[heartIdx].NotIsFull()) ? heartIdx : heartIdx + 1; // Shouldn't get index error if checked it isn't full health before pickup
 
         for(int i = 0; i < Life.Length-1; i++) {
-            print(Life[i]);
             if(Life[i] == null && i == heartIdx) return;
         }
 
-        print("healing at index " + heartIdx);
 
         Heart hrt = Life[heartIdx];
         float prevHp = hrt.Amount;
         if(hrt.Amount + hp <= 1) {
             hrt.Amount += hp;
-            print("heart now at " + hrt.Amount + " hp");
         } else {
             hrt.Amount = 1;
-            print("heart now at " + hrt.Amount + " hp");
             if (hp - prevHp > 0)
                 Heal(hp-prevHp);
         }
