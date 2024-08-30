@@ -8,6 +8,7 @@ public class RoomConector : MonoBehaviour
     private GameObject grid;
     private RoomTemplates templates;
     public TileBase tileConector;
+    public TileBase wall;
     private Tilemap targetTilemap;
     public bool doorsDestroyed=false;
     public bool spawnPointMoved=false;
@@ -38,20 +39,40 @@ public class RoomConector : MonoBehaviour
                 else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * templates.centerBetweenVerticaltalRooms);
                 else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * templates.centerBetweenHorizontalRooms);
                 else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * templates.centerBetweenHorizontalRooms);
-                targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), tileConector);
                 spawnPointMoved = true;
             }
             else if (!spawnPointMoved) Destroy(gameObject);
         }
-        // Una vez que me moví, si colisiono con una pared de Room entonces voy a empezar a destruirla
-        // ACLARACIÓN: Por la forma en la que lo hice, los roomConectors solo detectan los extremos o bordes de los tiles al colisionar#####
-        else if (spawnPointMoved && !doorsDestroyed && col.gameObject.CompareTag("Room"))
-        {
-            ConnectRooms(col);
-        }
+        if (!doorsDestroyed)CheckIfBothRoomsAreConnected();
         
     }
-    private void ConnectRooms(Collider2D col)
+    private void CheckIfBothRoomsAreConnected()
+    {
+        bool bothRoomsAreConected=false;
+        if (pointDirection==3 || pointDirection==4)
+        {
+            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.left * 5.5f) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.right * 5.5f) == tileConector)
+            {
+                bothRoomsAreConected = true;
+            }
+        }
+        else
+        {
+            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.down * 5.5f) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.up * 5.5f) == tileConector)
+            {
+                bothRoomsAreConected = true;
+            }
+        }
+        if (!bothRoomsAreConected) ConnectRooms();
+        
+    }
+    TileBase GetTile(Tilemap tilemap, Vector2 worldPosition)
+    {
+        Vector3Int tilePosition = tilemap.WorldToCell(worldPosition);
+        TileBase tile = tilemap.GetTile(tilePosition);
+        return tile;
+    }
+    private void ConnectRooms()
     {
         StartCoroutine(esperar());
 

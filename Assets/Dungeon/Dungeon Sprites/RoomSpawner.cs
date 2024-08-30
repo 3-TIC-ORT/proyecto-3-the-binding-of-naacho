@@ -179,10 +179,9 @@ public class RoomSpawner : MonoBehaviour
             else col.GetComponent<RoomSpawner>().spawned = true;
         }
         // Si toco a  un roomConector y soy una closedRoom le seteo su doorsDestroyed y spawnPointMoved a true para que no hada nada más
-        if (col.gameObject.CompareTag("RoomConector") && spawnedClosedRoom)
+        if (col.gameObject.CompareTag("RoomConector") && (spawnedClosedRoom || bossRoom || treasureRoom))
         {
-            col.GetComponent<RoomConector>().doorsDestroyed = true;
-            col.GetComponent<RoomConector>().spawnPointMoved = true;
+            Destroy(col.gameObject);
         }
     }
 
