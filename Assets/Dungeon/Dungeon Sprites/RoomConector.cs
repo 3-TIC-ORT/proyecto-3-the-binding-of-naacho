@@ -10,6 +10,7 @@ public class RoomConector : MonoBehaviour
     public TileBase tileConector;
     public TileBase wall;
     private Tilemap targetTilemap;
+    public bool bothRoomsAreConected=false;
     public bool doorsDestroyed=false;
     public bool spawnPointMoved=false;
     public bool colisioneperonosecumplio = false;
@@ -18,15 +19,15 @@ public class RoomConector : MonoBehaviour
         grid = GameObject.Find("Grid");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         targetTilemap=GameObject.Find("Entry Room").GetComponent<Tilemap>();
-        // FEDE CAMBIALO DESPUÉS, NO TE OLVIDES ##############################################################
-        // FEDE CAMBIALO DESPUÉS, NO TE OLVIDES ##############################################################
+        // FEDE CAMBIALO DESPUï¿½S, NO TE OLVIDES ##############################################################
+        // FEDE CAMBIALO DESPUï¿½S, NO TE OLVIDES ##############################################################
         Invoke("DestroyThis", 3000);
     }
 
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        // Si colisiono con un spawnPoint que no sea una closedRoom, una bossRoom o una treasureRoom entonces me voy a mover a mi dirección respectiva.
+        // Si colisiono con un spawnPoint que no sea una closedRoom, una bossRoom o una treasureRoom entonces me voy a mover a mi direcciï¿½n respectiva.
         if (col.gameObject.CompareTag("SpawnPoint"))
         {
             bool isClosedRoom = col.gameObject.GetComponent<RoomSpawner>().spawnedClosedRoom;
@@ -34,7 +35,7 @@ public class RoomConector : MonoBehaviour
             bool isTreasureRoom = col.gameObject.GetComponent<RoomSpawner>().treasureRoom;
             if (!isClosedRoom && !isBossRoom && !isTreasureRoom && !spawnPointMoved)
             {
-                // Se posiciona el roomConector en el centro del área de las dos habitaciones que debería ser borrada.
+                // Se posiciona el roomConector en el centro del ï¿½rea de las dos habitaciones que deberï¿½a ser borrada.
                 if (pointDirection == 1) transform.position += (Vector3)(Vector2.down * templates.centerBetweenVerticaltalRooms);
                 else if (pointDirection == 2) transform.position += (Vector3)(Vector2.up * templates.centerBetweenVerticaltalRooms);
                 else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * templates.centerBetweenHorizontalRooms);
@@ -48,7 +49,6 @@ public class RoomConector : MonoBehaviour
     }
     private void CheckIfBothRoomsAreConnected()
     {
-        bool bothRoomsAreConected=false;
         if (pointDirection==3 || pointDirection==4)
         {
             if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.left * 5.5f) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.right * 5.5f) == tileConector)
@@ -80,17 +80,17 @@ public class RoomConector : MonoBehaviour
     IEnumerator esperar()
     {
         doorsDestroyed = true;
-        // Área de int, es decir, dos esquinas.
+        // ï¿½rea de int, es decir, dos esquinas.
         BoundsInt area;
         if (pointDirection == 1 || pointDirection == 2)
         {
-            // Los valores de las esquinas encierran un área que es el que se necesita para unir las rooms haciendo una más grande
+            // Los valores de las esquinas encierran un ï¿½rea que es el que se necesita para unir las rooms haciendo una mï¿½s grande
             area = new BoundsInt
             (
-                // Esquina 1. Se divide por -2 para que una esquina esté en la esquina inferior izquierda, al principio este roomConector
-                // está en el centro del área.
+                // Esquina 1. Se divide por -2 para que una esquina estï¿½ en la esquina inferior izquierda, al principio este roomConector
+                // estï¿½ en el centro del ï¿½rea.
                 templates.verticalDoorToDoorRoomArea/-2 + targetTilemap.WorldToCell(transform.position),
-                // Esquina 2. Es lo mismo que el área.
+                // Esquina 2. Es lo mismo que el ï¿½rea.
                 templates.verticalDoorToDoorRoomArea
             );
         }
