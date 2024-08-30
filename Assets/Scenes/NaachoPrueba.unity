@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 1110950106}
   - component: {fileID: 1110950107}
   - component: {fileID: 1110950108}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Naacho
   m_TagString: Player
   m_Icon: {fileID: 0}

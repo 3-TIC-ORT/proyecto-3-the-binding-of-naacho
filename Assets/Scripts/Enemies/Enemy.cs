@@ -61,7 +61,6 @@ public class Enemy : MonoBehaviour
 
         while (SpRenderer.color.g + SpRenderer.color.b < 2f)
         {
-            print("hello");
             SpRenderer.color = new Color(SpRenderer.color.r, SpRenderer.color.g+0.05f, SpRenderer.color.b+0.05f);
             yield return null;
         }

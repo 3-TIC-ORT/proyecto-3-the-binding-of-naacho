@@ -27,5 +27,7 @@ public class ProjectileCreator : MonoBehaviour
         proj.tag = (enemy) ? "Enemy" : "Projectile";
 
         proj_spr.sprite = proj_sprite;
+
+        proj.layer = 8;
     }
 }
