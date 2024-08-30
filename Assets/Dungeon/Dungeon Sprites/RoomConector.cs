@@ -41,10 +41,10 @@ public class RoomConector : MonoBehaviour
                 else if (pointDirection == 3) transform.position += (Vector3)(Vector2.left * templates.centerBetweenHorizontalRooms);
                 else if (pointDirection == 4) transform.position += (Vector3)(Vector2.right * templates.centerBetweenHorizontalRooms);
                 spawnPointMoved = true;
+                CheckIfBothRoomsAreConnected();
             }
             else if (!spawnPointMoved) Destroy(gameObject);
         }
-        if (!doorsDestroyed && !col.gameObject.CompareTag("RoomConector")) CheckIfBothRoomsAreConnected();
         
     }
     private void CheckIfBothRoomsAreConnected()
