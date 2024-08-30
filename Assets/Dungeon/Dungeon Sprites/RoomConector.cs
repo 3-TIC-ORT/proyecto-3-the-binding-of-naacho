@@ -44,7 +44,7 @@ public class RoomConector : MonoBehaviour
             }
             else if (!spawnPointMoved) Destroy(gameObject);
         }
-        if (!doorsDestroyed)CheckIfBothRoomsAreConnected();
+        if (!doorsDestroyed && !col.gameObject.CompareTag("RoomConector")) CheckIfBothRoomsAreConnected();
         
     }
     private void CheckIfBothRoomsAreConnected()

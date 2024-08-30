@@ -9,6 +9,8 @@ public class RoomSpawner : MonoBehaviour
     public int openingDirection;
     // 1 Down door     2 Top door        3  Left door       4 Right door
     private RoomTemplates templates;
+    private TilemapMerger merger;
+    private bool roomConectorsSpawned;
     public bool spawned = false;
     public bool spawnedClosedRoom=false;
     public bool bossRoom = false;
@@ -17,10 +19,20 @@ public class RoomSpawner : MonoBehaviour
     {
         grid = GameObject.Find("Grid");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         Invoke("Spawn", 0.1f);
-        StartCoroutine(WaitForSpawnRoomConectors());
     }
-
+    private void Update()
+    {
+        if (merger.tilemapsMerged && !roomConectorsSpawned)
+        {
+            if (!spawnedClosedRoom && !treasureRoom && !bossRoom)
+            {
+                roomConectorsSpawned = true;
+                SpawnRoomConectors();
+            }
+        }
+    }
     void Spawn()
     {
         if (!spawned)
@@ -215,22 +227,7 @@ public class RoomSpawner : MonoBehaviour
         Debug.Log("SOY LA BOSS ROOM");
         GameObject.Find("BossRoomImage").GetComponent<Transform>().position = transform.position;
     }
-    // Espera a que no se generen más rooms para llamar a los roomConectors
-    IEnumerator WaitForSpawnRoomConectors()
-    {
-        int localRoomsGenerated = templates.roomsGenerated;
-        int lastLocalRoomsGenerated = -1;
-        while (lastLocalRoomsGenerated != localRoomsGenerated)
-        {
-            lastLocalRoomsGenerated = localRoomsGenerated;
-            yield return new WaitForSecondsRealtime(2f);
-            localRoomsGenerated = templates.roomsGenerated;
-        }
-        if (spawnedClosedRoom) StopCoroutine(WaitForSpawnRoomConectors());
-        yield return new WaitForSecondsRealtime(5f);
-        if (templates.minCompleted) SpawnRoomConectors();
-        else StartCoroutine(WaitForSpawnRoomConectors());
-    }
+    
     // Si no soy ni la bossRoom ni una closedRoom (no queremos conectarlas con habitaciones) entonces spawnea roomConectores
     private void SpawnRoomConectors()
     {

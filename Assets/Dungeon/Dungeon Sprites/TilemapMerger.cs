@@ -10,6 +10,7 @@ public class TilemapMerger : MonoBehaviour
     private RoomTemplates templates;
     public Grid grid; // Asigna aquí tu Grid
     public Tilemap targetTilemap; // El Tilemap donde se fusionarán todos los tiles
+    public bool tilemapsMerged;
 
     void Start()
     {
@@ -106,5 +107,7 @@ public class TilemapMerger : MonoBehaviour
                 }
             }
         }
+        tilemapsMerged = true;
     }
+    
 }
