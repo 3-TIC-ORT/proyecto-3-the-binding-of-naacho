@@ -13,6 +13,7 @@ TagManager:
   - Pickup
   - 1DoorRoom
   - DoorTrigger
+  - RoomLight
   layers:
   - Default
   - TransparentFX
