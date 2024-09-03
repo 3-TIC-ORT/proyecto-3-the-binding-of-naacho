@@ -90,3 +90,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b510e59bfa3a14eaf1337d0e38c169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isVertical: 0
+  lerpPositionDuration: 0.25

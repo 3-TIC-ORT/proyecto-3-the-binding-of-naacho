@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     public bool isVertical = false;
+    public float lerpPositionDuration;
     private void Start()
     {
         if (isVertical)
@@ -25,15 +26,42 @@ public class DoorTrigger : MonoBehaviour
         Vector3 playerPos = player.GetComponent<Transform>().position;
         if (isVertical) 
         {
-            if (playerPos.y - transform.position.y<0) playerPos.y += 12;
-            else playerPos.y -= 12;
+            if (playerPos.y - transform.position.y<0)
+            {
+                StartCoroutine(LerpPosition(playerPos.y, playerPos.y + 12, lerpPositionDuration, player, false));
+            }
+            else
+            {
+                StartCoroutine(LerpPosition(playerPos.y, playerPos.y - 12, lerpPositionDuration, player, false));
+            }
         }
         else
         {
-            if (playerPos.x - transform.position.x < 0) playerPos.x += 12;
-            else playerPos.x -= 12;
+            if (playerPos.x - transform.position.x < 0)
+            {
+                StartCoroutine(LerpPosition(playerPos.x, playerPos.x + 12, lerpPositionDuration, player, true));
+            }
+            else
+            {
+                StartCoroutine(LerpPosition(playerPos.x, playerPos.x - 12, lerpPositionDuration, player, true));
+            }
         }
-        player.GetComponent<Transform>().position = playerPos;
+    }
+    IEnumerator LerpPosition(float initialAxis, float finalAxis, float duration, GameObject player, bool isHorizontal)
+    {
+        float time=0;
+        float currentAxis;
+        Vector3 playerPos = player.GetComponent<Transform>().position;
+        while (time<duration)
+        {
+            currentAxis = Mathf.Lerp(initialAxis, finalAxis, time / duration);
+            if (isHorizontal) playerPos.x = currentAxis;
+            else playerPos.y = currentAxis;
+            player.GetComponent<Transform>().position = playerPos;
+
+            time += Time.deltaTime;
+            yield return null;
+        }
     }
     IEnumerator CheckIfImNecesarry(GameObject roomConector)
     {
