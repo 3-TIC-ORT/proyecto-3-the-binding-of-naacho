@@ -11,6 +11,8 @@ TagManager:
   - RoomConector
   - Projectile
   - Pickup
+  - 1DoorRoom
+  - DoorTrigger
   layers:
   - Default
   - TransparentFX
