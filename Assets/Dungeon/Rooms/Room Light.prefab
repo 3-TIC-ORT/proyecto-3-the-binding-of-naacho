@@ -50,7 +50,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.88
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -67,8 +67,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.04924965, y: 0.4095497, z: 0}
-    m_Extent: {x: 16.51395, y: 13.77905, z: 0}
+    m_Center: {x: -0.058099747, y: 0.4010496, z: 0}
+    m_Extent: {x: 21.8607, y: 19.12955, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 13.65
+  m_ShapeLightFalloffSize: 12.28
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: -2.91, y: 0.28, z: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135231fec03e02b4fb3b87262f70bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OcclusionCullingDistance: 25
+  OcclusionCullingDistance: 45
   treasureRoomColor: {r: 0.8301887, g: 0.71144396, b: 0.09789959, a: 1}
   bossRoomColor: {r: 0.9056604, g: 0.17515129, b: 0.17515129, a: 1}
   specialRoomFalloff: 40
