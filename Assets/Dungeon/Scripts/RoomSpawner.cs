@@ -46,21 +46,25 @@ public class RoomSpawner : MonoBehaviour
                 {
                     int rand = Random.Range(0, templates.NTdownRooms.Length);
                     Instantiate(templates.NTdownRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    SpawnEnemies();
                 }
                 else if (openingDirection == 2)
                 {
                     int rand = Random.Range(0, templates.NTtopRooms.Length);
                     Instantiate(templates.NTtopRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    SpawnEnemies();
                 }
                 else if (openingDirection == 3)
                 {
                     int rand = Random.Range(0, templates.NTleftRooms.Length);
                     Instantiate(templates.NTleftRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    SpawnEnemies();
                 }
                 else if (openingDirection == 4)
                 {
                     int rand = Random.Range(0, templates.NTrightRooms.Length);
                     Instantiate(templates.NTrightRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    SpawnEnemies();
                 }
                 spawned = true;
                 templates.roomsGenerated++;
@@ -198,6 +202,12 @@ public class RoomSpawner : MonoBehaviour
         }
     }
 
+    public void SpawnEnemies()
+    {
+        int rand = Random.Range(0, templates.BasicEnemies.Length);
+        Instantiate(templates.BasicEnemies[rand], transform.position, Quaternion.identity, transform);
+    }
+
     // NO siempre crea una BossRoom
     public void SpawnSpecialRoom(int rand,GameObject[] rooms, string room, bool closing, GameObject newRoom)
     {
@@ -211,8 +221,9 @@ public class RoomSpawner : MonoBehaviour
 
         // Si spawnee una room con una sola puerta y soy la primera en hacerlo entonces seré la bossRoom
         else if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom) SpawnBossRoom(newRoom);
+        else SpawnEnemies();
 
-        
+
     }
     public void SpawnTreasureRoom(GameObject room)
     {

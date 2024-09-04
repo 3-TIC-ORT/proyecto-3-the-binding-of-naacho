@@ -9,7 +9,7 @@ public class FedeTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grid = GameObject.Find("Grid");
+        
     }
 
     // Update is called once per frame
