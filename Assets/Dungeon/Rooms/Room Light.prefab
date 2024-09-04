@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135231fec03e02b4fb3b87262f70bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OcclusionCullingDistance: 45
+  OcclusionCullingDistance: 35
   treasureRoomColor: {r: 0.8301887, g: 0.71144396, b: 0.09789959, a: 1}
   bossRoomColor: {r: 0.9056604, g: 0.17515129, b: 0.17515129, a: 1}
   specialRoomFalloff: 40

@@ -92,3 +92,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVertical: 0
   lerpPositionDuration: 0.25
+  OcclusionCullingDistance: 30

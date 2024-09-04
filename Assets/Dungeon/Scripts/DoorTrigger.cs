@@ -6,12 +6,22 @@ public class DoorTrigger : MonoBehaviour
 {
     public bool isVertical = false;
     public float lerpPositionDuration;
+    private BoxCollider2D collider;
+    private GameObject player;
+    public float OcclusionCullingDistance;
     private void Start()
     {
+        collider = GetComponent<BoxCollider2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
         if (isVertical)
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
+    }
+    private void Update()
+    {
+        if ((transform.position - player.transform.position).magnitude > OcclusionCullingDistance) collider.enabled = false;
+        else collider.enabled = true;
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

@@ -22,7 +22,7 @@ public class LightSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((transform.position-player.transform.position).magnitude>25) _light.enabled = false;
+        if ((transform.position-player.transform.position).magnitude>OcclusionCullingDistance) _light.enabled = false;
         else _light.enabled = true;
     }
 }
