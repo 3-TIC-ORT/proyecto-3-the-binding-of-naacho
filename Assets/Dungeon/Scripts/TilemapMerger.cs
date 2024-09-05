@@ -32,7 +32,7 @@ public class TilemapMerger : MonoBehaviour
         if (templates.minCompleted) OrderTilemaps();
         else StartCoroutine(WaitForMergeTilemaps());
     }
-    // Pone todos los tiles de todos los tilemaps en el tilemap EntryRoom
+    // Ordena los tilemaps para que cuando se mergeen lo hagan por prioridad. Primero los normales, después las 1DoorRooms...
     void OrderTilemaps()
     {
         Debug.Log("ASD");
@@ -88,6 +88,7 @@ public class TilemapMerger : MonoBehaviour
         // Por si acaso xd
         targetTilemap.RefreshAllTiles();
     }
+    // Pone todos los tiles de todos los tilemaps en el tilemap EntryRoom
     private void MergeTilemaps(List<Tilemap> tilemaps)
     {
         

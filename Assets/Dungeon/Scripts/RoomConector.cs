@@ -47,6 +47,7 @@ public class RoomConector : MonoBehaviour
         }
         
     }
+    // Si las habitaciones ya están conectadas, entonces no la conectes rompiendo la pared
     private void CheckIfBothRoomsAreConnected()
     {
         if (pointDirection==3 || pointDirection==4)
@@ -66,6 +67,7 @@ public class RoomConector : MonoBehaviour
         if (!bothRoomsAreConected) ConnectRooms();
         
     }
+    // Agara un tile dada su posición. Esta función ya existe y pero como la cree después de darme cuenta la usamos xd
     TileBase GetTile(Tilemap tilemap, Vector2 worldPosition)
     {
         Vector3Int tilePosition = tilemap.WorldToCell(worldPosition);
@@ -77,10 +79,11 @@ public class RoomConector : MonoBehaviour
         StartCoroutine(esperar());
 
     }
+    // Conecta las habitaciones
     IEnumerator esperar()
     {
         doorsDestroyed = true;
-        // �rea de int, es decir, dos esquinas.
+        // Area de int, es decir, dos esquinas.
         BoundsInt area;
         if (pointDirection == 1 || pointDirection == 2)
         {

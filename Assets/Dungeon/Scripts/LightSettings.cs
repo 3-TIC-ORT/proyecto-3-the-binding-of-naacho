@@ -22,6 +22,7 @@ public class LightSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Si el jugador está lo suficientemente lejos, desactiva el componente de light para ahorrar recursos.
         if ((transform.position-player.transform.position).magnitude>OcclusionCullingDistance) _light.enabled = false;
         else _light.enabled = true;
     }

@@ -63,6 +63,8 @@ public class RoomTemplates : MonoBehaviour
         {
             CreateRoom();
         }
+        // Si la generación de mazmorras paró y no se creo la treasure o la boss room, reinicia la escena. 
+        // Perdón, pero fue vencido por este problema :'v
         else if (roomsGenerated >= roomsMin && (!treasureRoomSpawned || !bossRoomSpawned))
         {
             SceneManager.LoadScene("Mazmorras testing");
@@ -75,17 +77,24 @@ public class RoomTemplates : MonoBehaviour
     {
         Debug.Log("Se creo una room porque la mazmorra se cerró sola :v");
         List<GameObject> tilemaps = GetChildren(grid, false,"");
+        // Coordenada X más a la izquierda (Por defecto es 1607, el cumple de Felipe ¿Daniel? Doval Ferrari<3)
         float lefterX = 1607;
+        // Vector 2 más a la izquierda (es redundante con lo de arriba, ya se)
         Vector2 lefterRoomPosition=Vector2.zero;
         foreach (GameObject tilemap in tilemaps)
         {
+            // Agarrá todos los spawnPoints del tilemap iterado (podría cambiarle el nombre pero ya estoy comentando el código, y no de manera placentera)
             List<GameObject> roomSpawners = GetChildren(tilemap, true, "SpawnPoint");
             foreach (GameObject roomSpawnerGameObject in roomSpawners)
             {
+                // Componente roomSpawner de cada SpawnPoint
                 RoomSpawner roomSpawner = roomSpawnerGameObject.GetComponent<RoomSpawner>();
+                // No queremos crear una habitación al lado de una bossRoom o Treasure room (solo se conectan a otra única habitación) 
                 if (!roomSpawner.spawnedClosedRoom && !roomSpawner.treasureRoom && !roomSpawner.bossRoom)
                 {
+                    // X del spawnPoint
                     Vector2 roomSpawnerGameObjectPosition = roomSpawnerGameObject.GetComponent<Transform>().position;
+                    // Si es el que está más a la izquierda hasta ahora, entonces cambia el valor de lefterRoomPosition
                     if (roomSpawnerGameObjectPosition.x < lefterX)
                     {
                         lefterX = roomSpawnerGameObjectPosition.x;
@@ -96,6 +105,7 @@ public class RoomTemplates : MonoBehaviour
             
         }
         List<GameObject> listLeftRooms = new List<GameObject>(leftRooms);
+        // Instanciá una nueva habitación a la derecha de la habitaicón más a la izquierda.
         Instantiate(LWithSpawnPoint, lefterRoomPosition + (Vector2.left*26), Quaternion.identity,grid.transform);
         StartCoroutine(PreventClosing());
     }

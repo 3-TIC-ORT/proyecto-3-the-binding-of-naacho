@@ -201,7 +201,7 @@ public class RoomSpawner : MonoBehaviour
             Destroy(col.gameObject);
         }
     }
-
+    // Su nombre lo dice. Sin comentarios.
     public void SpawnEnemies()
     {
         int rand = Random.Range(0, templates.BasicEnemies.Length);
@@ -231,6 +231,7 @@ public class RoomSpawner : MonoBehaviour
         treasureRoom = true;
         Debug.Log("SOY LA TREASURE ROOM");
         GameObject.Find("TreasureRoomImage").GetComponent<Transform>().position = transform.position;
+        // Como es una SpecialRoom, le cambiamos el color para que se vea extravagante
         SetLighting(true,room);
     }
     public void SpawnBossRoom(GameObject room)
@@ -241,6 +242,7 @@ public class RoomSpawner : MonoBehaviour
         GameObject.Find("BossRoomImage").GetComponent<Transform>().position = transform.position;
         SetLighting(false,room);
     }
+    // Cambia la iluminación para los Treasure y Boss rooms
     private void SetLighting(bool forTreasureRoom, GameObject room)
     {
         // Siempre devolverá 1 objeto.
@@ -260,7 +262,7 @@ public class RoomSpawner : MonoBehaviour
     {
         if (!spawnedClosedRoom && !bossRoom && !treasureRoom) Instantiate(templates.roomConector, transform.position, Quaternion.identity);
     }
-
+    // Devuelve la lista de hijos de un objeto. Podes ponerle un filtro por su Tag si queres.
     List<GameObject> GetChildren(GameObject parent, bool filter, string tag)
     {
         List<GameObject> children = new List<GameObject>();

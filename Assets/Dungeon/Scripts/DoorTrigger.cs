@@ -13,6 +13,7 @@ public class DoorTrigger : MonoBehaviour
     {
         collider = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        // Si es una puerta vertical entonces rote la puerta 90°
         if (isVertical)
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
@@ -20,6 +21,7 @@ public class DoorTrigger : MonoBehaviour
     }
     private void Update()
     {
+        // Occlusion Culling. Si el jugador está lo suficientemente lejos desactive el collider para ahorrar recursos.
         if ((transform.position - player.transform.position).magnitude > OcclusionCullingDistance) collider.enabled = false;
         else collider.enabled = true;
     }
@@ -31,11 +33,14 @@ public class DoorTrigger : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("RoomConector")) StartCoroutine(CheckIfImNecesarry(col.gameObject));
     }
+    // Mueve al jugador a la siguiente habitación. ¿Viste? que locura.
     private void MoveToTheNextRoom(GameObject player)
     {
         Vector3 playerPos = player.GetComponent<Transform>().position;
         if (isVertical) 
         {
+            // Identificar si el jugador está a la abajo de este objeto (puerta) o no
+            // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
             if (playerPos.y - transform.position.y<0)
             {
                 StartCoroutine(LerpPosition(playerPos.y, playerPos.y + 12, lerpPositionDuration, player, false));
@@ -57,6 +62,12 @@ public class DoorTrigger : MonoBehaviour
             }
         }
     }
+    // Mueve al jugador de una habitación a otra.
+    // initialAxis: valor del eje (X si es horizontal, Y si es vertical) del jugador
+    // finalAxis: valor del eje del otro lado de la puerta
+    // duration: que tan rápido será la transición (segundos)
+    // player: no lo se
+    // isHorizontal: para saber si el eje es el eje X o Y.
     IEnumerator LerpPosition(float initialAxis, float finalAxis, float duration, GameObject player, bool isHorizontal)
     {
         float time=0;
@@ -73,6 +84,9 @@ public class DoorTrigger : MonoBehaviour
             yield return null;
         }
     }
+    // Se llama cuando se colisiona con un roomConector. Si las dos habitaciones están conectadas entonces soy necesario y no me destruyo
+    // En el caso contrario, me destruyo porque como no están conectadas y por consiguiente se van a conectar formando una habitación
+    // grande, no debo existir :,(
     IEnumerator CheckIfImNecesarry(GameObject roomConector)
     {
         yield return new WaitForSecondsRealtime(0.1f);
