@@ -6,10 +6,13 @@ public class NaachoController : MonoBehaviour
 {
     public int Speed;
     public float Friction;
+
+    public float shotSpray;
     public float shootDelay;
     public float ProjectileLifespan;
     public float Damage;
     private float ShootTimeCounter = 0;
+
     private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
     private Animator animator;
@@ -41,21 +44,21 @@ public class NaachoController : MonoBehaviour
     }
     Vector2 getShootDir()
     {
-        int horizontalMovement = 0;
-        int verticalMovement = 0;
+        float horizontalMovement = 0;
+        float verticalMovement = 0;
 
         if(Input.GetKey(KeyCode.LeftArrow)) {
             horizontalMovement = -1;
-            verticalMovement = 0;
+            verticalMovement = Random.Range(-shotSpray, shotSpray);
         } else if(Input.GetKey(KeyCode.RightArrow)) {
             horizontalMovement = 1;
-            verticalMovement = 0;
+            verticalMovement = Random.Range(-shotSpray, shotSpray);
         } else if(Input.GetKey(KeyCode.UpArrow)) {
-            horizontalMovement = 0;
+            horizontalMovement = Random.Range(-shotSpray, shotSpray);
             verticalMovement = 1;
         }
         else if(Input.GetKey(KeyCode.DownArrow)) {
-            horizontalMovement = 0;
+            horizontalMovement = Random.Range(-shotSpray, shotSpray);
             verticalMovement = -1;
         }
         return new Vector2(horizontalMovement, verticalMovement);
