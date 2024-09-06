@@ -35,31 +35,7 @@ public class DoorTrigger : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("RoomConector")) StartCoroutine(CheckIfImNecesarry(col.gameObject));
     }
-    private void ActivateEnemies(Vector2 direction)
-    {
-        int halfRoomDistance = 0;
-        // A que distancia hay que moverse para acceder al spawnPoint
-        if (direction == Vector2.left || direction == Vector2.right) halfRoomDistance = 13;
-        else halfRoomDistance = 10; 
-        // Acceder al spawnPoint
-        Collider2D[] spawnPointArray = Physics2D.OverlapPointAll((Vector2)transform.position + (direction * halfRoomDistance));
-        // Como pueden haber varios spawnPoint en un lugar, solo activa a los enemigos de los spawnPoints que tengan hijos.
-        foreach (Collider2D spawnPoint in  spawnPointArray)
-        {
-            // enemiesPrefab es un único prefab que contiene varios enemigos. Siempre habrá uno solo, y no más, en un spawnPoint.
-            List<GameObject> enemiesPrefab = GetChildren(spawnPoint.gameObject, false, "");
-            if (enemiesPrefab.Count > 0)
-            {
-                // Enemies es cada enemigo individual dentro de enemiesPrefab.
-                List<GameObject> enemies = GetChildren(enemiesPrefab[0], false, "");
-                foreach (GameObject enemy in enemies)
-                {
-                    enemy.GetComponent<EnemTest>().enabled = true;
-                }
-                
-            }
-        }
-    }
+    
     // Mueve al jugador a la siguiente habitación. ¿Viste? que locura.
     private void MoveToTheNextRoom(GameObject player)
     {
@@ -71,12 +47,10 @@ public class DoorTrigger : MonoBehaviour
             if (playerPos.y - transform.position.y<0)
             {
                 StartCoroutine(LerpPosition(playerPos.y, playerPos.y + 12, lerpPositionDuration, player, false));
-                ActivateEnemies(Vector2.up);
             }
             else
             {
                 StartCoroutine(LerpPosition(playerPos.y, playerPos.y - 12, lerpPositionDuration, player, false));
-                ActivateEnemies(Vector2.down);
             }
         }
         else
@@ -84,12 +58,10 @@ public class DoorTrigger : MonoBehaviour
             if (playerPos.x - transform.position.x < 0)
             {
                 StartCoroutine(LerpPosition(playerPos.x, playerPos.x + 12, lerpPositionDuration, player, true));
-                ActivateEnemies(Vector2.right);
             }
             else
             {
                 StartCoroutine(LerpPosition(playerPos.x, playerPos.x - 12, lerpPositionDuration, player, true));
-                ActivateEnemies(Vector2.left);
             }
         }
     }
