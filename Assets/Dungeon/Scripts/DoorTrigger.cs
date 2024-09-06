@@ -40,15 +40,17 @@ public class DoorTrigger : MonoBehaviour
         int halfRoomDistance = 0;
         // A que distancia hay que moverse para acceder al spawnPoint
         if (direction == Vector2.left || direction == Vector2.right) halfRoomDistance = 13;
-        else halfRoomDistance = 10;
+        else halfRoomDistance = 10; 
         // Acceder al spawnPoint
         Collider2D[] spawnPointArray = Physics2D.OverlapPointAll((Vector2)transform.position + (direction * halfRoomDistance));
         // Como pueden haber varios spawnPoint en un lugar, solo activa a los enemigos de los spawnPoints que tengan hijos.
         foreach (Collider2D spawnPoint in  spawnPointArray)
         {
+            // enemiesPrefab es un único prefab que contiene varios enemigos. Siempre habrá uno solo, y no más, en un spawnPoint.
             List<GameObject> enemiesPrefab = GetChildren(spawnPoint.gameObject, false, "");
             if (enemiesPrefab.Count > 0)
             {
+                // Enemies es cada enemigo individual dentro de enemiesPrefab.
                 List<GameObject> enemies = GetChildren(enemiesPrefab[0], false, "");
                 foreach (GameObject enemy in enemies)
                 {
