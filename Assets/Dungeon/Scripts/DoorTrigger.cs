@@ -7,11 +7,13 @@ public class DoorTrigger : MonoBehaviour
     public bool isVertical = false;
     public float lerpPositionDuration;
     private BoxCollider2D collider;
+    private RoomTemplates templates;
     private GameObject player;
     public float OcclusionCullingDistance;
     private void Start()
     {
         collider = GetComponent<BoxCollider2D>();
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         player = GameObject.FindGameObjectWithTag("Player");
         // Si es una puerta vertical entonces rote la puerta 90°
         if (isVertical)
@@ -33,6 +35,22 @@ public class DoorTrigger : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("RoomConector")) StartCoroutine(CheckIfImNecesarry(col.gameObject));
     }
+    private void ActivateEnemies(Vector2 direction)
+    {
+        int halfRoomDistance = 0;
+        if (direction == Vector2.left || direction == Vector2.right) halfRoomDistance = 13;
+        else halfRoomDistance = 10;
+        Collider2D[] spawnPointArray = Physics2D.OverlapPointAll((Vector2)transform.position + (direction * halfRoomDistance));
+        foreach (Collider2D spawnPoint in  spawnPointArray)
+        {
+            List<GameObject> enemiePrefab = GetChildren(spawnPoint.gameObject, false, "");
+            if (enemiePrefab.Count > 0)
+            {
+                enemiePrefab[0].GetComponent<EnemTest>().enabled = true;
+                Debug.Log("PADLAPDOKAWDOPW");
+            }
+        }
+    }
     // Mueve al jugador a la siguiente habitación. ¿Viste? que locura.
     private void MoveToTheNextRoom(GameObject player)
     {
@@ -44,10 +62,12 @@ public class DoorTrigger : MonoBehaviour
             if (playerPos.y - transform.position.y<0)
             {
                 StartCoroutine(LerpPosition(playerPos.y, playerPos.y + 12, lerpPositionDuration, player, false));
+                ActivateEnemies(Vector2.up);
             }
             else
             {
                 StartCoroutine(LerpPosition(playerPos.y, playerPos.y - 12, lerpPositionDuration, player, false));
+                ActivateEnemies(Vector2.down);
             }
         }
         else
@@ -55,10 +75,12 @@ public class DoorTrigger : MonoBehaviour
             if (playerPos.x - transform.position.x < 0)
             {
                 StartCoroutine(LerpPosition(playerPos.x, playerPos.x + 12, lerpPositionDuration, player, true));
+                ActivateEnemies(Vector2.right);
             }
             else
             {
                 StartCoroutine(LerpPosition(playerPos.x, playerPos.x - 12, lerpPositionDuration, player, true));
+                ActivateEnemies(Vector2.left);
             }
         }
     }
@@ -92,5 +114,23 @@ public class DoorTrigger : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.1f);
         RoomConector roomConectorSCR = roomConector.GetComponent<RoomConector>();
         if (!roomConectorSCR.bothRoomsAreConected) Destroy(gameObject);
+    }
+    List<GameObject> GetChildren(GameObject parent, bool filter, string tag)
+    {
+        List<GameObject> children = new List<GameObject>();
+
+        foreach (Transform child in parent.transform)
+        {
+            if (!filter)
+            {
+                children.Add(child.gameObject);
+            }
+            else if (filter && child.CompareTag(tag))
+            {
+                children.Add(child.gameObject);
+            }
+        }
+
+        return children;
     }
 }

@@ -42,7 +42,6 @@ public class RoomTemplates : MonoBehaviour
     )]
     public Vector3Int verticalDoorToDoorRoomArea;
     // La mitad de la longitud entre una room y otra, basicamente.
-
     public float centerBetweenHorizontalRooms;
     public float centerBetweenVerticaltalRooms;
     void Start()
