@@ -38,16 +38,23 @@ public class DoorTrigger : MonoBehaviour
     private void ActivateEnemies(Vector2 direction)
     {
         int halfRoomDistance = 0;
+        // A que distancia hay que moverse para acceder al spawnPoint
         if (direction == Vector2.left || direction == Vector2.right) halfRoomDistance = 13;
         else halfRoomDistance = 10;
+        // Acceder al spawnPoint
         Collider2D[] spawnPointArray = Physics2D.OverlapPointAll((Vector2)transform.position + (direction * halfRoomDistance));
+        // Como pueden haber varios spawnPoint en un lugar, solo activa a los enemigos de los spawnPoints que tengan hijos.
         foreach (Collider2D spawnPoint in  spawnPointArray)
         {
-            List<GameObject> enemiePrefab = GetChildren(spawnPoint.gameObject, false, "");
-            if (enemiePrefab.Count > 0)
+            List<GameObject> enemiesPrefab = GetChildren(spawnPoint.gameObject, false, "");
+            if (enemiesPrefab.Count > 0)
             {
-                enemiePrefab[0].GetComponent<EnemTest>().enabled = true;
-                Debug.Log("PADLAPDOKAWDOPW");
+                List<GameObject> enemies = GetChildren(enemiesPrefab[0], false, "");
+                foreach (GameObject enemy in enemies)
+                {
+                    enemy.GetComponent<EnemTest>().enabled = true;
+                }
+                
             }
         }
     }

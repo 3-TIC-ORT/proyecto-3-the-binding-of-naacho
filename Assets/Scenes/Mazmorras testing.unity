@@ -204,7 +204,7 @@ MonoBehaviour:
   - {fileID: 717600851557498300, guid: 06c28bc77234d6f43a02dd4d159139af, type: 3}
   NTclosedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   BasicEnemies:
-  - {fileID: 7830977638047312505, guid: b666a58f84c7da140ae6b3cfe557e282, type: 3}
+  - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
   LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 12, y: 8, z: 1}
@@ -6133,7 +6133,7 @@ Transform:
   m_GameObject: {fileID: 659683869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.41, y: -0.97000027, z: -10}
+  m_LocalPosition: {x: -4.4100003, y: -0.97000027, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6357,7 +6357,7 @@ Transform:
   m_GameObject: {fileID: 716374660}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.41, y: -0.97000027, z: -10}
+  m_LocalPosition: {x: -4.4100003, y: -0.97000027, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
