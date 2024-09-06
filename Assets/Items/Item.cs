@@ -9,4 +9,5 @@ abstract public class Item : MonoBehaviour
     }
 
     public abstract void onPickup();
+
 }

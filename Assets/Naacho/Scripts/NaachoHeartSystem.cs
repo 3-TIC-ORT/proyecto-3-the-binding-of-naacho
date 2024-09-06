@@ -95,7 +95,7 @@ public class NaachoHeartSystem : MonoBehaviour
 
         heartIdx = (Life[heartIdx].NotIsFull()) ? heartIdx : heartIdx + 1;
 
-        for(int i = 0; i < Life.Length-1; i++) {
+        for(int i = 0; i < (Life.Length-1); i++) {
             if(Life[i] == null && i == heartIdx) return;
         }
 
@@ -114,6 +114,12 @@ public class NaachoHeartSystem : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("Enemy")) {
             Damage(.5f);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.CompareTag("Item")) {
+            other.GetComponent<Item>().onPickup();
         }
     }
 
