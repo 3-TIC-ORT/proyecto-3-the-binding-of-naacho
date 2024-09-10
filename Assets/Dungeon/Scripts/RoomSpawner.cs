@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
 
 public class RoomSpawner : MonoBehaviour
 {
@@ -11,16 +12,21 @@ public class RoomSpawner : MonoBehaviour
     // 1 Down door     2 Top door        3  Left door       4 Right door
     private RoomTemplates templates;
     private TilemapMerger merger;
+    private Tilemap targetTilemap;
+
     private bool roomConectorsSpawned;
     public bool spawned = false;
     public bool spawnedClosedRoom=false;
     public bool bossRoom = false;
     public bool treasureRoom = false;
+
+    public TileBase holeTile;
     void Start()
     {
         grid = GameObject.Find("Grid");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
+        targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
         Invoke("Spawn", 0.1f);
     }
     private void Update()
@@ -32,6 +38,11 @@ public class RoomSpawner : MonoBehaviour
                 roomConectorsSpawned = true;
                 SpawnRoomConectors();
             }
+        }
+        if (bossRoom && merger.tilemapsMerged)
+        {
+            List<GameObject> enemiesPrefab = GetChildren(gameObject, false, "");
+            if (enemiesPrefab.Count == 0) SpawnHole();
         }
     }
     void Spawn()
@@ -236,12 +247,19 @@ public class RoomSpawner : MonoBehaviour
     }
     public void SpawnBossRoom(GameObject room)
     {
+        SpawnEnemies();
         templates.bossRoomSpawned = true;
         bossRoom = true;
         Debug.Log("SOY LA BOSS ROOM");
         GameObject.Find("BossRoomImage").GetComponent<Transform>().position = transform.position;
         SetLighting(false,room);
     }
+
+    private void SpawnHole()
+    {
+        targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), holeTile);
+    }
+
     // Cambia la iluminación para los Treasure y Boss rooms
     private void SetLighting(bool forTreasureRoom, GameObject room)
     {

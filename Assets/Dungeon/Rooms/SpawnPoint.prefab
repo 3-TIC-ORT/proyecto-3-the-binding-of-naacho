@@ -46,6 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfae0edc9f36d5429f4c27f6e38ea0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openingDirection: 0
+  spawned: 0
+  spawnedClosedRoom: 0
+  bossRoom: 0
+  treasureRoom: 0
+  holeTile: {fileID: 11400000, guid: f9696e9cf4c3247408440e3058053db6, type: 2}
 --- !u!61 &8348292914006823559
 BoxCollider2D:
   m_ObjectHideFlags: 0
