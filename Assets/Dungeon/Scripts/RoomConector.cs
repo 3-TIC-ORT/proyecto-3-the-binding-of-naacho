@@ -65,7 +65,6 @@ public class RoomConector : MonoBehaviour
             }
         }
         if (!bothRoomsAreConected) ConnectRooms();
-        else Destroy(gameObject);
         
     }
     // Agara un tile dada su posición. Esta función ya existe y pero como la cree después de darme cuenta la usamos xd
