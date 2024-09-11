@@ -127,7 +127,6 @@ public class RoomConector : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position,layerMask);
         foreach (Collider2D collider in colliders)
         {
-            Debug.Log(collider.gameObject.tag);
             if (collider.gameObject.CompareTag("RoomConector"))
             {
                 int myID = gameObject.GetInstanceID();

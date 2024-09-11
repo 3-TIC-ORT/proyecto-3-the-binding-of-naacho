@@ -160,8 +160,15 @@ public class RoomSpawner : MonoBehaviour
             // Si hay dos spawnPoints sin haber spawneado ninguna room
             if (!colIsSpawned && !spawned)
             {
-                // Si solo son spawnPoints, spawnea la closedRoom
-                if (colliders.Length <= 2)
+                // Puede ocurrir que haya un spawnPoint spawned y que otros dos spawnPoints que se acaban de generar
+                // hayan aparecido arriba del primero spawnPoint.
+                bool noSpawnedOne = true;
+                // Ver que no haya ningún spawnPoint que ya haya spawneado una room.
+                foreach (Collider2D collider in colliders)
+                {
+                    if (collider.gameObject.GetComponent<RoomSpawner>().spawned == true) noSpawnedOne = false;
+                }
+                if (noSpawnedOne)
                 {
                     grid = GameObject.Find("Grid");
                     templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
@@ -170,27 +177,6 @@ public class RoomSpawner : MonoBehaviour
                     spawnedClosedRoom = true;
                     col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
                     col.GetComponent<RoomSpawner>().spawned = true;
-                }
-                else
-                {
-                    // Puede ocurrir que haya un spawnPoint spawned y que otros dos spawnPoints que se acaban de generar
-                    // hayan aparecido arriba del primero spawnPoint.
-                    bool noSpawnedOne = true;
-                    // Ver que no haya ningún spawnPoint que ya haya spawneado una room.
-                    foreach (Collider2D collider in colliders)
-                    {
-                        if (collider.gameObject.GetComponent<RoomSpawner>().spawned == true) noSpawnedOne = false;
-                    }
-                    if (noSpawnedOne == true)
-                    {
-                        Debug.Log("PRUEBA FEDE FUNCIONA");
-                        grid = GameObject.Find("Grid");
-                        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-
-                        Instantiate(templates.closedRoom, transform.position, Quaternion.identity, grid.transform);
-                        spawnedClosedRoom = true;
-                        col.GetComponent<RoomSpawner>().spawned = true;
-                    }
                 }
 
             }
