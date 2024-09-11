@@ -119,7 +119,25 @@ public class RoomConector : MonoBehaviour
             yield return null;
 
         }
+        DestroyExtraRoomConectors();
     }
+    private void DestroyExtraRoomConectors()
+    {
+        int layerMask = LayerMask.GetMask("Default");
+        Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position,layerMask);
+        foreach (Collider2D collider in colliders)
+        {
+            Debug.Log(collider.gameObject.tag);
+            if (collider.gameObject.CompareTag("RoomConector"))
+            {
+                int myID = gameObject.GetInstanceID();
+                int colliderID = collider.gameObject.GetInstanceID();
+                if (myID<colliderID) Destroy(collider.gameObject);
+                else if (myID!=colliderID)Destroy(gameObject); 
+            }
+        }
+    }
+
     List<Tilemap> GetChildren(GameObject parent)
     {
         List<Tilemap> children = new List<Tilemap>();
