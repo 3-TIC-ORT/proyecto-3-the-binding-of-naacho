@@ -6,6 +6,11 @@ using UnityEngine.Rendering.Universal;
 public class LightSettings : MonoBehaviour
 {
     private Light2D _light;
+    [Tooltip
+        ("Sirve para rotar la luz 90°. Fue hecha para las luces de los roomConectors, pero tal vez se podría usar para otra cosa." +
+        "Si no se busca hacer nada de este estilo, dejar en false")
+    ]
+    public bool isVertical;
     public float OcclusionCullingDistance;
     public Color treasureRoomColor;
     public Color bossRoomColor;
@@ -17,6 +22,7 @@ public class LightSettings : MonoBehaviour
     {
         _light = GetComponent<Light2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        if (isVertical) transform.rotation = Quaternion.Euler(0, 0, 90);
     }
 
     // Update is called once per frame
