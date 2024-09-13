@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 public class FedeTest : MonoBehaviour
 {
@@ -15,10 +16,10 @@ public class FedeTest : MonoBehaviour
     IEnumerator ASD()
     {
         yield return new WaitForSecondsRealtime(0);
-        changeDoorsSprite(tilex, new Vector2(0, 0));
+        changeDoorsSprite(tilex, new Vector2(0, 0), false);
     }
     // Dale el nuevo Tile para la puerta. Dale la posición del spawnPoint detectado.
-    private void changeDoorsSprite(TileBase tile, Vector2 spawnPointPos)
+    private void changeDoorsSprite(TileBase tile, Vector2 spawnPointPos, bool enableDoorLights)
     {
         // Array con las 4 direcciones con las magnitudes correspondientes donde podría haber una puerta
         Vector2[] fourDirections= {Vector2.up*4.5f,Vector2.down * 4.5f, Vector2.left*7.5f,Vector2.right*7.5f};
@@ -26,16 +27,21 @@ public class FedeTest : MonoBehaviour
         {
             Vector2 doorPos = spawnPointPos + direction;
             // Door es el collider de doorTrigger
-            Collider2D door = Physics2D.OverlapBox(doorPos, new Vector2(0.5f, 0.5f),0);
-            if (door != null) 
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(doorPos, new Vector2(0.5f, 0.5f),0);
+            foreach (Collider2D col in colliders)
             {
-                if (door.gameObject.CompareTag("DoorTrigger"))
-                {
-                    // Cambia el tile de la puerta
-                    targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos), tile);
-                    // Cambia el tile de la otra puerta al restarle un poco de posición (mala prática, lo sé, pero me ganó la tarea para el cole)
-                    targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos+new Vector2(-0.01f,-0.01f)), tile);
-                }
+                    if (col.gameObject.CompareTag("DoorTrigger"))
+                    {
+                        // Cambia el tile de la puerta
+                        targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos), tile);
+                        // Cambia el tile de la otra puerta al restarle un poco de posición (mala prática, lo sé, pero me ganó la tarea para el cole)
+                        targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos+new Vector2(-0.01f,-0.01f)), tile);
+                    }
+                    else if (col.gameObject.CompareTag("RoomLight"))
+                    {
+                        Light2D _light = col.GetComponent<Light2D>();
+                        _light.enabled = enableDoorLights;
+                    }
             }
         }
     }
