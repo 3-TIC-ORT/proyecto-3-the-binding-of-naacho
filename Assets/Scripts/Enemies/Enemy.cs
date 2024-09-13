@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     public enum ColliderType {
         Box,
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     protected BoxCollider2D Col2D;
     protected Rigidbody2D rb2D;
 
-    protected GameObject Player; 
+    public GameObject Player; 
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -37,9 +37,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    public virtual void Update()
-    {
-    }
+    public abstract void Update();
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {

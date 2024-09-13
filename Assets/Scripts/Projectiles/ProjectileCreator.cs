@@ -29,5 +29,7 @@ public class ProjectileCreator : MonoBehaviour
         proj_spr.sprite = proj_sprite;
 
         proj.layer = 8;
+
+        print($"Generated Projectile {name}");
     }
 }

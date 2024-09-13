@@ -83,8 +83,11 @@ public class NaachoHeartSystem : MonoBehaviour
 
     void Damage(float dp = .5f) {
         int heartIdx = FindLastFullHeart();
-        if(heartIdx == -1 || Life[heartIdx].Amount <= 0) 
-            SceneManager.LoadScene("NaachoPrueba");
+        if(heartIdx == -1 || Life[heartIdx].Amount <= 0)  {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
         Heart hrt = Life[heartIdx];
         if(hrt.Amount - dp >= 0) {
             hrt.Amount -= dp;
