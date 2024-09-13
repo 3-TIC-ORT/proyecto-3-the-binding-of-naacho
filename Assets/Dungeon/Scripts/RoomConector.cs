@@ -19,9 +19,8 @@ public class RoomConector : MonoBehaviour
         grid = GameObject.Find("Grid");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         targetTilemap=GameObject.Find("Entry Room").GetComponent<Tilemap>();
-        // FEDE CAMBIALO DESPU�S, NO TE OLVIDES ##############################################################
-        // FEDE CAMBIALO DESPU�S, NO TE OLVIDES ##############################################################
-        Invoke("DestroyThis", 3000);
+        // Si aparezco en el vacío de Unity, destruyeme.
+        if (targetTilemap.GetTile(targetTilemap.WorldToCell(transform.position)) == null) Destroy(gameObject);
     }
 
 
