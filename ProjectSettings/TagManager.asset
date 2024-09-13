@@ -15,6 +15,7 @@ TagManager:
   - DoorTrigger
   - RoomLight
   - Item
+  - DoorLight
   layers:
   - Default
   - TransparentFX

@@ -205,6 +205,7 @@ MonoBehaviour:
   NTclosedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   BasicEnemies:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
+  doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
   LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 12, y: 8, z: 1}

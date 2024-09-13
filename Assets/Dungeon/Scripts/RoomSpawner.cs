@@ -249,17 +249,35 @@ public class RoomSpawner : MonoBehaviour
     // Cambia la iluminación para los Treasure y Boss rooms
     private void SetLighting(bool forTreasureRoom, GameObject room)
     {
-        // Siempre devolverá 1 objeto.
+        Vector2 doorLightPosition = DecidePosition();
+        Quaternion doorLightRotation = DecideRotation();
+
+        GameObject doorLight = Instantiate(templates.doorLight, doorLightPosition, doorLightRotation,room.transform);
         List<GameObject> lightList = GetChildren(room, true, "RoomLight");
-        GameObject _light = lightList[0];
-        Light2D lightComponent = _light.GetComponent<Light2D>();
-        LightSettings settings = _light.GetComponent<LightSettings>();
-        Color treasureRoomColor = settings.treasureRoomColor;
-        Color bossRoomColor = settings.bossRoomColor;
-        float falloff = settings.specialRoomFalloff;
-        lightComponent.pointLightOuterRadius = falloff;
-        if (forTreasureRoom) lightComponent.color = treasureRoomColor;
-        else lightComponent.color = bossRoomColor;
+        foreach (GameObject _light in lightList)
+        {
+            Light2D lightComponent = _light.GetComponent<Light2D>();
+            LightSettings settings = _light.GetComponent<LightSettings>();
+            Color treasureRoomColor = settings.treasureRoomColor;
+            Color bossRoomColor = settings.bossRoomColor;
+            if (forTreasureRoom) lightComponent.color = treasureRoomColor;
+            else lightComponent.color = bossRoomColor;
+        }
+    }
+    // Las siguientes funciones son para establecer las doorLights
+    private Vector2 DecidePosition()
+    {
+        if (openingDirection == 1) return (Vector2)transform.position + Vector2.down * 15.5f;
+        else if (openingDirection==2) return (Vector2)transform.position + Vector2.up * 15.5f;
+        else if (openingDirection==3) return (Vector2)transform.position + Vector2.left * 18.5f;
+        else return (Vector2)transform.position + Vector2.right * 18.5f;
+    }
+    private Quaternion DecideRotation()
+    {
+        if (openingDirection == 1) return Quaternion.Euler(0, 0, 180);
+        else if (openingDirection == 2) return Quaternion.Euler(0, 0, 0);
+        else if (openingDirection == 3) return Quaternion.Euler(0, 0, 90);
+        else return Quaternion.Euler(0, 0, -90);
     }
     // Si no soy ni la bossRoom ni una closedRoom (no queremos conectarlas con habitaciones) entonces spawnea roomConectores
     private void SpawnRoomConectors()
