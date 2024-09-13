@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1635973986205081160}
   - component: {fileID: 6685394843274938357}
   - component: {fileID: 5120404795097938303}
+  - component: {fileID: -5558359069313032760}
   m_Layer: 6
   m_Name: pruebaEnemigo
   m_TagString: Enemy
@@ -51,6 +52,7 @@ MonoBehaviour:
   HealthPoints: 5
   DamagePoints: 1
   Speed: 125
+  Player: {fileID: 0}
 --- !u!61 &1635973986205081160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,3 +177,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5558359069313032760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313654916318045297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b469ca589c4cc40928433f9337ad4516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
