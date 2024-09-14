@@ -28,6 +28,9 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] BasicEnemies;
     [Header("Lights")]
     public GameObject doorLight;
+    [Header("Items")]
+    public GameObject itemHolder;
+    public GameObject[] items;
     [Header("Other")]
     public GameObject roomConector;
     public GameObject LWithSpawnPoint;

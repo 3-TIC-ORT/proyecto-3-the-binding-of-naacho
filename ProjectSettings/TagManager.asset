@@ -16,6 +16,7 @@ TagManager:
   - RoomLight
   - Item
   - DoorLight
+  - ItemHolder
   layers:
   - Default
   - TransparentFX

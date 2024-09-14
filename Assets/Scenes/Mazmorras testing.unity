@@ -206,6 +206,9 @@ MonoBehaviour:
   BasicEnemies:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
   doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
+  itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
+  items:
+  - {fileID: 2255056283135363523, guid: 5c4ce46a3bf8c4107882c12a8b69b456, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
   LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 12, y: 8, z: 1}

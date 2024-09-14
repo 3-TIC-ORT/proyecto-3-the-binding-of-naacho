@@ -29,6 +29,6 @@ public class EnemyEnabler : MonoBehaviour
         } else {
             setStatus(false);
         }
-        print($"Player: {player.position}, bounds: ({transform.position.y + 9}, {transform.position.y - 9})");
+        //print($"Player: {player.position}, bounds: ({transform.position.y + 9}, {transform.position.y - 9})");
     }
 }

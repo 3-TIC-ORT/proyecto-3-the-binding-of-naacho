@@ -21,6 +21,7 @@ public class RoomSpawner : MonoBehaviour
     public bool treasureRoom = false;
 
     public TileBase holeTile;
+    public TileBase itemHolderTile;
     void Start()
     {
         grid = GameObject.Find("Grid");
@@ -43,6 +44,10 @@ public class RoomSpawner : MonoBehaviour
         {
             List<GameObject> enemiesPrefab = GetChildren(gameObject, false, "");
             if (enemiesPrefab.Count == 0) SpawnHole();
+        }
+        else if (treasureRoom && merger.tilemapsMerged)
+        {
+            SpawnItem();
         }
     }
     void Spawn()
@@ -230,6 +235,10 @@ public class RoomSpawner : MonoBehaviour
         GameObject.Find("TreasureRoomImage").GetComponent<Transform>().position = transform.position;
         // Como es una SpecialRoom, le cambiamos el color para que se vea extravagante
         SetLighting(true,room);
+    }
+    public void SpawnItem()
+    {
+        targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), itemHolderTile);
     }
     public void SpawnBossRoom(GameObject room)
     {
