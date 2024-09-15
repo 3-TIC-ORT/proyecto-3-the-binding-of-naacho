@@ -276,10 +276,13 @@ public class RoomSpawner : MonoBehaviour
     // Las siguientes funciones son para establecer las doorLights
     private Vector2 DecidePosition()
     {
-        if (openingDirection == 1) return (Vector2)transform.position + Vector2.down * 15.5f;
-        else if (openingDirection==2) return (Vector2)transform.position + Vector2.up * 15.5f;
-        else if (openingDirection==3) return (Vector2)transform.position + Vector2.left * 18.5f;
-        else return (Vector2)transform.position + Vector2.right * 18.5f;
+        // Esto calcula la distancia que hay entre el centro de una habitación y la puerta de la siguiente habitación
+        float verticalDistance = (templates.verticalDoorToDoorRoomArea.y / 2 + templates.centerBetweenVerticaltalRooms)-0.5f;
+        float horizontalDistance = (templates.horizontalDoorToDoorRoomArea.x / 2 + templates.centerBetweenHorizontalRooms)-0.5f;
+        if (openingDirection == 1) return (Vector2)transform.position + Vector2.down * verticalDistance;
+        else if (openingDirection==2) return (Vector2)transform.position + Vector2.up * verticalDistance;
+        else if (openingDirection==3) return (Vector2)transform.position + Vector2.left * horizontalDistance;
+        else return (Vector2)transform.position + Vector2.right * horizontalDistance;
     }
     private Quaternion DecideRotation()
     {

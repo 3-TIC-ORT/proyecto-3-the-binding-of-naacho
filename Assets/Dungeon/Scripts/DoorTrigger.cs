@@ -42,26 +42,28 @@ public class DoorTrigger : MonoBehaviour
         Vector3 playerPos = player.GetComponent<Transform>().position;
         if (isVertical) 
         {
+            float nextDoorDistance = templates.verticalDoorToDoorRoomArea.y;
             // Identificar si el jugador está a la abajo de este objeto (puerta) o no
             // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
             if (playerPos.y - transform.position.y<0)
             {
-                StartCoroutine(LerpPosition(playerPos.y, playerPos.y + 12, lerpPositionDuration, player, false));
+                StartCoroutine(LerpPosition(playerPos.y, playerPos.y + nextDoorDistance, lerpPositionDuration, player, false));
             }
             else
             {
-                StartCoroutine(LerpPosition(playerPos.y, playerPos.y - 12, lerpPositionDuration, player, false));
+                StartCoroutine(LerpPosition(playerPos.y, playerPos.y - nextDoorDistance, lerpPositionDuration, player, false));
             }
         }
         else
         {
+            float nextDoorDistance = templates.horizontalDoorToDoorRoomArea.x;
             if (playerPos.x - transform.position.x < 0)
             {
-                StartCoroutine(LerpPosition(playerPos.x, playerPos.x + 12, lerpPositionDuration, player, true));
+                StartCoroutine(LerpPosition(playerPos.x, playerPos.x + nextDoorDistance, lerpPositionDuration, player, true));
             }
             else
             {
-                StartCoroutine(LerpPosition(playerPos.x, playerPos.x - 12, lerpPositionDuration, player, true));
+                StartCoroutine(LerpPosition(playerPos.x, playerPos.x - nextDoorDistance, lerpPositionDuration, player, true));
             }
         }
     }
