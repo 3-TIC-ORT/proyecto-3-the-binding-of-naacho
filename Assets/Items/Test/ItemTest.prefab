@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Naacho: {fileID: 0}
+  animationSpeed: 1
 --- !u!212 &4061118226604788042
 SpriteRenderer:
   m_ObjectHideFlags: 0
