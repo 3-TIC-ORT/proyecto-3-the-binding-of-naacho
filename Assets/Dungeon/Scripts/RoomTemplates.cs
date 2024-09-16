@@ -49,6 +49,7 @@ public class RoomTemplates : MonoBehaviour
     // La mitad de la longitud entre una room y otra, basicamente.
     public float centerBetweenHorizontalRooms;
     public float centerBetweenVerticaltalRooms;
+    
     void Start()
     {
         grid = GameObject.Find("Grid");

@@ -51,14 +51,14 @@ public class RoomConector : MonoBehaviour
     {
         if (pointDirection==3 || pointDirection==4)
         {
-            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.left * 5.5f) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.right * 5.5f) == tileConector)
+            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.left * (templates.horizontalDoorToDoorRoomArea.x/2-0.5f)) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.right * 5.5f) == tileConector)
             {
                 bothRoomsAreConected = true;
             }
         }
         else
         {
-            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.down * 5.5f) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.up * 5.5f) == tileConector)
+            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.down * (templates.verticalDoorToDoorRoomArea.y/2-0.5f)) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.up * 5.5f) == tileConector)
             {
                 bothRoomsAreConected = true;
             }
