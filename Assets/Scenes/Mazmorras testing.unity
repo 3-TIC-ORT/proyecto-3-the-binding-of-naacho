@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 16
-  roomsMin: 15
+  roomsLimit: 15
+  roomsMin: 7
   minCompleted: 0
   treasureRoomSpawned: 0
   bossRoomSpawned: 0
@@ -288,8 +288,6 @@ MonoBehaviour:
   verticalDoorToDoorRoomArea: {x: 16, y: 10, z: 1}
   centerBetweenHorizontalRooms: 13
   centerBetweenVerticaltalRooms: 10
-  distanceBetweenDoorAndSpawnPointY: 0
-  distanceBetweenDoorAndSpawnPointX: 0
 --- !u!4 &160267593
 Transform:
   m_ObjectHideFlags: 0
@@ -505,7 +503,7 @@ Transform:
   m_GameObject: {fileID: 659683869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.41, y: -0.97000027, z: -10}
+  m_LocalPosition: {x: -4.4100003, y: -0.97000027, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -729,7 +727,7 @@ Transform:
   m_GameObject: {fileID: 716374660}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.41, y: -0.97000027, z: -10}
+  m_LocalPosition: {x: -4.4100003, y: -0.97000027, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

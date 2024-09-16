@@ -20,6 +20,7 @@ public class DoorTrigger : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
+        transform.localScale = new Vector3(templates.horizontalDoorToDoorRoomArea.x-1, 1.6f, 1);
     }
     private void Update()
     {
