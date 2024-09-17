@@ -280,7 +280,6 @@ MonoBehaviour:
   NTclosedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   BasicEnemies:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
-  doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
   items:
   - {fileID: 2255056283135363523, guid: 5c4ce46a3bf8c4107882c12a8b69b456, type: 3}
@@ -983,6 +982,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1470469541506955062, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: m_TagString
+      value: EnemyEnabler
+      objectReference: {fileID: 0}
     - target: {fileID: 2565930946947442940, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: m_SortingOrder
       value: 2
@@ -1031,12 +1034,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7697274972419688251, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697274972419688251, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697274972419688251, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8020641590110592584, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: m_Name
       value: Naacho
       objectReference: {fileID: 0}
+    - target: {fileID: 8471949511258622315, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: m_Size.x
+      value: 25.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471949511258622315, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: m_Size.y
+      value: 14.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1470469541506955062, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
