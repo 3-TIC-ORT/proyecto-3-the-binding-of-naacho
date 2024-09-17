@@ -30,8 +30,22 @@ abstract public class Item : MonoBehaviour
         if ((Naacho.transform.position - transform.position).magnitude < oclussionCulling) spriteRenderer.enabled = true;
         else spriteRenderer.enabled = false;
 
-        if ((Naacho.transform.position - transform.position).magnitude < textOclussionCulling) text.enabled = true;
-        else text.enabled = false;
+       
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            text.text = itemExplanation;
+            text.enabled = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            text.enabled = false;
+        }
     }
     public abstract void onPickup();
 
