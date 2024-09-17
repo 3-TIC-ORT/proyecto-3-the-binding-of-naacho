@@ -230,6 +230,8 @@ MonoBehaviour:
   roomsLimit: 15
   roomsMin: 7
   minCompleted: 0
+  treasureRoomsAmount: 4
+  currentTreasureRooms: 0
   treasureRoomSpawned: 0
   bossRoomSpawned: 0
   downRooms:
@@ -503,7 +505,7 @@ Transform:
   m_GameObject: {fileID: 659683869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.4100003, y: -0.97000027, z: -10}
+  m_LocalPosition: {x: -4.41, y: -0.97000027, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -727,7 +729,7 @@ Transform:
   m_GameObject: {fileID: 716374660}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.4100003, y: -0.97000027, z: -10}
+  m_LocalPosition: {x: -4.41, y: -0.97000027, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

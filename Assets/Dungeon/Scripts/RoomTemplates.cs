@@ -9,6 +9,8 @@ public class RoomTemplates : MonoBehaviour
     public int roomsLimit; // No es preciso
     public int roomsMin;
     public bool minCompleted=false;
+    public int treasureRoomsAmount;
+    public int currentTreasureRooms=0;
     public bool treasureRoomSpawned = false;
     public bool bossRoomSpawned=false;
     private GameObject grid;

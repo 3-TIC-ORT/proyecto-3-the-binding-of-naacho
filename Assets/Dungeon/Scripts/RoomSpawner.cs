@@ -23,7 +23,7 @@ public class RoomSpawner : MonoBehaviour
     public TileBase holeTile;
     public TileBase itemHolderTile;
     void Start()
-    {
+    {       
         grid = GameObject.Find("Grid");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
@@ -229,7 +229,8 @@ public class RoomSpawner : MonoBehaviour
     }
     public void SpawnTreasureRoom(GameObject room)
     {
-        templates.treasureRoomSpawned = true;
+        templates.currentTreasureRooms += 1;
+        if (templates.currentTreasureRooms >= templates.treasureRoomsAmount) templates.treasureRoomSpawned = true;
         treasureRoom = true;
         Debug.Log("SOY LA TREASURE ROOM");
         GameObject.Find("TreasureRoomImage").GetComponent<Transform>().position = transform.position;
