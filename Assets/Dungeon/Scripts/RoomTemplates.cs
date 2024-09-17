@@ -11,6 +11,7 @@ public class RoomTemplates : MonoBehaviour
     public bool minCompleted=false;
     public int treasureRoomsAmount;
     public int currentTreasureRooms=0;
+    // Su nombre debería ser treasureRoomsSpawned (notar el plural de Rooms). 
     public bool treasureRoomSpawned = false;
     public bool bossRoomSpawned=false;
     private GameObject grid;

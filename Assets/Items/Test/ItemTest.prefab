@@ -49,6 +49,8 @@ MonoBehaviour:
   animationSpeed: 1
   heightVariation: 0
   oclussionCulling: 35
+  textOclussionCulling: 13
+  itemExplanation: "Dispar\xE1s m\xE1s r\xE1pido :v"
 --- !u!212 &4061118226604788042
 SpriteRenderer:
   m_ObjectHideFlags: 0
