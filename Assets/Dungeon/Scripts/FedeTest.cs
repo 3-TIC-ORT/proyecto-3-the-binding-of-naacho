@@ -8,16 +8,13 @@ public class FedeTest : MonoBehaviour
     private GameObject grid;
     public Tilemap targetTilemap;
     public TileBase tilex;
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine("ASD");
-    }
+
     IEnumerator ASD()
     {
         yield return new WaitForSecondsRealtime(0);
         changeDoorsSprite(tilex, new Vector2(0, 0), false);
     }
+
     // Dale el nuevo Tile para la puerta. Dale la posición del spawnPoint detectado.
     private void changeDoorsSprite(TileBase tile, Vector2 spawnPointPos, bool enableDoorLights)
     {

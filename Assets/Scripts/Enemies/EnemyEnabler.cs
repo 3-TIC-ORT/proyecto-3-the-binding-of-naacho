@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemyEnabler : MonoBehaviour
 {
     Transform player;
+    public Vector2 ActivationArea = new Vector2(9, 9);
 
     void Start()
     {
         player = GameObject.Find("Naacho").transform;
     }
 
-    bool InBox(uint height, uint width, Vector2 position) {
+    bool InBox(float height, float width, Vector2 position) {
         bool checkY = position.y < transform.position.y + height && position.y > transform.position.y - height;
         bool checkX = position.x < transform.position.x + width && position.x > transform.position.x - width;
         return  checkY && checkX;
@@ -24,7 +25,7 @@ public class EnemyEnabler : MonoBehaviour
 
     void Update()
     {
-        if(InBox(9, 9, player.transform.position)) {
+        if(InBox(ActivationArea.x, ActivationArea.y, player.transform.position)) {
             setStatus(true);
         } else {
             setStatus(false);
