@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class DoorTrigger : MonoBehaviour
 {
     public bool isVertical = false;
@@ -9,12 +9,15 @@ public class DoorTrigger : MonoBehaviour
     private BoxCollider2D collider;
     private RoomTemplates templates;
     private GameObject player;
+    private Transform cameraTransform;
+    public float changeRoomSpeed;
     public float OcclusionCullingDistance;
     private void Start()
     {
         collider = GetComponent<BoxCollider2D>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         player = GameObject.FindGameObjectWithTag("Player");
+        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
         // Si es una puerta vertical entonces rote la puerta 90°
         if (isVertical)
         {
@@ -43,33 +46,37 @@ public class DoorTrigger : MonoBehaviour
         Vector3 playerPos = player.GetComponent<Transform>().position;
         if (isVertical) 
         {
-            float nextDoorDistance = templates.verticalDoorToDoorRoomArea.y;
+            float nextDoorDistance = templates.verticalDoorToDoorRoomArea.y+0.1f;
             // Identificar si el jugador está a la abajo de este objeto (puerta) o no
             // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
             if (playerPos.y - transform.position.y<0)
             {
                 playerPos.y += nextDoorDistance;
                 player.GetComponent<Transform>().position = playerPos;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>().DOMoveY(cameraTransform.position.y + nextDoorDistance, changeRoomSpeed).SetEase(Ease.OutCubic);
             }
             else
             {
                 playerPos.y -= nextDoorDistance;
                 player.GetComponent<Transform>().position = playerPos;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>().DOMoveY(cameraTransform.position.y - nextDoorDistance, changeRoomSpeed).SetEase(Ease.OutCubic);
             }
         }
         else
         {
-            float nextDoorDistance = templates.horizontalDoorToDoorRoomArea.x;
+            float nextDoorDistance = templates.horizontalDoorToDoorRoomArea.x+0.1f;
             if (playerPos.x - transform.position.x < 0)
             {
                 playerPos.x += nextDoorDistance;
                 player.GetComponent<Transform>().position = playerPos;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>().DOMoveX(cameraTransform.position.x + nextDoorDistance, changeRoomSpeed).SetEase(Ease.OutCubic);
 
             }
             else
             {
                 playerPos.x -= nextDoorDistance;
                 player.GetComponent<Transform>().position = playerPos;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>().DOMoveX(cameraTransform.position.x - nextDoorDistance, changeRoomSpeed).SetEase(Ease.OutCubic);
             }
         }
     }

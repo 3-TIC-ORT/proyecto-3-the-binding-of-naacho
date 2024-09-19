@@ -11,6 +11,7 @@ public class LightSettings : MonoBehaviour
         "Si no se busca hacer nada de este estilo, dejar en false")
     ]
     public bool isVertical;
+    public bool isDoorLight;
     public float OcclusionCullingDistance;
     public Color treasureRoomColor;
     public Color bossRoomColor;
@@ -18,10 +19,12 @@ public class LightSettings : MonoBehaviour
     //public float falloffStrength;
     //public float intensity;
     private GameObject player;
+    private DoorDisabler doorDisabler;
     void Start()
     {
         _light = GetComponent<Light2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        doorDisabler = player.GetComponent<DoorDisabler>();
         if (isVertical) transform.rotation = Quaternion.Euler(0, 0, 90);
     }
 
@@ -30,6 +33,7 @@ public class LightSettings : MonoBehaviour
     {
         // Si el jugador está lo suficientemente lejos, desactiva el componente de light para ahorrar recursos.
         if ((transform.position-player.transform.position).magnitude>OcclusionCullingDistance) _light.enabled = false;
-        else _light.enabled = true;
+        else if (!isDoorLight) _light.enabled = true;
+        else (doorDisabler.isFighting) = false;
     }
 }

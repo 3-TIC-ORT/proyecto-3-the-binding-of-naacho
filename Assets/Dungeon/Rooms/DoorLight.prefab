@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8776116980297842534}
   - component: {fileID: 3496310238788998078}
   - component: {fileID: 1534624866432575665}
+  - component: {fileID: 1002459918287840125}
   m_Layer: 0
   m_Name: DoorLight
   m_TagString: RoomLight
@@ -96,7 +97,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isVertical: 0
+  isDoorLight: 1
   OcclusionCullingDistance: 35
   treasureRoomColor: {r: 0.83137256, g: 0.70980394, b: 0.09803922, a: 1}
   bossRoomColor: {r: 0.90588236, g: 0.1764706, b: 0.1764706, a: 1}
   specialRoomFalloff: 0
+--- !u!58 &1002459918287840125
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047732444763578565}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1

@@ -12,8 +12,7 @@ public class DoorDisabler : MonoBehaviour
     public TileBase tileOpened;
     public TileBase tileClosed;
     EnemyEnabler enemyEnabler;
-    // True si hubo enemigos en el chequeo anterior
-    public bool closed;
+    public bool isFighting;
     BoxCollider2D ActivationArea;
 
     void Start() {
@@ -42,8 +41,7 @@ public class DoorDisabler : MonoBehaviour
                     }
                     else if (col.gameObject.CompareTag("RoomLight"))
                     {
-                        Light2D _light = col.GetComponent<Light2D>();
-                        _light.enabled = enableDoorLights;
+                        col.GetComponent<Light2D>().enabled = enableDoorLights;
                     }
             }
         }
@@ -65,18 +63,18 @@ public class DoorDisabler : MonoBehaviour
             }
                 
         }
-        if (enemiesAmount==0 && closed)
+        if (enemiesAmount==0)
         {
-            closed = false;
+            isFighting = false;
             foreach (Vector2 position in spawnPointsPositions)
             {
                 changeDoorsSprite(tileOpened, position, true);
 
             }
         }
-        else if (enemiesAmount >0 && !closed)
+        else if (enemiesAmount >0)
         {
-            closed = true;
+            isFighting = true;
             foreach (Vector2 position in spawnPointsPositions) 
             {
                 changeDoorsSprite(tileClosed, position, false);
