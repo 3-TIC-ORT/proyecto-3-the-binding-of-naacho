@@ -48,11 +48,13 @@ public class DoorTrigger : MonoBehaviour
             // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
             if (playerPos.y - transform.position.y<0)
             {
-                StartCoroutine(LerpPosition(playerPos.y, playerPos.y + nextDoorDistance, lerpPositionDuration, player, false));
+                playerPos.y += nextDoorDistance;
+                player.GetComponent<Transform>().position = playerPos;
             }
             else
             {
-                StartCoroutine(LerpPosition(playerPos.y, playerPos.y - nextDoorDistance, lerpPositionDuration, player, false));
+                playerPos.y -= nextDoorDistance;
+                player.GetComponent<Transform>().position = playerPos;
             }
         }
         else
@@ -60,11 +62,14 @@ public class DoorTrigger : MonoBehaviour
             float nextDoorDistance = templates.horizontalDoorToDoorRoomArea.x;
             if (playerPos.x - transform.position.x < 0)
             {
-                StartCoroutine(LerpPosition(playerPos.x, playerPos.x + nextDoorDistance, lerpPositionDuration, player, true));
+                playerPos.x += nextDoorDistance;
+                player.GetComponent<Transform>().position = playerPos;
+
             }
             else
             {
-                StartCoroutine(LerpPosition(playerPos.x, playerPos.x - nextDoorDistance, lerpPositionDuration, player, true));
+                playerPos.x -= nextDoorDistance;
+                player.GetComponent<Transform>().position = playerPos;
             }
         }
     }
