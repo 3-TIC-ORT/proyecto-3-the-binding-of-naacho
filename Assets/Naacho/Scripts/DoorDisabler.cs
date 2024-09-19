@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class DoorDisabler : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class DoorDisabler : MonoBehaviour
     public TileBase tileOpened;
     public TileBase tileClosed;
     EnemyEnabler enemyEnabler;
-    public bool isFighting;
+    // True si hubo enemigos en el chequeo anterior
+    public bool closed;
     BoxCollider2D ActivationArea;
 
     void Start() {
@@ -48,36 +50,38 @@ public class DoorDisabler : MonoBehaviour
     }
 
     void Update() {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, ActivationArea.size, 0);
-        int enemyCounter = 0;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 13);
+        int enemiesAmount = 0;
+        List<Vector2> spawnPointsPositions=new List<Vector2>();
         foreach(Collider2D col in colliders) {
-            if(col.CompareTag("Enemy")) {
-                isFighting = true;
-                break;
+            if (col.CompareTag("Enemy"))
+            {
+                enemiesAmount++;
             }
-            isFighting = false;
+            else if (col.CompareTag("SpawnPoint"))
+            {
+               spawnPointsPositions.Add((Vector2)col.gameObject.transform.position);
+             
+            }
+                
+        }
+        if (enemiesAmount==0 && closed)
+        {
+            closed = false;
+            foreach (Vector2 position in spawnPointsPositions)
+            {
+                changeDoorsSprite(tileOpened, position, true);
+
+            }
+        }
+        else if (enemiesAmount >0 && !closed)
+        {
+            closed = true;
+            foreach (Vector2 position in spawnPointsPositions) 
+            {
+                changeDoorsSprite(tileClosed, position, false);
+            }
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("SpawnPoint") && isFighting) {
-            changeDoorsSprite(tileClosed, (Vector2)other.gameObject.transform.position, other.GetComponent<RoomSpawner>().treasureRoom);
-        }
-        if(other.gameObject.CompareTag("Enemy")) {
-            isFighting = true;
-            other.GetComponent<Enemy>().enabled = true;
-            other.GetComponent<SpriteRenderer>().enabled = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("SpawnPoint") && !isFighting) {
-            changeDoorsSprite(tileOpened, (Vector2)other.gameObject.transform.position, other.GetComponent<RoomSpawner>().treasureRoom);
-        }
-        if(other.gameObject.CompareTag("Enemy")) {
-            isFighting = false;
-            other.GetComponent<Enemy>().enabled = false;
-            other.GetComponent<SpriteRenderer>().enabled = false;
-        }
-    }
 }

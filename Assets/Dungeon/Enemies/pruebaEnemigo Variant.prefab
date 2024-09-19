@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5558359069313032760, guid: ba21217f7357e6c49af06ac5197b0351, type: 3}
+      propertyPath: oclussionCullingDistance
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1265253367960309200, guid: ba21217f7357e6c49af06ac5197b0351, type: 3}
       propertyPath: Speed
       value: 125
@@ -60,8 +64,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5558359069313032760, guid: ba21217f7357e6c49af06ac5197b0351, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

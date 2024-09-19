@@ -4,30 +4,29 @@ using UnityEngine;
 
 public class EnemyEnabler : MonoBehaviour
 {
-    Transform player;
-    public float activationDistance;
-
-    void Start()
+    private GameObject player;
+    public float oclussionCullingDistance;
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private BoxCollider2D collider2D;
+    private void Start()
     {
-        player = GameObject.Find("Naacho").transform;
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        collider2D = GetComponent<BoxCollider2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    public bool InBox(Vector2 position) {
-        return ((Vector2)transform.position - position).magnitude < activationDistance;
-    }
-
-    void setStatus(bool state) {
-        GetComponent<Enemy>().enabled = state;
-        GetComponent<SpriteRenderer>().enabled = state;
-    }
-
-    void Update()
+    private void Update()
     {
-        if(InBox(player.transform.position)) {
-            setStatus(true);
-        } else {
-            setStatus(false);
+        if ((transform.position - player.transform.position).magnitude > oclussionCullingDistance)
+        {
+            sr.enabled = false;
+            collider2D.enabled = false;
         }
-        //print($"Player: {player.position}, bounds: ({transform.position.y + 9}, {transform.position.y - 9})");
+        else
+        {
+            sr.enabled = true;
+            collider2D.enabled = true;
+        }
     }
 }

@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 15
+  roomsLimit: 22
   roomsMin: 7
   minCompleted: 0
   treasureRoomsAmount: 4
@@ -280,6 +280,7 @@ MonoBehaviour:
   NTclosedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   BasicEnemies:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
+  doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
   items:
   - {fileID: 2255056283135363523, guid: 5c4ce46a3bf8c4107882c12a8b69b456, type: 3}
@@ -350,8 +351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2236f542fdecfa43b6d0acc804e29c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTilemap: {fileID: 0}
-  tilex: {fileID: 11400000, guid: c69683024a4ffdb4aa3f2fa0839a649a, type: 2}
 --- !u!4 &201122757
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,8 +1061,16 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1470469541506955062, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8020641590110592584, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1774554963}
   m_SourcePrefab: {fileID: 100100000, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+--- !u!1 &1464216294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8020641590110592584, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+  m_PrefabInstance: {fileID: 1429359947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1684490927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1178,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5494600713321068078, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
   m_PrefabInstance: {fileID: 1429359947}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1774554963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464216294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f12c827ca4964382a8310e6fe5c123c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTilemap: {fileID: 1180632376}
+  tileOpened: {fileID: 11400000, guid: 13b4583337fc1e34f8c0a5c3a94185cd, type: 2}
+  tileClosed: {fileID: 11400000, guid: 68195ec99b13b79468fe4d013c5c1731, type: 2}
+  closed: 0
 --- !u!1 &1840566599
 GameObject:
   m_ObjectHideFlags: 0
