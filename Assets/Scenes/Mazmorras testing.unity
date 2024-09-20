@@ -19528,7 +19528,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1774554955}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1249935552
 BoxCollider2D:
@@ -19603,6 +19603,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemyEnabler
       objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: shotSpray
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: shootSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: ProjectilePrefab
+      value: 
+      objectReference: {fileID: 351863288308598636, guid: 2d348eadb83644cc79cce2218c4f813f, type: 3}
     - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: ProjectileLifespan
       value: 3
@@ -19694,19 +19706,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1470469541506955062, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
-<<<<<<< HEAD
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8020641590110592584, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1774554963}
-=======
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5494600713321068078, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1249935551}
-    m_AddedComponents: []
->>>>>>> 54dd46c (Think i fixed projectile not rendering issue)
   m_SourcePrefab: {fileID: 100100000, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
 --- !u!1 &1464216294 stripped
 GameObject:
@@ -20074,3 +20078,4 @@ SceneRoots:
   - {fileID: 659683871}
   - {fileID: 1684490931}
   - {fileID: 979657372}
+  - {fileID: 1249935551}

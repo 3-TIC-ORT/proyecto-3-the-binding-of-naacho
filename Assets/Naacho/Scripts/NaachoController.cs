@@ -7,7 +7,9 @@ public class NaachoController : MonoBehaviour
     public int Speed;
     public float Friction;
 
+    public GameObject ProjectilePrefab;
     public float shotSpray;
+    public float shootSpeed;
     public float shootDelay;
     public float ProjectileLifespan;
     public float Damage;
@@ -64,15 +66,12 @@ public class NaachoController : MonoBehaviour
         return new Vector2(horizontalMovement, verticalMovement);
     }
 
-    void Shoot(Vector2 direction, Vector2 velocity, int speed, Vector2 size)
+    void Shoot(Vector2 velocity)
     {
         ProjectileScript.createProjectile(
-            "Naacho Projectile", 
+            ProjectilePrefab,
             transform.position, 
-            size, 
-            false, 
-            direction.normalized, 
-            speed, velocity, 
+            velocity, 
             ProjectileLifespan,
             Damage
         );
@@ -104,7 +103,7 @@ public class NaachoController : MonoBehaviour
         {
             if (ShootTimeCounter >= shootDelay)
             {
-                Shoot(ShootDir, rb2D.velocity/4, 10, new Vector2(0.25f, 0.25f));
+                Shoot(ShootDir * shootSpeed + rb2D.velocity/4);
                 ShootTimeCounter = 0;
             }
 

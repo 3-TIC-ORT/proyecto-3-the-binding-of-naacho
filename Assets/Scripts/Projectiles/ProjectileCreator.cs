@@ -4,31 +4,22 @@ using UnityEngine;
 
 public class ProjectileCreator : MonoBehaviour
 {
-    public Sprite proj_sprite;
-
-    public void createProjectile(string name, Vector2 position, Vector2 scale, bool enemy, Vector2 direction, int speed, Vector2 extraVelocity, float lifespan, float dp)
+    public void createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float lifespan, float dp)
     {
-        GameObject proj = new GameObject(name);
-        Rigidbody2D proj_rb2D = proj.AddComponent<Rigidbody2D>();
-        ProjectileScript proj_script = proj.AddComponent<ProjectileScript>();
+        GameObject proj = Instantiate(prefab, position, Quaternion.identity);
+        Rigidbody2D proj_rb2D = proj.GetComponent<Rigidbody2D>();
+        ProjectileScript proj_script = proj.GetComponent<ProjectileScript>();
+        SpriteRenderer proj_spr = proj.GetComponent<SpriteRenderer>();
+
+        proj_rb2D.gravityScale = 0;
+
+        proj_rb2D.velocity = velocity;
+        proj.transform.position = position;
 
         proj_script.TotalLifespan = lifespan;
         proj_script.Damage = dp;
-        
-        proj.transform.localScale = scale;
-        proj_rb2D.gravityScale = 0;
-        proj.AddComponent<BoxCollider2D>().isTrigger = true;
 
-        proj_rb2D.velocity = direction * speed + extraVelocity;
-        proj.transform.position = position;
-
-        SpriteRenderer proj_spr = proj.AddComponent<SpriteRenderer>();
-
-        proj.tag = (enemy) ? "Enemy" : "Projectile";
-
-        proj_spr.sprite = proj_sprite;
-
-        proj.layer = 8;
+        proj.GetComponent<Collider2D>().isTrigger = true;
 
         print($"Generated Projectile {name}");
     }
