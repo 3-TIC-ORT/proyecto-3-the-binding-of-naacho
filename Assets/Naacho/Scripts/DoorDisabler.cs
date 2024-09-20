@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class DoorDisabler : MonoBehaviour
 {
