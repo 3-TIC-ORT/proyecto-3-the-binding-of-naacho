@@ -19761,7 +19761,7 @@ MonoBehaviour:
   AreaWidth: 17
   AreaHeight: 10
   targetTilemap: {fileID: 1180632376}
-  tileOpened: {fileID: 11400000, guid: d107c643da211a14ea4fef2ea94ecbec, type: 2}
+  tileOpened: {fileID: 11400000, guid: 13b4583337fc1e34f8c0a5c3a94185cd, type: 2}
   tileClosed: {fileID: 11400000, guid: 68195ec99b13b79468fe4d013c5c1731, type: 2}
   isFighting: 0
 --- !u!1 &1840566599
