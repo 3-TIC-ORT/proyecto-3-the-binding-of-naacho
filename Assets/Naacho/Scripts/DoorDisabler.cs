@@ -7,6 +7,8 @@ using UnityEngine.Tilemaps;
 public class DoorDisabler : MonoBehaviour
 {
     private GameObject grid;
+    public float AreaWidth;
+    public float AreaHeight;
     public Tilemap targetTilemap;
     public TileBase tileOpened;
     public TileBase tileClosed;
@@ -47,13 +49,18 @@ public class DoorDisabler : MonoBehaviour
     }
 
     void Update() {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 13);
+        Collider2D[] colliders = Physics2D.OverlapAreaAll(transform.position - new Vector3(AreaWidth, AreaHeight, 0), transform.position + new Vector3(AreaWidth, AreaHeight, 0));
+
+        Debug.DrawLine(transform.position-new Vector3(AreaWidth, 0, 0), transform.position+new Vector3(AreaWidth, 0, 0), Color.red, 0.3f);
+        Debug.DrawLine(transform.position-new Vector3(0, AreaHeight, 0), transform.position+new Vector3(0, AreaHeight, 0), Color.red, 0.3f);
+
         int enemiesAmount = 0;
         List<Vector2> spawnPointsPositions=new List<Vector2>();
         foreach(Collider2D col in colliders) {
             if (col.CompareTag("Enemy"))
             {
                 enemiesAmount++;
+                col.GetComponent<Enemy>().enabled = true;
             }
             else if (col.CompareTag("SpawnPoint"))
             {
