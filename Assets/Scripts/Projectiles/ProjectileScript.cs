@@ -7,7 +7,7 @@ public class ProjectileScript : MonoBehaviour
     public float TotalLifespan;
     public float Damage = .5f;
     private float lifespan = 0;
-    private string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged"}; // Tags the Projectile will pass through
+    private string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector"}; // Tags the Projectile will pass through
 
     // Update is called once per frame
     void Update()

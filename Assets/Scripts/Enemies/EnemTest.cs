@@ -9,7 +9,6 @@ public class EnemTest : Enemy
     {
         base.Start();
         gameObject.layer = 8;
-        Col2D.size = Vector2.one * .9f;
         defaultColor = SpRenderer.color;
     }
 
