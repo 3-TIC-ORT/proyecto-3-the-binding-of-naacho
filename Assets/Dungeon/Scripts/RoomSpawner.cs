@@ -42,8 +42,12 @@ public class RoomSpawner : MonoBehaviour
         }
         if (bossRoom && merger.tilemapsMerged)
         {
-            List<GameObject> enemiesPrefab = GetChildren(gameObject, false, "");
-            if (enemiesPrefab.Count == 0) SpawnHole();
+            List<GameObject> enemiesGroupPrefab = GetChildren(gameObject, false, "");
+            foreach (GameObject enemieGroup in enemiesGroupPrefab)
+            {
+                List<GameObject> enemies = GetChildren(enemieGroup, false, "");
+                if (enemies.Count == 0) SpawnHole();
+            }
         }
         else if (treasureRoom && merger.tilemapsMerged)
         {

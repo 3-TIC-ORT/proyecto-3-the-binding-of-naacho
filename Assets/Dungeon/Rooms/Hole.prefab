@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1831770010333478040}
   - component: {fileID: 6834906400415250337}
-  - component: {fileID: 4787103442835326686}
+  - component: {fileID: 7085428256059575339}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Untagged
@@ -78,7 +78,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4787103442835326686
+--- !u!114 &7085428256059575339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
