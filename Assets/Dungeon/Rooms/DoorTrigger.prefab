@@ -91,6 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isVertical: 0
-  lerpPositionDuration: 0.25
-  changeRoomSpeed: 0.5
+  slowTimecale: 0.1
+  cameraTransitionSpeed: 0.05
   OcclusionCullingDistance: 30
