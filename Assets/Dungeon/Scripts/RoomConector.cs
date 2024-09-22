@@ -63,24 +63,20 @@ public class RoomConector : MonoBehaviour
                 bothRoomsAreConected = true;
             }
         }
-        if (!bothRoomsAreConected) ConnectRooms();
+        if (!bothRoomsAreConected) StartCoroutine(ConnectRooms());
         else Destroy(gameObject);
         
     }
-    // Agara un tile dada su posición. Esta función ya existe y pero como la cree después de darme cuenta la usamos xd
+    // Agarra un tile dada su posición. Esta función ya existe y pero como la cree después de darme cuenta la usamos xd
     TileBase GetTile(Tilemap tilemap, Vector2 worldPosition)
     {
         Vector3Int tilePosition = tilemap.WorldToCell(worldPosition);
         TileBase tile = tilemap.GetTile(tilePosition);
         return tile;
     }
-    private void ConnectRooms()
-    {
-        StartCoroutine(esperar());
-
-    }
+    
     // Conecta las habitaciones
-    IEnumerator esperar()
+    IEnumerator ConnectRooms()
     {
         doorsDestroyed = true;
         // Area de int, es decir, dos esquinas.
@@ -120,6 +116,7 @@ public class RoomConector : MonoBehaviour
         }
         DestroyExtraRoomConectors();
     }
+    // Si hay más de un roomConector en un lugar entonces destruí a todos menos a uno. Para lograrlo utilizo el ID único de cada GameObject
     private void DestroyExtraRoomConectors()
     {
         int layerMask = LayerMask.GetMask("Default");

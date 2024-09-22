@@ -32,6 +32,7 @@ public class RoomSpawner : MonoBehaviour
     }
     private void Update()
     {
+        // Una vez que se hayan mergeado los Tilemaps crear a los RoomConectors para que unan las salas que se deben unir.
         if (merger.tilemapsMerged && !roomConectorsSpawned)
         {
             if (!spawnedClosedRoom && !treasureRoom && !bossRoom)
@@ -40,6 +41,7 @@ public class RoomSpawner : MonoBehaviour
                 SpawnRoomConectors();
             }
         }
+        // Cuando no hayan más enemigos en las bossRoom significa que el boss fue vencido. Spawnea el Hole para el siguiente piso.
         if (bossRoom && merger.tilemapsMerged)
         {
             List<GameObject> enemiesGroupPrefab = GetChildren(gameObject, false, "");
@@ -53,6 +55,8 @@ public class RoomSpawner : MonoBehaviour
         {
             SpawnItem();
         }
+        // Si soy una closedRoom no deben haber doorTriggers adyacentes a mi porque si no, al matar a los enemigos de esas habitaciones,
+        // se abriría una puerta para ir hacia mi.
         else if (spawnedClosedRoom)
         {
             Vector2[] fourDirections =
@@ -102,7 +106,7 @@ public class RoomSpawner : MonoBehaviour
                 spawned = true;
                 templates.roomsGenerated++;
             }
-            // La primera habitación de cierre (D, T, R, L) será la BossRoom
+            // Acá si pueden spawnear ClosedRooms
             else if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsLimit)
             {
                 if (openingDirection == 1)
@@ -205,14 +209,13 @@ public class RoomSpawner : MonoBehaviour
             // Si soy un closedRoom y me aparece un spawnPoint entonces que no haga nada
             else if (spawnedClosedRoom && !colIsSpawned)
             {
-                col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
-                col.GetComponent<RoomSpawner>().spawned = true;
+                Destroy(col.gameObject);
             }
             // Si soy la bossRoom y me aparece un spawnPoint destruilo para que no joda. Así no puede hacer aparecer roomConectores
             else if (bossRoom && !colIsSpawned) Destroy(col.gameObject);
             else if (treasureRoom && !colIsSpawned) Destroy(col.gameObject);
             // Si soy un spawnPoint normal que toco a otro spawnPoint que no spawneo entonces su spawned va a ser true
-            else col.GetComponent<RoomSpawner>().spawned = true;
+            else if (spawned) Destroy(col.gameObject);
         }
         // Si toco a  un roomConector y soy una closedRoom le seteo su doorsDestroyed y spawnPointMoved a true para que no hada nada más
         if (col.gameObject.CompareTag("RoomConector") && (spawnedClosedRoom || bossRoom || treasureRoom))
