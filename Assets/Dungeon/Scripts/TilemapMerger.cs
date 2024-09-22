@@ -47,7 +47,6 @@ public class TilemapMerger : MonoBehaviour
             }
         }
 
-
         // Lista de los closedTilemaps
         List<Tilemap> closedTilemaps = new List<Tilemap>();
         List<Tilemap> oneDoorTilemaps = new List<Tilemap>();

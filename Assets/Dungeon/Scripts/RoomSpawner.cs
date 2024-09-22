@@ -53,6 +53,19 @@ public class RoomSpawner : MonoBehaviour
         {
             SpawnItem();
         }
+        else if (spawnedClosedRoom)
+        {
+            Vector2[] fourDirections =
+            {
+                Vector2.up*templates.centerBetweenVerticaltalRooms, Vector2.down*templates.centerBetweenVerticaltalRooms,
+                Vector2.left*templates.centerBetweenHorizontalRooms, Vector2.right*templates.centerBetweenHorizontalRooms
+            };
+            foreach (Vector2 direction in fourDirections)
+            {
+                Collider2D[] colliders = Physics2D.OverlapPointAll((Vector2)transform.position + direction);
+                foreach (Collider2D collider in colliders) if (collider.gameObject.CompareTag("DoorTrigger")) Destroy(collider.gameObject);
+            }
+        }
     }
     void Spawn()
     {
