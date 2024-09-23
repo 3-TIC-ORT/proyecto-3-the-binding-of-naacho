@@ -91,6 +91,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isVertical: 0
-  slowTimecale: 0.1
-  cameraTransitionSpeed: 0.05
+  cameraTransitionSpeed: 1
   OcclusionCullingDistance: 30

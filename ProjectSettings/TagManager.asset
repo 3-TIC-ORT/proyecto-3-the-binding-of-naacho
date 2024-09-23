@@ -17,6 +17,8 @@ TagManager:
   - Item
   - EnemyEnabler
   - ItemHolder
+  - CameraAim
+  - GameManager
   layers:
   - Default
   - TransparentFX

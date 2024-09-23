@@ -7,26 +7,21 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     public bool isVertical = false;
-    public float slowTimecale;
     [Tooltip("Poner velocidad pensando que el juego estará relentizado un 90%")]
     public float cameraTransitionSpeed;
     private BoxCollider2D collider;
     private RoomTemplates templates;
     private GameObject player;
-    private Transform cameraTransform;
-    private CinemachineBrain cm;
-    private CinemachineVirtualCamera cam;
-    private Transform cmTransform;
+    private Transform cameraAimTransform;
+    private CameraAim cameraAim;
     public float OcclusionCullingDistance;
     private void Start()
     {
         collider = GetComponent<BoxCollider2D>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         player = GameObject.FindGameObjectWithTag("Player");
-        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
-        cm = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CinemachineBrain>();
-        cmTransform = GameObject.Find("Camera").GetComponent<Transform>();
-        cam = GameObject.Find("Camera").GetComponent<CinemachineVirtualCamera>();
+        cameraAimTransform = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<Transform>();
+        cameraAim = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<CameraAim>();
         // Si es una puerta vertical entonces rote la puerta 90°
         if (isVertical)
         {
@@ -45,8 +40,7 @@ public class DoorTrigger : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             Vector3 playerPos = col.gameObject.GetComponent<Transform>().position;
-            Time.timeScale = slowTimecale;
-            cam.Follow = cameraTransform;
+            GameManager.Instance.stop = true;
             if (isVertical) MoveVertically(playerPos);
             else MoveHorizontally(playerPos);
         }
@@ -61,13 +55,13 @@ public class DoorTrigger : MonoBehaviour
         // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
         if (playerPos.y - transform.position.y < 0)
         {
-            cameraTransform.DOMoveY(cameraTransform.position.y + nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ()=>ManageCameraAndTime(true, 1, playerPos);
+            cameraAimTransform.DOMoveY(cameraAimTransform.position.y + nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.y += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
-            cameraTransform.DOMoveY(cameraTransform.position.y - nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => ManageCameraAndTime(true, 1, playerPos);
+            cameraAimTransform.DOMoveY(cameraAimTransform.position.y - nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.y -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
@@ -78,27 +72,21 @@ public class DoorTrigger : MonoBehaviour
 
         if (playerPos.x - transform.position.x < 0)
         {
-            cameraTransform.DOMoveX(cameraTransform.position.x + nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => ManageCameraAndTime(true, 1, playerPos);
+            cameraAimTransform.DOMoveX(cameraAimTransform.position.x + nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime; 
             playerPos.x += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
-            cameraTransform.DOMoveX(cameraTransform.position.x - nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => ManageCameraAndTime(true, 1,playerPos);
+            cameraAimTransform.DOMoveX(cameraAimTransform.position.x - nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.x -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
     }
     // Mueve al jugador a la siguiente habitación. ¿Viste? que locura.
-    private void ManageCameraAndTime(bool cmEnabled, float worldSpeed, Vector3 playerPos)
+    private void ManageCameraAndTime()
     {
-        Time.timeScale = worldSpeed;
-        StartCoroutine(EnableCinemachineAfterAFrame(cmEnabled));
-    }
-    IEnumerator EnableCinemachineAfterAFrame(bool cmEnabled)
-    {
-        yield return null; 
-        cam.Follow = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        GameManager.Instance.stop = false;
     }
     // Se llama cuando se colisiona con un roomConector. Si las dos habitaciones están conectadas entonces soy necesario y no me destruyo
     // En el caso contrario, me destruyo porque como no están conectadas y por consiguiente se van a conectar formando una habitación
