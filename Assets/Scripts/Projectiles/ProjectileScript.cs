@@ -7,7 +7,7 @@ public class ProjectileScript : MonoBehaviour
     public float TotalLifespan;
     public float Damage = .5f;
     private float lifespan = 0;
-    private string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector"}; // Tags the Projectile will pass through
+    [SerializeField] private string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector"}; // Tags the Projectile will pass through
 
     // Update is called once per frame
     void Update()
@@ -22,7 +22,10 @@ public class ProjectileScript : MonoBehaviour
             foreach(string tag in WhitelistedTags)
                 if(other.CompareTag(tag))
                     return;
-            print($"Collided with {other.tag}");
+
+            if(!other.CompareTag("Enemy") && lifespan < 0.05f) return;
+
+            print($"Collided with {other.tag}, {lifespan}");
             Destroy(gameObject);
         }
     }
