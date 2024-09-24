@@ -15,7 +15,6 @@ public class DoorTrigger : MonoBehaviour
     private Transform cameraAimTransform;
     private CameraAim cameraAim;
     public float OcclusionCullingDistance;
-    private Vector3 collisionPoint;
     private void Start()
     {
         collider = GetComponent<BoxCollider2D>();
@@ -40,7 +39,6 @@ public class DoorTrigger : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            collisionPoint = col.gameObject.GetComponent<Transform>().position;
             Vector3 playerPos = col.gameObject.GetComponent<Transform>().position;
             GameManager.Instance.stop = true;
             if (isVertical) MoveVertically(playerPos);
@@ -57,14 +55,12 @@ public class DoorTrigger : MonoBehaviour
         // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
         if (playerPos.y - transform.position.y < 0)
         {
-            cameraAimTransform.position = collisionPoint;
             cameraAimTransform.DOMoveY(cameraAimTransform.position.y + nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.y += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
-        {
-            cameraAimTransform.position = collisionPoint;
+        {   
             cameraAimTransform.DOMoveY(cameraAimTransform.position.y - nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.y -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
@@ -75,15 +71,13 @@ public class DoorTrigger : MonoBehaviour
         float nextDoorDistance = templates.horizontalDoorToDoorRoomArea.x + 0.1f;
 
         if (playerPos.x - transform.position.x < 0)
-        {
-            cameraAimTransform.position = collisionPoint;
+        {   
             cameraAimTransform.DOMoveX(cameraAimTransform.position.x + nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime; 
             playerPos.x += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
-            cameraAimTransform.position = collisionPoint;
             cameraAimTransform.DOMoveX(cameraAimTransform.position.x - nextDoorDistance, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.x -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
