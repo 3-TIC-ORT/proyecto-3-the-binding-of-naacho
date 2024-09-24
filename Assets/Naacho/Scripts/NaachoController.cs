@@ -80,6 +80,13 @@ public class NaachoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.Instance.stop) {
+            rb2D.velocity = Vector2.zero;
+            animator.SetBool("Idle", true);
+            animator.SetFloat("DirY", 0);
+            animator.SetFloat("DirX", 0);
+            return;
+        }
         ShootTimeCounter += Time.deltaTime;
 
         Vector2 movement = getMovement().normalized;

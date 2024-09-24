@@ -34,6 +34,7 @@ public abstract class Enemy : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         Col2D = GetComponent<BoxCollider2D>();
         SpRenderer = GetComponent<SpriteRenderer>();
+        defaultColor = SpRenderer.color;
     }
 
     // Update is called once per frame
