@@ -47,7 +47,9 @@ public class DoorTrigger : MonoBehaviour
         else if (col.gameObject.CompareTag("RoomConector")) StartCoroutine(CheckIfImNecesarry(col.gameObject));
     }
     
-    
+    // Mueve a al jugador verticalmente cambiando la posición de manera brusca. Antes de esto, stop del GameManager fue seteado a false para que
+    // CameraTarger no se moviera. Después se usa tweening para animar el Transform de cameraTarget. 
+    // Una vez que terminó de animarse
     private void MoveVertically(Vector3 playerPos)
     {
         float nextDoorDistance = templates.verticalDoorToDoorRoomArea.y + 0.1f;
