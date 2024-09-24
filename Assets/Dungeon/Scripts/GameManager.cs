@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public bool stop;
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         if (Instance != null && Instance != this)
         {
             Destroy(this);

@@ -86,7 +86,7 @@ public class DoorTrigger : MonoBehaviour
     // Mueve al jugador a la siguiente habitación. ¿Viste? que locura.
     private void ManageCameraAndTime()
     {
-        GameManager.Instance.stop = false;
+        if (GameManager.Instance.stop) GameManager.Instance.stop = false;
     }
     // Se llama cuando se colisiona con un roomConector. Si las dos habitaciones están conectadas entonces soy necesario y no me destruyo
     // En el caso contrario, me destruyo porque como no están conectadas y por consiguiente se van a conectar formando una habitación
