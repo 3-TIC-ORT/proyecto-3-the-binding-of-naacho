@@ -14,9 +14,7 @@ public class CameraAim : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.Instance.stop) followPlayer = false;
-        else followPlayer = true;
-        if (followPlayer)
+        if (!GameManager.Instance.stop)
         {
             transform.position = playerPos.position;
         }
