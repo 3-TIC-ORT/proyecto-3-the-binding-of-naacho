@@ -15,6 +15,6 @@ public class TextTest : MonoBehaviour
     // Update is called once per frame
     public void UIUpdate(float life)
     {
-        img.color = new Color(0.1f * life, 1, 1);
+        img.color = new Color(0.1f * life, 1, 1, 0.6f);
     }
 }

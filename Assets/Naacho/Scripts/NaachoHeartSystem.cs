@@ -33,7 +33,6 @@ public class NaachoHeartSystem : MonoBehaviour
     [SerializeField] private TextTest heartsRenderer;
     public const int MAX_LIFE = 12;
     public float LifeAmount;
-    public float LifePlaceholder;
 
     public int GetMaxLife() {
         int heartIdx = 0;
@@ -51,6 +50,9 @@ public class NaachoHeartSystem : MonoBehaviour
             Life[i] = new Heart();
         }
         heartsRenderer = GameObject.Find("Hearts").GetComponent<TextTest>();
+        LifeAmount = GetLifeAmount();
+
+        heartsRenderer.UIUpdate(LifeAmount);
     }
 
     public float GetLifeAmount() {
