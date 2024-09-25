@@ -30,6 +30,7 @@ public class NaachoHeartSystem : MonoBehaviour
 {
     public int startingLife = 3;
     public Heart[] Life;
+    [SerializeField] private TextTest heartsRenderer;
     public const int MAX_LIFE = 12;
     public float LifeAmount;
     public float LifePlaceholder;
@@ -49,6 +50,7 @@ public class NaachoHeartSystem : MonoBehaviour
         for(int i = 0; startingLife > i; i++) {
             Life[i] = new Heart();
         }
+        heartsRenderer = GameObject.Find("Hearts").GetComponent<TextTest>();
     }
 
     public float GetLifeAmount() {
@@ -65,9 +67,10 @@ public class NaachoHeartSystem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void UpdateLife()
     {
         LifeAmount = GetLifeAmount();
+        heartsRenderer.UIUpdate(LifeAmount);
     }
 
     public int FindLastFullHeart() {
@@ -92,7 +95,9 @@ public class NaachoHeartSystem : MonoBehaviour
         if(hrt.Amount - dp >= 0) {
             hrt.Amount -= dp;
         }
+        UpdateLife();
     }
+
     public void Heal(float hp = .5f) {
         int heartIdx = FindLastFullHeart();
 
@@ -112,6 +117,8 @@ public class NaachoHeartSystem : MonoBehaviour
             if (hp - prevHp > 0)
                 Heal(hp-prevHp);
         }
+
+        UpdateLife();
     }
 
     void OnCollisionEnter2D(Collision2D collision) {

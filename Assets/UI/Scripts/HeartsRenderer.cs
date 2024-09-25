@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class HeartsRenderer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject HeartPrefab;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateHearts(Heart[] Life)
     {
-        
+        foreach(Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+
+        int HeartCounter = 0;
+        foreach(Heart heart in Life) {
+            GameObject UIHeart = Instantiate(HeartPrefab);
+
+            UIHeart.transform.SetParent(transform, false);
+            UIHeart.transform.position = new Vector2(HeartCounter, 0) * UIHeart.transform.position.x;
+        }
     }
 }
