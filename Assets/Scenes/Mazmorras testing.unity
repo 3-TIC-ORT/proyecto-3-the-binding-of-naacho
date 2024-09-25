@@ -18971,9 +18971,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 455261404}
+  - component: {fileID: 455261407}
+  - component: {fileID: 455261406}
   - component: {fileID: 455261405}
   m_Layer: 5
-  m_Name: Hearts
+  m_Name: Life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19007,10 +19009,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 455261403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e09475d2938c741acad3d9aef27f5149, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeartPrefab: {fileID: 6926571168039383572, guid: 7e685ffab04b548f78ae67c087f98ff4, type: 3}
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1827698940, guid: 906ea5695bb0c4c67bfcea092f0af493, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &455261406
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455261403}
+  m_CullTransparentMesh: 1
+--- !u!114 &455261407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455261403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581add980ea8545d4b50b1b15cb15601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  naachoHeartSystem: {fileID: 1774554973}
 --- !u!1 &659683869
 GameObject:
   m_ObjectHideFlags: 0
@@ -19703,6 +19743,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7930061495138171272, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: heartsRenderer
+      value: 
+      objectReference: {fileID: 455261407}
     - target: {fileID: 8020641590110592584, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: m_Name
       value: Naacho
@@ -19899,6 +19943,17 @@ MonoBehaviour:
   tileOpened: {fileID: 11400000, guid: 13b4583337fc1e34f8c0a5c3a94185cd, type: 2}
   tileClosed: {fileID: 11400000, guid: 68195ec99b13b79468fe4d013c5c1731, type: 2}
   isFighting: 0
+--- !u!114 &1774554973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7930061495138171272, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+  m_PrefabInstance: {fileID: 1429359947}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464216294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffaaa1151496efa4c86b10ee072273ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1840566599
 GameObject:
   m_ObjectHideFlags: 0
