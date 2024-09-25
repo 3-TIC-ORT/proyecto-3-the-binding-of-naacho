@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandGrip : MonoBehaviour
+public class HandGrip : Item
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void onPickup()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        naachoController.Damage += 0.7f;
+        naachoController.FireRate -= 0.3f;
+        Destroy(gameObject);
     }
 }

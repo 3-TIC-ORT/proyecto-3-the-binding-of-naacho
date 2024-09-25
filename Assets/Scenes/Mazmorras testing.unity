@@ -18808,6 +18808,7 @@ MonoBehaviour:
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
   items:
   - {fileID: 2255056283135363523, guid: 5c4ce46a3bf8c4107882c12a8b69b456, type: 3}
+  - {fileID: 3764741258683837243, guid: 60bfd6cfad79a4a709881ffab734a15d, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
   LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 10, y: 10, z: 1}
@@ -19642,6 +19643,14 @@ PrefabInstance:
     - target: {fileID: 1470469541506955062, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: m_TagString
       value: EnemyEnabler
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: Range
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: FireRate
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: shotSpray
