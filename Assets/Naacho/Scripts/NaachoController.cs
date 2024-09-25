@@ -10,8 +10,8 @@ public class NaachoController : MonoBehaviour
     public GameObject ProjectilePrefab;
     public float shotSpray;
     public float shootSpeed;
-    public float shootDelay;
-    public float ProjectileLifespan;
+    public float FireRate; // Amount of projectiles per second
+    public float Range;
     public float Damage;
     private float ShootTimeCounter = 0;
 
@@ -72,7 +72,7 @@ public class NaachoController : MonoBehaviour
             ProjectilePrefab,
             transform.position, 
             velocity, 
-            ProjectileLifespan,
+            Range,
             Damage
         );
     }
@@ -108,7 +108,8 @@ public class NaachoController : MonoBehaviour
         Vector2 ShootDir = getShootDir();
         if (ShootDir.x != 0 || ShootDir.y != 0)
         {
-            if (ShootTimeCounter >= shootDelay)
+            print(1/FireRate);
+            if (ShootTimeCounter >= 1/FireRate)
             {
                 Shoot(ShootDir * shootSpeed + rb2D.velocity/4);
                 ShootTimeCounter = 0;

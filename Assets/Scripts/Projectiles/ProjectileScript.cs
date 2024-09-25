@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
-    public float TotalLifespan;
+    public float Range;
     public float Damage = .5f;
-    private float lifespan = 0;
-    [SerializeField] private string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector"}; // Tags the Projectile will pass through
+    public string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector"}; // Tags the Projectile will pass through
 
-    // Update is called once per frame
+    private Vector2 startingPos;
+    private float lifespan = 0;
+
+    void Start() {
+        startingPos = transform.position;
+    }
+
     void Update()
     {
        lifespan += Time.deltaTime;
-       if(lifespan >= TotalLifespan)
-            Destroy(gameObject);
+       if((startingPos - (Vector2) transform.position).magnitude >= Range) Destroy(gameObject);
+       print($"{startingPos}, {(Vector2) transform.position}, {(startingPos - (Vector2) transform.position).magnitude}");
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -23,9 +28,8 @@ public class ProjectileScript : MonoBehaviour
                 if(other.CompareTag(tag))
                     return;
 
-            if(!other.CompareTag("Enemy") && lifespan < 0.05f) return;
+            if(!other.CompareTag("Enemy") && lifespan < 0.025f) return;
 
-            print($"Collided with {other.tag}, {lifespan}");
             Destroy(gameObject);
         }
     }

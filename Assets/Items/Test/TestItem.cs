@@ -6,7 +6,7 @@ public class TestItem : Item
 {
     public override void onPickup()
     {
-        Naacho.GetComponent<NaachoController>().shootDelay /= 1.5f;
+        Naacho.GetComponent<NaachoController>().FireRate /=1.25f;
         Destroy(gameObject);
     }
 }

@@ -54,6 +54,7 @@ public abstract class Enemy : MonoBehaviour
         StartCoroutine(VisualDamage());
         if (HealthPoints < 0) Destroy(gameObject);
     }
+
     public virtual IEnumerator VisualDamage()
     {
         SpRenderer.color = Color.red;
