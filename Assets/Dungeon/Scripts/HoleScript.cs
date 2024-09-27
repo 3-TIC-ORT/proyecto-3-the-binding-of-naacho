@@ -9,6 +9,8 @@ public class HoleScript : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             Debug.Log("Ganaste");
+            GameManager.Instance.stop = true;
+            GameManager.Instance.StartCoroutine("WaitForTheDungeonToGenerate");
             SceneManager.LoadScene("Mazmorras testing");
         }
     }

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitForTheDungeonToGenerate()
     {
+        if (merger==null) merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         while (!merger.tilemapsMerged) yield return null;
         yield return new WaitForSecondsRealtime(2f);
         stop = false;
