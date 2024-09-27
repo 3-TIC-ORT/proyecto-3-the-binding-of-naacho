@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NaachoTortuga : Enemy
+public class CheeseEnemieScript : Enemy
 {
     private Animator animator;
+    public override void Start()
+    {
+        base.Start();
+        animator = gameObject.GetComponent<Animator>();
+    }
     public override void Update()
     {
         if (GameManager.Instance.stop) return;
@@ -12,21 +17,16 @@ public class NaachoTortuga : Enemy
         rb2D.velocity = Speed * Time.deltaTime * playerDir;
         CheckMainDirection(playerDir);
     }
-    public override void Start()
-    {
-        base.Start();
-        animator = gameObject.GetComponent<Animator>();
-    }
-    // Ve donde se está moviendo, si mayormente para un eje o para el otro. En función de eso setea la animación correspondiente.
+
     private void CheckMainDirection(Vector3 direction)
     {
-        if (Mathf.Abs(direction.y)>Mathf.Abs(direction.x))
+        if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
         {
-            if (direction.y>0)
+            if (direction.y > 0)
             {
                 Debug.Log("Me muevo hacia arriba");
                 animator.SetBool("up", true);
-                animator.SetBool("down",false);
+                animator.SetBool("down", false);
                 animator.SetBool("horizontal", false);
             }
             else
@@ -39,10 +39,10 @@ public class NaachoTortuga : Enemy
         }
         else
         {
-            if (direction.x>0)
+            if (direction.x > 0)
             {
                 Debug.Log("Me muevo hacia la derecha");
-                SpRenderer.flipX = true;
+                SpRenderer.flipX = false;
                 animator.SetBool("horizontal", true);
                 animator.SetBool("up", false);
                 animator.SetBool("down", false);
@@ -51,7 +51,7 @@ public class NaachoTortuga : Enemy
             else
             {
                 Debug.Log("Me muevo hacia la izquierda");
-                SpRenderer.flipX = false;
+                SpRenderer.flipX = true;
                 animator.SetBool("horizontal", true);
                 animator.SetBool("up", false);
                 animator.SetBool("down", false);

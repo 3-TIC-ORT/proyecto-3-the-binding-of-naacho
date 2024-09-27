@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool stop;
+    private TilemapMerger merger;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -20,12 +21,15 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        stop = true;
+        merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
+        StartCoroutine(WaitForTheDungeonToGenerate());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator WaitForTheDungeonToGenerate()
     {
-        
+        while (!merger.tilemapsMerged) yield return null;
+        yield return new WaitForSecondsRealtime(2f);
+        stop = false;
     }
 }
