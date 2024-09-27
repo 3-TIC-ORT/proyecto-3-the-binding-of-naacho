@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool stop;
     public bool isInRoomTransition;
+    private Image screen;
     private TilemapMerger merger;
     private void Awake()
     {
@@ -23,12 +26,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         stop = true;
+        screen = transform.GetChild(0).transform.GetComponentInChildren<Image>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         StartCoroutine(WaitForTheDungeonToGenerate());
     }
 
     IEnumerator WaitForTheDungeonToGenerate()
     {
+        screen.DOFade(1, 1f);
         SceneManager.LoadScene("Mazmorras testing");
         yield return new WaitForSecondsRealtime(0.5f);
         while (merger==null) merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
