@@ -75,7 +75,7 @@ public class RoomTemplates : MonoBehaviour
         // Perdón, pero fue vencido por este problema :'v
         else if (roomsGenerated >= roomsMin && (!treasureRoomSpawned || !bossRoomSpawned))
         {
-            SceneManager.LoadScene("Mazmorras testing");
+            GameManager.Instance.StartCoroutine("WaitForTheDungeonToGenerate");
         }
         else minCompleted = true;
         yield return new WaitForSecondsRealtime(1f);

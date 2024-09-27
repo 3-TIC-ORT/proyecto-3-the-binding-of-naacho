@@ -11,7 +11,6 @@ public class HoleScript : MonoBehaviour
             Debug.Log("Ganaste");
             GameManager.Instance.stop = true;
             GameManager.Instance.StartCoroutine("WaitForTheDungeonToGenerate");
-            SceneManager.LoadScene("Mazmorras testing");
         }
     }
 }

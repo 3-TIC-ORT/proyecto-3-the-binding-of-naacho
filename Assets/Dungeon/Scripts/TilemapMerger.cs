@@ -14,6 +14,7 @@ public class TilemapMerger : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.stop = true;
         templates = GetComponent<RoomTemplates>();
         StartCoroutine(WaitForMergeTilemaps());
     }

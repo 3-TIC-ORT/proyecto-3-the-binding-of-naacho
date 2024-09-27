@@ -68,7 +68,7 @@ public class DoorDisabler : MonoBehaviour
 
             }
 
-            if (enemiesAmount >0 || isFighting)
+            if (enemiesAmount >0)
             {
                 isFighting = true;
                 foreach (Vector2 position in spawnPointsPositions) 
