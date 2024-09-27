@@ -14,9 +14,8 @@ public class NaachoTortuga : Enemy
     }
     public override void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        base.Start();
         animator = gameObject.GetComponent<Animator>();
-        Player = GameObject.Find("Naacho");
     }
 
     private void CheckMainDirection(Vector3 direction)
