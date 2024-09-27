@@ -22,8 +22,6 @@ public class ItemHolder : MonoBehaviour
     {
         if ((naacho.transform.position - transform.position).magnitude < oclussionCulling) boxCollider2D.enabled = true;
         else boxCollider2D.enabled=false;
-            
-      
     }
 
     private void OnCollisionEnter2D(Collision2D col)

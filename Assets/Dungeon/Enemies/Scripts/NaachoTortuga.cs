@@ -5,7 +5,6 @@ using UnityEngine;
 public class NaachoTortuga : Enemy
 {
     private Animator animator;
-    private SpriteRenderer sr;
     public override void Update()
     {
         if (GameManager.Instance.stop) return;
@@ -17,7 +16,6 @@ public class NaachoTortuga : Enemy
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        sr = gameObject.GetComponent<SpriteRenderer>();
         Player = GameObject.Find("Naacho");
     }
 
@@ -45,7 +43,7 @@ public class NaachoTortuga : Enemy
             if (direction.x>0)
             {
                 Debug.Log("Me muevo hacia la derecha");
-                sr.flipX = true;
+                SpRenderer.flipX = true;
                 animator.SetBool("horizontal", true);
                 animator.SetBool("up", false);
                 animator.SetBool("down", false);
@@ -54,7 +52,7 @@ public class NaachoTortuga : Enemy
             else
             {
                 Debug.Log("Me muevo hacia la izquierda");
-                sr.flipX = false;
+                SpRenderer.flipX = false;
                 animator.SetBool("horizontal", true);
                 animator.SetBool("up", false);
                 animator.SetBool("down", false);
