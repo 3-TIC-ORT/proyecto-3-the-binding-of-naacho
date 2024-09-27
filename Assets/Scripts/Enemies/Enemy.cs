@@ -38,7 +38,9 @@ public abstract class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    public abstract void Update();
+    public virtual void Update() {
+        Player.GetComponent<DoorDisabler>().isFighting = true;
+    }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {

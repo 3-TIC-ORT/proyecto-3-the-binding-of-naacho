@@ -33,17 +33,17 @@ public class DoorDisabler : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapBoxAll(doorPos, new Vector2(0.5f, 0.5f),0);
             foreach (Collider2D col in colliders)
             {
-                    if (col.gameObject.CompareTag("DoorTrigger"))
-                    {
-                        // Cambia el tile de la puerta
-                        targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos), tile);
-                        // Cambia el tile de la otra puerta al restarle un poco de posición (mala prática, lo sé, pero me ganó la tarea para el cole)
-                        targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos+new Vector2(-0.01f,-0.01f)), tile);
-                    }
-                    else if (col.gameObject.CompareTag("RoomLight"))
-                    {
-                        col.GetComponent<Light2D>().enabled = enableDoorLights;
-                    }
+                if (col.gameObject.CompareTag("DoorTrigger"))
+                {
+                    // Cambia el tile de la puerta
+                    targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos), tile);
+                    // Cambia el tile de la otra puerta al restarle un poco de posición (mala prática, lo sé, pero me ganó la tarea para el cole)
+                    targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos+new Vector2(-0.01f,-0.01f)), tile);
+                }
+                else if (col.gameObject.CompareTag("RoomLight"))
+                {
+                    col.GetComponent<Light2D>().enabled = enableDoorLights;
+                }
             }
         }
     }
@@ -64,28 +64,26 @@ public class DoorDisabler : MonoBehaviour
             }
             else if (col.CompareTag("SpawnPoint"))
             {
-               spawnPointsPositions.Add((Vector2)col.gameObject.transform.position);
-             
-            }
-                
-        }
-        if (enemiesAmount==0)
-        {
-            isFighting = false;
-            foreach (Vector2 position in spawnPointsPositions)
-            {
-                changeDoorsSprite(tileOpened, position, true);
+                spawnPointsPositions.Add((Vector2)col.gameObject.transform.position);
 
             }
-        }
-        else if (enemiesAmount >0)
-        {
-            isFighting = true;
-            foreach (Vector2 position in spawnPointsPositions) 
+
+            if (enemiesAmount >0 || isFighting)
             {
-                changeDoorsSprite(tileClosed, position, false);
+                isFighting = true;
+                foreach (Vector2 position in spawnPointsPositions) 
+                {
+                    changeDoorsSprite(tileClosed, position, false);
+                }
+            } else if (enemiesAmount==0)
+            {
+                isFighting = false;
+                foreach (Vector2 position in spawnPointsPositions)
+                {
+                    changeDoorsSprite(tileOpened, position, true);
+
+                }
             }
         }
     }
-
 }
