@@ -21,6 +21,5 @@ public class ProjectileCreator : MonoBehaviour
 
         proj.GetComponent<Collider2D>().isTrigger = true;
 
-        print($"Generated Projectile {name}");
     }
 }

@@ -19,7 +19,6 @@ public class ProjectileScript : MonoBehaviour
     {
        lifespan += Time.deltaTime;
        if((startingPos - (Vector2) transform.position).magnitude >= Range) Destroy(gameObject);
-       print($"{startingPos}, {(Vector2) transform.position}, {(startingPos - (Vector2) transform.position).magnitude}");
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
