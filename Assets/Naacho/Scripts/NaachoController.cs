@@ -108,7 +108,6 @@ public class NaachoController : MonoBehaviour
         Vector2 ShootDir = getShootDir();
         if (ShootDir.x != 0 || ShootDir.y != 0)
         {
-            print(1/FireRate);
             if (ShootTimeCounter >= 1/FireRate)
             {
                 Shoot(ShootDir * shootSpeed + rb2D.velocity/4);
