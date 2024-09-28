@@ -25,14 +25,14 @@ public class CheeseEnemieScript : Enemy
         {
             if (direction.y > 0)
             {
-                Debug.Log("Me muevo hacia arriba");
+                //Debug.Log("Me muevo hacia arriba");
                 animator.SetBool("up", true);
                 animator.SetBool("down", false);
                 animator.SetBool("horizontal", false);
             }
             else
             {
-                Debug.Log("Me muevo hacia abajo");
+                //Debug.Log("Me muevo hacia abajo");
                 animator.SetBool("down", true);
                 animator.SetBool("up", false);
                 animator.SetBool("horizontal", false);
@@ -42,7 +42,7 @@ public class CheeseEnemieScript : Enemy
         {
             if (direction.x > 0)
             {
-                Debug.Log("Me muevo hacia la derecha");
+                //Debug.Log("Me muevo hacia la derecha");
                 SpRenderer.flipX = false;
                 animator.SetBool("horizontal", true);
                 animator.SetBool("up", false);
@@ -51,7 +51,7 @@ public class CheeseEnemieScript : Enemy
             }
             else
             {
-                Debug.Log("Me muevo hacia la izquierda");
+                //Debug.Log("Me muevo hacia la izquierda");
                 SpRenderer.flipX = true;
                 animator.SetBool("horizontal", true);
                 animator.SetBool("up", false);

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
@@ -28,13 +28,12 @@ public class GameManager : MonoBehaviour
         stop = true;
         screen = transform.GetChild(0).transform.GetComponentInChildren<Image>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
-        StartCoroutine(WaitForTheDungeonToGenerate());
+        StartCoroutine(WaitForTheDungeonToGenerate(false));
     }
 
-    IEnumerator WaitForTheDungeonToGenerate()
+    IEnumerator WaitForTheDungeonToGenerate(bool reloadTheScene)
     {
-        Fade(true, false);
-        SceneManager.LoadScene("Mazmorras testing");
+        if (reloadTheScene) SceneManager.LoadScene("Mazmorras testing");
         yield return new WaitForSecondsRealtime(0.5f);
         while (merger==null) merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         while (!merger.tilemapsMerged)
@@ -46,14 +45,15 @@ public class GameManager : MonoBehaviour
         Fade(false, true);
         stop = false;
     }
-    private void Fade(bool IN, bool OUT)
+    public void Fade(bool IN, bool OUT)
     {
         if (IN)
         {
-            screen.DOFade(1, 1f);
+            screen.DOFade(1, 1f).onComplete=()=> { StartCoroutine(WaitForTheDungeonToGenerate(true)); };
         }
         else if (OUT)
         {
+            Debug.Log("TUKITUKI");
             screen.DOFade(0, 1f);
         }
     }
