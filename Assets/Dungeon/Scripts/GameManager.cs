@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool stop;
-    public bool isInRoomTransition;
+    public float fadeSpeed;
     private Image screen;
     private TilemapMerger merger;
     private void Awake()
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if (IN)
         {
-            screen.DOFade(1, 1f).onComplete=()=> { StartCoroutine(WaitForTheDungeonToGenerate(true)); };
+            screen.DOFade(1, fadeSpeed).onComplete=()=> { StartCoroutine(WaitForTheDungeonToGenerate(true)); };
         }
         else if (OUT)
         {
