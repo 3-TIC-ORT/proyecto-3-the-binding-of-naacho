@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitForTheDungeonToGenerate()
     {
-        screen.DOFade(1, 1f);
+        Fade(true, false);
         SceneManager.LoadScene("Mazmorras testing");
         yield return new WaitForSecondsRealtime(0.5f);
         while (merger==null) merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
@@ -43,6 +43,18 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSecondsRealtime(2f);
+        Fade(false, true);
         stop = false;
+    }
+    private void Fade(bool IN, bool OUT)
+    {
+        if (IN)
+        {
+            screen.DOFade(1, 1f);
+        }
+        else if (OUT)
+        {
+            screen.DOFade(0, 1f);
+        }
     }
 }
