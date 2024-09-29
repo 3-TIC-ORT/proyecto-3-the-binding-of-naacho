@@ -65,7 +65,7 @@ public class RoomTemplates : MonoBehaviour
         while (lastRoomsGenerated != roomsGenerated)
         {
             lastRoomsGenerated = roomsGenerated;
-            yield return new WaitForSecondsRealtime(2f);
+            yield return new WaitForSecondsRealtime(0.5f);
         }
         if (roomsGenerated <= roomsMin)
         {
@@ -73,7 +73,7 @@ public class RoomTemplates : MonoBehaviour
         }
         // Si la generación de mazmorras paró y no se creo la treasure o la boss room, reinicia la escena. 
         // Perdón, pero fue vencido por este problema :'v
-        else if (roomsGenerated >= roomsMin && (!treasureRoomSpawned || !bossRoomSpawned))
+        else if (!treasureRoomSpawned || !bossRoomSpawned)
         {
             SceneManager.LoadScene("Mazmorras testing");
         }

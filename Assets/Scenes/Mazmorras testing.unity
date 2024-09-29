@@ -18887,7 +18887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomsGenerated: 0
   roomsLimit: 15
-  roomsMin: 7
+  roomsMin: 9
   minCompleted: 0
   treasureRoomsAmount: 2
   currentTreasureRooms: 0
@@ -19889,8 +19889,16 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: Speed
+      value: 593
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: Damage
+      value: 10.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: FireRate
-      value: 3
+      value: 7.41
       objectReference: {fileID: 0}
     - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: shotSpray

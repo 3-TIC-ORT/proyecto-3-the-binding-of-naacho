@@ -21,17 +21,11 @@ public class TilemapMerger : MonoBehaviour
     // Espera a que no se generen más rooms para llamar a MergeTilemaps()
     IEnumerator WaitForMergeTilemaps()
     {
-        int localRoomsGenerated = templates.roomsGenerated;
-        int lastLocalRoomsGenerated = -1;
-        while (lastLocalRoomsGenerated != localRoomsGenerated)
+        while (!templates.minCompleted)
         {
-            lastLocalRoomsGenerated = localRoomsGenerated;
-            yield return new WaitForSecondsRealtime(2f);
-            localRoomsGenerated = templates.roomsGenerated;
+            yield return null;
         }
-        yield return new WaitForSecondsRealtime(1f);
-        if (templates.minCompleted) OrderTilemaps();
-        else StartCoroutine(WaitForMergeTilemaps());
+        OrderTilemaps();
     }
     // Ordena los tilemaps para que cuando se mergeen lo hagan por prioridad. Primero los normales, después las 1DoorRooms...
     void OrderTilemaps()
