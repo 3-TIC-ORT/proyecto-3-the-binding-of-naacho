@@ -70,19 +70,27 @@ public class DoorDisabler : MonoBehaviour
 
             if (enemiesAmount >0)
             {
-                isFighting = true;
-                foreach (Vector2 position in spawnPointsPositions) 
+                if (targetTilemap!=null)
                 {
-                    changeDoorsSprite(tileClosed, position, false);
+                    isFighting = true;
+                    foreach (Vector2 position in spawnPointsPositions) 
+                    {
+                        changeDoorsSprite(tileClosed, position, false);
+                    }
                 }
-            } else if (enemiesAmount==0)
+                else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
+            }
+            else if (enemiesAmount==0)
             {
-                isFighting = false;
-                foreach (Vector2 position in spawnPointsPositions)
+                if (targetTilemap != null)
                 {
-                    changeDoorsSprite(tileOpened, position, true);
-
+                    isFighting = false;
+                    foreach (Vector2 position in spawnPointsPositions)
+                    {
+                        changeDoorsSprite(tileOpened, position, true);
+                    }
                 }
+                else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
             }
         }
     }

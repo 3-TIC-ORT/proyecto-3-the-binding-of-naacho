@@ -90,6 +90,7 @@ public class NaachoHeartSystem : MonoBehaviour
         int heartIdx = FindLastFullHeart();
         if(heartIdx == -1 || Life[heartIdx].Amount <= 0)  {
             Scene scene = SceneManager.GetActiveScene();
+            Destroy(gameObject);
             SceneManager.LoadScene(scene.name);
         }
 

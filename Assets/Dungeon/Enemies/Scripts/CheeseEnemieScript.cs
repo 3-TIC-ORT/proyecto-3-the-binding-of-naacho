@@ -13,7 +13,7 @@ public class CheeseEnemieScript : Enemy
     public override void Update()
     {
         base.Update();
-        if (GameManager.Instance.stop) return;
+        if (GameManager.Instance.stop) return;  
         Vector2 playerDir = (Vector2)(Player.transform.position - transform.position).normalized;
         rb2D.velocity = Speed * Time.deltaTime * playerDir;
         CheckMainDirection(playerDir);

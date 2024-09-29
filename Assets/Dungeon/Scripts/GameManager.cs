@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitForTheDungeonToGenerate(bool reloadTheScene)
     {
         if (reloadTheScene) SceneManager.LoadScene("Mazmorras testing");
+        PlayerManager.Instance.GetComponent<Transform>().position = new Vector3(0, 0, 0);
         yield return new WaitForSecondsRealtime(0.5f);
         while (merger==null) merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         while (!merger.tilemapsMerged)
