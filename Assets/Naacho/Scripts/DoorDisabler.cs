@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class DoorDisabler : MonoBehaviour
 {
     private GameObject grid;
+    private RoomTemplates roomTemplates;
     public float AreaWidth;
     public float AreaHeight;
     public Tilemap targetTilemap;
@@ -18,14 +19,23 @@ public class DoorDisabler : MonoBehaviour
 
     void Start() {
         targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
+        roomTemplates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         ActivationArea = GetComponent<BoxCollider2D>();
     }
 
     // Dale el nuevo Tile para la puerta. Dale la posición del spawnPoint detectado.
     private void changeDoorsSprite(TileBase tile, Vector2 spawnPointPos, bool enableDoorLights)
     {
+        float hDistanciaBetweenDoorAndSpawnPoint = roomTemplates.centerBetweenHorizontalRooms * 2 - (roomTemplates.centerBetweenHorizontalRooms + roomTemplates.horizontalDoorToDoorRoomArea.x / 2);
+        float vDistanciaBetweenDoorAndSpawnPoint = roomTemplates.centerBetweenVerticaltalRooms * 2 - (roomTemplates.centerBetweenVerticaltalRooms + roomTemplates.verticalDoorToDoorRoomArea.y / 2);
         // Array con las 4 direcciones con las magnitudes correspondientes donde podría haber una puerta
-        Vector2[] fourDirections= {Vector2.up*5.5f,Vector2.down * 5.5f, Vector2.left*8.5f,Vector2.right*8.5f};
+        Vector2[] fourDirections= 
+        {
+            Vector2.up*(vDistanciaBetweenDoorAndSpawnPoint+0.5f),
+            Vector2.down * (vDistanciaBetweenDoorAndSpawnPoint+0.5f), 
+            Vector2.left*(hDistanciaBetweenDoorAndSpawnPoint+0.5f),
+            Vector2.right*(hDistanciaBetweenDoorAndSpawnPoint+0.5f)
+        };
         foreach (Vector2 direction in fourDirections)
         {
             Vector2 doorPos = spawnPointPos + direction;
