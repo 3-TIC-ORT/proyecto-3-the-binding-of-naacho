@@ -26,39 +26,19 @@ public class LechugaGrande : Enemy
     {
         if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
         {
-            if (direction.y > 0)
-            {
-                Debug.Log("Me muevo hacia arriba");
-                animator.SetBool("up", true);
-                animator.SetBool("down", false);
-                animator.SetBool("horizontal", false);
-            }
-            else
-            {
-                Debug.Log("Me muevo hacia abajo");
-                animator.SetBool("down", true);
-                animator.SetBool("up", false);
-                animator.SetBool("horizontal", false);
-            }
+            animator.SetBool("IsMoving", true);
         }
         else
         {
+            animator.SetBool("IsMoving", true);
             if (direction.x > 0)
             {
-                Debug.Log("Me muevo hacia la derecha");
                 SpRenderer.flipX = false;
-                animator.SetBool("horizontal", true);
-                animator.SetBool("up", false);
-                animator.SetBool("down", false);
 
             }
             else
             {
-                Debug.Log("Me muevo hacia la izquierda");
                 SpRenderer.flipX = true;
-                animator.SetBool("horizontal", true);
-                animator.SetBool("up", false);
-                animator.SetBool("down", false);
             }
         }
     }
