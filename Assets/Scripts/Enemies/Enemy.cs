@@ -19,7 +19,7 @@ public abstract class Enemy : MonoBehaviour
     protected BoxCollider2D Col2D;
     protected Rigidbody2D rb2D;
 
-    public GameObject Player; 
+    protected GameObject Player; 
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -48,8 +48,13 @@ public abstract class Enemy : MonoBehaviour
     {
         HealthPoints -= dp;
         StartCoroutine(VisualDamage());
-        if (HealthPoints < 0) Destroy(gameObject);
+        if (HealthPoints <= 0) {
+            OnDeath();
+            Destroy(gameObject);
+        }
     }
+
+    public virtual void OnDeath() {}
 
     public virtual IEnumerator VisualDamage()
     {
