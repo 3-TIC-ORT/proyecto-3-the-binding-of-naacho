@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
         }
         else if (OUT)
         {
-            Debug.Log("TUKITUKI");
             screen.DOFade(0, 1f);
         }
     }

@@ -18,6 +18,10 @@ public class RoomConector : MonoBehaviour
     {
         grid = GameObject.Find("Grid");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        float hDistance = templates.centerBetweenHorizontalRooms*2;
+        float vDistance = templates.centerBetweenVerticaltalRooms*2;
+        if (pointDirection==1) transform.Translate(0,vDistance,0);
+        else transform.Translate(hDistance,0,0);
         targetTilemap=GameObject.Find("Entry Room").GetComponent<Tilemap>();
         // Si aparezco en el vacío de Unity, destruyeme.
         if (targetTilemap.GetTile(targetTilemap.WorldToCell(transform.position)) == null) Destroy(gameObject);
@@ -51,14 +55,14 @@ public class RoomConector : MonoBehaviour
     {
         if (pointDirection==3 || pointDirection==4)
         {
-            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.left * (templates.horizontalDoorToDoorRoomArea.x/2-0.5f)) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.right * 5.5f) == tileConector)
+            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.left * (templates.horizontalDoorToDoorRoomArea.x/2-0.5f)) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.right * (templates.horizontalDoorToDoorRoomArea.x/2+0.5f)) == tileConector)
             {
                 bothRoomsAreConected = true;
             }
         }
         else
         {
-            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.down * (templates.verticalDoorToDoorRoomArea.y/2-0.5f)) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.up * 5.5f) == tileConector)
+            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.down * (templates.verticalDoorToDoorRoomArea.y/2-0.5f)) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.up * (templates.verticalDoorToDoorRoomArea.y/2+0.5f)) == tileConector)
             {
                 bothRoomsAreConected = true;
             }
