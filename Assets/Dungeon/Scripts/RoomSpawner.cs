@@ -41,7 +41,7 @@ public class RoomSpawner : MonoBehaviour
                 SpawnRoomConectors();
             }
         }
-        // Cuando no hayan más enemigos en las bossRoom significa que el boss fue vencido. Spawnea el Hole para el siguiente piso.
+        // Cuando no hayan mï¿½s enemigos en las bossRoom significa que el boss fue vencido. Spawnea el Hole para el siguiente piso.
         if (bossRoom && merger.tilemapsMerged)
         {
             List<GameObject> enemiesGroupPrefab = GetChildren(gameObject, false, "");
@@ -56,7 +56,7 @@ public class RoomSpawner : MonoBehaviour
             SpawnItem();
         }
         // Si soy una closedRoom no deben haber doorTriggers adyacentes a mi porque si no, al matar a los enemigos de esas habitaciones,
-        // se abriría una puerta para ir hacia mi.
+        // se abrirï¿½a una puerta para ir hacia mi.
         else if (spawnedClosedRoom)
         {
             Vector2[] fourDirections =
@@ -75,7 +75,7 @@ public class RoomSpawner : MonoBehaviour
     {
         if (!spawned)
         {
-            // Verificar si el espacio está vacío antes de instanciar
+            // Verificar si el espacio estï¿½ vacï¿½o antes de instanciar
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.0001f);
             if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsMin)
             {
@@ -106,7 +106,7 @@ public class RoomSpawner : MonoBehaviour
                 spawned = true;
                 templates.roomsGenerated++;
             }
-            // Acá si pueden spawnear ClosedRooms
+            // Acï¿½ si pueden spawnear ClosedRooms
             else if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsLimit)
             {
                 if (openingDirection == 1)
@@ -136,14 +136,14 @@ public class RoomSpawner : MonoBehaviour
                 spawned = true;
                 templates.roomsGenerated++;
             }
-            // El primer argumento de SpawnBossRoom es el cumpleaños de Feli, es así para que el primer if de la función de false.
+            // El primer argumento de SpawnBossRoom es el cumpleaï¿½os de Feli, es asï¿½ para que el primer if de la funciï¿½n de false.
             else if(colliders.Length <= 1 && templates.roomsGenerated >= templates.roomsLimit)
             {
                 if (openingDirection == 1)
                 {
                     List<GameObject> downList = new List<GameObject>(templates.downRooms);
-                    // Expresión lambda. go es como la variable de i en un for. Se transforma en cada elemento de la lista y devuelve
-                    // al elemento que cumpla la condición.
+                    // Expresiï¿½n lambda. go es como la variable de i en un for. Se transforma en cada elemento de la lista y devuelve
+                    // al elemento que cumpla la condiciï¿½n.
                     GameObject downRoom = downList.Find(go => go.name == "D");
                     GameObject newRoom = Instantiate(downRoom, transform.position, Quaternion.identity, grid.transform);
                     SpawnSpecialRoom(1607, templates.downRooms, "D", true, newRoom);
@@ -189,7 +189,7 @@ public class RoomSpawner : MonoBehaviour
                 // Puede ocurrir que haya un spawnPoint spawned y que otros dos spawnPoints que se acaban de generar
                 // hayan aparecido arriba del primero spawnPoint.
                 bool noSpawnedOne = true;
-                // Ver que no haya ningún spawnPoint que ya haya spawneado una room.
+                // Ver que no haya ningï¿½n spawnPoint que ya haya spawneado una room.
                 foreach (Collider2D collider in colliders)
                 {
                     if (collider.gameObject.GetComponent<RoomSpawner>().spawned == true) noSpawnedOne = false;
@@ -211,13 +211,13 @@ public class RoomSpawner : MonoBehaviour
             {
                 Destroy(col.gameObject);
             }
-            // Si soy la bossRoom y me aparece un spawnPoint destruilo para que no joda. Así no puede hacer aparecer roomConectores
+            // Si soy la bossRoom y me aparece un spawnPoint destruilo para que no joda. Asï¿½ no puede hacer aparecer roomConectores
             else if (bossRoom && !colIsSpawned) Destroy(col.gameObject);
             else if (treasureRoom && !colIsSpawned) Destroy(col.gameObject);
             // Si soy un spawnPoint normal que toco a otro spawnPoint que no spawneo entonces su spawned va a ser true
             else if (spawned) Destroy(col.gameObject);
         }
-        // Si toco a  un roomConector y soy una closedRoom le seteo su doorsDestroyed y spawnPointMoved a true para que no hada nada más
+        // Si toco a  un roomConector y soy una closedRoom le seteo su doorsDestroyed y spawnPointMoved a true para que no hada nada mï¿½s
         if (col.gameObject.CompareTag("RoomConector") && (spawnedClosedRoom || bossRoom || treasureRoom))
         {
             Destroy(col.gameObject);
@@ -235,13 +235,13 @@ public class RoomSpawner : MonoBehaviour
     {
         if (closing && !templates.treasureRoomSpawned) SpawnTreasureRoom(newRoom);
 
-        // closing es true cuando ya se superó el roomsLimit. Si por casualidad antes de esto no se creo ninguna room con una sola puerta
-        // entonces seré la bossRoom.
+        // closing es true cuando ya se superï¿½ el roomsLimit. Si por casualidad antes de esto no se creo ninguna room con una sola puerta
+        // entonces serï¿½ la bossRoom.
         else if (closing && !templates.bossRoomSpawned) SpawnBossRoom(newRoom);
 
         else if (!templates.treasureRoomSpawned && rooms[rand].name == room) SpawnTreasureRoom(newRoom);
 
-        // Si spawnee una room con una sola puerta y soy la primera en hacerlo entonces seré la bossRoom
+        // Si spawnee una room con una sola puerta y soy la primera en hacerlo entonces serï¿½ la bossRoom
         else if (!templates.bossRoomSpawned && rooms[rand].name == room && !bossRoom) SpawnBossRoom(newRoom);
         else SpawnEnemies();
 
@@ -276,7 +276,7 @@ public class RoomSpawner : MonoBehaviour
         targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), holeTile);
     }
 
-    // Cambia la iluminación para los Treasure y Boss rooms
+    // Cambia la iluminaciï¿½n para los Treasure y Boss rooms
     private void SetLighting(bool forTreasureRoom, GameObject room)
     {
         Vector2 doorLightPosition = DecidePosition();
@@ -297,7 +297,7 @@ public class RoomSpawner : MonoBehaviour
     // Las siguientes funciones son para establecer las doorLights
     private Vector2 DecidePosition()
     {
-        // Esto calcula la distancia que hay entre el centro de una habitación y la puerta de la siguiente habitación
+        // Esto calcula la distancia que hay entre el centro de una habitaciï¿½n y la puerta de la siguiente habitaciï¿½n
         float verticalDistance = (templates.verticalDoorToDoorRoomArea.y / 2 + templates.centerBetweenVerticaltalRooms)-0.5f;
         float horizontalDistance = (templates.horizontalDoorToDoorRoomArea.x / 2 + templates.centerBetweenHorizontalRooms)-0.5f;
         if (openingDirection == 1) return (Vector2)transform.position + Vector2.down * verticalDistance;
