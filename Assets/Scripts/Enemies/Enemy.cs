@@ -48,7 +48,7 @@ public abstract class Enemy : MonoBehaviour
     {
         HealthPoints -= dp;
         StartCoroutine(VisualDamage());
-        if (HealthPoints < 0) {
+        if (HealthPoints <= 0) {
             OnDeath();
             Destroy(gameObject);
         }

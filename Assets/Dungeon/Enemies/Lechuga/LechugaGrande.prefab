@@ -211,5 +211,5 @@ MonoBehaviour:
   HealthPoints: 5
   DamagePoints: 0.25
   Speed: 70
-  Lechuguita: {fileID: 1638454596774647162}
-  LechugitaOffspring: 20
+  Lechuguita: {fileID: 7301792174166199590, guid: d8f00269f5df14031a162acd93194f2f, type: 3}
+  LechugitaOffspring: 3
