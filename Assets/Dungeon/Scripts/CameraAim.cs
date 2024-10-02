@@ -5,19 +5,22 @@ using UnityEngine;
 public class CameraAim : MonoBehaviour
 {
     private Transform playerPos;
-    public bool followPlayer;
+    private CameraFollowingActivation cfa;
     
     private void Start()
     {
-        followPlayer = true;
+        cfa = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraFollowingActivation>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     void Update()
     {
-        if (GameManager.Instance.stop) followPlayer = false;
-        if (followPlayer)
+        if (cfa.followVertically)
         {
-            transform.position = playerPos.position;
+            transform.position = new Vector3(transform.position.x,playerPos.position.y,transform.position.z);
+        }
+        if (cfa.followHorizontally)
+        {
+            transform.position = new Vector3(playerPos.position.x, transform.position.y, transform.position.z);
         }
     }
 }
