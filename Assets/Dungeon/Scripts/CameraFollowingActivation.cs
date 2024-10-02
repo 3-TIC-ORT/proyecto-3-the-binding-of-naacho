@@ -30,10 +30,10 @@ public class CameraFollowingActivation : MonoBehaviour
         else followVertically = false;
         if (!TouchingWall(rightColliders) && !TouchingWall(leftColliders) && !GameManager.Instance.stop) followHorizontally = true;
         else followHorizontally = false;
-        Debug.DrawRay(upRay.origin, upRay.direction*HalfRoomYDistance,Color.red);
-        Debug.DrawRay(downRay.origin, downRay.direction*HalfRoomYDistance, Color.red);
-        Debug.DrawRay(rightRay.origin, rightRay.direction*HalfRoomXDistance, Color.red);
-        Debug.DrawRay(leftRay.origin, leftRay.direction*HalfRoomXDistance, Color.red);
+        Debug.DrawRay(upRay.origin, upRay.direction*HalfRoomYDistance,Color.green);
+        Debug.DrawRay(downRay.origin, downRay.direction*HalfRoomYDistance, Color.green);
+        Debug.DrawRay(rightRay.origin, rightRay.direction*HalfRoomXDistance, Color.green);
+        Debug.DrawRay(leftRay.origin, leftRay.direction*HalfRoomXDistance, Color.green);
     }
 
     private bool TouchingWall(RaycastHit2D[] colliders)

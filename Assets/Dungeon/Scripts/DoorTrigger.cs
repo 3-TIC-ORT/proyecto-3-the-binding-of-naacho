@@ -58,12 +58,14 @@ public class DoorTrigger : MonoBehaviour
         // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
         if (playerPos.y - transform.position.y < 0)
         {
+            cameraAimTransform.DOMoveX(transform.position.x, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveY(cameraAimTransform.position.y + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.y += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
-        {   
+        {
+            cameraAimTransform.DOMoveX(transform.position.x, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveY(cameraAimTransform.position.y - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.y -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
@@ -75,12 +77,14 @@ public class DoorTrigger : MonoBehaviour
         float nextRoomCenter = templates.centerBetweenHorizontalRooms * 2;
         if (playerPos.x - transform.position.x < 0)
         {   
+            cameraAimTransform.DOLocalMoveY(transform.position.y,cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveX(cameraAimTransform.position.x + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime; 
             playerPos.x += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
+            cameraAimTransform.DOLocalMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveX(cameraAimTransform.position.x - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
             playerPos.x -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
