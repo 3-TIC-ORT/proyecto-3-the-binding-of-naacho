@@ -7,6 +7,8 @@ public class CameraFollowingActivation : MonoBehaviour
     private CameraAim cameraTarget;
     public float HalfRoomXDistance;
     public float HalfRoomYDistance;
+    public bool followHorizontally;
+    public bool followVertically;
     void Start()
     {
         

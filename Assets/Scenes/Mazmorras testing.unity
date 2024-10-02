@@ -19266,7 +19266,7 @@ Transform:
   m_GameObject: {fileID: 659683869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000011920929, y: -0.00000023841858, z: -8.355127}
+  m_LocalPosition: {x: 0, y: 0, z: -8.355127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19490,7 +19490,7 @@ Transform:
   m_GameObject: {fileID: 716374660}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000011920929, y: -0.00000023841858, z: -8.355127}
+  m_LocalPosition: {x: 0, y: 0, z: -8.355127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20131,6 +20131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HalfRoomXDistance: 9
   HalfRoomYDistance: 5
+  followHorizontally: 0
+  followVertically: 0
 --- !u!1 &1840566599
 GameObject:
   m_ObjectHideFlags: 0
@@ -20323,8 +20325,8 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.2
-  m_DeadZoneHeight: 0.3
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 2
