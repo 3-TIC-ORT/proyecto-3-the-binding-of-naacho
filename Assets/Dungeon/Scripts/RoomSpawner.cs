@@ -19,9 +19,10 @@ public class RoomSpawner : MonoBehaviour
     public bool spawnedClosedRoom=false;
     public bool bossRoom = false;
     public bool treasureRoom = false;
+    public bool itemSpawned;
 
     public TileBase holeTile;
-    public TileBase itemHolderTile;
+    public GameObject itemHolder;
     void Start()
     {       
         grid = GameObject.Find("Grid");
@@ -51,9 +52,10 @@ public class RoomSpawner : MonoBehaviour
                 if (enemies.Count == 0) SpawnHole();
             }
         }
-        else if (treasureRoom && merger.tilemapsMerged)
+        else if (treasureRoom && merger.tilemapsMerged && !itemSpawned)
         {
             SpawnItem();
+            itemSpawned = true;
         }
         // Si soy una closedRoom no deben haber doorTriggers adyacentes a mi porque si no, al matar a los enemigos de esas habitaciones,
         // se abrir�a una puerta para ir hacia mi.
@@ -259,7 +261,7 @@ public class RoomSpawner : MonoBehaviour
     }
     public void SpawnItem()
     {
-        targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), itemHolderTile);
+        Instantiate(itemHolder, transform.position, Quaternion.identity);
     }
     public void SpawnBossRoom(GameObject room)
     {

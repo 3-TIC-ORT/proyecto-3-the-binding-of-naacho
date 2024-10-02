@@ -14,7 +14,7 @@ public class ItemHolder : MonoBehaviour
         naacho = GameObject.FindGameObjectWithTag("Player");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         float rand = Random.Range(0, templates.items.Length*2)/2;
-        item = Instantiate(templates.items[(int)Mathf.Floor(rand)], transform.position, Quaternion.identity,gameObject.transform);
+        item = Instantiate(templates.items[(int)Mathf.Floor(rand)], transform.position+Vector3.up*0.5f, Quaternion.identity,gameObject.transform);
         //print(templates.items[(int)Mathf.Floor(rand)].name);
         boxCollider2D = GetComponent<BoxCollider2D>();
     }

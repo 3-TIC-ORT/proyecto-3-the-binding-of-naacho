@@ -52,7 +52,7 @@ MonoBehaviour:
   bossRoom: 0
   treasureRoom: 0
   holeTile: {fileID: 11400000, guid: f9696e9cf4c3247408440e3058053db6, type: 2}
-  itemHolderTile: {fileID: 11400000, guid: 2a515ff26111e32499112cd81f7fb44b, type: 2}
+  itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
 --- !u!61 &8348292914006823559
 BoxCollider2D:
   m_ObjectHideFlags: 0
