@@ -30,7 +30,6 @@ public class TilemapMerger : MonoBehaviour
     // Ordena los tilemaps para que cuando se mergeen lo hagan por prioridad. Primero los normales, después las 1DoorRooms...
     void OrderTilemaps()
     {
-        Debug.Log("ASD");
         List<Tilemap> childTilemaps = new List<Tilemap>();
 
         foreach (Transform child in grid.transform)
@@ -81,6 +80,7 @@ public class TilemapMerger : MonoBehaviour
         
         // Por si acaso xd
         targetTilemap.RefreshAllTiles();
+        tilemapsMerged = true;
     }
     // Pone todos los tiles de todos los tilemaps en el tilemap EntryRoom
     private void MergeTilemaps(List<Tilemap> tilemaps)
@@ -102,7 +102,6 @@ public class TilemapMerger : MonoBehaviour
                 }
             }
         }
-        tilemapsMerged = true;
     }
     
 }

@@ -17935,6 +17935,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 2bf05808b82ee084ba2e45bd3d65db56, type: 3}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_TileObjectToInstantiateArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[3].m_RefCount
       value: 0
       objectReference: {fileID: 0}
@@ -18865,6 +18869,38 @@ PrefabInstance:
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_Tiles.Array.data[519].second.m_TileSpriteIndex
       value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_TileObjectToInstantiateArray.Array.data[0].m_Data
+      value: 
+      objectReference: {fileID: 5428042783085068618, guid: 4e3d0c610cbf8b14d9c47b11220aba6b, type: 3}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_TileObjectToInstantiateArray.Array.data[1].m_Data
+      value: 
+      objectReference: {fileID: 4432288622779225803, guid: 785bd8d4a5ed812449625a0cf64c4bd7, type: 3}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_TileObjectToInstantiateArray.Array.data[0].m_RefCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_TileObjectToInstantiateArray.Array.data[1].m_RefCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_Tiles.Array.data[116].second.m_TileObjectToInstantiateIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_Tiles.Array.data[238].second.m_TileObjectToInstantiateIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_Tiles.Array.data[255].second.m_TileObjectToInstantiateIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
+      propertyPath: m_Tiles.Array.data[402].second.m_TileObjectToInstantiateIndex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20132,8 +20168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c807233afae4b45a3043dded0fcb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HalfRoomXDistance: 9
-  HalfRoomYDistance: 6
+  HalfRoomXDistance: 8
+  HalfRoomYDistance: 5
   followHorizontally: 0
   followVertically: 0
 --- !u!1 &1840566599

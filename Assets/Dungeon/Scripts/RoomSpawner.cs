@@ -254,7 +254,6 @@ public class RoomSpawner : MonoBehaviour
         templates.currentTreasureRooms += 1;
         if (templates.currentTreasureRooms >= templates.treasureRoomsAmount) templates.treasureRoomSpawned = true;
         treasureRoom = true;
-        Debug.Log("SOY LA TREASURE ROOM");
         GameObject.Find("TreasureRoomImage").GetComponent<Transform>().position = transform.position;
         // Como es una SpecialRoom, le cambiamos el color para que se vea extravagante
         SetLighting(true,room);
@@ -268,7 +267,6 @@ public class RoomSpawner : MonoBehaviour
         SpawnEnemies();
         templates.bossRoomSpawned = true;
         bossRoom = true;
-        Debug.Log("SOY LA BOSS ROOM");
         GameObject.Find("BossRoomImage").GetComponent<Transform>().position = transform.position;
         SetLighting(false,room);
     }

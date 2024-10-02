@@ -43,14 +43,14 @@ public class DoorDisabler : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapBoxAll(doorPos, new Vector2(0.5f, 0.5f),0);
             foreach (Collider2D col in colliders)
             {
-                if (col.gameObject.CompareTag("DoorTrigger"))
+                if ( col!=null && col.gameObject.CompareTag("DoorTrigger"))
                 {
                     // Cambia el tile de la puerta
                     targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos), tile);
                     // Cambia el tile de la otra puerta al restarle un poco de posición (mala prática, lo sé, pero me ganó la tarea para el cole)
                     targetTilemap.SetTile(targetTilemap.WorldToCell(doorPos+new Vector2(-0.01f,-0.01f)), tile);
                 }
-                else if (col.gameObject.CompareTag("RoomLight"))
+                else if (col != null && col.gameObject.CompareTag("RoomLight"))
                 {
                     col.GetComponent<Light2D>().enabled = enableDoorLights;
                 }
@@ -67,12 +67,12 @@ public class DoorDisabler : MonoBehaviour
         int enemiesAmount = 0;
         List<Vector2> spawnPointsPositions=new List<Vector2>();
         foreach(Collider2D col in colliders) {
-            if (col.CompareTag("Enemy"))
+            if (col!=null && col.CompareTag("Enemy"))
             {
                 enemiesAmount++;
                 col.GetComponent<Enemy>().enabled = true;
             }
-            else if (col.CompareTag("SpawnPoint"))
+            else if (col != null && col.CompareTag("SpawnPoint"))
             {
                 spawnPointsPositions.Add((Vector2)col.gameObject.transform.position);
 

@@ -19,6 +19,7 @@ TagManager:
   - ItemHolder
   - CameraAim
   - GameManager
+  - DoorCameraTrigger
   layers:
   - Default
   - TransparentFX

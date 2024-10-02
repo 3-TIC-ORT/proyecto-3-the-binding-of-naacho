@@ -21,9 +21,9 @@ public class CameraFollowingActivation : MonoBehaviour
         RaycastHit2D[] upColliders = Physics2D.RaycastAll(upRay.origin, upRay.direction, HalfRoomYDistance);
         Ray downRay = new Ray(transform.position, Vector2.down);
         RaycastHit2D[] downColliders = Physics2D.RaycastAll(downRay.origin, downRay.direction, HalfRoomYDistance);
-        Ray rightRay = new Ray(transform.position, Vector2.right);
+        Ray rightRay = new Ray(transform.position + Vector3.down * 0.7f, Vector2.right);
         RaycastHit2D[] rightColliders = Physics2D.RaycastAll(rightRay.origin, rightRay.direction, HalfRoomXDistance);
-        Ray leftRay = new Ray(transform.position, Vector2.left);
+        Ray leftRay = new Ray(transform.position + Vector3.down * 0.7f, Vector2.left);
         RaycastHit2D[] leftColliders = Physics2D.RaycastAll(leftRay.origin, leftRay.direction, HalfRoomXDistance);
 
         if (!TouchingWall(upColliders) && !TouchingWall(downColliders) && !GameManager.Instance.stop) followVertically = true;
@@ -40,7 +40,7 @@ public class CameraFollowingActivation : MonoBehaviour
     {
         foreach (RaycastHit2D collider in colliders)
         {
-            if (collider.collider.gameObject.CompareTag("Room")) return true;
+            if (collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger")) return true;
         }
         return false;
     }
