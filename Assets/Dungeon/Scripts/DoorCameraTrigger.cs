@@ -15,6 +15,10 @@ public class DoorCameraTrigger : MonoBehaviour
             else if (myID != colliderID) Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+        transform.parent = GameObject.FindGameObjectWithTag("GeneralContainer").transform;
+    }
     private void Update()
     {
         if ((transform.position - PlayerManager.Instance.transform.position).magnitude > OcclusionCullingDistance) GetComponent<BoxCollider2D>().enabled = false;

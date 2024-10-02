@@ -20,6 +20,7 @@ TagManager:
   - CameraAim
   - GameManager
   - DoorCameraTrigger
+  - GeneralContainer
   layers:
   - Default
   - TransparentFX

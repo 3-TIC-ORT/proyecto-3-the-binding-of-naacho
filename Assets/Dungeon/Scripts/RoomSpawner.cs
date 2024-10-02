@@ -260,7 +260,8 @@ public class RoomSpawner : MonoBehaviour
     }
     public void SpawnItem()
     {
-        Instantiate(itemHolder, transform.position, Quaternion.identity);
+        GameObject container = GameObject.FindGameObjectWithTag("GeneralContainer");
+        Instantiate(itemHolder, transform.position, Quaternion.identity,container.transform);
     }
     public void SpawnBossRoom(GameObject room)
     {
@@ -315,7 +316,8 @@ public class RoomSpawner : MonoBehaviour
     // Si no soy ni la bossRoom ni una closedRoom (no queremos conectarlas con habitaciones) entonces spawnea roomConectores
     private void SpawnRoomConectors()
     {
-        if (!spawnedClosedRoom && !bossRoom && !treasureRoom) Instantiate(templates.roomConector, transform.position, Quaternion.identity);
+        GameObject container = GameObject.FindGameObjectWithTag("GeneralContainer");
+        if (!spawnedClosedRoom && !bossRoom && !treasureRoom) Instantiate(templates.roomConector, transform.position, Quaternion.identity,container.transform);
     }
     // Devuelve la lista de hijos de un objeto. Podes ponerle un filtro por su Tag si queres.
     List<GameObject> GetChildren(GameObject parent, bool filter, string tag)
