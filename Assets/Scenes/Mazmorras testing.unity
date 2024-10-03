@@ -18992,6 +18992,7 @@ MonoBehaviour:
   BasicEnemies:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
   - {fileID: 504261022165769184, guid: 0a5478d7a486e614eaf6a2677ca4e80e, type: 3}
+  - {fileID: 504261022165769184, guid: 5a311779c29ab316baa182a1ce0b2633, type: 3}
   doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
   items:
