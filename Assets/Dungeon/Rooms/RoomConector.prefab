@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3593810285119311046}
   - component: {fileID: 6257295822859288173}
+  - component: {fileID: 1597497164942727590}
   m_Layer: 0
   m_Name: BigRoomTrigger
   m_TagString: BigRoomTrigger
@@ -77,6 +78,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1597497164942727590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6547151207705936094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ab895e688a5bd4ba078e519808aa9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionCulling: 5
 --- !u!1 &7057776152910911449
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,8 +158,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0016002655, y: 0.3801999, z: 0}
-    m_Extent: {x: 18.2787, y: 12.429501, z: 0}
+    m_Center: {x: -0.0069503784, y: 0.38205004, z: 0}
+    m_Extent: {x: 18.28105, y: 12.43635, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
