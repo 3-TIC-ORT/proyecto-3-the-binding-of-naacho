@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lechuguita : Enemy
+public class Lechuguitau: Enemy
 {
     private Animator animator;
     public override void Start()

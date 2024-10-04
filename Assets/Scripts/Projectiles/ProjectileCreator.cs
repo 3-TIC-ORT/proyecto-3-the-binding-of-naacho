@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileCreator : MonoBehaviour
 {
-    public void createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float range, float dp)
+    public GameObject createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float range, float dp)
     {
         GameObject proj = Instantiate(prefab, position, Quaternion.identity);
         Rigidbody2D proj_rb2D = proj.GetComponent<Rigidbody2D>();
@@ -21,5 +21,6 @@ public class ProjectileCreator : MonoBehaviour
 
         proj.GetComponent<Collider2D>().isTrigger = true;
 
+        return proj;
     }
 }

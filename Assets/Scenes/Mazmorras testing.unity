@@ -20177,7 +20177,7 @@ MonoBehaviour:
   HalfRoomYDistance: 5
   followHorizontally: 0
   followVertically: 0
-  transitionDuration: 0.5
+  transitionDuration: 0
 --- !u!1 &1840566599
 GameObject:
   m_ObjectHideFlags: 0
