@@ -9,24 +9,16 @@ public class ProjectileScript : MonoBehaviour
     public string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector"}; // Tags the Projectile will pass through
 
     private Vector2 startingPos;
-    private Vector2 prevFrameDist;
     private float lifespan = 0;
-    private Rigidbody2D rb2D;
-    private float distanceTraveled = 0;
-
 
     void Start() {
-        rb2D = GetComponent<Rigidbody2D>();
         startingPos = transform.position;
-        prevFrameDist = transform.position;
     }
 
     void Update()
     {
        lifespan += Time.deltaTime;
-       distanceTraveled += Vector2.Distance(transform.position, prevFrameDist);
-       if(distanceTraveled >= Range) Destroy(gameObject);
-       prevFrameDist = transform.position;
+       if((startingPos - (Vector2) transform.position).magnitude >= Range) Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

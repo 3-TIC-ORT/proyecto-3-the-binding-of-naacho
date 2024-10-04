@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class NaachoController : MonoBehaviour
 {
     public int Speed;
     public float Friction;
 
-    [Header("Projectile Settings")]
     public GameObject ProjectilePrefab;
     public float shotSpray;
     public float shootSpeed;
@@ -18,16 +15,9 @@ public class NaachoController : MonoBehaviour
     public float Damage;
     private float ShootTimeCounter = 0;
 
-    [Header("Special Projectile Tags")]
-    public bool FollowEnemies = false;
-    public int FollowEnemiesDetectionRadius;
-
     private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
     private Animator animator;
-
-    private GameObject Projectile;
-
 
     // Start is called before the first frame update
     void Start()
@@ -76,22 +66,15 @@ public class NaachoController : MonoBehaviour
         return new Vector2(horizontalMovement, verticalMovement);
     }
 
-    void Shoot(Vector2 velocity, bool followEnemies)
+    void Shoot(Vector2 velocity)
     {
-        Projectile = ProjectileScript.createProjectile(
+        ProjectileScript.createProjectile(
             ProjectilePrefab,
             transform.position, 
             velocity, 
             Range,
             Damage
         );
-
-        if(followEnemies) {
-            SeekTarget seekTarget = Projectile.AddComponent<SeekTarget>();
-            seekTarget.isEnemy = false;
-            seekTarget.detectionRadius = FollowEnemiesDetectionRadius;
-            seekTarget.force = shootSpeed;
-        }
     }
 
     // Update is called once per frame
@@ -127,7 +110,7 @@ public class NaachoController : MonoBehaviour
         {
             if (ShootTimeCounter >= 1/FireRate)
             {
-                Shoot(ShootDir * shootSpeed + rb2D.velocity/4, FollowEnemies);
+                Shoot(ShootDir * shootSpeed + rb2D.velocity/4);
                 ShootTimeCounter = 0;
             }
 

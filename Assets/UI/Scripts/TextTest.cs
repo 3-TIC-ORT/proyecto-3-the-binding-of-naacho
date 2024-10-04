@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +11,6 @@ public class TextTest : MonoBehaviour
 
     void Awake() {
         img = GetComponent<Image>();
-    }
-
-    void Start() {
-        if(naachoHeartSystem == null) {
-            naachoHeartSystem = GameObject.Find("Naacho").GetComponent<NaachoHeartSystem>();
-        }
     }
     // Update is called once per frame
     public void UIUpdate(float life)

@@ -295,8 +295,6 @@ MonoBehaviour:
   FireRate: 3.5
   Range: 9
   Damage: 3
-  FollowEnemies: 0
-  FollowEnemiesDetectionRadius: 10
 --- !u!114 &4274172619971887666
 MonoBehaviour:
   m_ObjectHideFlags: 0
