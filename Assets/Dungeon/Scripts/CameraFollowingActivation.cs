@@ -51,37 +51,25 @@ public class CameraFollowingActivation : MonoBehaviour
     {
         if (TouchingWall(upColliders) && !upCollided)
         {
-            if (cameraTarget != null)
-            {
-                cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y - GetCollisionDistance(upColliders, upRayLongitude), transitionDuration);
-            }
+            cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y-GetCollisionDistance(upColliders,upRayLongitude),transitionDuration);
             upCollided = true;
         }
         else if (!TouchingWall(upColliders)) upCollided = false;
         if (TouchingWall(downColliders) && !downCollided)
         {
-            if (cameraTarget != null)
-            {
-                cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + GetCollisionDistance(downColliders, downRayLongitude), transitionDuration);
-            }
+            cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + GetCollisionDistance(downColliders, downRayLongitude), transitionDuration);
             downCollided = true;
         }
         else if (!TouchingWall(downColliders)) downCollided = false;
         if (TouchingWall(rightColliders) && !rightCollided)
         {
-            if (cameraTarget != null)
-            {
-                cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x - GetCollisionDistance(rightColliders, HalfRoomXDistance), transitionDuration);
-            }
+            cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x-GetCollisionDistance(rightColliders, HalfRoomXDistance), transitionDuration);
             rightCollided = true;
         }
         else if (!TouchingWall(rightColliders)) rightCollided = false;
         if (TouchingWall(leftColliders) && !leftCollided)
         {
-            if (cameraTarget != null)
-            {
-                cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + GetCollisionDistance(leftColliders, HalfRoomXDistance), transitionDuration);
-            }
+            cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + GetCollisionDistance(leftColliders, HalfRoomXDistance), transitionDuration);
             leftCollided = true;
         }
         else if (!TouchingWall(leftColliders)) leftCollided = false;
@@ -91,7 +79,7 @@ public class CameraFollowingActivation : MonoBehaviour
         foreach (RaycastHit2D collider in colliders)
         {
             if (GameManager.Instance.stop) return 0f;
-            else if (collider.collider!=null && collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger")) return rayMagnitude-collider.distance;
+            else if (collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger")) return rayMagnitude-collider.distance;
         }
         return 0f;
     }
