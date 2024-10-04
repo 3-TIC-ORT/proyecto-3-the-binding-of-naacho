@@ -15,6 +15,7 @@ public class DoorTrigger : MonoBehaviour
     private Transform cameraAimTransform;
     private CameraAim cameraAim;
     public float OcclusionCullingDistance;
+    public float subtractSize;
     private void Start()
     {
         collider = GetComponent<BoxCollider2D>();
@@ -27,7 +28,7 @@ public class DoorTrigger : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
-        transform.localScale = new Vector3(templates.horizontalDoorToDoorRoomArea.x-1, 1.6f, 1);
+        transform.localScale = new Vector3(templates.horizontalDoorToDoorRoomArea.x-subtractSize, 1.6f, 1);
     }
     private void Update()
     {
@@ -52,7 +53,7 @@ public class DoorTrigger : MonoBehaviour
     // Una vez que terminó de animarse
     private void MoveVertically(Vector3 playerPos)
     {
-        float nextDoorDistance = templates.verticalDoorToDoorRoomArea.y + 0.1f;
+        float nextDoorDistance = templates.verticalDoorToDoorRoomArea.y + 1f;
         float nextRoomCenter = templates.centerBetweenVerticaltalRooms * 2;
         // Identificar si el jugador está a la abajo de este objeto (puerta) o no
         // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
@@ -73,7 +74,7 @@ public class DoorTrigger : MonoBehaviour
     }
     private void MoveHorizontally(Vector3 playerPos)
     {
-        float nextDoorDistance = templates.horizontalDoorToDoorRoomArea.x + 0.1f;
+        float nextDoorDistance = templates.horizontalDoorToDoorRoomArea.x + 1f;
         float nextRoomCenter = templates.centerBetweenHorizontalRooms * 2;
         if (playerPos.x - transform.position.x < 0)
         {   
