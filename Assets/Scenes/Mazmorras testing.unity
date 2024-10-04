@@ -20043,7 +20043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112b321913ad33349afc99bf811902fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 0.2
+  followSpeed: 0
 --- !u!1 &1684490927
 GameObject:
   m_ObjectHideFlags: 0
@@ -20174,7 +20174,7 @@ MonoBehaviour:
   HalfRoomYDistance: 5
   followHorizontally: 0
   followVertically: 0
-  transitionDuration: 0.5
+  transitionDuration: 0
 --- !u!1 &1840566599
 GameObject:
   m_ObjectHideFlags: 0

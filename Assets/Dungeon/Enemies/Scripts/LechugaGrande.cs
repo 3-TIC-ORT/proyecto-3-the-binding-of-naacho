@@ -46,7 +46,7 @@ public class LechugaGrande : Enemy
     public override void OnDeath()
     {
         for(int i = 0; i < LechugitaOffspring; i++) {
-            Vector3 lechuguitaPos = new Vector3(transform.position.x + Random.Range(-100, 100)/100, transform.position.y + Random.Range(-100, 100)/100);
+            Vector3 lechuguitaPos = new Vector3(transform.position.x + Random.Range(-75, 75)/100, transform.position.y + Random.Range(-75, 75)/100); 
             Instantiate(Lechuguita, lechuguitaPos, Quaternion.identity);
         }
     }
