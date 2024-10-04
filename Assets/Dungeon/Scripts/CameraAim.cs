@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraAim : MonoBehaviour
 {
     private Transform playerPos;
     private CameraFollowingActivation cfa;
-    
+    public float followSpeed;
     private void Start()
     {
         cfa = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraFollowingActivation>();
@@ -16,11 +17,11 @@ public class CameraAim : MonoBehaviour
     {
         if (cfa.followVertically)
         {
-            transform.position = new Vector3(transform.position.x,playerPos.position.y,transform.position.z);
+            transform.DOMoveY(playerPos.position.y, followSpeed);
         }
         if (cfa.followHorizontally)
         {
-            transform.position = new Vector3(playerPos.position.x, transform.position.y, transform.position.z);
+            transform.DOMoveX(playerPos.position.x, followSpeed);
         }
     }
 }
