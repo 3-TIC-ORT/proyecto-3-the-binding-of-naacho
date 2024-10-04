@@ -21,6 +21,7 @@ TagManager:
   - GameManager
   - DoorCameraTrigger
   - GeneralContainer
+  - BigRoomTrigger
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,11 @@ public class RoomConector : MonoBehaviour
     public bool doorsDestroyed=false;
     public bool spawnPointMoved=false;
     public bool colisioneperonosecumplio = false;
+    [Tooltip("Es el área dentro de una habitación grande horizontal. Se usa para agrandar la cámara si la cámara está dentro")]
+    public Vector2 horizontalConectionSizeArea;
+    public Vector2 verticalConectionSizeArea;
+    [Tooltip("Asginar el collider que se agrandará ocupando el tamaño de la habitación grande")]
+    public BoxCollider2D conectionAreaCollider;
     void Start()
     {
         grid = GameObject.Find("Grid");
@@ -67,7 +72,12 @@ public class RoomConector : MonoBehaviour
                 bothRoomsAreConected = true;
             }
         }
-        if (!bothRoomsAreConected) StartCoroutine(ConnectRooms());
+        if (!bothRoomsAreConected)
+        {
+            StartCoroutine(ConnectRooms());
+            if (pointDirection == 3) conectionAreaCollider.size = horizontalConectionSizeArea;
+            else if (pointDirection==1) conectionAreaCollider.size = verticalConectionSizeArea;
+        }
         else Destroy(gameObject);
         
     }

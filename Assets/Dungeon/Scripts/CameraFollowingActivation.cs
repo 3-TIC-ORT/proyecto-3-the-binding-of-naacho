@@ -51,28 +51,24 @@ public class CameraFollowingActivation : MonoBehaviour
     {
         if (TouchingWall(upColliders) && !upCollided)
         {
-            Debug.Log("Corregí la cámara para abajo");
             cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y-GetCollisionDistance(upColliders,upRayLongitude),transitionDuration);
             upCollided = true;
         }
         else if (!TouchingWall(upColliders)) upCollided = false;
         if (TouchingWall(downColliders) && !downCollided)
         {
-            Debug.Log("Corregí la cámara para arriba");
             cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + GetCollisionDistance(downColliders, downRayLongitude), transitionDuration);
             downCollided = true;
         }
         else if (!TouchingWall(downColliders)) downCollided = false;
         if (TouchingWall(rightColliders) && !rightCollided)
         {
-            Debug.Log("Corregí la cámara para la izquierda");
             cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x-GetCollisionDistance(rightColliders, HalfRoomXDistance), transitionDuration);
             rightCollided = true;
         }
         else if (!TouchingWall(rightColliders)) rightCollided = false;
         if (TouchingWall(leftColliders) && !leftCollided)
         {
-            Debug.Log("Corregí la cámara para la derecha");
             cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + GetCollisionDistance(leftColliders, HalfRoomXDistance), transitionDuration);
             leftCollided = true;
         }
