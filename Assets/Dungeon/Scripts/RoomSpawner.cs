@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
-
+using UnityEngine.UI;
 public class RoomSpawner : MonoBehaviour
 {
     private GameObject grid;
@@ -50,6 +50,18 @@ public class RoomSpawner : MonoBehaviour
             {
                 List<GameObject> enemies = GetChildren(enemieGroup, false, "");
                 if (enemies.Count == 0) SpawnHole();
+                else
+                {
+                    Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, templates.insideRoomArea, 0);
+                    foreach (Collider2D collider in colliders)
+                    {
+                        if (collider.gameObject.CompareTag("Player"))
+                        {
+                            GameObject.Find("Borde").GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                            GameObject.Find("Relleno").GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                        }
+                    }
+                }
             }
         }
         else if (treasureRoom && merger.tilemapsMerged && !itemSpawned)
@@ -265,13 +277,17 @@ public class RoomSpawner : MonoBehaviour
     }
     public void SpawnBossRoom(GameObject room)
     {
-        SpawnEnemies();
+        SpawnBoss();
         templates.bossRoomSpawned = true;
         bossRoom = true;
         GameObject.Find("BossRoomImage").GetComponent<Transform>().position = transform.position;
         SetLighting(false,room);
     }
-
+    private void SpawnBoss()
+    {
+        int rand = Random.Range(0, templates.Jefes.Length);
+        Instantiate(templates.Jefes[rand], transform.position, Quaternion.identity, transform);
+    }
     private void SpawnHole()
     {
         targetTilemap.SetTile(targetTilemap.WorldToCell(transform.position), holeTile);

@@ -29,6 +29,8 @@ public class RoomTemplates : MonoBehaviour
     public GameObject NTclosedRoom;
     [Header("Enemies")]
     public GameObject[] BasicEnemies;
+    [Header("Jefes")]
+    public GameObject[] Jefes;
     [Header("Lights")]
     public GameObject doorLight;
     [Header("Items")]
@@ -52,6 +54,7 @@ public class RoomTemplates : MonoBehaviour
     // La mitad de la longitud entre una room y otra, basicamente.
     public float centerBetweenHorizontalRooms;
     public float centerBetweenVerticaltalRooms;
+    public Vector2 insideRoomArea;
     
     void Start()
     {

@@ -18,8 +18,9 @@ public abstract class Enemy : MonoBehaviour
     protected Color defaultColor;
     protected BoxCollider2D Col2D;
     protected Rigidbody2D rb2D;
-
-    protected GameObject Player; 
+    protected bool isBoss;
+    protected GameObject Player;
+    protected float maxHealth;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -29,6 +30,8 @@ public abstract class Enemy : MonoBehaviour
         Col2D = GetComponent<BoxCollider2D>();
         SpRenderer = GetComponent<SpriteRenderer>();
         defaultColor = SpRenderer.color;
+        isBoss = false;
+        maxHealth = HealthPoints;
     }
 
     // Update is called once per frame
@@ -50,6 +53,7 @@ public abstract class Enemy : MonoBehaviour
         StartCoroutine(VisualDamage());
         if (HealthPoints <= 0) {
             OnDeath();
+            if (isBoss) Destroy(GameObject.Find("BossBar"));
             Destroy(gameObject);
         }
     }
