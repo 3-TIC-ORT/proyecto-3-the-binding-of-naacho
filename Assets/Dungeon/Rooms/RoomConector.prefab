@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ab895e688a5bd4ba078e519808aa9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occlusionCulling: 5
+  occlusionCulling: 50
 --- !u!1 &7057776152910911449
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,8 +158,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0069503784, y: 0.38205004, z: 0}
-    m_Extent: {x: 18.28105, y: 12.43635, z: 0}
+    m_Center: {x: 0.003950119, y: 0.37739992, z: 0}
+    m_Extent: {x: 18.28245, y: 12.435801, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

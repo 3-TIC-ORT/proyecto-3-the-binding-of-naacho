@@ -18938,8 +18938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 63
-  roomsMin: 51
+  roomsLimit: 16
+  roomsMin: 7
   minCompleted: 0
   treasureRoomsAmount: 2
   currentTreasureRooms: 0
