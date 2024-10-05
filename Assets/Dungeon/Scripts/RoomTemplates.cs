@@ -65,7 +65,7 @@ public class RoomTemplates : MonoBehaviour
         while (lastRoomsGenerated != roomsGenerated)
         {
             lastRoomsGenerated = roomsGenerated;
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(1.5f);
         }
         if (roomsGenerated <= roomsMin)
         {
