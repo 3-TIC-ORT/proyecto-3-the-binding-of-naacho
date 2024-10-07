@@ -31,9 +31,17 @@ public class LightSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Si el jugador está lo suficientemente lejos, desactiva el componente de light para ahorrar recursos.
-        if ((transform.position-player.transform.position).magnitude>OcclusionCullingDistance) _light.enabled = false;
-        else if (!isDoorLight) _light.enabled = true;
-        else (doorDisabler.isFighting) = false;
+        if (player != null) 
+        {
+            // Si el jugador está lo suficientemente lejos, desactiva el componente de light para ahorrar recursos.
+            if ((transform.position-player.transform.position).magnitude>OcclusionCullingDistance) _light.enabled = false;
+            else if (!isDoorLight) _light.enabled = true;
+            else (doorDisabler.isFighting) = false;
+        }
+        else if (!GameManager.Instance.nachoNullPrinted)
+        {
+            Debug.LogWarning("Che macho, Naacho es null");
+            GameManager.Instance.nachoNullPrinted = true;
+        }
     }
 }

@@ -31,10 +31,18 @@ abstract public class Item : MonoBehaviour
     }
     private void Update()
     {
-        if ((Naacho.transform.position - transform.position).magnitude < oclussionCulling) spriteRenderer.enabled = true;
-        else spriteRenderer.enabled = false;
+        if (Naacho!=null) 
+        {
+            if ((Naacho.transform.position - transform.position).magnitude < oclussionCulling) spriteRenderer.enabled = true;
+            else spriteRenderer.enabled = false;
+        }
+        else if (!GameManager.Instance.nachoNullPrinted)
+        {
+            Debug.LogWarning("Che macho, Naacho es null");
+            GameManager.Instance.nachoNullPrinted = true;
+        }
 
-       
+
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

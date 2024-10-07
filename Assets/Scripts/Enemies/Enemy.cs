@@ -36,7 +36,12 @@ public abstract class Enemy : MonoBehaviour
 
     // Update is called once per frame
     public virtual void Update() {
-        Player.GetComponent<DoorDisabler>().isFighting = true;
+        if (Player != null) Player.GetComponent<DoorDisabler>().isFighting = true;
+        else if (!GameManager.Instance.nachoNullPrinted)
+        {
+            Debug.LogWarning("Che macho, Naacho es null");
+            GameManager.Instance.nachoNullPrinted = true;
+        }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)

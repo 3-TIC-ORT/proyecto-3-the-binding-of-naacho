@@ -8,25 +8,33 @@ public class EnemyEnabler : MonoBehaviour
     public float oclussionCullingDistance;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private BoxCollider2D collider2D;
+    private BoxCollider2D _collider2D;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        collider2D = GetComponent<BoxCollider2D>();
+        _collider2D = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
-        if ((transform.position - player.transform.position).magnitude > oclussionCullingDistance)
+        if (player != null)
         {
-            sr.enabled = false;
-            collider2D.enabled = false;
+            if ((transform.position - player.transform.position).magnitude > oclussionCullingDistance)
+            {
+                sr.enabled = false;
+                _collider2D.enabled = false;
+            }
+            else
+            {
+                sr.enabled = true;
+                _collider2D.enabled = true;
+            }
         }
-        else
+        else if (!GameManager.Instance.nachoNullPrinted)
         {
-            sr.enabled = true;
-            collider2D.enabled = true;
+            Debug.LogWarning("Che macho, Naacho es null");
+            GameManager.Instance.nachoNullPrinted = true;
         }
     }
 }

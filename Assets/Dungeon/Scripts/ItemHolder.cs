@@ -20,8 +20,16 @@ public class ItemHolder : MonoBehaviour
     }
     private void Update()
     {
-        if ((naacho.transform.position - transform.position).magnitude < oclussionCulling) boxCollider2D.enabled = true;
-        else boxCollider2D.enabled=false;
+        if (naacho != null) 
+        {
+            if ((naacho.transform.position - transform.position).magnitude < oclussionCulling) boxCollider2D.enabled = true;
+            else boxCollider2D.enabled=false;
+        }
+        else if (!GameManager.Instance.nachoNullPrinted)
+        {
+            Debug.LogWarning("Che macho, Naacho es null");
+            GameManager.Instance.nachoNullPrinted = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D col)

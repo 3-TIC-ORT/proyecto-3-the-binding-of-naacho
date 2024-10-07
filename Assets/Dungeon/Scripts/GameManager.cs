@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float fadeSpeed;
     private Image screen;
     private TilemapMerger merger;
+    public bool nachoNullPrinted;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);

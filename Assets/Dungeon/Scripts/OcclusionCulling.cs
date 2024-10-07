@@ -16,7 +16,15 @@ public class OcclusionCulling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((transform.position - playerPos.transform.position).magnitude > occlusionCulling) _collider.enabled = false;
-        else _collider.enabled = true;
+        if (playerPos!=null)
+        {
+            if ((transform.position - playerPos.transform.position).magnitude > occlusionCulling) _collider.enabled = false;
+            else _collider.enabled = true;
+        }
+        else if (!GameManager.Instance.nachoNullPrinted)
+        {
+            Debug.LogWarning("Che macho, Naacho es null");
+            GameManager.Instance.nachoNullPrinted = true;
+        }
     }
 }

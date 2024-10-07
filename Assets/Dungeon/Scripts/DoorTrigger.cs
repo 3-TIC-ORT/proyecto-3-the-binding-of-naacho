@@ -9,7 +9,7 @@ public class DoorTrigger : MonoBehaviour
     public bool isVertical = false;
     [Tooltip("Poner velocidad pensando que el juego estará relentizado un 90%")]
     public float cameraTransitionSpeed;
-    private BoxCollider2D collider;
+    private BoxCollider2D _collider;
     private RoomTemplates templates;
     private GameObject player;
     private Transform cameraAimTransform;
@@ -18,7 +18,7 @@ public class DoorTrigger : MonoBehaviour
     public float subtractSize;
     private void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<BoxCollider2D>();
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         player = GameObject.FindGameObjectWithTag("Player");
         cameraAimTransform = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<Transform>();
@@ -32,9 +32,17 @@ public class DoorTrigger : MonoBehaviour
     }
     private void Update()
     {
-        // Occlusion Culling. Si el jugador está lo suficientemente lejos desactive el collider para ahorrar recursos.
-        if ((transform.position - player.transform.position).magnitude > OcclusionCullingDistance) collider.enabled = false;
-        else collider.enabled = true;
+        if (player != null)
+        {
+            // Occlusion Culling. Si el jugador está lo suficientemente lejos desactive el collider para ahorrar recursos.
+            if ((transform.position - player.transform.position).magnitude > OcclusionCullingDistance) _collider.enabled = false;
+            else _collider.enabled = true;
+        }
+        else if (!GameManager.Instance.nachoNullPrinted)
+        {
+            Debug.LogWarning("Che macho, Naacho es null");
+            GameManager.Instance.nachoNullPrinted = true;
+        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

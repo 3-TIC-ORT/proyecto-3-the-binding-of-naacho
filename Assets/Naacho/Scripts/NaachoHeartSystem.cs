@@ -49,7 +49,7 @@ public class NaachoHeartSystem : MonoBehaviour
         for(int i = 0; startingLife > i; i++) {
             Life[i] = new Heart();
         }
-        heartsRenderer = GameObject.Find("Hearts").GetComponent<TextTest>();
+        heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
         LifeAmount = GetLifeAmount();
 
         heartsRenderer.UIUpdate(LifeAmount);
@@ -88,17 +88,21 @@ public class NaachoHeartSystem : MonoBehaviour
 
     void Damage(float dp = .5f) {
         int heartIdx = FindLastFullHeart();
-        if(heartIdx == -1 || Life[heartIdx].Amount <= 0)  {
-            Scene scene = SceneManager.GetActiveScene();
-            Destroy(gameObject);
-            SceneManager.LoadScene(scene.name);
-        }
+        if (heartIdx == -1 || Life[heartIdx].Amount <= 0) Death();
 
         Heart hrt = Life[heartIdx];
         if(hrt.Amount - dp >= 0) {
             hrt.Amount -= dp;
         }
         UpdateLife();
+    }
+    void Death()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        Destroy(gameObject); // Después no hay que destruirlo, si no dejarlo quieto con la animación de muerto :v
+        GameManager.Instance.stop = true;
+        GameManager.Instance.Fade(true, false);
+        SceneManager.LoadScene(scene.name);
     }
 
     public void Heal(float hp = .5f) {

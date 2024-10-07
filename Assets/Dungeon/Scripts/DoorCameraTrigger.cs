@@ -21,7 +21,15 @@ public class DoorCameraTrigger : MonoBehaviour
     }
     private void Update()
     {
-        if ((transform.position - PlayerManager.Instance.transform.position).magnitude > OcclusionCullingDistance) GetComponent<BoxCollider2D>().enabled = false;
-        else GetComponent<BoxCollider2D>().enabled = true;
+        if (PlayerManager.Instance != null) 
+        {
+            if ((transform.position - PlayerManager.Instance.transform.position).magnitude > OcclusionCullingDistance) GetComponent<BoxCollider2D>().enabled = false;
+            else GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else if (!GameManager.Instance.nachoNullPrinted)
+        {
+            Debug.LogWarning("Che macho, Naacho es null");
+            GameManager.Instance.nachoNullPrinted = true;
+        }
     }
 }
