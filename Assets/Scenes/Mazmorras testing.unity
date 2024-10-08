@@ -18938,8 +18938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 92
-  roomsMin: 54
+  roomsLimit: 17
+  roomsMin: 8
   minCompleted: 0
   treasureRoomsAmount: 2
   currentTreasureRooms: 0
@@ -18994,7 +18994,7 @@ MonoBehaviour:
   - {fileID: 504261022165769184, guid: 0a5478d7a486e614eaf6a2677ca4e80e, type: 3}
   - {fileID: 504261022165769184, guid: 5a311779c29ab316baa182a1ce0b2633, type: 3}
   Jefes:
-  - {fileID: 2630085127539149274, guid: 011f210c0dcd677489b695b45984e1a3, type: 3}
+  - {fileID: 1059521551335919061, guid: de2ed677b0093d04a8eed41d635dbbd2, type: 3}
   doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
   items:
@@ -19944,6 +19944,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: Speed
+      value: 487
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: FireRate
+      value: 7.28
+      objectReference: {fileID: 0}
     - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: targetTilemap
       value: 
@@ -20506,7 +20514,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 342.74, y: 59.9}
+  m_SizeDelta: {x: 255.031, y: 29.316}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &2108906014
 GameObject:

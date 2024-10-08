@@ -17,7 +17,7 @@ public class RataJefe : Enemy
     {
         base.Start();
         isBoss = true;
-        animator = gameObject.GetComponent<Animator>();
+        //animator = gameObject.GetComponent<Animator>();
     }
     // Ve donde se está moviendo, si mayormente para un eje o para el otro. En función de eso setea la animación correspondiente.
     private void CheckMainDirection(Vector3 direction)
