@@ -331,7 +331,6 @@ public class RoomSpawner : MonoBehaviour
         Image rellenoBossBar = GameObject.Find("Relleno").GetComponent<Image>();
         rellenoBossBar.color = new Color(1, 1, 1, 1);
         GameObject.Find("Borde").GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        float maxHealth =GameObject.FindGameObjectWithTag("Boss").GetComponent<Enemy>().readableMaxHealth;
         float generalHealth=0;
         int enemiesConsidered = 0;
         foreach (GameObject enemy in enemies)

@@ -13,14 +13,12 @@ public class JefePrueba : Enemy
         Vector2 playerDir = (Vector2)(Player.transform.position - transform.position).normalized;
         rb2D.velocity = Speed * Time.deltaTime * playerDir;
         CheckMainDirection(playerDir);
-        rellenoBossBar.fillAmount = HealthPoints/maxHealth;
     }
     public override void Start()
     {
         base.Start();
         isBoss= true;
         animator = gameObject.GetComponent<Animator>();
-        rellenoBossBar = GameObject.Find("Relleno").GetComponent<Image>();
     }
     // Ve donde se está moviendo, si mayormente para un eje o para el otro. En función de eso setea la animación correspondiente.
     private void CheckMainDirection(Vector3 direction)
