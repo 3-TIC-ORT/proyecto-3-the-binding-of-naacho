@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UIElements;
+using DG.Tweening;
 public enum HeartTypes
 {
    Normal,
@@ -87,6 +89,7 @@ public class NaachoHeartSystem : MonoBehaviour
     }
 
     void Damage(float dp = .5f) {
+        if (!GameManager.Instance.cameraIsShaking) Feedback();
         int heartIdx = FindLastFullHeart();
         if (heartIdx == -1 || Life[heartIdx].Amount <= 0) Death();
 
@@ -103,6 +106,30 @@ public class NaachoHeartSystem : MonoBehaviour
         GameManager.Instance.stop = true;
         GameManager.Instance.Fade(true, false);
         SceneManager.LoadScene(scene.name);
+    }
+    void Feedback()
+    {
+        GameManager.Instance.cameraIsShaking = true;
+        GameObject cameraAim = GameObject.FindGameObjectWithTag("CameraAim");
+        CameraAim cameraAimScript = cameraAim.GetComponent<CameraAim>();
+        Transform cameraAimTransform = cameraAim.GetComponent<Transform>();
+        cameraAimTransform.DOMove(cameraAimTransform.position + new Vector3(1f, 1f, 0), cameraAimScript.cameraShakeSpeed).onComplete =
+        () => 
+        {
+            cameraAimTransform.DOMove(cameraAimTransform.position + new Vector3(-1f, -2f, 0), cameraAimScript.cameraShakeSpeed * 2).onComplete =
+           () => 
+           {
+               cameraAimTransform.DOMove(cameraAimTransform.position + new Vector3(-1f, 2f, 0), cameraAimScript.cameraShakeSpeed * 2).onComplete =
+              () => 
+              {
+                  cameraAimTransform.DOMove(cameraAimTransform.position + new Vector3(1f, -1f, 0), cameraAimScript.cameraShakeSpeed).onComplete=
+                  ()=>
+                  {
+                      GameManager.Instance.cameraIsShaking = false;
+                  };
+              };
+            };
+        };
     }
 
     public void Heal(float hp = .5f) {

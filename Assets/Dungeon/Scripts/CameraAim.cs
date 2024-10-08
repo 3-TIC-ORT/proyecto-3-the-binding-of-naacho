@@ -14,6 +14,7 @@ public class CameraAim : MonoBehaviour
     public float farCamera;
     [Tooltip("Es el tiempo de transición para expandir la cámara")]
     public float transitionSpeed;
+    public float cameraShakeSpeed;
     private void Start()
     {
         cfa = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraFollowingActivation>();

@@ -19649,6 +19649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stop: 0
   fadeSpeed: 0.75
+  nachoNullPrinted: 0
 --- !u!4 &727744455
 Transform:
   m_ObjectHideFlags: 0
@@ -20050,6 +20051,7 @@ MonoBehaviour:
   nearCamera: 6.5
   farCamera: 7.5
   transitionSpeed: 1
+  cameraShakeSpeed: 0.05
 --- !u!1 &1684490927
 GameObject:
   m_ObjectHideFlags: 0
