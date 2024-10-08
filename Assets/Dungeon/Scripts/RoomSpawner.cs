@@ -335,8 +335,12 @@ public class RoomSpawner : MonoBehaviour
         int enemiesConsidered = 0;
         foreach (GameObject enemy in enemies)
         {
-            generalHealth+=enemy.GetComponent<Enemy>().HealthPoints/enemy.GetComponent<Enemy>().readableMaxHealth;
-            enemiesConsidered++;
+            Enemy enemyComponent = enemy.GetComponent<Enemy>();
+            if (enemyComponent.HealthPoints>0 && enemyComponent.readableMaxHealth>0)
+            {
+                generalHealth+=enemyComponent.HealthPoints/enemyComponent.readableMaxHealth;
+                enemiesConsidered++;
+            }
         }
         rellenoBossBar.fillAmount = generalHealth/enemiesConsidered;
     }
