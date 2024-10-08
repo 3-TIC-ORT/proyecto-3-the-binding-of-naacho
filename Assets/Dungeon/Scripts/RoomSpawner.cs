@@ -55,11 +55,7 @@ public class RoomSpawner : MonoBehaviour
                     Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, templates.insideRoomArea, 0);
                     foreach (Collider2D collider in colliders)
                     {
-                        if (collider.gameObject.CompareTag("Player"))
-                        {
-                            GameObject.Find("Borde").GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                            GameObject.Find("Relleno").GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                        }
+                        if (collider.gameObject.CompareTag("Player")) ControlBossBar(enemies);
                     }
                 }
             }
@@ -329,6 +325,23 @@ public class RoomSpawner : MonoBehaviour
         else if (openingDirection == 3) return Quaternion.Euler(0, 0, 90);
         else return Quaternion.Euler(0, 0, -90);
     }
+
+    void ControlBossBar(List<GameObject> enemies)
+    {
+        Image rellenoBossBar = GameObject.Find("Relleno").GetComponent<Image>();
+        rellenoBossBar.color = new Color(1, 1, 1, 1);
+        GameObject.Find("Borde").GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        float maxHealth =GameObject.FindGameObjectWithTag("Boss").GetComponent<Enemy>().readableMaxHealth;
+        float generalHealth=0;
+        int enemiesConsidered = 0;
+        foreach (GameObject enemy in enemies)
+        {
+            generalHealth+=enemy.GetComponent<Enemy>().HealthPoints/enemy.GetComponent<Enemy>().readableMaxHealth;
+            enemiesConsidered++;
+        }
+        rellenoBossBar.fillAmount = generalHealth/enemiesConsidered;
+    }
+
     // Si no soy ni la bossRoom ni una closedRoom (no queremos conectarlas con habitaciones) entonces spawnea roomConectores
     private void SpawnRoomConectors()
     {

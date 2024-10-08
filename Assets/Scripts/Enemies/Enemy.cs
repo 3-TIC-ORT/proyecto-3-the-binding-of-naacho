@@ -21,6 +21,8 @@ public abstract class Enemy : MonoBehaviour
     protected bool isBoss;
     protected GameObject Player;
     protected float maxHealth;
+    // Es para leerlo desde otros scripts. No se usa.
+    public float readableMaxHealth;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -32,6 +34,7 @@ public abstract class Enemy : MonoBehaviour
         defaultColor = SpRenderer.color;
         isBoss = false;
         maxHealth = HealthPoints;
+        readableMaxHealth = maxHealth;
     }
 
     // Update is called once per frame
