@@ -18938,8 +18938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 16
-  roomsMin: 7
+  roomsLimit: 92
+  roomsMin: 54
   minCompleted: 0
   treasureRoomsAmount: 2
   currentTreasureRooms: 0
@@ -19649,6 +19649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stop: 0
   fadeSpeed: 0.75
+  cameraIsShaking: 0
   nachoNullPrinted: 0
 --- !u!4 &727744455
 Transform:
@@ -20051,7 +20052,7 @@ MonoBehaviour:
   nearCamera: 6.5
   farCamera: 7.5
   transitionSpeed: 1
-  cameraShakeSpeed: 0.05
+  cameraShakeSpeed: 0.025
 --- !u!1 &1684490927
 GameObject:
   m_ObjectHideFlags: 0
