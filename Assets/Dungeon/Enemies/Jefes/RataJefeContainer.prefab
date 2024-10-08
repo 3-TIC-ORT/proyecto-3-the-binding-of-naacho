@@ -223,6 +223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oclussionCullingDistance: 13
+  componentsToDisable:
+  - CheeseEnemyGenerator
 --- !u!114 &6164272838081094688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +232,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3250911701056478950}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06f8a9016b5722d4d984f0383e492a3a, type: 3}
   m_Name: 

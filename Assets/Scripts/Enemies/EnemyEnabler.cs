@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class EnemyEnabler : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private BoxCollider2D _collider2D;
+    public string[] componentsToDisable;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,19 +24,45 @@ public class EnemyEnabler : MonoBehaviour
         {
             if ((transform.position - player.transform.position).magnitude > oclussionCullingDistance)
             {
-                sr.enabled = false;
-                _collider2D.enabled = false;
+                SetComponents(false);
             }
             else
             {
-                sr.enabled = true;
-                _collider2D.enabled = true;
+                SetComponents(true);
             }
         }
         else if (!GameManager.Instance.nachoNullPrinted)
         {
             Debug.LogWarning("Che macho, Naacho es null");
             GameManager.Instance.nachoNullPrinted = true;
+        }
+    }
+    private void SetComponents(bool enabling)
+    {
+        sr.enabled = enabling;
+        _collider2D.enabled = enabling;
+        foreach (string component in componentsToDisable)
+        {
+            // Agarrar el tipo de componente
+            Type type = Type.GetType(component);
+
+            if (type != null)
+            {
+                // Obtener el componente de este gameObject
+                Component comp = GetComponent(type);
+
+                if (comp != null)
+                {
+                    // Agarrar la propiedad enabled del tipo de componente
+                    var enabledProperty = type.GetProperty("enabled");
+                    if (enabledProperty != null)
+                    {
+                        // Desactivar el componente
+                        enabledProperty.SetValue(comp, enabling);
+                    }
+                    
+                }
+            }
         }
     }
 }
