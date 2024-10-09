@@ -49,7 +49,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Projectile"))
+        if (collision.gameObject.CompareTag("Projectile") && !collision.GetComponent<ProjectileScript>().isEnemy)
         {
             Damage(collision.GetComponent<ProjectileScript>().Damage);
         }

@@ -23,7 +23,6 @@ public class NaachoController : MonoBehaviour
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        ProjectileScript = GetComponent<ProjectileCreator>();
         animator = GetComponent<Animator>();
     }
 
@@ -68,7 +67,7 @@ public class NaachoController : MonoBehaviour
 
     void Shoot(Vector2 velocity)
     {
-        ProjectileScript.createProjectile(
+        ProjectileCreator.Instance.createProjectile(
             ProjectilePrefab,
             transform.position, 
             velocity, 

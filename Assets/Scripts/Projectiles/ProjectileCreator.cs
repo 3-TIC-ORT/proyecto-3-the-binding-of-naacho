@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class ProjectileCreator : MonoBehaviour
 {
+    public static ProjectileCreator Instance {get; private set;}
+
+    public void Awake() {
+        if(Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float range, float dp)
     {
         GameObject proj = Instantiate(prefab, position, Quaternion.identity);
