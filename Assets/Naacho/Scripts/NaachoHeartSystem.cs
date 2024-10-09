@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using DG.Tweening;
+
 public enum HeartTypes
 {
    Normal,
@@ -30,9 +31,11 @@ public class Heart {
 
 public class NaachoHeartSystem : MonoBehaviour
 {
+    [SerializeField] private TextTest heartsRenderer;
+    [SerializeField] private SpriteRenderer SpRenderer;
+    [SerializeField] private Color defaultColor;
     public int startingLife = 3;
     public Heart[] Life;
-    [SerializeField] private TextTest heartsRenderer;
     public const int MAX_LIFE = 12;
     public float LifeAmount;
 
@@ -47,8 +50,10 @@ public class NaachoHeartSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpRenderer = GetComponent<SpriteRenderer>();
+        defaultColor = SpRenderer.color;
         Life = new Heart[MAX_LIFE];
-        for(int i = 0; startingLife > i; i++) {
+        for(int i = 0; startingLife > i-1; i++) {
             Life[i] = new Heart();
         }
         heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
@@ -90,6 +95,7 @@ public class NaachoHeartSystem : MonoBehaviour
 
     void Damage(float dp = .5f) {
         if (!GameManager.Instance.cameraIsShaking) Feedback();
+        StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
         if (heartIdx == -1 || Life[heartIdx].Amount <= 0) Death();
 
@@ -167,4 +173,15 @@ public class NaachoHeartSystem : MonoBehaviour
         }
     }
 
+    public virtual IEnumerator VisualDamage()
+    {
+        SpRenderer.color = Color.red;
+
+        while (SpRenderer.color.g + SpRenderer.color.b < 2f)
+        {
+            SpRenderer.color = new Color(SpRenderer.color.r, SpRenderer.color.g+0.05f, SpRenderer.color.b+0.05f);
+            yield return null;
+        }
+        SpRenderer.color = defaultColor;
+    }
 }
