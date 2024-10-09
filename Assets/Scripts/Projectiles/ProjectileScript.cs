@@ -18,7 +18,7 @@ public class ProjectileScript : MonoBehaviour
     void Update()
     {
        lifespan += Time.deltaTime;
-       if((startingPos - (Vector2) transform.position).magnitude >= Range) Destroy(gameObject);
+       if(Vector2.Distance(startingPos, transform.position) >= Range) Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -29,6 +29,7 @@ public class ProjectileScript : MonoBehaviour
 
             if(!other.CompareTag("Enemy") && lifespan < 0.025f) return;
 
+            print($"Collided with {other.tag}");
             Destroy(gameObject);
         }
     }

@@ -193,8 +193,11 @@ public class NaachoHeartSystem : MonoBehaviour
     IEnumerator Iframes(Collider2D enemy) {
         gameObject.layer = 9;
         for(int i = 0; i < iframeTime; i++) {
+            if(i % 4 == 0) SpRenderer.enabled = false;
+            else SpRenderer.enabled = true;
             yield return null;
         }
+        SpRenderer.enabled = true;
         gameObject.layer = 0;
     }
 }
