@@ -19939,6 +19939,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: Damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: targetTilemap
       value: 
