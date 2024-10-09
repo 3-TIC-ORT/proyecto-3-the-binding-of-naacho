@@ -20049,6 +20049,7 @@ MonoBehaviour:
   farCamera: 7.5
   transitionSpeed: 1
   cameraShakeSpeed: 0.025
+  pauseTime: 0.25
 --- !u!1 &1684490927
 GameObject:
   m_ObjectHideFlags: 0
