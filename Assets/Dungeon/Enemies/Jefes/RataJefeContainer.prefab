@@ -86,6 +86,9 @@ MonoBehaviour:
   DamagePoints: 1
   Speed: 200
   readableMaxHealth: 0
+  embestidaSpeed: 700
+  embestidaDuration: 4
+  finishEmbestidaDuration: 1
 --- !u!61 &3554673755461477560
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,11 +198,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6404c63ed189f454eaf15c9b1ff9d94c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -209,7 +212,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3268247334233483422
 MonoBehaviour:
   m_ObjectHideFlags: 0
