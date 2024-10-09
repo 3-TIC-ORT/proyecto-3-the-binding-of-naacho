@@ -88,7 +88,7 @@ MonoBehaviour:
   readableMaxHealth: 0
   embestidaSpeed: 2000
   embestidaDuration: 4
-  finishEmbestidaDuration: 1
+  finishEmbestidaDuration: 0.25
 --- !u!61 &3554673755461477560
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -241,4 +241,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cheese: {fileID: 1638454596774647162, guid: 8b5577b58defeb6418e5863635ec122e, type: 3}
-  cheeseGenerationTime: 3

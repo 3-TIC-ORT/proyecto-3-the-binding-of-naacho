@@ -15,6 +15,8 @@ public class CameraAim : MonoBehaviour
     [Tooltip("Es el tiempo de transición para expandir la cámara")]
     public float transitionSpeed;
     public float cameraShakeSpeed;
+    [Tooltip("El tiempo en el cual todo está quieto sin moverse ni actuar después de haber transicioando de una room a otra")]
+    public float pauseTime;
     private void Start()
     {
         cfa = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraFollowingActivation>();

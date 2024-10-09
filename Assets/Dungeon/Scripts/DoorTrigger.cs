@@ -68,14 +68,14 @@ public class DoorTrigger : MonoBehaviour
         if (playerPos.y - transform.position.y < 0)
         {
             cameraAimTransform.DOMoveX(transform.position.x, cameraTransitionSpeed).SetEase(Ease.Linear);
-            cameraAimTransform.DOMoveY(cameraAimTransform.position.y + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
+            cameraAimTransform.DOMoveY(cameraAimTransform.position.y + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime));};
             playerPos.y += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
             cameraAimTransform.DOMoveX(transform.position.x, cameraTransitionSpeed).SetEase(Ease.Linear);
-            cameraAimTransform.DOMoveY(cameraAimTransform.position.y - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
+            cameraAimTransform.DOMoveY(cameraAimTransform.position.y - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.y -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
@@ -87,21 +87,22 @@ public class DoorTrigger : MonoBehaviour
         if (playerPos.x - transform.position.x < 0)
         {   
             cameraAimTransform.DOLocalMoveY(transform.position.y,cameraTransitionSpeed).SetEase(Ease.Linear);
-            cameraAimTransform.DOMoveX(cameraAimTransform.position.x + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime; 
+            cameraAimTransform.DOMoveX(cameraAimTransform.position.x + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.x += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
             cameraAimTransform.DOLocalMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
-            cameraAimTransform.DOMoveX(cameraAimTransform.position.x - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = ManageCameraAndTime;
+            cameraAimTransform.DOMoveX(cameraAimTransform.position.x - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.x -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
     }
     // Mueve al jugador a la siguiente habitación. ¿Viste? que locura.
-    private void ManageCameraAndTime()
+    IEnumerator ManageCameraAndTime(float timeToWait)
     {
+        yield return new WaitForSecondsRealtime(timeToWait);
         if (GameManager.Instance.stop) GameManager.Instance.stop = false;
     }
     // Se llama cuando se colisiona con un roomConector. Si las dos habitaciones están conectadas entonces soy necesario y no me destruyo

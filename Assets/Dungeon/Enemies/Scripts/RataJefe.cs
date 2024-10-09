@@ -32,7 +32,7 @@ public class RataJefe : Enemy
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(2f);
             GetComponent<CheeseEnemyGenerator>().GenerateCheese();
             yield return new WaitForSecondsRealtime(2f);
             Vector2 AttackDirection = (playerPos.position - transform.position).normalized;
