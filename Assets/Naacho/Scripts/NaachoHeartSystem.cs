@@ -175,6 +175,9 @@ public class NaachoHeartSystem : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Item")) {
             other.GetComponent<Item>().onPickup();
+        } else if(other.CompareTag("Projectile") && other.GetComponent<ProjectileScript>().isEnemy) {
+            Damage(other.GetComponent<ProjectileScript>().Damage);
+            StartCoroutine(Iframes(other));
         }
     }
 
