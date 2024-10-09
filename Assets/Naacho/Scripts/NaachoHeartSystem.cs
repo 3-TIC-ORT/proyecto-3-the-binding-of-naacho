@@ -33,6 +33,7 @@ public class NaachoHeartSystem : MonoBehaviour
 {
     [SerializeField] private TextTest heartsRenderer;
     [SerializeField] private SpriteRenderer SpRenderer;
+    [SerializeField] private BoxCollider2D NaachoHitbox;
     [SerializeField] private Color defaultColor;
     public int startingLife = 3;
     public Heart[] Life;
@@ -50,7 +51,9 @@ public class NaachoHeartSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        NaachoHitbox = GetComponent<BoxCollider2D>();
         SpRenderer = GetComponent<SpriteRenderer>();
+        heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
         defaultColor = SpRenderer.color;
         Life = new Heart[MAX_LIFE];
         for(int i = 0; startingLife > i-1; i++) {
@@ -63,8 +66,7 @@ public class NaachoHeartSystem : MonoBehaviour
     }
 
     public float GetLifeAmount() {
-        float amount = 0;
-        foreach(Heart h in Life) {
+        float amount = 0; foreach(Heart h in Life) {
             if(h == null) continue;
             amount += h.Amount;
         }
@@ -112,6 +114,7 @@ public class NaachoHeartSystem : MonoBehaviour
         GameManager.Instance.stop = true;
         GameManager.Instance.Fade(true, false);
         SceneManager.LoadScene(scene.name);
+        heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
     }
     void Feedback()
     {
@@ -164,6 +167,7 @@ public class NaachoHeartSystem : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("Enemy")) {
             Damage(.5f);
+            StartCoroutine(Iframes(collision.collider));
         }
     }
 
@@ -173,7 +177,7 @@ public class NaachoHeartSystem : MonoBehaviour
         }
     }
 
-    public virtual IEnumerator VisualDamage()
+    IEnumerator VisualDamage()
     {
         SpRenderer.color = Color.red;
 
@@ -183,5 +187,13 @@ public class NaachoHeartSystem : MonoBehaviour
             yield return null;
         }
         SpRenderer.color = defaultColor;
+    }
+
+    IEnumerator Iframes(Collider2D enemy) {
+        gameObject.layer = 9;
+        for(int i = 0; i < 60; i++) {
+            yield return null;
+        }
+        gameObject.layer = 0;
     }
 }
