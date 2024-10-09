@@ -35,6 +35,7 @@ public class NaachoHeartSystem : MonoBehaviour
     [SerializeField] private SpriteRenderer SpRenderer;
     [SerializeField] private BoxCollider2D NaachoHitbox;
     [SerializeField] private Color defaultColor;
+    public int iframeTime;
     public int startingLife = 3;
     public Heart[] Life;
     public const int MAX_LIFE = 12;
@@ -191,7 +192,7 @@ public class NaachoHeartSystem : MonoBehaviour
 
     IEnumerator Iframes(Collider2D enemy) {
         gameObject.layer = 9;
-        for(int i = 0; i < 60; i++) {
+        for(int i = 0; i < iframeTime; i++) {
             yield return null;
         }
         gameObject.layer = 0;

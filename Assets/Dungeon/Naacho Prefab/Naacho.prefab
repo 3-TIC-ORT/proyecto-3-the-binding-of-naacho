@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 7930061495138171272}
   - component: {fileID: 2058319839953632975}
   - component: {fileID: 4891025151309052888}
+  - component: {fileID: 9198149418530951050}
   - component: {fileID: 5278563545667208648}
   m_Layer: 0
   m_Name: Naacho
@@ -287,12 +288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888eb0a0fb75624b59b0c4b29dbb9a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 290
+  Speed: 487
   Friction: 0.85
   ProjectilePrefab: {fileID: 351863288308598636, guid: 2d348eadb83644cc79cce2218c4f813f, type: 3}
   shotSpray: 0.05
   shootSpeed: 10
-  FireRate: 3.5
+  FireRate: 7.28
   Range: 9
   Damage: 3
 --- !u!114 &4274172619971887666
@@ -319,8 +320,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffaaa1151496efa4c86b10ee072273ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingLife: 10
   heartsRenderer: {fileID: 0}
+  SpRenderer: {fileID: 0}
+  NaachoHitbox: {fileID: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  iframeTime: 30
+  startingLife: 10
   LifeAmount: 0
 --- !u!95 &2058319839953632975
 Animator:
@@ -361,6 +366,23 @@ MonoBehaviour:
   tileOpened: {fileID: 11400000, guid: 13b4583337fc1e34f8c0a5c3a94185cd, type: 2}
   tileClosed: {fileID: 11400000, guid: 68195ec99b13b79468fe4d013c5c1731, type: 2}
   isFighting: 0
+--- !u!114 &9198149418530951050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020641590110592584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c807233afae4b45a3043dded0fcb09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HalfRoomXDistance: 8
+  HalfRoomYDistance: 5
+  followHorizontally: 0
+  followVertically: 0
+  transitionDuration: 0.5
 --- !u!114 &5278563545667208648
 MonoBehaviour:
   m_ObjectHideFlags: 0
