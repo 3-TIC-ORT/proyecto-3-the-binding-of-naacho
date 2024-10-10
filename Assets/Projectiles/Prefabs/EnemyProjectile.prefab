@@ -55,6 +55,7 @@ MonoBehaviour:
   - SpawnPoint
   - Untagged
   - RoomConector
+  - BigRoomTrigger
   isEnemy: 1
 --- !u!212 &-777225013895854250
 SpriteRenderer:

@@ -47,8 +47,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116f2929189032aca86289387996b677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalLifespan: 0
+  Range: 0
   Damage: 0.5
+  WhitelistedTags:
+  - Player
+  - Projectile
+  - SpawnPoint
+  - Untagged
+  - RoomConector
+  - BigRoomTrigger
+  isEnemy: 0
 --- !u!50 &1217812606565131716
 Rigidbody2D:
   serializedVersion: 4

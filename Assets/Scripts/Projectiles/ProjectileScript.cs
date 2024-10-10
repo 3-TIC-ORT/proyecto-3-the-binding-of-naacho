@@ -24,14 +24,11 @@ public class ProjectileScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (!other.gameObject.CompareTag(WhitelistedTags[0])) { /* Idx 0 is meant to be either the player or enemy */
-            foreach(string tag in WhitelistedTags)
-                if(other.CompareTag(tag))
-                    return;
-
-            print($"Collided with {other.tag}");
-            Destroy(gameObject);
-        }
+        foreach(string tag in WhitelistedTags)
+            if(other.CompareTag(tag)) return;
+        print($"Collided with {other.tag}");
+        Destroy(gameObject);
+        
         return;
     }
 }
