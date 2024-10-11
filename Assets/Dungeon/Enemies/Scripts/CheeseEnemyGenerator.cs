@@ -5,8 +5,9 @@ using UnityEngine;
 public class CheeseEnemyGenerator : MonoBehaviour
 {
     public GameObject cheese;
-    public void GenerateCheese()
+    public void GenerateCheese(Collider2D col)
     {
-        Instantiate(cheese, transform.position, Quaternion.identity, transform.parent.transform);
+        GameObject cheeseInstantiated=Instantiate(cheese, transform.position, Quaternion.identity, transform.parent.transform);
+        Physics2D.IgnoreCollision(cheeseInstantiated.GetComponent<BoxCollider2D>(),col);
     }
 }

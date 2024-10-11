@@ -33,7 +33,7 @@ public class RataJefe : Enemy
         while (true)
         {
             yield return new WaitForSecondsRealtime(2f);
-            GetComponent<CheeseEnemyGenerator>().GenerateCheese();
+            GetComponent<CheeseEnemyGenerator>().GenerateCheese(GetComponent<BoxCollider2D>());
             yield return new WaitForSecondsRealtime(2f);
             Vector2 AttackDirection = (playerPos.position - transform.position).normalized;
             rb.AddForce(AttackDirection * embestidaSpeed*Time.deltaTime, ForceMode2D.Impulse);
