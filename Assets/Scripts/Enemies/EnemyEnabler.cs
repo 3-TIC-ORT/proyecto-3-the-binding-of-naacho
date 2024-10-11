@@ -10,23 +10,20 @@ public class EnemyEnabler : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private BoxCollider2D _collider2D;
-    public string[] componentsToDisable;
+    public List<string> componentsToDisable;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         _collider2D = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        SetComponents(false);
     }
     private void Update()
     {
         if (player != null)
         {
-            if ((transform.position - player.transform.position).magnitude > oclussionCullingDistance)
-            {
-                SetComponents(false);
-            }
-            else
+            if ((transform.position - player.transform.position).magnitude < oclussionCullingDistance)
             {
                 SetComponents(true);
             }

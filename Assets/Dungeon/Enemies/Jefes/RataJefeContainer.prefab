@@ -86,7 +86,7 @@ MonoBehaviour:
   DamagePoints: 1
   Speed: 200
   readableMaxHealth: 0
-  embestidaSpeed: 2000
+  embestidaSpeed: 7000
   embestidaDuration: 4
   finishEmbestidaDuration: 0.25
 --- !u!61 &3554673755461477560
