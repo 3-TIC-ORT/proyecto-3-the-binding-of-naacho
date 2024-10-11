@@ -61,7 +61,6 @@ public abstract class Enemy : MonoBehaviour
         StartCoroutine(VisualDamage());
         if (HealthPoints <= 0) {
             OnDeath();
-            if (isBoss) Destroy(GameObject.Find("BossBar"));
             Destroy(gameObject);
         }
     }

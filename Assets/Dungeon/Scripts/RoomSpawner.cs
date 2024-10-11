@@ -45,19 +45,12 @@ public class RoomSpawner : MonoBehaviour
         // Cuando no hayan m�s enemigos en las bossRoom significa que el boss fue vencido. Spawnea el Hole para el siguiente piso.
         if (bossRoom && merger.tilemapsMerged)
         {
+            if (!GetComponent<BossBarManager>()) gameObject.AddComponent<BossBarManager>();
             List<GameObject> enemiesGroupPrefab = GetChildren(gameObject, false, "");
             foreach (GameObject enemieGroup in enemiesGroupPrefab)
             {
                 List<GameObject> enemies = GetChildren(enemieGroup, false, "");
                 if (enemies.Count == 0) SpawnHole();
-                else
-                {
-                    Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, templates.insideRoomArea, 0);
-                    foreach (Collider2D collider in colliders)
-                    {
-                        if (collider.gameObject.CompareTag("Player")) ControlBossBar(enemies);
-                    }
-                }
             }
         }
         else if (treasureRoom && merger.tilemapsMerged && !itemSpawned)
@@ -324,25 +317,6 @@ public class RoomSpawner : MonoBehaviour
         else if (openingDirection == 2) return Quaternion.Euler(0, 0, 0);
         else if (openingDirection == 3) return Quaternion.Euler(0, 0, 90);
         else return Quaternion.Euler(0, 0, -90);
-    }
-
-    void ControlBossBar(List<GameObject> enemies)
-    {
-        Image rellenoBossBar = GameObject.Find("Relleno").GetComponent<Image>();
-        rellenoBossBar.color = new Color(1, 1, 1, 1);
-        GameObject.Find("Borde").GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        float generalHealth=0;
-        int enemiesConsidered = 0;
-        foreach (GameObject enemy in enemies)
-        {
-            Enemy enemyComponent = enemy.GetComponent<Enemy>();
-            if (enemyComponent.HealthPoints>0 && enemyComponent.readableMaxHealth>0)
-            {
-                generalHealth+=enemyComponent.HealthPoints/enemyComponent.readableMaxHealth;
-                enemiesConsidered++;
-            }
-        }
-        rellenoBossBar.fillAmount = generalHealth/enemiesConsidered;
     }
 
     // Si no soy ni la bossRoom ni una closedRoom (no queremos conectarlas con habitaciones) entonces spawnea roomConectores
