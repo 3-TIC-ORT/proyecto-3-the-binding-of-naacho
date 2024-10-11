@@ -21,16 +21,19 @@ public abstract class Enemy : MonoBehaviour
     protected bool isBoss;
     protected GameObject Player;
     protected float maxHealth;
+    protected DoorDisabler doorDisabler;
     // Es para leerlo desde otros scripts. No se usa.
     public float readableMaxHealth;
-
+    public int ID;
     // Start is called before the first frame update
     public virtual void Start()
     {
+        ID = GetInstanceID();
         Player = GameObject.Find("Naacho");
         rb2D = GetComponent<Rigidbody2D>();
         Col2D = GetComponent<BoxCollider2D>();
         SpRenderer = GetComponent<SpriteRenderer>();
+        doorDisabler=PlayerManager.Instance.GetComponent<DoorDisabler>();
         defaultColor = SpRenderer.color;
         isBoss = false;
         maxHealth = HealthPoints;
@@ -60,6 +63,7 @@ public abstract class Enemy : MonoBehaviour
         HealthPoints -= dp;
         StartCoroutine(VisualDamage());
         if (HealthPoints <= 0) {
+            if (doorDisabler.enemiesIDsRecorded.Contains(ID)) doorDisabler.enemiesActivatedIDs.Remove(ID);
             OnDeath();
             Destroy(gameObject);
         }

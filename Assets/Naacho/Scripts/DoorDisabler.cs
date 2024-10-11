@@ -16,6 +16,8 @@ public class DoorDisabler : MonoBehaviour
     EnemyEnabler enemyEnabler;
     public bool isFighting;
     BoxCollider2D ActivationArea;
+    public List<int> enemiesActivatedIDs = new List<int>();
+    public List<int> enemiesIDsRecorded = new List<int>();
 
     void Start() {
         targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
@@ -64,21 +66,27 @@ public class DoorDisabler : MonoBehaviour
         //Debug.DrawLine(transform.position-new Vector3(AreaWidth, 0, 0), transform.position+new Vector3(AreaWidth, 0, 0), Color.red, 0.3f);
         //Debug.DrawLine(transform.position-new Vector3(0, AreaHeight, 0), transform.position+new Vector3(0, AreaHeight, 0), Color.red, 0.3f);
 
-        int enemiesAmount = 0;
         List<Vector2> spawnPointsPositions=new List<Vector2>();
         foreach(Collider2D col in colliders) {
             if (col!=null && col.CompareTag("Enemy"))
             {
-                enemiesAmount++;
+                int enemyID= col.gameObject.GetComponent<Enemy>().ID;
+                if (!enemiesIDsRecorded.Contains(enemyID)) 
+                {
+                    if (enemyID!=0)
+                    {
+                        enemiesIDsRecorded.Add(enemyID);
+                        enemiesActivatedIDs.Add(enemyID); 
+                    }
+                }
                 col.GetComponent<Enemy>().enabled = true;
             }
             else if (col != null && col.CompareTag("SpawnPoint"))
             {
                 spawnPointsPositions.Add((Vector2)col.gameObject.transform.position);
-
             }
 
-            if (enemiesAmount >0)
+            if (enemiesActivatedIDs.Count>0)
             {
                 if (targetTilemap!=null)
                 {
@@ -90,7 +98,7 @@ public class DoorDisabler : MonoBehaviour
                 }
                 else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
             }
-            else if (enemiesAmount==0)
+            else
             {
                 if (targetTilemap != null)
                 {
