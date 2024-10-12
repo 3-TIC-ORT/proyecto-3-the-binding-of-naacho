@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -6266737499801413365}
   - component: {fileID: -2015785975026990087}
   - component: {fileID: -6172620306073167661}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HandGrip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

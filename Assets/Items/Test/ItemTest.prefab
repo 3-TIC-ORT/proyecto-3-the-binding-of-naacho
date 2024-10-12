@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4405937413841155195}
   - component: {fileID: 4061118226604788042}
   - component: {fileID: -7607145900006892822}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ItemTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d97b6b4cc24428280276cb8c8e39c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Naacho: {fileID: 0}
   animationSpeed: 1
   heightVariation: 0
   oclussionCulling: 35
