@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 603683822291447195}
   - component: {fileID: 3268247334233483422}
   - component: {fileID: 6164272838081094688}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RataJefe
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -86,9 +86,16 @@ MonoBehaviour:
   DamagePoints: 1
   Speed: 200
   readableMaxHealth: 0
-  embestidaSpeed: 7000
+  ID: 0
+  delayBetweenAttacks: 1.5
+  embestidaSpeed: 8000
   embestidaDuration: 4
-  finishEmbestidaDuration: 0.25
+  finishEmbestidaDuration: 0.8
+  ballsConfiguration:
+  - {x: 15, y: 0}
+  - {x: 15, y: 36}
+  cheeseBall: {fileID: 7353566211661279237, guid: 1efad4d5d179a3f428d353a38a85ae37, type: 3}
+  cheeseBallSpeed: 550
 --- !u!61 &3554673755461477560
 BoxCollider2D:
   m_ObjectHideFlags: 0

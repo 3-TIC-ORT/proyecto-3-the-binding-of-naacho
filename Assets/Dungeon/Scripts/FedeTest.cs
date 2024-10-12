@@ -5,13 +5,8 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 public class FedeTest : MonoBehaviour
 {
-    public Vector3 paraDondeMeMuevo; 
-    private void Start() {
-        Debug.Log("PUPUPUI");
-        transform.Translate(paraDondeMeMuevo);
-    }
-    private void OnTriggerEnter2D(Collider2D col)
+    private void Start()
     {
-        Debug.Log("COLISIONNNNEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE   ");
+        transform.rotation = Quaternion.Euler(0f, 0f, 45);
     }
 }
