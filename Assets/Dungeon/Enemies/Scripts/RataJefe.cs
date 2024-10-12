@@ -77,7 +77,7 @@ public class RataJefe : Enemy
         int ballsGenerated = 0;
         while (ballsGenerated <= ballsAmount)
         {
-            float angle = (360 / ballsAmount) * ballsGenerated * Mathf.Deg2Rad + angleVariation;
+            float angle = ((360 / ballsAmount) * ballsGenerated + angleVariation) * Mathf.Deg2Rad;
             float X = Mathf.Cos(angle) * Mathf.Rad2Deg;
             float Y = Mathf.Sin(angle) * Mathf.Rad2Deg;
             Vector3 vectorAngle = new Vector3(X, Y, 0).normalized;
