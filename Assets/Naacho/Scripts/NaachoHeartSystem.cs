@@ -96,8 +96,8 @@ public class NaachoHeartSystem : MonoBehaviour
         return -1;
     }
 
-    void Damage(float dp = .5f) {
-        if (!GameManager.Instance.cameraIsShaking) Feedback();
+    public void Damage(float dp = .5f) {
+        if (!PlayerManager.Instance.cameraIsShaking) Feedback();
         StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
         if (heartIdx == -1 || Life[heartIdx].Amount <= 0) Death();
@@ -119,10 +119,11 @@ public class NaachoHeartSystem : MonoBehaviour
     }
     void Feedback()
     {
-        GameManager.Instance.cameraIsShaking = true;
+        PlayerManager.Instance.cameraIsShaking = true;
         GameObject cameraAim = GameObject.FindGameObjectWithTag("CameraAim");
         CameraAim cameraAimScript = cameraAim.GetComponent<CameraAim>();
         Transform cameraAimTransform = cameraAim.GetComponent<Transform>();
+        Vector3 initialPosition = cameraAimTransform.position;
         cameraAimTransform.DOMove(cameraAimTransform.position + new Vector3(1f, 1f, 0), cameraAimScript.cameraShakeSpeed).onComplete =
         () => 
         {
@@ -135,7 +136,11 @@ public class NaachoHeartSystem : MonoBehaviour
                   cameraAimTransform.DOMove(cameraAimTransform.position + new Vector3(1f, -1f, 0), cameraAimScript.cameraShakeSpeed).onComplete=
                   ()=>
                   {
-                      GameManager.Instance.cameraIsShaking = false;
+                      cameraAimTransform.DOMove(initialPosition, cameraAimScript.cameraShakeSpeed/2).onComplete = 
+                      () =>
+                      {
+                          PlayerManager.Instance.cameraIsShaking = false;
+                      };
                   };
               };
             };

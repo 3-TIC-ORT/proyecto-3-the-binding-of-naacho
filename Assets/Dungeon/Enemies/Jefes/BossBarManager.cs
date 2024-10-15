@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class BossBarManager : MonoBehaviour
@@ -40,18 +41,21 @@ public class BossBarManager : MonoBehaviour
         float generalHealth = 0;
         foreach (GameObject enemy in enemies)
         {
-            Enemy enemyComponent = enemy.GetComponent<Enemy>();
-            if (!IDs.Contains(enemy.GetInstanceID()))
+            if (enemy!=null) 
             {
-                if (enemyComponent.HealthPoints > 0 && enemyComponent.readableMaxHealth > 0)
-                { 
-                    totalMaxHealth += enemyComponent.readableMaxHealth; 
-                    IDs.Add(enemy.GetInstanceID());
+                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+                if (enemyComponent!=null && !IDs.Contains(enemyComponent.ID))
+                {
+                    if (enemyComponent!=null && enemyComponent.HealthPoints > 0 && enemyComponent.readableMaxHealth > 0)
+                    { 
+                        totalMaxHealth += enemyComponent.readableMaxHealth; 
+                        IDs.Add(enemyComponent.ID);
+                    }
                 }
-            }
-            if (enemyComponent.HealthPoints > 0 && enemyComponent.readableMaxHealth > 0)
-            {
-                generalHealth += enemyComponent.HealthPoints;
+                if (enemyComponent != null && enemyComponent.HealthPoints > 0 && enemyComponent.readableMaxHealth > 0)
+                {
+                    generalHealth += enemyComponent.HealthPoints;
+                }
             }
         }
         rellenoBossBar.fillAmount = generalHealth / totalMaxHealth;

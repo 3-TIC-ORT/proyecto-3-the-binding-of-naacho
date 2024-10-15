@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public bool cameraIsShaking;
     public static PlayerManager Instance { get; private set; }
     private void Awake()
     {

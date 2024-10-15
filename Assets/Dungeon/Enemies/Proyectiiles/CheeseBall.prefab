@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 700
   angle: {x: 0, y: 0, z: 0}
+  cheeseEnemy: {fileID: 1638454596774647162, guid: 8b5577b58defeb6418e5863635ec122e, type: 3}
+  rataCollider: {fileID: 0}
 --- !u!50 &1365683692070470319
 Rigidbody2D:
   serializedVersion: 4

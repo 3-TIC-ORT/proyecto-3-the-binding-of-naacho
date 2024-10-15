@@ -45,41 +45,71 @@ public class CameraFollowingActivation : MonoBehaviour
         }
         UpdateRaycasts();
         UnlockAxis();
-        CorrectCamera();
+        if (!PlayerManager.Instance.cameraIsShaking) CorrectCamera();
     }
     void CorrectCamera()
     {
-        if (TouchingWall(upColliders) && !upCollided)
+        if (TouchingWall(upColliders) && !upCollided && !cameraTargetIsNull())
         {
-            cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y-GetCollisionDistance(upColliders,upRayLongitude),transitionDuration);
-            upCollided = true;
+            float distance = GetCollisionDistance(upColliders, upRayLongitude);
+            if (distance!=0)
+            {
+                cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y-distance,transitionDuration);
+                upCollided = true;
+            }
         }
         else if (!TouchingWall(upColliders)) upCollided = false;
-        if (TouchingWall(downColliders) && !downCollided)
+        if (TouchingWall(downColliders) && !downCollided && !cameraTargetIsNull())
         {
-            cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + GetCollisionDistance(downColliders, downRayLongitude), transitionDuration);
-            downCollided = true;
+            float distance = GetCollisionDistance(downColliders, downRayLongitude);
+            if (distance != 0)
+            {
+                cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + distance, transitionDuration);
+                downCollided = true;
+            }
         }
         else if (!TouchingWall(downColliders)) downCollided = false;
-        if (TouchingWall(rightColliders) && !rightCollided)
+        if (TouchingWall(rightColliders) && !rightCollided && !cameraTargetIsNull())
         {
-            cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x-GetCollisionDistance(rightColliders, HalfRoomXDistance), transitionDuration);
-            rightCollided = true;
+            float distance = GetCollisionDistance(rightColliders, HalfRoomXDistance);
+            if (distance != 0)
+            {
+                cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x-distance, transitionDuration);
+                rightCollided = true;
+            }
         }
         else if (!TouchingWall(rightColliders)) rightCollided = false;
-        if (TouchingWall(leftColliders) && !leftCollided)
+        if (TouchingWall(leftColliders) && !leftCollided && !cameraTargetIsNull())
         {
-            cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + GetCollisionDistance(leftColliders, HalfRoomXDistance), transitionDuration);
-            leftCollided = true;
+            float distance = GetCollisionDistance(leftColliders, HalfRoomXDistance);
+            if (distance != 0)
+            {
+                cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + distance, transitionDuration);
+                leftCollided = true;
+            }
         }
         else if (!TouchingWall(leftColliders)) leftCollided = false;
+    }
+    bool cameraTargetIsNull()
+    {
+        if (cameraTarget == null) return true;
+        else return false;
     }
     float GetCollisionDistance(RaycastHit2D[] colliders, float rayMagnitude)
     {
         foreach (RaycastHit2D collider in colliders)
         {
             if (GameManager.Instance.stop) return 0f;
-            else if (collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger")) return rayMagnitude-collider.distance;
+            else if (collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger"))
+            {
+                if (rayMagnitude - collider.distance > 0.5f)
+                {
+                    Debug.Log(rayMagnitude - collider.distance);
+                    return rayMagnitude - collider.distance;
+                }
+                else return 0;
+
+            }
         }
         return 0f;
     }
@@ -100,18 +130,33 @@ public class CameraFollowingActivation : MonoBehaviour
     }
     private void UpdateRaycasts()
     {
-        // SE LE RESTAN 0.7 UNIDADES ABAJO PARA EMPIECEN EN LAS PATAS DE NAACHO. CONSIDERAR ESTO PARA PROBLEMAS EN EL FUTURO.
-        upRay = new Ray(transform.position+Vector3.down*0.55f, Vector2.up);
+        // Definir el color predeterminado
+        Color rayColorUp = Color.green;
+        Color rayColorDown = Color.green;
+        Color rayColorRight = Color.green;
+        Color rayColorLeft = Color.green;
+
+        upRay = new Ray(transform.position + Vector3.down * 0.55f, Vector2.up);
         upColliders = Physics2D.RaycastAll(upRay.origin, upRay.direction, upRayLongitude);
+        if (upColliders.Length > 1) rayColorUp = Color.blue;
+
         downRay = new Ray(transform.position + Vector3.down * 0.55f, Vector2.down);
         downColliders = Physics2D.RaycastAll(downRay.origin, downRay.direction, downRayLongitude);
+        if (downColliders.Length > 1) rayColorDown = Color.blue;
+
         rightRay = new Ray(transform.position + Vector3.down * 0.55f, Vector2.right);
         rightColliders = Physics2D.RaycastAll(rightRay.origin, rightRay.direction, HalfRoomXDistance);
+        if (rightColliders.Length > 1) rayColorRight = Color.blue;
+
         leftRay = new Ray(transform.position + Vector3.down * 0.55f, Vector2.left);
         leftColliders = Physics2D.RaycastAll(leftRay.origin, leftRay.direction, HalfRoomXDistance);
-        Debug.DrawRay(upRay.origin, upRay.direction * upRayLongitude, Color.green);
-        Debug.DrawRay(downRay.origin, downRay.direction * downRayLongitude, Color.green);
-        Debug.DrawRay(rightRay.origin, rightRay.direction * HalfRoomXDistance, Color.green);
-        Debug.DrawRay(leftRay.origin, leftRay.direction * HalfRoomXDistance, Color.green);
+        if (leftColliders.Length > 1) rayColorLeft = Color.blue;
+
+        // Dibujar los rayos con su color correspondiente
+        Debug.DrawRay(upRay.origin, upRay.direction * upRayLongitude, rayColorUp);
+        Debug.DrawRay(downRay.origin, downRay.direction * downRayLongitude, rayColorDown);
+        Debug.DrawRay(rightRay.origin, rightRay.direction * HalfRoomXDistance, rayColorRight);
+        Debug.DrawRay(leftRay.origin, leftRay.direction * HalfRoomXDistance, rayColorLeft);
     }
 }
+

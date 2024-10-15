@@ -81,10 +81,11 @@ public class RataJefe : Enemy
             float X = Mathf.Cos(angle) * Mathf.Rad2Deg;
             float Y = Mathf.Sin(angle) * Mathf.Rad2Deg;
             Vector3 vectorAngle = new Vector3(X, Y, 0).normalized;
-            GameObject proyectil = Instantiate(cheeseBall, transform.position, Quaternion.identity);
+            GameObject proyectil = Instantiate(cheeseBall, transform.position, Quaternion.identity,transform.parent);
             CheeseProyectile proyectilScript = proyectil.GetComponent<CheeseProyectile>();
             proyectilScript.angle = vectorAngle;
             proyectilScript.speed = cheeseBallSpeed;
+            proyectilScript.rataCollider=GetComponent<BoxCollider2D>();
             ballsGenerated++;
         }
     }

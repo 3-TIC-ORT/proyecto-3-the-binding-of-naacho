@@ -92,8 +92,8 @@ MonoBehaviour:
   embestidaDuration: 4
   finishEmbestidaDuration: 0.8
   ballsConfiguration:
-  - {x: 15, y: 0}
-  - {x: 15, y: 36}
+  - {x: 10, y: 0}
+  - {x: 10, y: 36}
   cheeseBall: {fileID: 7353566211661279237, guid: 1efad4d5d179a3f428d353a38a85ae37, type: 3}
   cheeseBallSpeed: 550
 --- !u!61 &3554673755461477560

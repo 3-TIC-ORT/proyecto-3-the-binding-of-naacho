@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     private Image screen;
     private TilemapMerger merger;
     [Tooltip("Marca si la cámara se está moviendo al Naacho ser lastimado")]
-    public bool cameraIsShaking;
     public bool nachoNullPrinted;
+    
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);

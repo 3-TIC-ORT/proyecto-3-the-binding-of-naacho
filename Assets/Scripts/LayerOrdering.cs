@@ -22,9 +22,9 @@ public class LayerOrdering : MonoBehaviour
         Collider2D[] Collisions = Physics2D.OverlapCircleAll(transform.position, Radius, 0b1001000); 
         /* Layermask para layer de enemigos y decoraciones */
 
-        print($"{Collisions}, {Collisions.Length}");
+        //print($"{Collisions}, {Collisions.Length}");
 
-        print($"{Convert.ToString(0b1001 << 2, 2)}");
+        //print($"{Convert.ToString(0b1001 << 2, 2)}");
 
         if(Collisions.Length == 0) {
             SpRenderer.sortingOrder = baseLayer;
