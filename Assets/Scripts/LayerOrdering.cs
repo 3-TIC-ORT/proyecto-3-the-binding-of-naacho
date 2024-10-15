@@ -44,7 +44,7 @@ public class LayerOrdering : MonoBehaviour
         }
 
         if(closest != null) {
-            print($"{closest.transform.position.y}, {transform.position.y}");
+            //print($"{closest.transform.position.y}, {transform.position.y}");
             if(closest.transform.position.y < transform.position.y) {
                 closest.sortingOrder = baseLayer + 1;
                 SpRenderer.sortingOrder = baseLayer;
@@ -52,7 +52,7 @@ public class LayerOrdering : MonoBehaviour
                 closest.sortingOrder = baseLayer;
                 SpRenderer.sortingOrder = baseLayer + 1;
             }
-            print($"{closest.sortingOrder}, {SpRenderer.sortingOrder}");
+            //print($"{closest.sortingOrder}, {SpRenderer.sortingOrder}");
         }
     }
 

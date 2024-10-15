@@ -26,7 +26,7 @@ public class ProjectileScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         foreach(string tag in WhitelistedTags)
             if(other.CompareTag(tag)) return;
-        print($"Collided with {other.tag}");
+        //print($"Collided with {other.tag}");
         Destroy(gameObject);
         
         return;
