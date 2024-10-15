@@ -18938,8 +18938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 13
-  roomsMin: 8
+  roomsLimit: 15
+  roomsMin: 7
   minCompleted: 0
   treasureRoomsAmount: 2
   currentTreasureRooms: 0
@@ -19830,7 +19830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1379934878
 SpriteRenderer:
   m_ObjectHideFlags: 0

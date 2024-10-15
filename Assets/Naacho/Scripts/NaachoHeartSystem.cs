@@ -97,7 +97,7 @@ public class NaachoHeartSystem : MonoBehaviour
     }
 
     public void Damage(float dp = .5f) {
-        if (!PlayerManager.Instance.cameraIsShaking) Feedback();
+        if (!PlayerManager.Instance.cameraIsShaking && !PlayerManager.Instance.correctingCamera) Feedback();
         StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
         if (heartIdx == -1 || Life[heartIdx].Amount <= 0) Death();

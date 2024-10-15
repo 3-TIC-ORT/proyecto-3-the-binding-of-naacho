@@ -45,50 +45,72 @@ public class CameraFollowingActivation : MonoBehaviour
         }
         UpdateRaycasts();
         UnlockAxis();
-        if (!PlayerManager.Instance.cameraIsShaking) CorrectCamera();
+        if (!PlayerManager.Instance.cameraIsShaking) StartCoroutine(CorrectCamera());
     }
-    void CorrectCamera()
+    IEnumerator CorrectCamera()
     {
-        if (TouchingWall(upColliders) && !upCollided && !cameraTargetIsNull())
+        bool isInFreeZone = !TouchingWall(upColliders) && !TouchingWall(downColliders) && !TouchingWall(leftColliders) && !TouchingWall(rightColliders);
+        if (isInFreeZone && !cameraTargetIsNull())
         {
-            float distance = GetCollisionDistance(upColliders, upRayLongitude);
-            if (distance!=0)
+            PlayerManager.Instance.correctingCamera = true;
+            while (PlayerManager.Instance.correctingCamera==true)
             {
-                cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y-distance,transitionDuration);
-                upCollided = true;
+                UpdateRaycasts();
+                if (TouchingWall(upColliders) && !upCollided && !cameraTargetIsNull())
+                {
+                    float distance = GetCollisionDistance(upColliders, upRayLongitude);
+                    if (distance!=0)
+                    {
+                        cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y-distance,transitionDuration).onComplete=()=> 
+                        {
+                            PlayerManager.Instance.correctingCamera = false;
+                        };
+                        upCollided = true;
+                    }
+                }
+                else if (!TouchingWall(upColliders)) upCollided = false;
+                if (TouchingWall(downColliders) && !downCollided && !cameraTargetIsNull())
+                {
+                    float distance = GetCollisionDistance(downColliders, downRayLongitude);
+                    if (distance != 0)
+                    {
+                        cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + distance, transitionDuration).onComplete = () =>
+                        {
+                            PlayerManager.Instance.correctingCamera = false;
+                        };
+                        downCollided = true;
+                    }
+                }
+                else if (!TouchingWall(downColliders)) downCollided = false;
+                if (TouchingWall(rightColliders) && !rightCollided && !cameraTargetIsNull())
+                {
+                    float distance = GetCollisionDistance(rightColliders, HalfRoomXDistance);
+                    if (distance != 0)
+                    {
+                        cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x-distance, transitionDuration).onComplete = () =>
+                        {
+                            PlayerManager.Instance.correctingCamera = false;
+                        };
+                        rightCollided = true;
+                    }
+                }
+                else if (!TouchingWall(rightColliders)) rightCollided = false;
+                if (TouchingWall(leftColliders) && !leftCollided && !cameraTargetIsNull())
+                {
+                    float distance = GetCollisionDistance(leftColliders, HalfRoomXDistance);
+                    if (distance != 0)
+                    {
+                        cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + distance, transitionDuration).onComplete = () =>
+                        {
+                            PlayerManager.Instance.correctingCamera = false;
+                        };
+                        leftCollided = true;
+                    }
+                }
+                else if (!TouchingWall(leftColliders)) leftCollided = false;
+                yield return new WaitForSecondsRealtime(0.1f);
             }
         }
-        else if (!TouchingWall(upColliders)) upCollided = false;
-        if (TouchingWall(downColliders) && !downCollided && !cameraTargetIsNull())
-        {
-            float distance = GetCollisionDistance(downColliders, downRayLongitude);
-            if (distance != 0)
-            {
-                cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + distance, transitionDuration);
-                downCollided = true;
-            }
-        }
-        else if (!TouchingWall(downColliders)) downCollided = false;
-        if (TouchingWall(rightColliders) && !rightCollided && !cameraTargetIsNull())
-        {
-            float distance = GetCollisionDistance(rightColliders, HalfRoomXDistance);
-            if (distance != 0)
-            {
-                cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x-distance, transitionDuration);
-                rightCollided = true;
-            }
-        }
-        else if (!TouchingWall(rightColliders)) rightCollided = false;
-        if (TouchingWall(leftColliders) && !leftCollided && !cameraTargetIsNull())
-        {
-            float distance = GetCollisionDistance(leftColliders, HalfRoomXDistance);
-            if (distance != 0)
-            {
-                cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + distance, transitionDuration);
-                leftCollided = true;
-            }
-        }
-        else if (!TouchingWall(leftColliders)) leftCollided = false;
     }
     bool cameraTargetIsNull()
     {
@@ -102,13 +124,7 @@ public class CameraFollowingActivation : MonoBehaviour
             if (GameManager.Instance.stop) return 0f;
             else if (collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger"))
             {
-                if (rayMagnitude - collider.distance > 0.5f)
-                {
-                    Debug.Log(rayMagnitude - collider.distance);
-                    return rayMagnitude - collider.distance;
-                }
-                else return 0;
-
+                return rayMagnitude - collider.distance;
             }
         }
         return 0f;
