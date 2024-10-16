@@ -5,8 +5,6 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    protected GameObject EnemyObj;
-
     public string Name;
 
     public float HealthPoints;
@@ -22,6 +20,7 @@ public abstract class Enemy : MonoBehaviour
     protected GameObject Player;
     protected float maxHealth;
     protected DoorDisabler doorDisabler;
+    protected bool isDead = false;
     // Es para leerlo desde otros scripts. No se usa.
     public float readableMaxHealth;
     public int ID;
@@ -62,14 +61,17 @@ public abstract class Enemy : MonoBehaviour
     {
         HealthPoints -= dp;
         StartCoroutine(VisualDamage());
-        if (HealthPoints <= 0) {
-            if (doorDisabler.enemiesIDsRecorded.Contains(ID)) doorDisabler.enemiesActivatedIDs.Remove(ID);
-            OnDeath();
-            Destroy(gameObject);
+        if (HealthPoints <= 0 && !isDead) {
+            isDead = true;
+            StartCoroutine(OnDeath());
         }
     }
 
-    public virtual void OnDeath() {}
+    public virtual IEnumerator OnDeath() {
+        yield return null;
+        if (doorDisabler.enemiesIDsRecorded.Contains(ID)) doorDisabler.enemiesActivatedIDs.Remove(ID);
+        Destroy(gameObject);
+    }
 
     public virtual IEnumerator VisualDamage()
     {
