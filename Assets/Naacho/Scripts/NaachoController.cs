@@ -15,6 +15,7 @@ public class NaachoController : MonoBehaviour
     public float Damage;
     private float ShootTimeCounter = 0;
 
+    [SerializeField] Vector2 ShootingOffset;
     private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
     private Animator animator;
@@ -69,7 +70,7 @@ public class NaachoController : MonoBehaviour
     {
         ProjectileCreator.Instance.createProjectile(
             ProjectilePrefab,
-            transform.position, 
+            transform.position + (Vector3)ShootingOffset, 
             velocity, 
             Range,
             Damage

@@ -44,9 +44,10 @@ public class LechugaGrande : Enemy
         }
     }
 
-    public override void OnDeath()
+    public override IEnumerator OnDeath()
     {
-        StartCoroutine(SpawnLechuguitas(LechugitaOffspring, LechuguitaDelay));
+        yield return StartCoroutine(SpawnLechuguitas(LechugitaOffspring, LechuguitaDelay));
+        yield return base.OnDeath();
     }
 
     private IEnumerator SpawnLechuguitas(int amount, int frameDelay) {
