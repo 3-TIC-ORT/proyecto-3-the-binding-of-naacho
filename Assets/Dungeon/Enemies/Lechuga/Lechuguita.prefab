@@ -211,5 +211,6 @@ MonoBehaviour:
   Name: Lechuguita
   HealthPoints: 2
   DamagePoints: 0.5
-  Speed: 350
+  Speed: 180
   readableMaxHealth: 0
+  ID: 0
