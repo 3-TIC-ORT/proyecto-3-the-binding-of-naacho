@@ -11,8 +11,15 @@ public class DoorDisabler : MonoBehaviour
     public float AreaWidth;
     public float AreaHeight;
     public Tilemap targetTilemap;
-    public TileBase tileOpened;
-    public TileBase tileClosed;
+    [Header("Doors' sprites animation")]
+    public Sprite[] leftUpDoorAnimation;
+    public Sprite[] leftDownDoorAnimation;
+    public Sprite[] rightUpDoorAnimation;
+    public Sprite[] rightDownDoorAnimation;
+    public Sprite[] topLeftDoorAnimation;
+    public Sprite[] topRightDoorAnimation;
+    public Sprite[] downLeftDoorAnimation;
+    public Sprite[] downRightDoorAnimation;
     EnemyEnabler enemyEnabler;
     public bool isFighting;
     BoxCollider2D ActivationArea;
@@ -60,56 +67,56 @@ public class DoorDisabler : MonoBehaviour
         }
     }
 
-    void Update() {
-        Collider2D[] colliders = Physics2D.OverlapAreaAll(transform.position - new Vector3(AreaWidth, AreaHeight, 0), transform.position + new Vector3(AreaWidth, AreaHeight, 0));
+    //void Update() {
+    //    Collider2D[] colliders = Physics2D.OverlapAreaAll(transform.position - new Vector3(AreaWidth, AreaHeight, 0), transform.position + new Vector3(AreaWidth, AreaHeight, 0));
 
-        //Debug.DrawLine(transform.position-new Vector3(AreaWidth, 0, 0), transform.position+new Vector3(AreaWidth, 0, 0), Color.red, 0.3f);
-        //Debug.DrawLine(transform.position-new Vector3(0, AreaHeight, 0), transform.position+new Vector3(0, AreaHeight, 0), Color.red, 0.3f);
+    //    //Debug.DrawLine(transform.position-new Vector3(AreaWidth, 0, 0), transform.position+new Vector3(AreaWidth, 0, 0), Color.red, 0.3f);
+    //    //Debug.DrawLine(transform.position-new Vector3(0, AreaHeight, 0), transform.position+new Vector3(0, AreaHeight, 0), Color.red, 0.3f);
 
-        List<Vector2> spawnPointsPositions=new List<Vector2>();
-        foreach(Collider2D col in colliders) {
-            if (col!=null && col.CompareTag("Enemy"))
-            {
-                int enemyID= col.gameObject.GetComponent<Enemy>().ID;
-                if (!enemiesIDsRecorded.Contains(enemyID)) 
-                {
-                    if (enemyID!=0)
-                    {
-                        enemiesIDsRecorded.Add(enemyID);
-                        enemiesActivatedIDs.Add(enemyID); 
-                    }
-                }
-                col.GetComponent<Enemy>().enabled = true;
-            }
-            else if (col != null && col.CompareTag("SpawnPoint"))
-            {
-                spawnPointsPositions.Add((Vector2)col.gameObject.transform.position);
-            }
+    //    List<Vector2> spawnPointsPositions=new List<Vector2>();
+    //    foreach(Collider2D col in colliders) {
+    //        if (col!=null && col.CompareTag("Enemy"))
+    //        {
+    //            int enemyID= col.gameObject.GetComponent<Enemy>().ID;
+    //            if (!enemiesIDsRecorded.Contains(enemyID)) 
+    //            {
+    //                if (enemyID!=0)
+    //                {
+    //                    enemiesIDsRecorded.Add(enemyID);
+    //                    enemiesActivatedIDs.Add(enemyID); 
+    //                }
+    //            }
+    //            col.GetComponent<Enemy>().enabled = true;
+    //        }
+    //        else if (col != null && col.CompareTag("SpawnPoint"))
+    //        {
+    //            spawnPointsPositions.Add((Vector2)col.gameObject.transform.position);
+    //        }
 
-            if (enemiesActivatedIDs.Count>0)
-            {
-                if (targetTilemap!=null)
-                {
-                    isFighting = true;
-                    foreach (Vector2 position in spawnPointsPositions) 
-                    {
-                        changeDoorsSprite(tileClosed, position, false);
-                    }
-                }
-                else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
-            }
-            else
-            {
-                if (targetTilemap != null)
-                {
-                    isFighting = false;
-                    foreach (Vector2 position in spawnPointsPositions)
-                    {
-                        changeDoorsSprite(tileOpened, position, true);
-                    }
-                }
-                else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
-            }
-        }
-    }
+    //        if (enemiesActivatedIDs.Count>0)
+    //        {
+    //            if (targetTilemap!=null)
+    //            {
+    //                isFighting = true;
+    //                foreach (Vector2 position in spawnPointsPositions) 
+    //                {
+    //                    changeDoorsSprite(tileClosed, position, false);
+    //                }
+    //            }
+    //            else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
+    //        }
+    //        else
+    //        {
+    //            if (targetTilemap != null)
+    //            {
+    //                isFighting = false;
+    //                foreach (Vector2 position in spawnPointsPositions)
+    //                {
+    //                    changeDoorsSprite(tileOpened, position, true);
+    //                }
+    //            }
+    //            else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
+    //        }
+    //    }
+    //}
 }

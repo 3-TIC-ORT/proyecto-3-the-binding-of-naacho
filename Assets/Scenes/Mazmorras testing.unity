@@ -20002,6 +20002,150 @@ PrefabInstance:
       propertyPath: targetTilemap
       value: 
       objectReference: {fileID: 1180632376}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.data[0]
+      value: 
+      objectReference: {fileID: 422302955, guid: c592250b3f985334b841f8df38d80151, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.data[1]
+      value: 
+      objectReference: {fileID: -1199600590, guid: c592250b3f985334b841f8df38d80151, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.data[2]
+      value: 
+      objectReference: {fileID: 1811564638, guid: c592250b3f985334b841f8df38d80151, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.data[3]
+      value: 
+      objectReference: {fileID: -868290427, guid: c592250b3f985334b841f8df38d80151, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.data[4]
+      value: 
+      objectReference: {fileID: 1219239853, guid: c592250b3f985334b841f8df38d80151, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.data[5]
+      value: 
+      objectReference: {fileID: 138586821, guid: c592250b3f985334b841f8df38d80151, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.data[6]
+      value: 
+      objectReference: {fileID: -174135750, guid: c592250b3f985334b841f8df38d80151, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topLeftDoorAnimation.Array.data[7]
+      value: 
+      objectReference: {fileID: 933336184, guid: c592250b3f985334b841f8df38d80151, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.data[0]
+      value: 
+      objectReference: {fileID: -636496714, guid: 0560415495b006b4fbf239e70bc7ecc7, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.data[1]
+      value: 
+      objectReference: {fileID: 466856850, guid: 0560415495b006b4fbf239e70bc7ecc7, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.data[2]
+      value: 
+      objectReference: {fileID: -830521722, guid: 0560415495b006b4fbf239e70bc7ecc7, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.data[3]
+      value: 
+      objectReference: {fileID: 1277923536, guid: 0560415495b006b4fbf239e70bc7ecc7, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.data[4]
+      value: 
+      objectReference: {fileID: -132326646, guid: 0560415495b006b4fbf239e70bc7ecc7, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.data[5]
+      value: 
+      objectReference: {fileID: -615554933, guid: 0560415495b006b4fbf239e70bc7ecc7, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.data[6]
+      value: 
+      objectReference: {fileID: 1849092207, guid: 0560415495b006b4fbf239e70bc7ecc7, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downLeftDoorAnimation.Array.data[7]
+      value: 
+      objectReference: {fileID: -1625348305, guid: 0560415495b006b4fbf239e70bc7ecc7, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.data[0]
+      value: 
+      objectReference: {fileID: 215884454, guid: 9daf3f46f7c493241838b05c94810296, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.data[1]
+      value: 
+      objectReference: {fileID: 107624527, guid: 9daf3f46f7c493241838b05c94810296, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.data[2]
+      value: 
+      objectReference: {fileID: 1229575422, guid: 9daf3f46f7c493241838b05c94810296, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.data[3]
+      value: 
+      objectReference: {fileID: 611376730, guid: 9daf3f46f7c493241838b05c94810296, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.data[4]
+      value: 
+      objectReference: {fileID: -340412922, guid: 9daf3f46f7c493241838b05c94810296, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.data[5]
+      value: 
+      objectReference: {fileID: -538480352, guid: 9daf3f46f7c493241838b05c94810296, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.data[6]
+      value: 
+      objectReference: {fileID: 780804199, guid: 9daf3f46f7c493241838b05c94810296, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: topRightDoorAnimation.Array.data[7]
+      value: 
+      objectReference: {fileID: -694405774, guid: 9daf3f46f7c493241838b05c94810296, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.data[0]
+      value: 
+      objectReference: {fileID: 1673990510, guid: ff0308b9a0d29fb45ba7ba9fb71a9548, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.data[1]
+      value: 
+      objectReference: {fileID: -308463333, guid: ff0308b9a0d29fb45ba7ba9fb71a9548, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.data[2]
+      value: 
+      objectReference: {fileID: 147416148, guid: ff0308b9a0d29fb45ba7ba9fb71a9548, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.data[3]
+      value: 
+      objectReference: {fileID: -246194154, guid: ff0308b9a0d29fb45ba7ba9fb71a9548, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.data[4]
+      value: 
+      objectReference: {fileID: -11344342, guid: ff0308b9a0d29fb45ba7ba9fb71a9548, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.data[5]
+      value: 
+      objectReference: {fileID: -1323096996, guid: ff0308b9a0d29fb45ba7ba9fb71a9548, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.data[6]
+      value: 
+      objectReference: {fileID: -471154629, guid: ff0308b9a0d29fb45ba7ba9fb71a9548, type: 3}
+    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: downRightDoorAnimation.Array.data[7]
+      value: 
+      objectReference: {fileID: -1730604881, guid: ff0308b9a0d29fb45ba7ba9fb71a9548, type: 3}
     - target: {fileID: 5494600713321068078, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
