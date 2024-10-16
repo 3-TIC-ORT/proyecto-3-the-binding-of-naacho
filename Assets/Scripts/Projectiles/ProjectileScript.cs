@@ -6,7 +6,7 @@ public class ProjectileScript : MonoBehaviour
 {
     public float Range;
     public float Damage = .5f;
-    public string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector","BigRoomTrigger"}; // Tags the Projectile will pass through
+    public string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector", "BigRoomTrigger"}; // Tags the Projectile will pass through
     public bool isEnemy;
 
     private Vector2 startingPos;

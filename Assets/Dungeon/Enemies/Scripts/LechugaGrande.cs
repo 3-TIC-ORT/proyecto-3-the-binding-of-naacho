@@ -7,6 +7,7 @@ public class LechugaGrande : Enemy
     private Animator animator;
     [SerializeField] private GameObject Lechuguita;
     [SerializeField] private int LechugitaOffspring;
+    [SerializeField] private int LechuguitaDelay;
 
     public override void Start()
     {
@@ -45,9 +46,16 @@ public class LechugaGrande : Enemy
 
     public override void OnDeath()
     {
-        for(int i = 0; i < LechugitaOffspring; i++) {
+        StartCoroutine(SpawnLechuguitas(LechugitaOffspring, LechuguitaDelay));
+    }
+
+    private IEnumerator SpawnLechuguitas(int amount, int frameDelay) {
+        for(; amount > 0; amount--) {
             Vector3 lechuguitaPos = new Vector3(transform.position.x + Random.Range(-100, 100)/50, transform.position.y + Random.Range(-100, 100)/50);
             Instantiate(Lechuguita, lechuguitaPos, Quaternion.identity);
+            for(int f = 0; f < frameDelay; f++) {
+                yield return null;
+            }
         }
     }
 }

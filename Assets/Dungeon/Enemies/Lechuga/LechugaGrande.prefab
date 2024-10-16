@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oclussionCullingDistance: 13
+  componentsToDisable: []
 --- !u!95 &7295904905941962823
 Animator:
   serializedVersion: 5
@@ -211,5 +212,7 @@ MonoBehaviour:
   HealthPoints: 15
   DamagePoints: 0.25
   Speed: 70
+  readableMaxHealth: 0
   Lechuguita: {fileID: 7301792174166199590, guid: d8f00269f5df14031a162acd93194f2f, type: 3}
   LechugitaOffspring: 5
+  LechuguitaDelay: 10
