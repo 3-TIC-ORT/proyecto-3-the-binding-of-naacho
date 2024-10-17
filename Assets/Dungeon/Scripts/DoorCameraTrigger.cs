@@ -5,19 +5,31 @@ using UnityEngine;
 public class DoorCameraTrigger : MonoBehaviour
 {
     public float OcclusionCullingDistance;
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("DoorCameraTrigger"))
-        {
-            int myID = gameObject.GetInstanceID();
-            int colliderID = col.gameObject.GetInstanceID();
-            if (myID < colliderID) Destroy(col.gameObject);
-            else if (myID != colliderID) Destroy(gameObject);
-        }
-    }
+    public bool vertical;
+    public GameObject mySelf;
+    public bool doNotDestroyMe;
+    private RoomTemplates templates;
+  
     private void Start()
     {
-        transform.parent = GameObject.FindGameObjectWithTag("GeneralContainer").transform;
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(templates.centerBetweenHorizontalRooms * 2, 4), 0);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("SpawnPoint")) vertical = true;
+        }
+        if (vertical) transform.rotation = Quaternion.Euler(0, 0, 90);
+        if (!doNotDestroyMe)
+        {
+
+            Transform generalContainer = GameObject.FindGameObjectWithTag("GeneralContainer").transform;
+            GameObject doorCameraTrigger = Instantiate(mySelf, transform.position, Quaternion.identity, generalContainer);
+            DoorCameraTrigger doorCameraTriggerScript = doorCameraTrigger.GetComponent<DoorCameraTrigger>();
+            doorCameraTriggerScript.vertical= vertical;
+            doorCameraTriggerScript.doNotDestroyMe = true;
+            if (!doNotDestroyMe) Destroy(gameObject);
+            transform.parent = GameObject.FindGameObjectWithTag("GeneralContainer").transform;
+        }
     }
     private void Update()
     {

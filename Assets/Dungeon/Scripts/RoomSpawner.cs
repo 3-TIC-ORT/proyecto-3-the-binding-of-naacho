@@ -23,6 +23,7 @@ public class RoomSpawner : MonoBehaviour
 
     public TileBase holeTile;
     public GameObject itemHolder;
+    public int ID;
     void Start()
     {       
         grid = GameObject.Find("Grid");
@@ -30,6 +31,7 @@ public class RoomSpawner : MonoBehaviour
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
         Invoke("Spawn", 0.1f);
+        ID = GetInstanceID();
     }
     private void Update()
     {

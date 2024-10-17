@@ -91,3 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OcclusionCullingDistance: 30
+  vertical: 0
+  mySelf: {fileID: 5428042783085068618}
+  doNotDestroyMe: 0
