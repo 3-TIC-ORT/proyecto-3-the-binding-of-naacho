@@ -20,6 +20,7 @@ public class RoomSpawner : MonoBehaviour
     public bool bossRoom = false;
     public bool treasureRoom = false;
     public bool itemSpawned;
+    public bool LwithSpawnPoint;
 
     public TileBase holeTile;
     public GameObject itemHolder;
@@ -32,6 +33,7 @@ public class RoomSpawner : MonoBehaviour
         targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
         Invoke("Spawn", 0.1f);
         ID = GetInstanceID();
+        if (LwithSpawnPoint) SpawnEnemies();
     }
     private void Update()
     {

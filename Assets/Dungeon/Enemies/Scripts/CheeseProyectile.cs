@@ -23,6 +23,7 @@ public class CheeseProyectile : MonoBehaviour
             if (Random.value < 0.2f)
             {
                 GameObject queso = Instantiate(cheeseEnemy, transform.position, Quaternion.identity, transform.parent);
+                queso.GetComponent<EnemyEnabler>().SetComponents(true);
                 Physics2D.IgnoreCollision(queso.GetComponent<BoxCollider2D>(), rataCollider);
             }
             OnDestroy();
@@ -30,6 +31,7 @@ public class CheeseProyectile : MonoBehaviour
     }
     private void OnDestroy()
     {
+        Debug.Log("Me estoy por destruir");
         Destroy(gameObject);
     }
 }

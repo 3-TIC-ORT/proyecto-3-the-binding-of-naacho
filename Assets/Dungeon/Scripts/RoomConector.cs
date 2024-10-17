@@ -60,14 +60,14 @@ public class RoomConector : MonoBehaviour
     {
         if (pointDirection==3 || pointDirection==4)
         {
-            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.left * (templates.horizontalDoorToDoorRoomArea.x/2-0.5f)) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.right * (templates.horizontalDoorToDoorRoomArea.x/2+0.5f)) == tileConector)
+            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.left * (templates.horizontalDoorToDoorRoomArea.x/2-0.5f)) != wall && GetTile(targetTilemap, (Vector2)transform.position + Vector2.right * (templates.horizontalDoorToDoorRoomArea.x/2+0.5f)) != wall)
             {
                 bothRoomsAreConected = true;
             }
         }
         else
         {
-            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.down * (templates.verticalDoorToDoorRoomArea.y/2-0.5f)) == tileConector && GetTile(targetTilemap, (Vector2)transform.position + Vector2.up * (templates.verticalDoorToDoorRoomArea.y/2+0.5f)) == tileConector)
+            if (GetTile(targetTilemap, (Vector2)transform.position + Vector2.down * (templates.verticalDoorToDoorRoomArea.y/2-0.5f)) != wall && GetTile(targetTilemap, (Vector2)transform.position + Vector2.up * (templates.verticalDoorToDoorRoomArea.y/2+0.5f)) != wall)
             {
                 bothRoomsAreConected = true;
             }
@@ -75,8 +75,9 @@ public class RoomConector : MonoBehaviour
         if (!bothRoomsAreConected)
         {
             StartCoroutine(ConnectRooms());
-            if (pointDirection == 3) conectionAreaCollider.size = horizontalConectionSizeArea;
-            else if (pointDirection==1) conectionAreaCollider.size = verticalConectionSizeArea;
+            // Les resto 0.2 para que no destruyan a los doorCameraTrigger que no deben (están pegados)
+            if (pointDirection == 3) conectionAreaCollider.size = horizontalConectionSizeArea+new Vector2(-0.2f,-0.2f);
+            else if (pointDirection==1) conectionAreaCollider.size = verticalConectionSizeArea + new Vector2(-0.2f, -0.2f);
         }
         else Destroy(gameObject);
         
