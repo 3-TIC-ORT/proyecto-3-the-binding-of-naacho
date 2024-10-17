@@ -52,11 +52,26 @@ public class LechugaGrande : Enemy
 
     private IEnumerator SpawnLechuguitas(int amount, int frameDelay) {
         for(; amount > 0; amount--) {
-            Vector3 lechuguitaPos = new Vector3(transform.position.x + Random.Range(-100, 100)/50, transform.position.y + Random.Range(-100, 100)/50);
+            Vector3 lechuguitaPos = new Vector3(transform.position.x
+                + Random.Range(-100, 100)
+                / 50, transform.position.y + Random.Range(-100, 100)/50);
+
             Instantiate(Lechuguita, lechuguitaPos, Quaternion.identity);
             for(int f = 0; f < frameDelay; f++) {
                 yield return null;
             }
+        }
+    }
+
+    public override void Damage(float dp)
+    {
+        base.Damage(dp);
+        if(Random.Range(0, 100) < 5) {
+            Vector3 lechuguitaPos = new Vector3(transform.position.x
+                + Random.Range(-100, 100)
+                / 50, transform.position.y + Random.Range(-100, 100)/50);
+
+            Instantiate(Lechuguita, lechuguitaPos, Quaternion.identity);
         }
     }
 }
