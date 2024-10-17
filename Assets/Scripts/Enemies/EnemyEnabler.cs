@@ -7,12 +7,15 @@ public class EnemyEnabler : MonoBehaviour
 {
     private GameObject player;
     public float oclussionCullingDistance;
+    private Enemy enemy;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private BoxCollider2D _collider2D;
     public List<string> componentsToDisable;
+    public bool enabled;
     private void Start()
     {
+        enemy = GetComponent<Enemy>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         _collider2D = GetComponent<BoxCollider2D>();
@@ -21,23 +24,14 @@ public class EnemyEnabler : MonoBehaviour
     }
     private void Update()
     {
-        if (player != null)
-        {
-            if ((transform.position - player.transform.position).magnitude < oclussionCullingDistance)
-            {
-                SetComponents(true);
-            }
-        }
-        else if (!GameManager.Instance.nachoNullPrinted)
-        {
-            Debug.LogWarning("Che macho, Naacho es null");
-            GameManager.Instance.nachoNullPrinted = true;
-        }
+        
     }
-    private void SetComponents(bool enabling)
+    
+    public void SetComponents(bool enabling)
     {
+        enabled = enabling;
+        enemy.enabled = enabling;
         sr.enabled = enabling;
-        _collider2D.enabled = enabling;
         foreach (string component in componentsToDisable)
         {
             // Agarrar el tipo de componente

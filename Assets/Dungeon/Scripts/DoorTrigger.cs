@@ -14,6 +14,7 @@ public class DoorTrigger : MonoBehaviour
     private GameObject player;
     private Transform cameraAimTransform;
     private CameraAim cameraAim;
+    private DoorDisabler doorDisabler;
     public float OcclusionCullingDistance;
     public float subtractSize;
     private void Start()
@@ -23,6 +24,7 @@ public class DoorTrigger : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         cameraAimTransform = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<Transform>();
         cameraAim = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<CameraAim>();
+        doorDisabler = GameObject.FindGameObjectWithTag("Player").GetComponent<DoorDisabler>();
         // Si es una puerta vertical entonces rote la puerta 90°
         if (isVertical)
         {
@@ -102,7 +104,8 @@ public class DoorTrigger : MonoBehaviour
     // Mueve al jugador a la siguiente habitación. ¿Viste? que locura.
     IEnumerator ManageCameraAndTime(float timeToWait)
     {
-        yield return new WaitForSecondsRealtime(timeToWait);
+        // Se multiplica por 8 porque es la cantidad de frames en la animación de la puerta
+        yield return new WaitForSecondsRealtime(doorDisabler.doorAnimationTime*8);
         if (GameManager.Instance.stop) GameManager.Instance.stop = false;
     }
     // Se llama cuando se colisiona con un roomConector. Si las dos habitaciones están conectadas entonces soy necesario y no me destruyo

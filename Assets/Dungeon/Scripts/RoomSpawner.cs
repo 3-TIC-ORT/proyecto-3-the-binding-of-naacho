@@ -197,7 +197,10 @@ public class RoomSpawner : MonoBehaviour
                 // Ver que no haya ning�n spawnPoint que ya haya spawneado una room.
                 foreach (Collider2D collider in colliders)
                 {
-                    if (collider.gameObject.GetComponent<RoomSpawner>().spawned == true) noSpawnedOne = false;
+                    if (collider!=null && collider.gameObject!=null && collider.gameObject.GetComponent<RoomSpawner>() != null)
+                    {
+                        if (collider.gameObject.GetComponent<RoomSpawner>().spawned == true) noSpawnedOne = false;
+                    }
                 }
                 if (noSpawnedOne)
                 {

@@ -92,5 +92,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVertical: 0
   cameraTransitionSpeed: 0.5
-  OcclusionCullingDistance: 30
+  OcclusionCullingDistance: 50
   subtractSize: 0.2

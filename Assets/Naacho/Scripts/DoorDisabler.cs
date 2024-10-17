@@ -10,8 +10,8 @@ public class DoorDisabler : MonoBehaviour
 {
     private GameObject grid;
     private RoomTemplates roomTemplates;
-    public float AreaWidth;
-    public float AreaHeight;
+    public Vector2 spawnPointsDetectorArea;
+    public Vector2 enemiesDetectorArea;
     public Tilemap targetTilemap;
     [Header("Doors' sprites animation")]
     public Sprite[] leftUpDoorAnimation;
@@ -49,7 +49,7 @@ public class DoorDisabler : MonoBehaviour
         }
     }
     // Dale el nuevo Tile para la puerta. Dale la posición del spawnPoint detectado.
-    private void detectDoors(bool closing, Vector2 spawnPointPos, bool enableDoorLights)
+    public void detectDoors(bool closing, Vector2 spawnPointPos, bool enableDoorLights)
     {
         float hDistanciaBetweenDoorAndSpawnPoint = roomTemplates.centerBetweenHorizontalRooms * 2 - (roomTemplates.centerBetweenHorizontalRooms + roomTemplates.horizontalDoorToDoorRoomArea.x / 2);
         float vDistanciaBetweenDoorAndSpawnPoint = roomTemplates.centerBetweenVerticaltalRooms * 2 - (roomTemplates.centerBetweenVerticaltalRooms + roomTemplates.verticalDoorToDoorRoomArea.y / 2);
@@ -70,7 +70,6 @@ public class DoorDisabler : MonoBehaviour
             {
                 if ( col!=null && col.gameObject.CompareTag("DoorTrigger"))
                 {
-                    Debug.Log(direction.unitVector);
                     ChangeDoor(closing, doorPos, direction.unitVector);
                 }
                 else if (col != null && col.gameObject.CompareTag("RoomLight"))
@@ -86,25 +85,25 @@ public class DoorDisabler : MonoBehaviour
         List<List<Sprite>> sprites = CorrespondingSprites(doorDirection);
         if (!closing)
         {
-            foreach (Sprite sprite in sprites[0])
-            {
-                Debug.Log(sprite.name);
-            }
             StartCoroutine(ChangeDoorSprite(sprites, doorPos, false));
         }
         else
         {
             sprites[0].Reverse();
             sprites[1].Reverse();
-            foreach(Sprite sprite in sprites[0])
-            {
-                Debug.Log(sprite.name);
-            }
+
             StartCoroutine(ChangeDoorSprite(sprites, doorPos,true));
         }
     }
     IEnumerator ChangeDoorSprite(List<List<Sprite>> sprites, Vector2 doorPos, bool closing)
     {
+        if (closing) 
+        {
+            // Es el tiempo en el que la cámara pasa de una habitación a otra.
+            float transitionSpeed = GameObject.Find("DoorTrigger").GetComponent<DoorTrigger>().cameraTransitionSpeed;
+            // Se espera esta cantidad de tiempo para que el jugador aprecie la animación de Nina :v
+            yield return new WaitForSecondsRealtime(transitionSpeed-0.1f);
+        }
         // Uso la longitud de leftUpDoorAnimation porque da lo mismo, todas las animaciones deberían tener la misma
         // cantidad de frames
         for (int i = 0; i < leftUpDoorAnimation.Length; i++)
@@ -145,13 +144,26 @@ public class DoorDisabler : MonoBehaviour
     }
     void Update()
     {
-        Collider2D[] colliders = Physics2D.OverlapAreaAll(transform.position - new Vector3(AreaWidth, AreaHeight, 0), transform.position + new Vector3(AreaWidth, AreaHeight, 0));
-
-        //Debug.DrawLine(transform.position-new Vector3(AreaWidth, 0, 0), transform.position+new Vector3(AreaWidth, 0, 0), Color.red, 0.3f);
-        //Debug.DrawLine(transform.position-new Vector3(0, AreaHeight, 0), transform.position+new Vector3(0, AreaHeight, 0), Color.red, 0.3f);
-
+        Collider2D[] SPcolliders = Physics2D.OverlapAreaAll(transform.position - (Vector3)spawnPointsDetectorArea, transform.position + (Vector3)spawnPointsDetectorArea);
+        // Cálculo del área de detección en X y Y
+        Vector3 startX = transform.position - new Vector3(spawnPointsDetectorArea.x, 0, 0); // Inicio de la línea en X
+        Vector3 endX = transform.position + new Vector3(spawnPointsDetectorArea.x, 0, 0);   // Fin de la línea en X
+        Vector3 startY = transform.position - new Vector3(0, spawnPointsDetectorArea.y, 0); // Inicio de la línea en Y
+        Vector3 endY = transform.position + new Vector3(0, spawnPointsDetectorArea.y, 0);   // Fin de la línea en Y
+        // Dibuja dos líneas rojas, una horizontal (doble de largo en X) y otra vertical (doble de largo en Y)
+        Debug.DrawLine(startX, endX, Color.blue);  // Línea horizontal
+        Debug.DrawLine(startY, endY, Color.blue);  // Línea vertical
         List<GameObject> spawnPointsList = new List<GameObject>();
-        foreach (Collider2D col in colliders)
+        foreach (Collider2D col in SPcolliders)
+        {
+            if (col != null && col.CompareTag("SpawnPoint"))
+            {
+                spawnPointsList.Add(col.gameObject);
+            }
+        }
+
+        Collider2D[] enemiesColliders = Physics2D.OverlapAreaAll(transform.position-(Vector3)enemiesDetectorArea, transform.position + (Vector3)enemiesDetectorArea);
+        foreach (Collider2D col in enemiesColliders)
         {
             if (col != null && col.CompareTag("Enemy"))
             {
@@ -166,47 +178,42 @@ public class DoorDisabler : MonoBehaviour
                 }
                 col.GetComponent<Enemy>().enabled = true;
             }
-            else if (col != null && col.CompareTag("SpawnPoint"))
+        }
+        if (enemiesActivatedIDs.Count > 0)
+        {
+            if (targetTilemap != null)
             {
-                spawnPointsList.Add(col.gameObject);
-            }
-
-            if (enemiesActivatedIDs.Count > 0)
-            {
-                if (targetTilemap != null)
+                isFighting = true;
+                foreach (GameObject spawnPoint in spawnPointsList)
                 {
-                    isFighting = true;
-                    foreach (GameObject spawnPoint in spawnPointsList)
+                    RoomSpawner roomSpawner = spawnPoint.GetComponent<RoomSpawner>();
+                    if (!spawnPointsClosed.Contains(roomSpawner.ID))
                     {
-                        RoomSpawner roomSpawner = spawnPoint.GetComponent<RoomSpawner>();
-                        if (!spawnPointsClosed.Contains(roomSpawner.ID))
-                        {
-                            spawnPointsClosed.Add(roomSpawner.ID);
-                            Vector2 position = roomSpawner.gameObject.transform.position;
-                            detectDoors(true, position, false);
-                        }
+                        spawnPointsClosed.Add(roomSpawner.ID);
+                        Vector2 position = roomSpawner.gameObject.transform.position;
+                        detectDoors(true, position, false);
                     }
                 }
-                else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
             }
-            else
+            else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
+        }
+        else
+        {
+            if (targetTilemap != null)
             {
-                if (targetTilemap != null)
+                isFighting = false;
+                foreach (GameObject spawnPoint in spawnPointsList)
                 {
-                    isFighting = false;
-                    foreach (GameObject spawnPoint in spawnPointsList)
+                    RoomSpawner roomSpawner = spawnPoint.GetComponent<RoomSpawner>();
+                    if (spawnPointsClosed.Contains(roomSpawner.ID))
                     {
-                        RoomSpawner roomSpawner = spawnPoint.GetComponent<RoomSpawner>();
-                        if (spawnPointsClosed.Contains(roomSpawner.ID))
-                        {
-                            spawnPointsClosed.Remove(roomSpawner.ID);
-                            Vector2 position = roomSpawner.gameObject.transform.position;
-                            detectDoors(false, position, true);
-                        }
+                        spawnPointsClosed.Remove(roomSpawner.ID);
+                        Vector2 position = roomSpawner.gameObject.transform.position;
+                        detectDoors(false, position, true);
                     }
                 }
-                else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
             }
+            else targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
         }
     }
 }
