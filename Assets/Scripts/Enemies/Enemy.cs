@@ -12,6 +12,7 @@ public abstract class Enemy : MonoBehaviour
     public float DamagePoints;
 
     public uint Speed;
+    public bool hasKnockback = false;
 
     protected SpriteRenderer SpRenderer;
     protected Color defaultColor;
@@ -55,6 +56,7 @@ public abstract class Enemy : MonoBehaviour
             Debug.LogWarning("Che macho, Naacho es null");
             GameManager.Instance.nachoNullPrinted = true;
         }
+        if(hasKnockback) return;
     }
     public virtual void CheckFourDirections()
     {
@@ -91,6 +93,7 @@ public abstract class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Projectile") && !collision.GetComponent<ProjectileScript>().isEnemy)
         {
             Damage(collision.GetComponent<ProjectileScript>().Damage);
+            hasKnockback = true;
         }
     }
 
