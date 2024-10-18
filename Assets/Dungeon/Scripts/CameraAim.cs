@@ -25,6 +25,15 @@ public class CameraAim : MonoBehaviour
     }
     void Update()
     {
+        if (CheckIfBigRoom() && _camera.m_Lens.OrthographicSize == nearCamera)
+        {
+            DOTween.To(() => _camera.m_Lens.OrthographicSize, x => _camera.m_Lens.OrthographicSize = x, farCamera, transitionSpeed);
+        }
+        else if (!CheckIfBigRoom() && _camera.m_Lens.OrthographicSize == farCamera)
+        {
+            DOTween.To(() => _camera.m_Lens.OrthographicSize, x => _camera.m_Lens.OrthographicSize = x, nearCamera, transitionSpeed);
+        }
+        if (GameManager.Instance.stop) return;
         if (cfa.followVertically)
         {
             transform.DOMoveY(playerPos.position.y, followSpeed);
@@ -33,15 +42,6 @@ public class CameraAim : MonoBehaviour
         {
             transform.DOMoveX(playerPos.position.x, followSpeed);
         }
-        if (CheckIfBigRoom() && _camera.m_Lens.OrthographicSize==nearCamera)
-        {
-            DOTween.To(() => _camera.m_Lens.OrthographicSize, x => _camera.m_Lens.OrthographicSize = x, farCamera, transitionSpeed);
-        }
-        else if (!CheckIfBigRoom() && _camera.m_Lens.OrthographicSize==farCamera)
-        {
-            DOTween.To(() => _camera.m_Lens.OrthographicSize, x => _camera.m_Lens.OrthographicSize = x, nearCamera, transitionSpeed);
-        }
-
     }
     bool CheckIfBigRoom()
     {

@@ -88,14 +88,14 @@ public class DoorTrigger : MonoBehaviour
         float nextRoomCenter = templates.centerBetweenHorizontalRooms * 2;
         if (playerPos.x - transform.position.x < 0)
         {   
-            cameraAimTransform.DOLocalMoveY(transform.position.y,cameraTransitionSpeed).SetEase(Ease.Linear);
+            cameraAimTransform.DOMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveX(cameraAimTransform.position.x + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.x += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
-            cameraAimTransform.DOLocalMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
+            cameraAimTransform.DOMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveX(cameraAimTransform.position.x - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.x -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
