@@ -12,7 +12,7 @@ public class EnemyEnabler : MonoBehaviour
     private SpriteRenderer sr;
     private BoxCollider2D _collider2D;
     public List<string> componentsToDisable;
-    public bool enabled;
+    public bool enemyEnabled;
     private void Start()
     {
         enemy = GetComponent<Enemy>();
@@ -29,7 +29,7 @@ public class EnemyEnabler : MonoBehaviour
     
     public void SetComponents(bool enabling)
     {
-        enabled = enabling;
+        enemyEnabled = enabling;
         enemy.enabled = enabling;
         sr.enabled = enabling;
         foreach (string component in componentsToDisable)

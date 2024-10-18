@@ -14,24 +14,28 @@ public class CheeseProyectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(speed * angle * Time.deltaTime, ForceMode2D.Impulse);
     }
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         string colTag = col.gameObject.tag;
         if (colTag == "Player" || colTag == "Room")
         {
-            if (colTag == "Player") col.gameObject.GetComponent<NaachoHeartSystem>().Damage(1);
-            if (Random.value < 0.2f)
+            if (colTag == "Player")
+            {
+                col.gameObject.GetComponent<NaachoHeartSystem>().Damage(1);
+                Destroy(gameObject);
+            }
+            else if (Random.value < 0.2f)
             {
                 GameObject queso = Instantiate(cheeseEnemy, transform.position, Quaternion.identity, transform.parent);
                 queso.GetComponent<EnemyEnabler>().SetComponents(true);
                 Physics2D.IgnoreCollision(queso.GetComponent<BoxCollider2D>(), rataCollider);
+                Destroy(gameObject);
             }
-            OnDestroy();
+            Destroy(gameObject);
         }
     }
     private void OnDestroy()
     {
         Debug.Log("Me estoy por destruir");
-        Destroy(gameObject);
     }
 }

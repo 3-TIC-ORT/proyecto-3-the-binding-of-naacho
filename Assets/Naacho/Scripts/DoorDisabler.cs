@@ -167,16 +167,8 @@ public class DoorDisabler : MonoBehaviour
         {
             if (col != null && col.CompareTag("Enemy"))
             {
-                int enemyID = col.gameObject.GetComponent<Enemy>().ID;
-                if (!enemiesIDsRecorded.Contains(enemyID))
-                {
-                    if (enemyID != 0)
-                    {
-                        enemiesIDsRecorded.Add(enemyID);
-                        enemiesActivatedIDs.Add(enemyID);
-                    }
-                }
-                col.GetComponent<Enemy>().enabled = true;
+                EnemyEnabler enemyEnabler = col.GetComponent<EnemyEnabler>();
+                if (!enemyEnabler.enemyEnabled) enemyEnabler.SetComponents(true);
             }
         }
         if (enemiesActivatedIDs.Count > 0)

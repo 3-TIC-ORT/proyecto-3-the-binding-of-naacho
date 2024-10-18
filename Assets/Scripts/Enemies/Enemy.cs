@@ -74,9 +74,8 @@ public abstract class Enemy : MonoBehaviour
                 if (collider.collider.gameObject.CompareTag("Enemy"))
                 {
                     EnemyEnabler enemyEnablerScript = collider.collider.gameObject.GetComponent<EnemyEnabler>();
-                    if (!enemyEnablerScript.enabled)
+                    if (!enemyEnablerScript.enemyEnabled)
                     {
-                        enemyEnablerScript.enabled = true;
                         enemyEnablerScript.SetComponents(true);
                     }
                 }
