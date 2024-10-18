@@ -18878,12 +18878,15 @@ PrefabInstance:
       propertyPath: m_TileObjectToInstantiateArray.Array.data[1].m_Data
       value: 
       objectReference: {fileID: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_TileObjectToInstantiateArray.Array.data[0].m_RefCount
+      value: 4
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_TileObjectToInstantiateArray.Array.data[1].m_RefCount
+      value: 0
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
@@ -18893,9 +18896,11 @@ PrefabInstance:
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_Tiles.Array.data[238].second.m_TileObjectToInstantiateIndex
       value: 0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_Tiles.Array.data[255].second.m_TileObjectToInstantiateIndex
+      value: 0
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
@@ -19991,6 +19996,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: Speed
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: Damage
       value: 1
       objectReference: {fileID: 0}
@@ -19998,17 +20007,17 @@ PrefabInstance:
       propertyPath: FireRate
       value: 28.27
       objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: ShootingOffset.x
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: ShootingOffset.y
+      value: -0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3278774748117548295, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
-      propertyPath: AreaWidth
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
-      propertyPath: AreaHeight
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4891025151309052888, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: targetTilemap

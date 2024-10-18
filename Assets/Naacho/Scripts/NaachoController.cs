@@ -68,7 +68,7 @@ public class NaachoController : MonoBehaviour
 
     void Shoot(Vector2 velocity)
     {
-        ProjectileCreator.Instance.createProjectile(
+        ProjectileCreator.createProjectile(
             ProjectilePrefab,
             transform.position + (Vector3)ShootingOffset, 
             velocity, 

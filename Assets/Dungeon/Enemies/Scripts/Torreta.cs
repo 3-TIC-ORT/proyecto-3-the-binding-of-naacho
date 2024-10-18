@@ -29,7 +29,7 @@ public class Torreta : Enemy
     private void Shoot(Vector2 Target) {
         Vector2 direction = -((Vector2)transform.position - Target).normalized;
         Vector2 velocity = shotSpeed * direction;
-        ProjectileCreator.Instance.createProjectile(
+        ProjectileCreator.createProjectile(
                 ProjectilePrefab,
                 transform.position,
                 velocity,
