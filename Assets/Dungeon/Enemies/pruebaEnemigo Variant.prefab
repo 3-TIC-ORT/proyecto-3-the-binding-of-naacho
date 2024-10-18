@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: oclussionCullingDistance
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: -5558359069313032760, guid: ba21217f7357e6c49af06ac5197b0351, type: 3}
+      propertyPath: componentsToDisable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1265253367960309200, guid: ba21217f7357e6c49af06ac5197b0351, type: 3}
       propertyPath: Speed
       value: 125

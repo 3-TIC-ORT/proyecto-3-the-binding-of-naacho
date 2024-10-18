@@ -27,7 +27,9 @@ public class CheeseProyectile : MonoBehaviour
             else if (Random.value < 0.2f)
             {
                 GameObject queso = Instantiate(cheeseEnemy, transform.position, Quaternion.identity, transform.parent);
-                queso.GetComponent<EnemyEnabler>().SetComponents(true);
+                EnemyEnabler enemyEnabler = queso.GetComponent<EnemyEnabler>();
+                enemyEnabler.GetComponentsReferences();
+                enemyEnabler.SetComponents(true);
                 Physics2D.IgnoreCollision(queso.GetComponent<BoxCollider2D>(), rataCollider);
                 Destroy(gameObject);
             }

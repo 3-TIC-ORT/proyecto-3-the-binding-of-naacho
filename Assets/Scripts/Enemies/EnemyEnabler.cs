@@ -15,44 +15,43 @@ public class EnemyEnabler : MonoBehaviour
     public bool enemyEnabled;
     private void Start()
     {
+       GetComponentsReferences();
+    }
+    public void GetComponentsReferences()
+    {
         enemy = GetComponent<Enemy>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         _collider2D = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        SetComponents(false);
     }
-    private void Update()
-    {
-        
-    }
-    
     public void SetComponents(bool enabling)
     {
         enemyEnabled = enabling;
-        enemy.enabled = enabling;
+        enemy.enabled = enabling;   
         sr.enabled = enabling;
         foreach (string component in componentsToDisable)
         {
-            // Agarrar el tipo de componente
-            Type type = Type.GetType(component);
+            Type typeA = Type.GetType("UnityEngine." + component + ", UnityEngine");
+            Type typeB = Type.GetType(component);
+            if (typeA != null) EnableComponent(typeA, enabling);
+            else if (typeB!=null) EnableComponent(typeB, enabling);
+            else Debug.LogWarning("No se encontró el tipo: " + component);
+        }
+    }
+    private void EnableComponent(Type type, bool enabling)
+    {
+        // Agarrar el componente de este gameObject
+        Component comp = GetComponent(type);
 
-            if (type != null)
+        if (comp != null)
+        {
+            // Agarrar la propiedad enabled del tipo de componente
+            var enabledProperty = type.GetProperty("enabled");
+            if (enabledProperty != null)
             {
-                // Obtener el componente de este gameObject
-                Component comp = GetComponent(type);
-
-                if (comp != null)
-                {
-                    // Agarrar la propiedad enabled del tipo de componente
-                    var enabledProperty = type.GetProperty("enabled");
-                    if (enabledProperty != null)
-                    {
-                        // Desactivar el componente
-                        enabledProperty.SetValue(comp, enabling);
-                    }
-                    
-                }
+                // Desactivar o activar el componente
+                enabledProperty.SetValue(comp, enabling);
             }
         }
     }

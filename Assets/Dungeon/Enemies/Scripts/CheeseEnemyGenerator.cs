@@ -9,6 +9,8 @@ public class CheeseEnemyGenerator : MonoBehaviour
     {
         GameObject cheeseInstantiated=Instantiate(cheese, transform.position, Quaternion.identity, transform.parent.transform);
         Physics2D.IgnoreCollision(cheeseInstantiated.GetComponent<BoxCollider2D>(),col);
-        cheeseInstantiated.GetComponent<EnemyEnabler>().SetComponents(true);
+        EnemyEnabler enemyEnabler = cheeseInstantiated.GetComponent<EnemyEnabler>();
+        enemyEnabler.GetComponentsReferences();
+        enemyEnabler.SetComponents(true);
     }
 }
