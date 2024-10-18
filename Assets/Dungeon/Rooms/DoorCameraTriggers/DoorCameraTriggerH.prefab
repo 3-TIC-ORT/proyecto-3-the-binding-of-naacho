@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5117506319430225149}
   - component: {fileID: 2884812355745177367}
   - component: {fileID: 5241715036004137139}
+  - component: {fileID: 4865040237456372996}
   m_Layer: 0
   m_Name: DoorCameraTriggerH
   m_TagString: DoorCameraTrigger
@@ -94,3 +95,16 @@ MonoBehaviour:
   vertical: 0
   mySelf: {fileID: 5428042783085068618}
   doNotDestroyMe: 0
+--- !u!114 &4865040237456372996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428042783085068618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ab895e688a5bd4ba078e519808aa9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  occlusionCulling: 30

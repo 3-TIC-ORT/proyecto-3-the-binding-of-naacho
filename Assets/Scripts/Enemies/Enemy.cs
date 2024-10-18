@@ -29,7 +29,6 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Start()
     {
         ID = GetInstanceID();
-        enabled=true;
         Player = GameObject.Find("Naacho");
         rb2D = GetComponent<Rigidbody2D>();
         Col2D = GetComponent<BoxCollider2D>();

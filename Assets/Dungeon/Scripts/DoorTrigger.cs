@@ -64,20 +64,20 @@ public class DoorTrigger : MonoBehaviour
     private void MoveVertically(Vector3 playerPos)
     {
         float nextDoorDistance = templates.verticalDoorToDoorRoomArea.y + 1f;
-        float nextRoomCenter = templates.centerBetweenVerticaltalRooms * 2;
+        float nextRoomCenter = templates.centerBetweenVerticaltalRooms;
         // Identificar si el jugador está a la abajo de este objeto (puerta) o no
         // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
         if (playerPos.y - transform.position.y < 0)
         {
             cameraAimTransform.DOMoveX(transform.position.x, cameraTransitionSpeed).SetEase(Ease.Linear);
-            cameraAimTransform.DOMoveY(cameraAimTransform.position.y + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime));};
+            cameraAimTransform.DOMoveY(transform.position.y + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime));};
             playerPos.y += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
             cameraAimTransform.DOMoveX(transform.position.x, cameraTransitionSpeed).SetEase(Ease.Linear);
-            cameraAimTransform.DOMoveY(cameraAimTransform.position.y - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
+            cameraAimTransform.DOMoveY(transform.position.y - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.y -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
@@ -85,18 +85,18 @@ public class DoorTrigger : MonoBehaviour
     private void MoveHorizontally(Vector3 playerPos)
     {
         float nextDoorDistance = templates.horizontalDoorToDoorRoomArea.x + 1f;
-        float nextRoomCenter = templates.centerBetweenHorizontalRooms * 2;
+        float nextRoomCenter = templates.centerBetweenHorizontalRooms;
         if (playerPos.x - transform.position.x < 0)
         {   
             cameraAimTransform.DOMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
-            cameraAimTransform.DOMoveX(cameraAimTransform.position.x + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
+            cameraAimTransform.DOMoveX(transform.position.x + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.x += nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
         else
         {
             cameraAimTransform.DOMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
-            cameraAimTransform.DOMoveX(cameraAimTransform.position.x - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
+            cameraAimTransform.DOMoveX(transform.position.x - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.x -= nextDoorDistance;
             player.GetComponent<Transform>().position = playerPos;
         }
