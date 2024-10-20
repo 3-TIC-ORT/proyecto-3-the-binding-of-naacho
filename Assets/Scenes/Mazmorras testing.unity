@@ -18878,15 +18878,12 @@ PrefabInstance:
       propertyPath: m_TileObjectToInstantiateArray.Array.data[1].m_Data
       value: 
       objectReference: {fileID: 0}
-      objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_TileObjectToInstantiateArray.Array.data[0].m_RefCount
-      value: 4
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_TileObjectToInstantiateArray.Array.data[1].m_RefCount
-      value: 0
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
@@ -18896,11 +18893,9 @@ PrefabInstance:
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_Tiles.Array.data[238].second.m_TileObjectToInstantiateIndex
       value: 0
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_Tiles.Array.data[255].second.m_TileObjectToInstantiateIndex
-      value: 0
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8670084379266250405, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
@@ -18998,6 +18993,7 @@ MonoBehaviour:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
   - {fileID: 504261022165769184, guid: 0a5478d7a486e614eaf6a2677ca4e80e, type: 3}
   - {fileID: 504261022165769184, guid: 5a311779c29ab316baa182a1ce0b2633, type: 3}
+  - {fileID: 9197746970188747554, guid: 2b2bc6f25de058d4891913a353453374, type: 3}
   Jefes:
   - {fileID: 1059521551335919061, guid: de2ed677b0093d04a8eed41d635dbbd2, type: 3}
   doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}

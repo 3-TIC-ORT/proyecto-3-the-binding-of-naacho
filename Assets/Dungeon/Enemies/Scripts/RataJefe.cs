@@ -30,6 +30,7 @@ public class RataJefe : Enemy
     public override void Start()
     {
         base.Start();
+        canRecieveKnockback = false;
         isBoss = true;
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();

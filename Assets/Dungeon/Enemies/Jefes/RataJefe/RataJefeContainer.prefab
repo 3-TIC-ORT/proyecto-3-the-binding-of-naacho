@@ -82,12 +82,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Rata
-  HealthPoints: 50
+  HealthPoints: 120
   DamagePoints: 1
   Speed: 200
+  hasKnockback: 0
   readableMaxHealth: 0
   ID: 0
-  delayBetweenAttacks: 1.5
+  delayBetweenAttacks: 3
   embestidaSpeed: 8000
   embestidaDuration: 4
   finishEmbestidaDuration: 0.8
