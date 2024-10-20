@@ -53,6 +53,9 @@ MonoBehaviour:
   HealthPoints: 2
   DamagePoints: 1
   Speed: 180
+  canRecieveKnockback: 1
+  isBoss: 0
+  hasKnockback: 0
   readableMaxHealth: 0
   ID: 0
 --- !u!61 &5068832671024723420

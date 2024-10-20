@@ -32,6 +32,7 @@ public class ProjectileScript : MonoBehaviour
         if(!isEnemy && other.CompareTag("Enemy")) {
             Rigidbody2D enemrb;
             if(other.TryGetComponent<Rigidbody2D>(out enemrb)) {
+                if(!other.GetComponent<Enemy>().isBoss && other.GetComponent<Enemy>().canRecieveKnockback)
                 StartCoroutine(ApplyKnockback(enemrb));
             }
         }

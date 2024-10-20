@@ -12,13 +12,14 @@ public abstract class Enemy : MonoBehaviour
     public float DamagePoints;
 
     public uint Speed;
+    public bool canRecieveKnockback = true;
+    public bool isBoss;
     public bool hasKnockback = false;
 
     protected SpriteRenderer SpRenderer;
     protected Color defaultColor;
     protected BoxCollider2D Col2D;
     protected Rigidbody2D rb2D;
-    protected bool isBoss;
     protected GameObject Player;
     protected float maxHealth;
     protected DoorDisabler doorDisabler;
