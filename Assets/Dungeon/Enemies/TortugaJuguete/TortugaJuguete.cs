@@ -10,7 +10,7 @@ public class TortugaJuguete : Enemy
     public float timeBetweenWalks;
     public float walkDuration;
     [Tooltip("No es exacto")]
-    public float distanceFromWalls;
+    public float maxDistanceFromWalls;
     public bool activated=false;
     public override void Start()
     {
@@ -44,7 +44,7 @@ public class TortugaJuguete : Enemy
             }
             if (!playerDetected)
             {
-                Vector2 randomDirection = Random.insideUnitCircle.normalized;
+                Vector2 randomDirection = GetRandomDirection();
                 rb2D.velocity = randomDirection*Speed*Time.deltaTime;
             }
             yield return new WaitForSeconds(walkDuration);
@@ -53,6 +53,7 @@ public class TortugaJuguete : Enemy
     }
     private Vector2 GetRandomDirection()
     {
+        maxDistanceFromWalls = Speed * Time.deltaTime * walkDuration;
         float magnitude = 0.01f;
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         while (true)
@@ -60,12 +61,18 @@ public class TortugaJuguete : Enemy
             Ray ray = new Ray(transform.position, randomDirection);
             RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction,magnitude);
             foreach (RaycastHit2D hit in hits)
-            {  
-                //if (hit.collider.gameObject.CompareTag("Room"))
-                //{
-                //    if (magnitude)
-                //}
+            {
+                if (hit.collider.gameObject.CompareTag("Room"))
+                {
+                    if (magnitude >= maxDistanceFromWalls) return randomDirection;
+                    else
+                    {
+                        randomDirection = Random.insideUnitCircle.normalized;
+                        magnitude = 0.01f;
+                    }
+                }
             }
+            magnitude+=0.5f;
         }
     }
 }
