@@ -58,7 +58,7 @@ MonoBehaviour:
   readableMaxHealth: 0
   ID: 0
   detectionRadio: 4
-  timeBetweenWalks: 1.5
+  timeBetweenWalks: 1
   walkDuration: 0.4
   maxDistanceFromWalls: 0
   activated: 0
@@ -171,8 +171,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 16
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

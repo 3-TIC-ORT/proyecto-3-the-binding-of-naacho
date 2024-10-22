@@ -47,8 +47,10 @@ public class TortugaJuguete : Enemy
                 Vector2 randomDirection = GetRandomDirection();
                 rb2D.velocity = randomDirection*Speed*Time.deltaTime;
             }
+            hasKnockback = false;
             yield return new WaitForSeconds(walkDuration);
             rb2D.velocity=Vector2.zero;
+            hasKnockback = true;
         }
     }
     private Vector2 GetRandomDirection()
