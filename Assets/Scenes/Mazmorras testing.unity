@@ -20005,6 +20005,10 @@ PrefabInstance:
       value: 28.27
       objectReference: {fileID: 0}
     - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: ProjectilePrefab
+      value: 
+      objectReference: {fileID: 351863288308598636, guid: da16f35619a452a6380bffc21988ea78, type: 3}
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: ShootingOffset.x
       value: -0.15
       objectReference: {fileID: 0}
