@@ -2,26 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Splitter : MonoBehaviour
+public class Splitter : ProjectileScript
 {
     public GameObject splittingPrefab;
-    public float damageSplitMult = 0.5f;
+    public float DamageSplitMult = 0.5f;
+    public float RangeMult = 0.1f;
     public int childAmount = 3;
 
     float splitSpeed;
-    float range;
-    float damage;
 
-    void Start() {
-        Vector3 velocity = GetComponent<Rigidbody2D>().velocity;
-
-        splitSpeed = (Mathf.Abs(velocity.x) > Mathf.Abs(velocity.y)) ? velocity.x : velocity.y;
-
-        range = GetComponent<ProjectileScript>().Range;
-        damage = GetComponent<ProjectileScript>().Damage;
+    override protected void Start() {
+        base.Start();
+        splitSpeed = (Mathf.Abs(InitialVelocity.x) > Mathf.Abs(InitialVelocity.y)) ? 
+            InitialVelocity.x : InitialVelocity.y;
     }
 
-    void OnDestroy() {
+    override protected void onDestruction() {
         for(int i = 0; i < childAmount; i++) {
             Vector3 direction = new Vector3(Random.Range(-1.1f, 1.1f), Random.Range(-1.1f, 1.1f)).normalized;
             Vector3 velocity = new Vector3(direction.x * splitSpeed, direction.y * splitSpeed);
@@ -29,8 +25,8 @@ public class Splitter : MonoBehaviour
                     splittingPrefab, 
                     transform.position,
                     velocity,
-                    range,
-                    damage * damageSplitMult
+                    Range,
+                    Damage * DamageSplitMult
                     );
         }
     }

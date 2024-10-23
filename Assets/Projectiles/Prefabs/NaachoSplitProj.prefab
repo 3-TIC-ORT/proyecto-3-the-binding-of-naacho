@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6753099431298961871}
-  - component: {fileID: -6658603573393380795}
   - component: {fileID: 1217812606565131716}
   - component: {fileID: 3175568733143783522}
   - component: {fileID: -8100036328469308434}
@@ -36,29 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6658603573393380795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351863288308598636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 116f2929189032aca86289387996b677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Range: 0
-  Damage: 0.5
-  WhitelistedTags:
-  - Player
-  - Projectile
-  - SpawnPoint
-  - Untagged
-  - RoomConector
-  - BigRoomTrigger
-  isEnemy: 0
-  rb2D: {fileID: 0}
 --- !u!50 &1217812606565131716
 Rigidbody2D:
   serializedVersion: 4
@@ -82,9 +58,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &3175568733143783522
 SpriteRenderer:
@@ -185,6 +161,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827e9f70a8cf353a5aa24c1a148c164e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Range: 0
+  Damage: 0.5
+  WhitelistedTags:
+  - Player
+  - Projectile
+  - SpawnPoint
+  - Untagged
+  - RoomConector
+  - BigRoomTrigger
+  isEnemy: 0
+  InitialVelocity: {x: 0, y: 0, z: 0}
+  InitialIgnoreFrames: 4
   splittingPrefab: {fileID: 351863288308598636, guid: 2d348eadb83644cc79cce2218c4f813f, type: 3}
-  damageSplitMult: 0.5
+  DamageSplitMult: 0.5
+  RangeMult: 0.3
   childAmount: 3

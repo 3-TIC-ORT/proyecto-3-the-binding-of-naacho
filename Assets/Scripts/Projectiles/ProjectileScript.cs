@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,15 +9,20 @@ public class ProjectileScript : MonoBehaviour
     public float Damage = .5f;
     public string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector", "BigRoomTrigger"}; // Tags the Projectile will pass through
     public bool isEnemy;
-    public Rigidbody2D rb2D;
+    public Vector3 InitialVelocity;
 
-    private Vector2 startingPos;
     [Tooltip("Frames para ignorar cuando spawnea el projectil")]
     [SerializeField] private int InitialIgnoreFrames = 4;
     private int lifespan = 0;
 
-    void Start() {
+    private CircleCollider2D col;
+    private Rigidbody2D rb2D;
+    private Vector2 startingPos;
+
+    protected virtual void Start() {
         rb2D = GetComponent<Rigidbody2D>();
+        InitialVelocity = rb2D.velocity;
+        col = GetComponent<CircleCollider2D>();
         startingPos = transform.position;
         if(isEnemy) WhitelistedTags[0] = "Enemy";
     }
@@ -24,10 +30,23 @@ public class ProjectileScript : MonoBehaviour
     void Update()
     {
         lifespan++;
-        if(Vector2.Distance(startingPos, transform.position) >= Range) Destroy(gameObject);
+        if(Vector2.Distance(startingPos, transform.position) >= Range) {
+            onDestruction();
+            Destroy(gameObject);
+        }
+        if(lifespan >= InitialIgnoreFrames) {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, col.radius/2);
+            foreach(Collider2D collider in colliders) {
+                if(WhitelistedTags.Contains(collider.tag)) {
+                    continue;
+                }
+                onDestruction();
+                Destroy(gameObject);
+            }
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
         if(lifespan < InitialIgnoreFrames) {
             return;
         }
@@ -44,9 +63,8 @@ public class ProjectileScript : MonoBehaviour
                 }
             }
         }
-        Destroy(gameObject);
-        
-        return;
+        onDestruction();
+        Destroy(gameObject, 0.1f);
     }
 
     private IEnumerator ApplyKnockback(Rigidbody2D enemrb) {
@@ -59,4 +77,6 @@ public class ProjectileScript : MonoBehaviour
         enemrb.GetComponent<Enemy>().hasKnockback = false;
         print($"{enemrb.velocity}");
     }
+
+    protected virtual void onDestruction() {}
 }

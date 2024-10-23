@@ -57,6 +57,8 @@ MonoBehaviour:
   - RoomConector
   - BigRoomTrigger
   isEnemy: 0
+  rb2D: {fileID: 0}
+  InitialIgnoreFrames: 1
 --- !u!50 &1217812606565131716
 Rigidbody2D:
   serializedVersion: 4
@@ -82,7 +84,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &3175568733143783522
 SpriteRenderer:
