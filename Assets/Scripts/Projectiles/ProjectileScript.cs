@@ -11,7 +11,9 @@ public class ProjectileScript : MonoBehaviour
     public Rigidbody2D rb2D;
 
     private Vector2 startingPos;
-    private float lifespan = 0;
+    [Tooltip("Frames para ignorar cuando spawnea el projectil")]
+    [SerializeField] private int InitialIgnoreFrames = 4;
+    private int lifespan = 0;
 
     void Start() {
         rb2D = GetComponent<Rigidbody2D>();
@@ -21,19 +23,25 @@ public class ProjectileScript : MonoBehaviour
 
     void Update()
     {
-        lifespan += Time.deltaTime;
+        lifespan++;
         if(Vector2.Distance(startingPos, transform.position) >= Range) Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        if(lifespan < InitialIgnoreFrames) {
+            return;
+        }
         foreach(string tag in WhitelistedTags)
             if(other.CompareTag(tag)) return;
         //print($"Collided with {other.tag}");
         if(!isEnemy && other.CompareTag("Enemy")) {
             Rigidbody2D enemrb;
             if(other.TryGetComponent<Rigidbody2D>(out enemrb)) {
-                if(!other.GetComponent<Enemy>().isBoss && other.GetComponent<Enemy>().canRecieveKnockback)
-                StartCoroutine(ApplyKnockback(enemrb));
+                if(!other.GetComponent<Enemy>().isBoss && other.GetComponent<Enemy>().canRecieveKnockback) {
+                    other.GetComponent<Enemy>().Damage(Damage);
+                    other.GetComponent<Enemy>().hasKnockback = true;
+                    StartCoroutine(ApplyKnockback(enemrb));
+                }
             }
         }
         Destroy(gameObject);

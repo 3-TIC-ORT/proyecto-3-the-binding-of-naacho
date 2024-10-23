@@ -89,14 +89,7 @@ public abstract class Enemy : MonoBehaviour
             magnitude++;
         }
     }
-    public virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Projectile") && !collision.GetComponent<ProjectileScript>().isEnemy)
-        {
-            Damage(collision.GetComponent<ProjectileScript>().Damage);
-            hasKnockback = true;
-        }
-    }
+    public virtual void OnTriggerEnter2D(Collider2D collision) {}
 
     public virtual void Damage(float dp)
     {
