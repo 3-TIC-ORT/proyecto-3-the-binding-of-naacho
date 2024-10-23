@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mazmorras testing.unity
     guid: 91133be10e4313147a02bb4ee5ba6587
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 2583c400358c3ae498b67cbfc80a4725
   m_configObjects: {}
