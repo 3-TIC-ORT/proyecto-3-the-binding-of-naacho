@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modifier: FollowEnemies
+  changeProyectilColor: 1
   animationSpeed: 1
   heightVariation: 0
   oclussionCulling: 35

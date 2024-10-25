@@ -6,6 +6,7 @@ using UnityEngine;
 public class ProjectileCreator : MonoBehaviour
 {
     public static List<string> modifiers = new List<string>();
+    public static Color proyectilColor = new Color(1,1,1,1);
     public static void createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float range, float dp)
     {
         GameObject proj = Instantiate(prefab, position, Quaternion.identity);
@@ -17,6 +18,8 @@ public class ProjectileCreator : MonoBehaviour
         Rigidbody2D proj_rb2D = proj.GetComponent<Rigidbody2D>();
         ProjectileScript proj_script = proj.GetComponent<ProjectileScript>();
         SpriteRenderer proj_spr = proj.GetComponent<SpriteRenderer>();
+
+        proj_spr.color = proyectilColor;
 
         proj_rb2D.gravityScale = 0;
 

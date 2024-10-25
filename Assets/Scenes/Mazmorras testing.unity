@@ -18938,10 +18938,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsGenerated: 0
-  roomsLimit: 15
-  roomsMin: 7
+  roomsLimit: 8
+  roomsMin: 15
   minCompleted: 0
-  treasureRoomsAmount: 2
+  treasureRoomsAmount: 3
   currentTreasureRooms: 0
   treasureRoomSpawned: 0
   bossRoomSpawned: 0
@@ -19002,7 +19002,9 @@ MonoBehaviour:
   items:
   - {fileID: 2255056283135363523, guid: 5c4ce46a3bf8c4107882c12a8b69b456, type: 3}
   - {fileID: 3764741258683837243, guid: 60bfd6cfad79a4a709881ffab734a15d, type: 3}
+  specialItems:
   - {fileID: 6714608727884649795, guid: 2b790184ab4ebbf4aa1fa0ac20cb4e3c, type: 3}
+  - {fileID: 7481460279386920638, guid: d9a087ae21ca4b642b0ad3e9fef4e2a0, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
   LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 10, y: 10, z: 1}
@@ -20755,7 +20757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 12}
+  m_AnchoredPosition: {x: 0, y: 37.73}
   m_SizeDelta: {x: 488.5, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1840566601

@@ -6,7 +6,7 @@ using System;
 public class Item : MonoBehaviour
 {
     public string modifier;
-
+    public bool changeProyectilColor;
     protected GameObject Naacho;
     private SpriteRenderer spriteRenderer;
     protected NaachoController naachoController;
@@ -68,8 +68,18 @@ public class Item : MonoBehaviour
         if (modifier!=null)
         {
             ProjectileCreator.modifiers.Add(modifier);
+            if (changeProyectilColor) ChangeProyectilColor();
             Destroy(gameObject);
         }
+    }
+    public virtual void ChangeProyectilColor()
+    {
+        float randomValueR = UnityEngine.Random.Range(0f, 1f);
+        float randomValueG = UnityEngine.Random.Range(0f, 1f);
+        float randomValueB = UnityEngine.Random.Range(0f, 1f);
+
+        ProjectileCreator.proyectilColor = new Color(randomValueR, randomValueG, randomValueB);
+        
     }
 
 }

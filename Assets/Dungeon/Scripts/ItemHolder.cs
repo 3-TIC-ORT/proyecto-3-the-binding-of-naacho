@@ -13,10 +13,28 @@ public class ItemHolder : MonoBehaviour
     {
         naacho = GameObject.FindGameObjectWithTag("Player");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        float rand = Random.Range(0, templates.items.Length*2)/2;
-        item = Instantiate(templates.items[(int)Mathf.Floor(rand)], transform.position+Vector3.up*0.5f, Quaternion.identity,gameObject.transform);
+        
         //print(templates.items[(int)Mathf.Floor(rand)].name);
         boxCollider2D = GetComponent<BoxCollider2D>();
+        SpawnItem();
+    }
+    private void SpawnItem()
+    {
+        GameObject itemToSpawn;
+        int randA = Random.Range(0, 2);
+        if (randA == 0 || templates.specialItems.Count==0)
+        {
+            int randB = Random.Range(0, templates.items.Count * 2) / 2;
+            itemToSpawn = templates.items[randB];
+        }
+        else
+        {
+            int randB = Random.Range(0, templates.specialItems.Count * 2) / 2;
+            itemToSpawn = templates.specialItems[randB];
+            templates.specialItems.Remove(itemToSpawn);
+
+        }
+        item = Instantiate(itemToSpawn, transform.position + Vector3.up * 0.5f, Quaternion.identity, gameObject.transform);
     }
     private void Update()
     {

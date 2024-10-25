@@ -37,7 +37,6 @@ public class FollowEnemies : ProyectilModifier
                 return;
             }
             Vector2 newDirection = (targetTrans.position - transform.position).normalized;
-            Debug.Log(rb.velocity);
             rb.velocity = newDirection * proyectilScript.InitialVelocity.magnitude;
 
         }

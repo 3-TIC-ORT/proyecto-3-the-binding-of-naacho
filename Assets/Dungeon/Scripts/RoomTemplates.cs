@@ -35,7 +35,8 @@ public class RoomTemplates : MonoBehaviour
     public GameObject doorLight;
     [Header("Items")]
     public GameObject itemHolder;
-    public GameObject[] items;
+    public List<GameObject> items;
+    public List<GameObject> specialItems;
     [Header("Other")]
     public GameObject roomConector;
     public GameObject LWithSpawnPoint;
