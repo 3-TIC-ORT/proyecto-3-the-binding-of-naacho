@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353c40a326ac049ff88df9d3f19a1df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifier: FollowEnemies
   animationSpeed: 1
   heightVariation: 0
   oclussionCulling: 35

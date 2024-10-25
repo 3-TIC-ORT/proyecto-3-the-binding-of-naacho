@@ -1,8 +1,12 @@
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using System;
+
 abstract public class Item : MonoBehaviour
 {
+    public string modifier;
+
     protected GameObject Naacho;
     private SpriteRenderer spriteRenderer;
     protected NaachoController naachoController;
@@ -59,6 +63,12 @@ abstract public class Item : MonoBehaviour
             text.enabled = false;
         }
     }
-    public abstract void onPickup();
+    public virtual void onPickup()
+    {
+        if (modifier!=null)
+        {
+            ProjectileCreator.modifiers.Add(modifier);
+        }
+    }
 
 }
