@@ -5,6 +5,7 @@ using DG.Tweening;
 public class CameraFollowingActivation : MonoBehaviour
 {
     private CameraAim cameraTarget;
+    public bool isInFreeZone;
     public float HalfRoomXDistance;
     public float HalfRoomYDistance;
     private float upRayLongitude;
@@ -49,7 +50,7 @@ public class CameraFollowingActivation : MonoBehaviour
     }
     IEnumerator CorrectCamera()
     {
-        bool isInFreeZone = !TouchingWall(upColliders) && !TouchingWall(downColliders) && !TouchingWall(leftColliders) && !TouchingWall(rightColliders);
+        Debug.Log(isInFreeZone);
         if (isInFreeZone && !cameraTargetIsNull())
         {
             PlayerManager.Instance.correctingCamera = true;
@@ -111,6 +112,7 @@ public class CameraFollowingActivation : MonoBehaviour
                 yield return new WaitForSecondsRealtime(0.1f);
             }
         }
+        isInFreeZone = !TouchingWall(upColliders) && !TouchingWall(downColliders) && !TouchingWall(leftColliders) && !TouchingWall(rightColliders);
     }
     bool cameraTargetIsNull()
     {
@@ -140,6 +142,10 @@ public class CameraFollowingActivation : MonoBehaviour
     {
         foreach (RaycastHit2D collider in colliders)
         {
+            if (!collider.collider.CompareTag("Room") && !collider.collider.gameObject.CompareTag("DoorCameraTrigger") && !collider.collider.CompareTag("Player"))
+            {
+                Debug.Log(collider.collider.name);
+            }
             if (collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger")) return true;
         }
         return false;

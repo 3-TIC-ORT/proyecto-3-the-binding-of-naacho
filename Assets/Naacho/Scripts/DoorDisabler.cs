@@ -151,8 +151,8 @@ public class DoorDisabler : MonoBehaviour
         Vector3 startY = transform.position - new Vector3(0, spawnPointsDetectorArea.y, 0); // Inicio de la línea en Y
         Vector3 endY = transform.position + new Vector3(0, spawnPointsDetectorArea.y, 0);   // Fin de la línea en Y
         // Dibuja dos líneas rojas, una horizontal (doble de largo en X) y otra vertical (doble de largo en Y)
-        Debug.DrawLine(startX, endX, Color.blue);  // Línea horizontal
-        Debug.DrawLine(startY, endY, Color.blue);  // Línea vertical
+        //Debug.DrawLine(startX, endX, Color.blue);  // Línea horizontal
+        //Debug.DrawLine(startY, endY, Color.blue);  // Línea vertical
         List<GameObject> spawnPointsList = new List<GameObject>();
         foreach (Collider2D col in SPcolliders)
         {
