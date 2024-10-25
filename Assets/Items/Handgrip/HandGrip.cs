@@ -6,9 +6,8 @@ public class HandGrip : Item
 {
     public override void onPickup()
     {
-        base.onPickup();
         naachoController.Damage += 0.7f;
         naachoController.FireRate -= 0.3f;
-        Destroy(gameObject);
+        base.onPickup();
     }
 }

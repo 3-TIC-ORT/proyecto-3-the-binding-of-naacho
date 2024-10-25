@@ -3,7 +3,7 @@ using DG.Tweening;
 using TMPro;
 using System;
 
-abstract public class Item : MonoBehaviour
+public class Item : MonoBehaviour
 {
     public string modifier;
 
@@ -68,6 +68,7 @@ abstract public class Item : MonoBehaviour
         if (modifier!=null)
         {
             ProjectileCreator.modifiers.Add(modifier);
+            Destroy(gameObject);
         }
     }
 

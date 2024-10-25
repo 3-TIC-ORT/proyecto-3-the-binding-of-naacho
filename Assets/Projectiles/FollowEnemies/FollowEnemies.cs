@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FollowEnemies : ProyectilModifier
 {
-    public float radiusToFollow=4;
+    public float radiusToFollow=2.5f;
     private Rigidbody2D rb;
     private bool isFollowing;
     private Transform targetTrans;
