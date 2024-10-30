@@ -9,7 +9,8 @@ public class ProyectilModifier : MonoBehaviour
     public enum Modifiers {
         None,
         FollowEnemies,
-        DistanceSizeAndDamage
+        DistanceSizeAndDamage,
+        DividingProjectile
     };
 
     protected ProjectileScript proyectilScript;

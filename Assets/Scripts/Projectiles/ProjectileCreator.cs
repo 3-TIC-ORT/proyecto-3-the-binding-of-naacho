@@ -7,11 +7,15 @@ public class ProjectileCreator : MonoBehaviour
 {
     public static List<string> modifiers = new List<string>();
     public static Color proyectilColor = new Color(1,1,1,1);
-    public static void createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float range, float dp)
+    public static GameObject createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float range, float dp, bool HasDuplicated = false)
     {
         GameObject proj = Instantiate(prefab, position, Quaternion.identity);
         foreach (string modifier in modifiers)
         {
+            if(HasDuplicated) {
+                print($"{modifier}, {modifier == "DividingProjectile"}");
+                continue;
+            }
             Type type = Type.GetType(modifier);
             proj.AddComponent(type);
         }
@@ -31,5 +35,6 @@ public class ProjectileCreator : MonoBehaviour
 
         proj.GetComponent<Collider2D>().isTrigger = true;
 
+        return proj;
     }
 }
