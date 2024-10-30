@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8832494573366903143}
   - component: {fileID: 6135030884378736574}
   - component: {fileID: 4979463207368402970}
+  - component: {fileID: 8144084451948451593}
   m_Layer: 6
   m_Name: TortugaJuguete
   m_TagString: Enemy
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758556957952807621}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -201,3 +202,24 @@ MonoBehaviour:
   oclussionCullingDistance: 13
   componentsToDisable: []
   enemyEnabled: 0
+--- !u!95 &8144084451948451593
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758556957952807621}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b370952da9dd8642b4b4b1e06b72c05, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
