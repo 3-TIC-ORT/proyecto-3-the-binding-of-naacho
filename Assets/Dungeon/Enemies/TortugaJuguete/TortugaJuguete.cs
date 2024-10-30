@@ -33,7 +33,6 @@ public class TortugaJuguete : Enemy
         activated = true;
         while (true) 
         {
-            Debug.Log("ASD");
             yield return new WaitForSecondsRealtime(timeBetweenWalks);
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadio);
             bool playerDetected = false;
@@ -59,7 +58,7 @@ public class TortugaJuguete : Enemy
     }
     private Vector2 GetRandomDirection()
     {
-        maxDistanceFromWalls = Speed * Time.deltaTime * walkDuration;
+        maxDistanceFromWalls = Speed * walkDuration;
         float magnitude = 0.01f;
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         while (true)

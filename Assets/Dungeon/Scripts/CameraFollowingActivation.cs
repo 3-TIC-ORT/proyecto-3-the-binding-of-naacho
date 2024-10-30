@@ -50,12 +50,13 @@ public class CameraFollowingActivation : MonoBehaviour
     }
     IEnumerator CorrectCamera()
     {
-        Debug.Log(isInFreeZone);
         if (isInFreeZone && !cameraTargetIsNull())
         {
+            Debug.LogWarning("JEJEJE");
             PlayerManager.Instance.correctingCamera = true;
             while (PlayerManager.Instance.correctingCamera==true)
             {
+                Debug.Log("SUPER");
                 UpdateRaycasts();
                 if (TouchingWall(upColliders) && !upCollided && !cameraTargetIsNull())
                 {
@@ -116,7 +117,11 @@ public class CameraFollowingActivation : MonoBehaviour
     }
     bool cameraTargetIsNull()
     {
-        if (cameraTarget == null) return true;
+        if (cameraTarget == null)
+        {
+            Debug.Log("Camera target es null");
+            return true;
+        }
         else return false;
     }
     float GetCollisionDistance(RaycastHit2D[] colliders, float rayMagnitude)
@@ -144,7 +149,7 @@ public class CameraFollowingActivation : MonoBehaviour
         {
             if (!collider.collider.CompareTag("Room") && !collider.collider.gameObject.CompareTag("DoorCameraTrigger") && !collider.collider.CompareTag("Player"))
             {
-                Debug.Log(collider.collider.name);
+                //Debug.Log(collider.collider.name);
             }
             if (collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger")) return true;
         }
