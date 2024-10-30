@@ -85,11 +85,13 @@ MonoBehaviour:
   HealthPoints: 120
   DamagePoints: 1
   Speed: 200
+  canRecieveKnockback: 1
+  isBoss: 0
   hasKnockback: 0
   readableMaxHealth: 0
   ID: 0
   delayBetweenAttacks: 3
-  embestidaSpeed: 8000
+  embestidaSpeed: 170
   embestidaDuration: 4
   finishEmbestidaDuration: 0.8
   ballsConfiguration:
