@@ -71,7 +71,7 @@ public class RataJefe : Enemy
     {
         Vector2 configuration = ballsConfiguration[Random.Range(0,ballsConfiguration.Length)];
         GenerateBalls((int)configuration.x, configuration.y);
-        yield return null;
+        yield return new WaitForSecondsRealtime(1.5f);
         StartCoroutine(Attack());
             
     }

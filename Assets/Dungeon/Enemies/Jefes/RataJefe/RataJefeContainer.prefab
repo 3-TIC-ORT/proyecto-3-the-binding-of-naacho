@@ -90,15 +90,15 @@ MonoBehaviour:
   hasKnockback: 0
   readableMaxHealth: 0
   ID: 0
-  delayBetweenAttacks: 3
+  delayBetweenAttacks: 1.5
   embestidaSpeed: 170
   embestidaDuration: 4
   finishEmbestidaDuration: 0.8
   ballsConfiguration:
-  - {x: 10, y: 0}
-  - {x: 10, y: 36}
+  - {x: 13, y: 0}
+  - {x: 13, y: 36}
   cheeseBall: {fileID: 7353566211661279237, guid: 1efad4d5d179a3f428d353a38a85ae37, type: 3}
-  cheeseBallSpeed: 550
+  cheeseBallSpeed: 14
 --- !u!61 &3554673755461477560
 BoxCollider2D:
   m_ObjectHideFlags: 0
