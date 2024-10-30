@@ -1,9 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ProyectilModifier : MonoBehaviour
 {
+    public enum Modifiers {
+        None,
+        FollowEnemies,
+        DistanceSizeAndDamage
+    };
+
     protected ProjectileScript proyectilScript;
     protected NaachoController controller;
     protected SpriteRenderer spriteRenderer;

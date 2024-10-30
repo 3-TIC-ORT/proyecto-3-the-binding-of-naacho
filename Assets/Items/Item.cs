@@ -5,7 +5,7 @@ using System;
 
 public class Item : MonoBehaviour
 {
-    public string modifier;
+    public ProyectilModifier.Modifiers modifier;
     public bool changeProyectilColor;
     protected GameObject Naacho;
     private SpriteRenderer spriteRenderer;
@@ -65,12 +65,16 @@ public class Item : MonoBehaviour
     }
     public virtual void onPickup()
     {
-        if (modifier!=null)
+        if (modifier != ProyectilModifier.Modifiers.None)
         {
-            ProjectileCreator.modifiers.Add(modifier);
+            print(Enum.GetName(typeof(ProyectilModifier.Modifiers), modifier));
+            ProjectileCreator.modifiers.Add(Enum.GetName(
+                        typeof(ProyectilModifier.Modifiers),
+                        modifier
+                        ));
             if (changeProyectilColor) ChangeProyectilColor();
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
     public virtual void ChangeProyectilColor()
     {
