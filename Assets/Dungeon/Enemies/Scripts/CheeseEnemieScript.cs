@@ -14,8 +14,13 @@ public class CheeseEnemieScript : Enemy
     {
         base.Update();
         if (GameManager.Instance.stop) return;  
+        
+    }
+    public void FixedUpdate()
+    {
+        if (GameManager.Instance.stop) return;
         Vector2 playerDir = (Vector2)(Player.transform.position - transform.position).normalized;
-        rb2D.velocity = Speed * Time.deltaTime * playerDir;
+        rb2D.velocity = Speed * playerDir;
         rb2D.AddForce(Speed * playerDir * Time.deltaTime, ForceMode2D.Force);
         CheckMainDirection(playerDir);
     }

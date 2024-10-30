@@ -6,7 +6,7 @@ public class NaachoController : MonoBehaviour
 {
     public int Speed;
     public float Friction;
-
+    bool haveToMove;
     public GameObject ProjectilePrefab;
     public float shotSpray;
     public float shootSpeed;
@@ -26,7 +26,25 @@ public class NaachoController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
-
+    private void FixedUpdate()
+    {
+        if (GameManager.Instance.stop)
+        {
+            rb2D.velocity = Vector2.zero;
+            animator.SetBool("Idle", true);
+            animator.SetFloat("DirY", 0);
+            animator.SetFloat("DirX", 0);
+            return;
+        }
+        if (haveToMove)
+        {
+            Vector2 movement = getMovement().normalized;
+            rb2D.velocity = Speed * movement;
+            animator.SetFloat("DirY", movement.y);
+            animator.SetFloat("DirX", movement.x);
+            animator.SetBool("Idle", false);
+        }
+    }
     Vector2 getMovement() 
     {
         int horizontalMovement = 0;
@@ -43,6 +61,11 @@ public class NaachoController : MonoBehaviour
             verticalMovement = -1;
 
         return new Vector2(horizontalMovement, verticalMovement);
+    }
+    bool IHaveToMove()
+    {
+        if (getMovement() != Vector2.zero) return true;
+        else return false;
     }
     Vector2 getShootDir()
     {
@@ -90,15 +113,10 @@ public class NaachoController : MonoBehaviour
         ShootTimeCounter += Time.deltaTime;
 
         Vector2 movement = getMovement().normalized;
-        if (movement.x != 0 || movement.y != 0)
-        {
-            rb2D.velocity = Speed * Time.deltaTime * movement;
-            animator.SetFloat("DirY", movement.y);
-            animator.SetFloat("DirX", movement.x);
-            animator.SetBool("Idle", false);
-        }
+        if (IHaveToMove()) haveToMove = true;
         else
         {
+            haveToMove = false;
             rb2D.velocity *= Friction;
             animator.SetFloat("DirY", 0);
             animator.SetFloat("DirX", 0);

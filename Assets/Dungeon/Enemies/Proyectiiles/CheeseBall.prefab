@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9607a31cd413f4641a794acbfb31dfbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 700
+  speed: 6
   angle: {x: 0, y: 0, z: 0}
   cheeseEnemy: {fileID: 1638454596774647162, guid: 8b5577b58defeb6418e5863635ec122e, type: 3}
   rataCollider: {fileID: 0}

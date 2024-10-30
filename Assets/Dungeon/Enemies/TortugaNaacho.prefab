@@ -52,7 +52,10 @@ MonoBehaviour:
   Name: Tortuga Naacho
   HealthPoints: 14
   DamagePoints: 1
-  Speed: 70
+  Speed: 2
+  canRecieveKnockback: 1
+  isBoss: 0
+  hasKnockback: 0
   readableMaxHealth: 0
   ID: 0
 --- !u!61 &121051529398601780

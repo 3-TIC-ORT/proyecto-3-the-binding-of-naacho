@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
     private TilemapMerger merger;
     [Tooltip("Marca si la cámara se está moviendo al Naacho ser lastimado")]
     public bool nachoNullPrinted;
-    
     private void Awake()
     {
+        Application.targetFrameRate = 55;
         DontDestroyOnLoad(gameObject);
         if (Instance != null && Instance != this)
         {
@@ -25,6 +25,14 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) Application.targetFrameRate = 55;
+        else if (Input.GetKeyDown(KeyCode.O)) Application.targetFrameRate = 30;
+        else if (Input.GetKeyDown(KeyCode.I)) Application.targetFrameRate = 10;
+        else if (Input.GetKeyDown(KeyCode.U)) Application.targetFrameRate = 5;
+
     }
     void Start()
     {

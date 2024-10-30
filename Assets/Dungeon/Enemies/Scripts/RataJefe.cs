@@ -40,7 +40,8 @@ public class RataJefe : Enemy
 
     IEnumerator Attack()
     {
-        yield return new WaitForSecondsRealtime(delayBetweenAttacks * (HealthPoints / maxHealth));
+        //yield return new WaitForSecondsRealtime(delayBetweenAttacks * (HealthPoints / maxHealth));
+        yield return new WaitForSecondsRealtime(delayBetweenAttacks);
         int rand = Random.Range(0, attacksIdentifications.Length);
         if (rand == 0) StartCoroutine(Embestida());
         else if (rand == 1) StartCoroutine(CreateCheeseEnemy());
@@ -49,7 +50,8 @@ public class RataJefe : Enemy
     IEnumerator Embestida()
     {
         Vector2 AttackDirection = (playerPos.position - transform.position).normalized;
-        rb.AddForce(AttackDirection * embestidaSpeed * (2 - HealthPoints / maxHealth) * Time.deltaTime, ForceMode2D.Impulse);
+        //rb.AddForce(AttackDirection * embestidaSpeed * (2 - HealthPoints / maxHealth), ForceMode2D.Impulse);
+        rb.AddForce(AttackDirection * embestidaSpeed, ForceMode2D.Impulse);
 
         yield return new WaitForSecondsRealtime(embestidaDuration * (HealthPoints / maxHealth));
 

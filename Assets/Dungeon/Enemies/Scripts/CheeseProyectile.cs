@@ -12,7 +12,7 @@ public class CheeseProyectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(speed * angle * Time.deltaTime, ForceMode2D.Impulse);
+        rb.AddForce(speed * angle, ForceMode2D.Impulse);
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

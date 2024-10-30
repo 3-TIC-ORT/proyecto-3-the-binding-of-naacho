@@ -21,7 +21,7 @@ public class NaachoSkater : Enemy
         {
             int rand = Random.Range(0, directions.Length);
             Vector2 direction = directions[rand];
-            rb2D.AddForce(direction * Speed * Time.deltaTime, ForceMode2D.Impulse);
+            rb2D.AddForce(direction * Speed, ForceMode2D.Impulse);
         }
         else
         {
@@ -31,7 +31,7 @@ public class NaachoSkater : Enemy
             if (transform.position.y < playerPos.y) newDirection.y = -1;
             else newDirection.y = 1;
             rb2D.velocity = Vector2.zero;
-            rb2D.AddForce(newDirection * Speed * Time.deltaTime, ForceMode2D.Impulse);
+            rb2D.AddForce(newDirection * Speed, ForceMode2D.Impulse);
         }
 
     }

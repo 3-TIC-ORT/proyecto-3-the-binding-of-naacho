@@ -23,6 +23,10 @@ public class TortugaJuguete : Enemy
         if (GameManager.Instance.stop) return;
         if (!activated) StartCoroutine(Move());
     }
+    public void FixedUpdate()
+    {
+        if (GameManager.Instance.stop) return;
+    }
 
     IEnumerator Move()
     {
@@ -38,14 +42,14 @@ public class TortugaJuguete : Enemy
                 if (collider.gameObject.CompareTag("Player"))
                 {
                     Vector2 playerDir = ((Vector2)Player.transform.position - (Vector2)transform.position).normalized;
-                    rb2D.velocity= playerDir*Speed*Time.deltaTime;
+                    rb2D.velocity= playerDir*Speed;
                     playerDetected = true;
                 }
             }
             if (!playerDetected)
             {
                 Vector2 randomDirection = GetRandomDirection();
-                rb2D.velocity = randomDirection*Speed*Time.deltaTime;
+                rb2D.velocity = randomDirection*Speed;
             }
             hasKnockback = false;
             yield return new WaitForSeconds(walkDuration);

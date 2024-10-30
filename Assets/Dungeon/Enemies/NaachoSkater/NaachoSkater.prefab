@@ -51,7 +51,7 @@ MonoBehaviour:
   Name: Naacho Skater
   HealthPoints: 13
   DamagePoints: 1
-  Speed: 300
+  Speed: 5
   canRecieveKnockback: 1
   isBoss: 0
   hasKnockback: 0

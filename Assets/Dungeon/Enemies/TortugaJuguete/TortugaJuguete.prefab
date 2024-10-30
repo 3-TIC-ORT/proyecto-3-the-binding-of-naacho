@@ -51,7 +51,7 @@ MonoBehaviour:
   Name: Tortuga Juguete
   HealthPoints: 4
   DamagePoints: 1
-  Speed: 350
+  Speed: 6
   canRecieveKnockback: 1
   isBoss: 0
   hasKnockback: 0

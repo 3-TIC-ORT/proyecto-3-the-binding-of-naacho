@@ -52,7 +52,7 @@ MonoBehaviour:
   Name: Cheese
   HealthPoints: 2
   DamagePoints: 1
-  Speed: 180
+  Speed: 4
   canRecieveKnockback: 1
   isBoss: 0
   hasKnockback: 0
