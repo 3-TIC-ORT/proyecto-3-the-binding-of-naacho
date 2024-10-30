@@ -98,7 +98,7 @@ MonoBehaviour:
   - {x: 13, y: 0}
   - {x: 13, y: 36}
   cheeseBall: {fileID: 7353566211661279237, guid: 1efad4d5d179a3f428d353a38a85ae37, type: 3}
-  cheeseBallSpeed: 14
+  cheeseBallSpeed: 11
 --- !u!61 &3554673755461477560
 BoxCollider2D:
   m_ObjectHideFlags: 0
