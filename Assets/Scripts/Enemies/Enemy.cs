@@ -104,6 +104,7 @@ public abstract class Enemy : MonoBehaviour
     public virtual IEnumerator OnDeath() {
         yield return null;
         if (doorDisabler.enemiesIDsRecorded.Contains(ID)) doorDisabler.enemiesActivatedIDs.Remove(ID);
+        ParticlesManager.Instance.InstanceDeathParticle(transform.position);
         Destroy(gameObject);
     }
 

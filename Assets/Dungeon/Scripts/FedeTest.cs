@@ -5,8 +5,11 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 public class FedeTest : MonoBehaviour
 {
-    private void Start()
+    private void Update()
     {
-        transform.rotation = Quaternion.Euler(0f, 0f, 45);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ParticlesManager.Instance.InstanceDeathParticle(transform.position);
+        }
     }
 }
