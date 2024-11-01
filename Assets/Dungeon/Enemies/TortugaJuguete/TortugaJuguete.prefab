@@ -52,14 +52,14 @@ MonoBehaviour:
   Name: Tortuga Juguete
   HealthPoints: 7
   DamagePoints: 1
-  Speed: 6
+  Speed: 7
   canRecieveKnockback: 1
   isBoss: 0
   hasKnockback: 0
   readableMaxHealth: 0
   ID: 0
   detectionRadio: 5
-  timeBetweenWalks: 1
+  timeBetweenWalks: 0.7
   walkDuration: 0.7
   maxDistanceFromWalls: 0
   activated: 0
