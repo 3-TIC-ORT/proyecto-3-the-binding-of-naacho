@@ -26,6 +26,7 @@ public class TortugaJuguete : Enemy
         base.Update();
         if (GameManager.Instance.stop) return;
         if (!activated) StartCoroutine(Move());
+        if (!canRecieveKnockback && hasKnockback) hasKnockback = false;
         if (!hasKnockback) CheckMainDirection(rb2D.velocity.normalized);
     }
     public void FixedUpdate()
