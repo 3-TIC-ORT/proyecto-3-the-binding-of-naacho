@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.19, y: 3.25, z: 0.10018244}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Tortuga Juguete
-  HealthPoints: 4
+  HealthPoints: 7
   DamagePoints: 1
   Speed: 6
   canRecieveKnockback: 1
@@ -58,9 +58,9 @@ MonoBehaviour:
   hasKnockback: 0
   readableMaxHealth: 0
   ID: 0
-  detectionRadio: 4
+  detectionRadio: 5
   timeBetweenWalks: 1
-  walkDuration: 0.4
+  walkDuration: 0.7
   maxDistanceFromWalls: 0
   activated: 0
 --- !u!212 &5116264953853506133
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 9f83e2e44fe5b364fa4ac2105c57f941, type: 3}
+  m_Sprite: {fileID: -1110008889, guid: d9622d7ee5113344cb07e38a6befe036, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,18 +147,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.027375951, y: -0.07528373}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5135135, y: 0.3783784}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37035403, y: 0.16503437}
   m_EdgeRadius: 0
 --- !u!50 &6135030884378736574
 Rigidbody2D:
@@ -200,7 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oclussionCullingDistance: 13
-  componentsToDisable: []
+  componentsToDisable:
+  - Animator
   enemyEnabled: 0
 --- !u!95 &8144084451948451593
 Animator:
@@ -210,7 +211,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758556957952807621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3b370952da9dd8642b4b4b1e06b72c05, type: 2}
   m_CullingMode: 0

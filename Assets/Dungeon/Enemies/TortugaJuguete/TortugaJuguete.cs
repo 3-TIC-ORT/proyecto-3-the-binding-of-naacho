@@ -12,16 +12,21 @@ public class TortugaJuguete : Enemy
     [Tooltip("No es exacto")]
     public float maxDistanceFromWalls;
     public bool activated=false;
+
+    private Animator animator;
+    private Vector2 facingDirection;
     public override void Start()
     {
         base.Start();
-        playerPos = Player.GetComponent<Transform>().position;  
+        playerPos = Player.GetComponent<Transform>().position;
+        animator = GetComponent<Animator>();
     }
     public override void Update()
     {
         base.Update();
         if (GameManager.Instance.stop) return;
         if (!activated) StartCoroutine(Move());
+        if (!hasKnockback) CheckMainDirection(rb2D.velocity.normalized);
     }
     public void FixedUpdate()
     {
@@ -78,6 +83,52 @@ public class TortugaJuguete : Enemy
                 }
             }
             magnitude+=0.5f;
+        }
+    }
+    private void CheckMainDirection(Vector3 direction)
+    {
+        if (direction==Vector3.zero)
+        {
+            animator.SetBool("up", false);
+            animator.SetBool("down", false);
+            animator.SetBool("horizontal", false);
+        }
+        else if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+        {
+            if (direction.y > 0)
+            {
+                facingDirection = Vector2.up;
+                animator.SetBool("up", true);
+                animator.SetBool("down", false);
+                animator.SetBool("horizontal", false);
+            }
+            else
+            {
+                facingDirection= Vector2.down;
+                animator.SetBool("down", true);
+                animator.SetBool("up", false);
+                animator.SetBool("horizontal", false);
+            }
+        }
+        else
+        {
+            if (direction.x > 0)
+            {
+                facingDirection = Vector2.right;
+                SpRenderer.flipX = false;
+                animator.SetBool("horizontal", true);
+                animator.SetBool("up", false);
+                animator.SetBool("down", false);
+
+            }
+            else
+            {
+                SpRenderer.flipX = true;
+                facingDirection = Vector2.left;
+                animator.SetBool("horizontal", true);
+                animator.SetBool("up", false);
+                animator.SetBool("down", false);
+            }
         }
     }
 }
