@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mazmorras testing.unity
     guid: 91133be10e4313147a02bb4ee5ba6587
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 5e5d8024ea0777943a22c57e86e8f1c1
   m_configObjects: {}

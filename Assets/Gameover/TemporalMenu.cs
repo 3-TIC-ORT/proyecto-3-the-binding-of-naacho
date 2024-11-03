@@ -11,14 +11,22 @@ public class TemporalMenu : MonoBehaviour
     private Image transitionScreen;
     public float timeBeforeChangingScene;
     public string scene;
+    public float timeBeforeFadingOut;
     private void Start()
     {
+        Invoke("FadeOut", timeBeforeFadingOut);
+    }
+    private void FadeOut()
+    {
         transitionScreen = GameObject.FindGameObjectWithTag("TransitionScreen").GetComponent<Image>();
-        transitionScreen.DOFade(0, transitionSpeed / 2).onComplete = () => 
+        if (transitionScreen != null ) 
         {
-            transitionScreen.gameObject.SetActive(false);
-            StartCoroutine(ChangeScene(scene));
-        };
+            transitionScreen.DOFade(0, transitionSpeed / 2).onComplete = () =>
+            {
+                transitionScreen.gameObject.SetActive(false);
+                StartCoroutine(ChangeScene(scene));
+            };
+        }
     }
     IEnumerator ChangeScene(string scene)
     {

@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 10343772}
   m_Layer: 5
   m_Name: Screen
-  m_TagString: Untagged
+  m_TagString: TransitionScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20439,7 +20439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7930061495138171272, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: startingLife
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930061495138171272, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: heartsRenderer

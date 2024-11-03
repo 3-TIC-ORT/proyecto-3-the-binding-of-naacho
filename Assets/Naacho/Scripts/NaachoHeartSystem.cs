@@ -54,7 +54,13 @@ public class NaachoHeartSystem : MonoBehaviour
         }
         return heartIdx;
     }
-
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name != "Mazmorras testing")
+        {
+            Destroy(gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -116,7 +122,7 @@ public class NaachoHeartSystem : MonoBehaviour
             Feedback();
         StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
-        if (heartIdx == -1 || Life[heartIdx].Amount <= 0) Death();
+        if (heartIdx == -1 || Life[heartIdx].Amount <= 0) StartCoroutine(Death());
 
         Heart hrt = Life[heartIdx];
         if (hrt.Amount - dp >= 0)
@@ -125,14 +131,15 @@ public class NaachoHeartSystem : MonoBehaviour
         }
         UpdateLife();
     }
-    void Death()
+    IEnumerator Death()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        Destroy(gameObject); // Después no hay que destruirlo, si no dejarlo quieto con la animación de muerto :v
         GameManager.Instance.stop = true;
-        GameManager.Instance.Fade(true, false);
-        SceneManager.LoadScene(scene.name);
+        GameManager.Instance.Fade(false,false,true);
+        yield return new WaitForSecondsRealtime(GameManager.Instance.fadeSpeed);
+        GetComponent<DoorDisabler>().enabled = false;
         heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
+        SceneManager.LoadScene("GameOver");
+        // Después hay que dejarlo quieto con la animación de muerto :v
     }
     void Feedback()
     {

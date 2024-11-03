@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.O)) Application.targetFrameRate = 30;
         else if (Input.GetKeyDown(KeyCode.I)) Application.targetFrameRate = 10;
         else if (Input.GetKeyDown(KeyCode.U)) Application.targetFrameRate = 5;
+        if (SceneManager.GetActiveScene().name != "Mazmorras testing")
+        {
+            Destroy(gameObject);
+        }
 
     }
     void Start()
@@ -54,18 +58,25 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSecondsRealtime(2f);
-        Fade(false, true);
+        Fade(false, true,false);
         stop = false;
     }
-    public void Fade(bool IN, bool OUT)
+    public void Fade(bool IN, bool OUT, bool gameOver)
     {
-        if (IN)
+        if (screen!=null)
         {
-            screen.DOFade(1, fadeSpeed).onComplete=()=> { StartCoroutine(WaitForTheDungeonToGenerate(true)); };
-        }
-        else if (OUT)
-        {
-            screen.DOFade(0, 1f);
+            if (gameOver) 
+            {
+                screen.DOFade(1, fadeSpeed);
+            }
+            else if (IN)
+            {
+                screen.DOFade(1, fadeSpeed).onComplete=()=> { StartCoroutine(WaitForTheDungeonToGenerate(true)); };
+            }
+            else if (OUT)
+            {
+                screen.DOFade(0, fadeSpeed);
+            }
         }
     }
 }

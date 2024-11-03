@@ -10,7 +10,7 @@ public class HoleScript : MonoBehaviour
         {
             Debug.Log("Ganaste");
             GameManager.Instance.stop = true;
-            GameManager.Instance.Fade(true,false);
+            GameManager.Instance.Fade(true,false,false);
         }
     }
 }
