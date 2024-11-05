@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
     private void Start() {
         StartCoroutine(startFadeOut());
     }
-       IEnumerator startFadeOut()
+    IEnumerator startFadeOut()
     {
         yield return null;
         FadeManager.Instance.FadeOut();
@@ -24,6 +24,7 @@ public class MenuManager : MonoBehaviour
     IEnumerator ChangeScene(string sceneName)
     {
         FadeManager.Instance.FadeIn();
+        yield return null;
         while (!FadeManager.Instance.fadeInFinished)
         {
             yield return null;

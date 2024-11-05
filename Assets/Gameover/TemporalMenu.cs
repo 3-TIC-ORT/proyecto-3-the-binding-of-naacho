@@ -16,12 +16,14 @@ public class TemporalMenu : MonoBehaviour
     IEnumerator StartAndFinish()
     {
         FadeManager.Instance.FadeOut();
+        yield return null;
         while (!FadeManager.Instance.fadeOutFinished)
         {
             yield return null;
         }
         yield return new WaitForSecondsRealtime(timeBeforeChangingScene);
         FadeManager.Instance.FadeIn();
+        yield return null;
         while (!FadeManager.Instance.fadeInFinished)
         {
             yield return null;

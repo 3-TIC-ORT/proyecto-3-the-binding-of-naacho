@@ -30,21 +30,22 @@ public class FadeManager : MonoBehaviour
 
     public void FadeIn()
     {
+        fadeOutFinished = false;
+        fadeInFinished = false;
         screen.enabled=true;
-        screen.DOFade(1, fadeSpeed).onComplete = () => 
+        screen.DOFade(1, fadeSpeed).SetEase(Ease.Linear).onComplete = () => 
         { 
             fadeInFinished = true; 
-            fadeOutFinished = false;
         };
     }
     public void FadeOut() 
     {
-        Debug.Log("SUPER");
-        screen.DOFade(0, fadeSpeed).onComplete = () => 
+        fadeOutFinished = false;
+        fadeInFinished = false;
+        screen.DOFade(0, fadeSpeed).SetEase(Ease.Linear).onComplete = () => 
         {
             screen.enabled=false;
             fadeOutFinished = true; 
-            fadeInFinished = false;
         };
     }
 }

@@ -64,7 +64,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator Death()
     {
         DG.Tweening.DOTween.KillAll();
-        FadeManager.Instance.FadeIn();  
+        FadeManager.Instance.FadeIn();
+        yield return null;
         while (!FadeManager.Instance.fadeInFinished)
         {
             yield return null;
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator ReloadScene()
     {
         FadeManager.Instance.FadeIn();
+        yield return null;
         while (!FadeManager.Instance.fadeInFinished)
         {
             yield return null;
