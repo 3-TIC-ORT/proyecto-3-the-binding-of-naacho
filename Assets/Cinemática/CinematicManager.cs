@@ -8,10 +8,20 @@ public class CinematicManager : MonoBehaviour
     public VideoPlayer myVideoPlayer;
     void Start()
     {
-        myVideoPlayer.loopPointReached += ChangeScene;
+        FadeManager.Instance.FadeOut();
+        myVideoPlayer.loopPointReached += StartChangingScene;
     }
-    private void ChangeScene(VideoPlayer vp)
+    private void StartChangingScene(VideoPlayer vp)
     {
+        StartCoroutine(ChangeScene());
+    }
+    IEnumerator ChangeScene()
+    {
+        FadeManager.Instance.FadeIn();
+        while (!FadeManager.Instance.fadeInFinished)
+        {
+            yield return null;
+        }
         SceneManager.LoadScene("Mazmorras testing");
     }
 }

@@ -30,6 +30,7 @@ public class FadeManager : MonoBehaviour
 
     public void FadeIn()
     {
+        screen.enabled=true;
         screen.DOFade(1, fadeSpeed).onComplete = () => 
         { 
             fadeInFinished = true; 
@@ -38,8 +39,10 @@ public class FadeManager : MonoBehaviour
     }
     public void FadeOut() 
     {
+        Debug.Log("SUPER");
         screen.DOFade(0, fadeSpeed).onComplete = () => 
         {
+            screen.enabled=false;
             fadeOutFinished = true; 
             fadeInFinished = false;
         };

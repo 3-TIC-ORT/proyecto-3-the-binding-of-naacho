@@ -66,7 +66,7 @@ public class NaachoHeartSystem : MonoBehaviour
     {
         NaachoHitbox = GetComponent<BoxCollider2D>();
         SpRenderer = GetComponent<SpriteRenderer>();
-        heartsRenderer = GameObject.Find("Canvas").transform
+        heartsRenderer = GameObject.Find("LocalCanvas").transform
             .Find("Life")
             .GetComponent<TextTest>();
         defaultColor = SpRenderer.color;
@@ -122,7 +122,7 @@ public class NaachoHeartSystem : MonoBehaviour
             Feedback();
         StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
-        if (heartIdx == -1 || Life[heartIdx].Amount <= 0) StartCoroutine(Death());
+        if (heartIdx == -1 || Life[heartIdx].Amount <= 0) StartCoroutine(DeathSet());
 
         Heart hrt = Life[heartIdx];
         if (hrt.Amount - dp >= 0)
@@ -131,15 +131,14 @@ public class NaachoHeartSystem : MonoBehaviour
         }
         UpdateLife();
     }
-    IEnumerator Death()
+    IEnumerator DeathSet()
     {
         GameManager.Instance.stop = true;
-        GameManager.Instance.Fade(false,false,true);
-        yield return new WaitForSecondsRealtime(GameManager.Instance.fadeSpeed);
+        StartCoroutine(GameManager.Instance.Death());
+        yield return null;
         GetComponent<DoorDisabler>().enabled = false;
         heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
-        SceneManager.LoadScene("GameOver");
-        // Después hay que dejarlo quieto con la animación de muerto :v
+        // Despuï¿½s hay que dejarlo quieto con la animaciï¿½n de muerto :v
     }
     void Feedback()
     {

@@ -5,22 +5,30 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 public class MenuManager : MonoBehaviour
-{
-    public float transitionSpeed;
-    private Image transitionScreen;
-
-    private void Start()
-    {
-        transitionScreen = GameObject.FindGameObjectWithTag("TransitionScreen").GetComponent<Image>();
-        transitionScreen.DOFade(0, transitionSpeed / 2).onComplete=()=> { transitionScreen.gameObject.SetActive(false);};
+{ 
+    private void Start() {
+        StartCoroutine(startFadeOut());
     }
-    public void ChangeScene(string sceneName)
+       IEnumerator startFadeOut()
     {
-        transitionScreen.gameObject.SetActive(true);
-        transitionScreen.DOFade(1, transitionSpeed / 2).onComplete = () =>
+        yield return null;
+        FadeManager.Instance.FadeOut();
+    }
+    public void StartChangeScene(string coroutineAndScene) 
+    {
+        string[] separados = coroutineAndScene.Split("-");
+        string coroutineName = separados[0];
+        string sceneName = separados[1];
+        StartCoroutine(coroutineName,sceneName);
+    }
+    IEnumerator ChangeScene(string sceneName)
+    {
+        FadeManager.Instance.FadeIn();
+        while (!FadeManager.Instance.fadeInFinished)
         {
-            SceneManager.LoadScene(sceneName);
-        };
+            yield return null;
+        }
+        SceneManager.LoadScene(sceneName);
     }
     public void ExitGame() { Application.Quit(); }
 }

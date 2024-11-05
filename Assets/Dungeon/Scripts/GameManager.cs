@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public float fadeSpeed;
     private Image screen;
     private TilemapMerger merger;
-    [Tooltip("Marca si la cámara se está moviendo al Naacho ser lastimado")]
+    [Tooltip("Marca si la cï¿½mara se estï¿½ moviendo al Naacho ser lastimado")]
     public bool nachoNullPrinted;
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         stop = true;
-        screen = transform.GetChild(0).transform.GetComponentInChildren<Image>();
+        screen = GameObject.FindGameObjectWithTag("TransitionScreen").GetComponent<Image>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         StartCoroutine(WaitForTheDungeonToGenerate(false));
     }
@@ -58,25 +58,25 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSecondsRealtime(2f);
-        Fade(false, true,false);
+        FadeManager.Instance.FadeOut();
         stop = false;
     }
-    public void Fade(bool IN, bool OUT, bool gameOver)
+    public IEnumerator Death()
     {
-        if (screen!=null)
+        FadeManager.Instance.FadeIn();
+        while (!FadeManager.Instance.fadeInFinished)
         {
-            if (gameOver) 
-            {
-                screen.DOFade(1, fadeSpeed);
-            }
-            else if (IN)
-            {
-                screen.DOFade(1, fadeSpeed).onComplete=()=> { StartCoroutine(WaitForTheDungeonToGenerate(true)); };
-            }
-            else if (OUT)
-            {
-                screen.DOFade(0, fadeSpeed);
-            }
+            yield return null;
         }
+        SceneManager.LoadScene("GameOver");
+    }
+    public IEnumerator ReloadScene()
+    {
+        FadeManager.Instance.FadeIn();
+        while (!FadeManager.Instance.fadeInFinished)
+        {
+            yield return null;
+        }
+        WaitForTheDungeonToGenerate(true);
     }
 }

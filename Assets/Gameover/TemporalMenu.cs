@@ -7,34 +7,30 @@ using UnityEngine.SceneManagement;
 
 public class TemporalMenu : MonoBehaviour
 {
-    public float transitionSpeed;
     private Image transitionScreen;
     public float timeBeforeChangingScene;
     public string scene;
-    public float timeBeforeFadingOut;
     private void Start()
     {
-        Invoke("FadeOut", timeBeforeFadingOut);
+        StartCoroutine(StartAndFinish());
     }
-    private void FadeOut()
+    IEnumerator StartAndFinish()
     {
-        transitionScreen = GameObject.FindGameObjectWithTag("TransitionScreen").GetComponent<Image>();
-        if (transitionScreen != null ) 
+        FadeManager.Instance.FadeOut();
+        while (!FadeManager.Instance.fadeOutFinished)
         {
-            transitionScreen.DOFade(0, transitionSpeed / 2).onComplete = () =>
-            {
-                transitionScreen.gameObject.SetActive(false);
-                StartCoroutine(ChangeScene(scene));
-            };
+            yield return null;
         }
-    }
-    IEnumerator ChangeScene(string scene)
-    {
-        yield return new WaitForSeconds(timeBeforeChangingScene);
-        transitionScreen.gameObject.SetActive(true);
-        transitionScreen.DOFade(1, transitionSpeed / 2).onComplete = () =>
+        yield return new WaitForSecondsRealtime(timeBeforeChangingScene);
+        FadeManager.Instance.FadeIn();
+        while (!FadeManager.Instance.fadeInFinished)
         {
-            SceneManager.LoadScene(scene);
-        };
+            yield return null;
+        }
+        SceneManager.LoadScene(scene);
     }
+
+    
+        
+    
 }
