@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class TemporalMenu : MonoBehaviour
 {
-    private Image transitionScreen;
     public float timeBeforeChangingScene;
     public string scene;
     private void Start()
