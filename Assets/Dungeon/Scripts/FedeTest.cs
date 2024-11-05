@@ -5,11 +5,8 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 public class FedeTest : MonoBehaviour
 {
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ParticlesManager.Instance.InstanceDeathParticle(transform.position);
-        }
+        FadeManager.Instance.FadeOut();
     }
 }
