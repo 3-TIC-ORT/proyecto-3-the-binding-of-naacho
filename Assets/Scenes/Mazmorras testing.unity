@@ -18931,6 +18931,7 @@ MonoBehaviour:
   - {fileID: 6714608727884649795, guid: 2b790184ab4ebbf4aa1fa0ac20cb4e3c, type: 3}
   - {fileID: 7481460279386920638, guid: d9a087ae21ca4b642b0ad3e9fef4e2a0, type: 3}
   - {fileID: 2255056283135363523, guid: 835e8e67c152b2c11bc1c3d9724026f6, type: 3}
+  - {fileID: 5812606925961064662, guid: a79ca2b627cff9d42a7936c9d48b3ebf, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
   LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 10, y: 10, z: 1}
@@ -19875,6 +19876,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: Range
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2558011420773682654, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: Speed
       value: 7

@@ -10,11 +10,16 @@ public abstract class Enemy : MonoBehaviour
 
     public float HealthPoints;
     public float DamagePoints;
-
     public uint Speed;
     public bool canRecieveKnockback = true;
     public bool isBoss;
     public bool hasKnockback = false;
+
+    public class Effects : MonoBehaviour
+    {
+        public bool isSlowed;
+    }
+    public Effects effects;
 
     protected SpriteRenderer SpRenderer;
     protected Color defaultColor;
@@ -42,6 +47,8 @@ public abstract class Enemy : MonoBehaviour
         readableMaxHealth = maxHealth;
         CheckFourDirections();
         AddSelfToPlayerList();
+
+        effects = new Effects();
     }
     public void AddSelfToPlayerList()
     {
