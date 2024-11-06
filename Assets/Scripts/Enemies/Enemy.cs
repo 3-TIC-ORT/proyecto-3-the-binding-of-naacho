@@ -22,7 +22,7 @@ public abstract class Enemy : MonoBehaviour
     public Effects effects;
 
     protected SpriteRenderer SpRenderer;
-    protected Color defaultColor;
+    public Color defaultColor;
     protected BoxCollider2D Col2D;
     protected Rigidbody2D rb2D;
     protected GameObject Player;

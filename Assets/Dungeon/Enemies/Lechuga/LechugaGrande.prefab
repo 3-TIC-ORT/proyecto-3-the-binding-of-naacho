@@ -217,6 +217,7 @@ MonoBehaviour:
   canRecieveKnockback: 1
   isBoss: 0
   hasKnockback: 0
+  effects: {fileID: 0}
   readableMaxHealth: 0
   ID: 0
   Lechuguita: {fileID: 7301792174166199590, guid: d8f00269f5df14031a162acd93194f2f, type: 3}

@@ -11,12 +11,13 @@ public class ProjectileScript : MonoBehaviour
     public bool isEnemy;
     public Vector3 InitialVelocity;
     public bool dontDestroyWhenCollided;
+    public bool dontDestroyWhenDistance;
     [Tooltip("Frames para ignorar cuando spawnea el projectil")]
     [SerializeField] private int InitialIgnoreFrames = 4;
     private int lifespan = 0;
 
-    private CircleCollider2D col;
-    private Rigidbody2D rb2D;
+    public CircleCollider2D col;
+    public Rigidbody2D rb2D;
     private Vector2 startingPos;
 
     protected virtual void Start() {
@@ -30,9 +31,12 @@ public class ProjectileScript : MonoBehaviour
     void Update()
     {
         lifespan++;
-        if(Vector2.Distance(startingPos, transform.position) >= Range) {
-            onDestruction();
-            Destroy(gameObject);
+        if (!dontDestroyWhenDistance)
+        {
+            if(Vector2.Distance(startingPos, transform.position) >= Range) {
+                onDestruction();
+                Destroy(gameObject);
+            }
         }
     }
 
