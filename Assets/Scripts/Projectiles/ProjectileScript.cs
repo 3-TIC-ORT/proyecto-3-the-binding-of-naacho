@@ -10,7 +10,7 @@ public class ProjectileScript : MonoBehaviour
     public string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector", "BigRoomTrigger"}; // Tags the Projectile will pass through
     public bool isEnemy;
     public Vector3 InitialVelocity;
-
+    public bool dontDestroyWhenCollided;
     [Tooltip("Frames para ignorar cuando spawnea el projectil")]
     [SerializeField] private int InitialIgnoreFrames = 4;
     private int lifespan = 0;
@@ -34,16 +34,6 @@ public class ProjectileScript : MonoBehaviour
             onDestruction();
             Destroy(gameObject);
         }
-        if(lifespan >= InitialIgnoreFrames) {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, col.radius/2);
-            foreach(Collider2D collider in colliders) {
-                if(WhitelistedTags.Contains(collider.tag)) {
-                    continue;
-                }
-                onDestruction();
-                Destroy(gameObject);
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -63,8 +53,11 @@ public class ProjectileScript : MonoBehaviour
                 }
             }
         }
-        onDestruction();
-        Destroy(gameObject, 0.1f);
+        if (!dontDestroyWhenCollided)
+        {
+            onDestruction();
+            Destroy(gameObject, 0.1f);
+        }
     }
 
     private IEnumerator ApplyKnockback(Rigidbody2D enemrb) {

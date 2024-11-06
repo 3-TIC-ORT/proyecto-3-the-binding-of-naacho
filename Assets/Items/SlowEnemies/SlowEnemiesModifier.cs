@@ -7,6 +7,7 @@ public class SlowEnemiesModifier : ProyectilModifier
     public override void Start()
     {
         base.Start();
+        proyectilScript.dontDestroyWhenCollided = true;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
