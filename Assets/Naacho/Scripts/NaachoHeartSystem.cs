@@ -134,7 +134,7 @@ public class NaachoHeartSystem : MonoBehaviour
     IEnumerator DeathSet()
     {
         GameManager.Instance.stop = true;
-        StartCoroutine(GameManager.Instance.Death());
+        StartCoroutine(GameManager.Instance.Death());   
         yield return null;
         GetComponent<DoorDisabler>().enabled = false;
         heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
