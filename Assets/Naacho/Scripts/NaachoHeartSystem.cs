@@ -61,8 +61,9 @@ public class NaachoHeartSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(heartsRenderer == null) getRenderer();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         NaachoHitbox = GetComponent<BoxCollider2D>();
@@ -77,6 +78,12 @@ public class NaachoHeartSystem : MonoBehaviour
         LifeAmount = GetLifeAmount();
 
         heartsRenderer.UIUpdate(LifeAmount);
+    }
+
+    void getRenderer() {
+        heartsRenderer = GameObject.Find("LocalCanvas").transform
+            .Find("Life").GetComponent<TextTest>();
+
     }
 
     public float GetLifeAmount()
