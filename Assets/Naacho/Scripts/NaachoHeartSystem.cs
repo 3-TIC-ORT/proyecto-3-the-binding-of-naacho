@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using DG.Tweening;
 
-public enum HeartTypes
-{
-    Normal,
-}
 
 public class Heart
 {
+    public enum HeartTypes
+    {
+        Normal,
+    }
+
     public HeartTypes heartType = HeartTypes.Normal;
     public float Amount;
 
@@ -122,12 +123,17 @@ public class NaachoHeartSystem : MonoBehaviour
             Feedback();
         StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
-        if (heartIdx == -1 || Life[heartIdx].Amount <= 0) StartCoroutine(DeathSet());
+        if (heartIdx < 0 || Life[heartIdx].Amount <= 0) StartCoroutine(DeathSet());
 
+        if(GameManager.Instance.stop) return;
         Heart hrt = Life[heartIdx];
         if (hrt.Amount - dp >= 0)
         {
             hrt.Amount -= dp;
+        } else {
+            hrt.Amount -= (-hrt.Amount);
+            dp -= -hrt.Amount;
+            Damage(dp);
         }
         UpdateLife();
     }
