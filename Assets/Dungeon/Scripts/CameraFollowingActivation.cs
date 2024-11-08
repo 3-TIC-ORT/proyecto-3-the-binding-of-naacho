@@ -26,6 +26,8 @@ public class CameraFollowingActivation : MonoBehaviour
     RaycastHit2D[] leftColliders;
     [Tooltip("Es el tiempo que le toma centrar la cámara")]
     public float transitionDuration;
+
+    private bool hasToCorrectCamera;
     void Start()
     {
         // PORQUE LOS RAYS EMPIEZAN EN LAS PATAS DE NAACHO Y POR ESO NO TIENEN LA MISMA LONGITUD
@@ -46,80 +48,74 @@ public class CameraFollowingActivation : MonoBehaviour
         }
         UpdateRaycasts();
         UnlockAxis();
-        if (!PlayerManager.Instance.cameraIsShaking) StartCoroutine(CorrectCamera());
-    }
-    IEnumerator CorrectCamera()
-    {
-        if (isInFreeZone && !cameraTargetIsNull())
+        if (!PlayerManager.Instance.cameraIsShaking)
         {
-            Debug.LogWarning("JEJEJE");
-            PlayerManager.Instance.correctingCamera = true;
-            while (PlayerManager.Instance.correctingCamera==true)
+            if (isInFreeZone) hasToCorrectCamera = true;
+            if (hasToCorrectCamera && !cameraTargetIsNull()) CorrectCamera();
+            isInFreeZone = !TouchingWall(upColliders) && !TouchingWall(downColliders) && !TouchingWall(leftColliders) && !TouchingWall(rightColliders);
+        }
+    }
+    private void CorrectCamera()
+    {
+        PlayerManager.Instance.correctingCamera = true;
+        Debug.Log("JEJEJE");
+        UpdateRaycasts();
+        if (TouchingWall(upColliders) && !upCollided && !cameraTargetIsNull())
+        {
+            float distance = GetCollisionDistance(upColliders, upRayLongitude);
+            if (distance != 0)
             {
-                Debug.Log("SUPER");
-                UpdateRaycasts();
-                if (TouchingWall(upColliders) && !upCollided && !cameraTargetIsNull())
-                {
-                    float distance = GetCollisionDistance(upColliders, upRayLongitude);
-                    if (distance!=0)
-                    {
-                        cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y-distance,transitionDuration).onComplete=()=> 
-                        {
-                            PlayerManager.Instance.correctingCamera = false;
-                        };
-                        upCollided = true;
-                    }
-                }
-                else if (!TouchingWall(upColliders)) upCollided = false;
-                if (TouchingWall(downColliders) && !downCollided && !cameraTargetIsNull())
-                {
-                    float distance = GetCollisionDistance(downColliders, downRayLongitude);
-                    if (distance != 0)
-                    {
-                        cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + distance, transitionDuration).onComplete = () =>
-                        {
-                            PlayerManager.Instance.correctingCamera = false;
-                        };
-                        downCollided = true;
-                    }
-                }
-                else if (!TouchingWall(downColliders)) downCollided = false;
-                if (TouchingWall(rightColliders) && !rightCollided && !cameraTargetIsNull())
-                {
-                    float distance = GetCollisionDistance(rightColliders, HalfRoomXDistance);
-                    if (distance != 0)
-                    {
-                        cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x-distance, transitionDuration).onComplete = () =>
-                        {
-                            PlayerManager.Instance.correctingCamera = false;
-                        };
-                        rightCollided = true;
-                    }
-                }
-                else if (!TouchingWall(rightColliders)) rightCollided = false;
-                if (TouchingWall(leftColliders) && !leftCollided && !cameraTargetIsNull())
-                {
-                    float distance = GetCollisionDistance(leftColliders, HalfRoomXDistance);
-                    if (distance != 0)
-                    {
-                        cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + distance, transitionDuration).onComplete = () =>
-                        {
-                            PlayerManager.Instance.correctingCamera = false;
-                        };
-                        leftCollided = true;
-                    }
-                }
-                else if (!TouchingWall(leftColliders)) leftCollided = false;
-                yield return new WaitForSecondsRealtime(0.1f);
+                cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y - distance, transitionDuration);
+                PlayerManager.Instance.correctingCamera = false;
+                hasToCorrectCamera = false;
+                upCollided = true;
             }
         }
-        isInFreeZone = !TouchingWall(upColliders) && !TouchingWall(downColliders) && !TouchingWall(leftColliders) && !TouchingWall(rightColliders);
+        else if (!TouchingWall(upColliders)) upCollided = false;
+        if (TouchingWall(downColliders) && !downCollided && !cameraTargetIsNull())
+        {
+            float distance = GetCollisionDistance(downColliders, downRayLongitude);
+            if (distance != 0)
+            {
+                cameraTarget.transform.DOMoveY(cameraTarget.transform.position.y + distance, transitionDuration);
+                PlayerManager.Instance.correctingCamera = false;
+                hasToCorrectCamera = false;
+                downCollided = true;
+            }
+        }
+        else if (!TouchingWall(downColliders)) downCollided = false;
+        if (TouchingWall(rightColliders) && !rightCollided && !cameraTargetIsNull())
+        {
+            float distance = GetCollisionDistance(rightColliders, HalfRoomXDistance);
+            if (distance != 0)
+            {
+                cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x - distance, transitionDuration);
+                PlayerManager.Instance.correctingCamera = false;
+                hasToCorrectCamera = false;
+                rightCollided = true;
+            }
+        }
+        else if (!TouchingWall(rightColliders)) rightCollided = false;
+        if (TouchingWall(leftColliders) && !leftCollided && !cameraTargetIsNull())
+        {
+            float distance = GetCollisionDistance(leftColliders, HalfRoomXDistance);
+            if (distance != 0)
+            {
+                cameraTarget.transform.DOMoveX(cameraTarget.transform.position.x + distance, transitionDuration);
+                PlayerManager.Instance.correctingCamera = false;
+                hasToCorrectCamera = false;
+                leftCollided = true;
+            }
+        }
+        else if (!TouchingWall(leftColliders)) leftCollided = false;
     }
     bool cameraTargetIsNull()
     {
+        cameraTarget = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<CameraAim>();
         if (cameraTarget == null)
         {
             Debug.Log("Camera target es null");
+
             return true;
         }
         else return false;
