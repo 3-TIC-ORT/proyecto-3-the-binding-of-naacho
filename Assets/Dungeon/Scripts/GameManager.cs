@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSecondsRealtime(2f);
-        Debug.Log("RUANIIIIII");
         FadeManager.Instance.FadeOut();
         stop = false;
     }
@@ -80,7 +79,6 @@ public class GameManager : MonoBehaviour
         while (!FadeManager.Instance.fadeInFinished)
         {
             yield return null;
-            Debug.Log("RUANIIIIIIIIIIIIIIIIIIIIII");
         }
         StartCoroutine(WaitForTheDungeonToGenerate(true));
     }

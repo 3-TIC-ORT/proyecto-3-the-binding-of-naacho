@@ -15,7 +15,7 @@ public abstract class Enemy : MonoBehaviour
     public bool isBoss;
     public bool hasKnockback = false;
 
-    public class Effects : MonoBehaviour
+    public class Effects
     {
         public bool isSlowed;
     }
@@ -48,7 +48,7 @@ public abstract class Enemy : MonoBehaviour
         CheckFourDirections();
         AddSelfToPlayerList();
 
-        effects = new Effects();
+        effects =  new Effects();
     }
     public void AddSelfToPlayerList()
     {
