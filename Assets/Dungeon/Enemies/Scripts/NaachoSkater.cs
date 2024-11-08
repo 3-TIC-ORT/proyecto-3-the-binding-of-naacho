@@ -54,6 +54,10 @@ public class NaachoSkater : Enemy
             speedModifier=targetSpeedModifier;
             rb2D.velocity*=speedModifier;
         }
+        if (!effects.isSlowed && speedModifier==0.5f)
+        {
+            rb2D.velocity*=2;
+        }
         if (rb2D.velocity==Vector2.zero && !GameManager.Instance.stop) StartMovement(false);
     }
 }
