@@ -18,6 +18,7 @@ public abstract class Enemy : MonoBehaviour
     public class Effects
     {
         public bool isSlowed;
+        public float timeSlowed=0;
     }
     public Effects effects;
 
