@@ -31,5 +31,8 @@ public class MenuManager : MonoBehaviour
         }
         SceneManager.LoadScene(sceneName);
     }
-    public void ExitGame() { Application.Quit(); }
+    public void ExitGame() 
+    {
+        Debug.Log("ASD");
+        Application.Quit(); }
 }

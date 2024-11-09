@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
-public class FedeTest : MonoBehaviour, ICanvasRaycastFilter
+
+public class ButtonHitboxModifier : MonoBehaviour, ICanvasRaycastFilter
 {
     [Tooltip("Textura donde los píxeles transparentes son una zona NO CLICKABLE, y donde los opacos sí lo son")]
-    public Texture2D hitArea; 
+    public Texture2D hitArea;
 
     RectTransform rectTransform;
 
@@ -31,9 +29,8 @@ public class FedeTest : MonoBehaviour, ICanvasRaycastFilter
         if (x >= 0 && x < hitArea.width && y >= 0 && y < hitArea.height)
         {
             Color pixel = hitArea.GetPixel((int)x, (int)y);
-            return pixel.a > 0; 
+            return pixel.a > 0;
         }
         return false;
     }
 }
-    
