@@ -20,6 +20,7 @@ public class RoomSpawner : MonoBehaviour
     public bool bossRoom = false;
     public bool treasureRoom = false;
     public bool itemSpawned;
+    public bool visited;
     public bool LwithSpawnPoint;
     private GameObject roomIcon;
     private GameObject minimapIconsContainer;
