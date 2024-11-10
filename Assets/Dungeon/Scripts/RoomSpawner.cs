@@ -21,7 +21,8 @@ public class RoomSpawner : MonoBehaviour
     public bool treasureRoom = false;
     public bool itemSpawned;
     public bool LwithSpawnPoint;
-
+    private GameObject roomIcon;
+    private GameObject minimapIconsContainer;
     public TileBase holeTile;
     public GameObject itemHolder;
     public int ID;
@@ -31,6 +32,7 @@ public class RoomSpawner : MonoBehaviour
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
+        minimapIconsContainer = GameObject.FindGameObjectWithTag("MinimapIconsContainer");
         Invoke("Spawn", 0.1f);
         ID = GetInstanceID();
         if (LwithSpawnPoint) SpawnEnemies();
@@ -83,8 +85,7 @@ public class RoomSpawner : MonoBehaviour
         if (!spawned)
         {
             // Verificar si el espacio est� vac�o antes de instanciar
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.0001f);
-            if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsMin)
+            if (templates.roomsGenerated < templates.roomsMin)
             {
                 if (openingDirection == 1)
                 {
@@ -110,11 +111,9 @@ public class RoomSpawner : MonoBehaviour
                     Instantiate(templates.NTrightRooms[rand], transform.position, Quaternion.identity, grid.transform);
                     SpawnEnemies();
                 }
-                spawned = true;
-                templates.roomsGenerated++;
             }
             // Ac� si pueden spawnear ClosedRooms
-            else if (colliders.Length <= 1 && templates.roomsGenerated < templates.roomsLimit)
+            else if (templates.roomsGenerated < templates.roomsLimit)
             {
                 if (openingDirection == 1)
                 {
@@ -140,11 +139,10 @@ public class RoomSpawner : MonoBehaviour
                     GameObject newRoom = Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity, grid.transform);
                     SpawnSpecialRoom(rand, templates.rightRooms, "R", false, newRoom);
                 }
-                spawned = true;
-                templates.roomsGenerated++;
+                
             }
             // El primer argumento de SpawnBossRoom es el cumplea�os de Feli, es as� para que el primer if de la funci�n de false.
-            else if(colliders.Length <= 1 && templates.roomsGenerated >= templates.roomsLimit)
+            else if(templates.roomsGenerated >= templates.roomsLimit)
             {
                 if (openingDirection == 1)
                 {
@@ -177,10 +175,11 @@ public class RoomSpawner : MonoBehaviour
                     GameObject newRoom = Instantiate(rightRoom, transform.position, Quaternion.identity, grid.transform);
                     SpawnSpecialRoom(1607, templates.downRooms, "D", true, newRoom);
                 }
-                spawned = true;
-                templates.roomsGenerated++;
             }
         }
+        spawned = true;
+        templates.roomsGenerated++;
+        SpawnRoomIcon();
 
     }
     private void OnTriggerEnter2D(Collider2D col)
@@ -348,5 +347,9 @@ public class RoomSpawner : MonoBehaviour
             }
         }
         return children;
+    }
+    private void SpawnRoomIcon()
+    {
+        Instantiate(templates.roomIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
     }
 }

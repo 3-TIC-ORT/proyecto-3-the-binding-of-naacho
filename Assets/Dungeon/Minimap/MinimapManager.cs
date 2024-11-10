@@ -27,12 +27,13 @@ public class MinimapManager : MonoBehaviour
                 Vector3Int cellCenter = new Vector3Int(
                     (bounds.xMin + bounds.xMax) / 2,
                     (bounds.yMin + bounds.yMax) / 2,
-                    -1
+                    -1 // Esto igual se pone en 0 automáticamente
                 );
 
                 Vector3 worldPosition = tilemapCom.CellToWorld(cellCenter);
 
                 transform.position = worldPosition;
+                transform.Translate(0, 0, -1);
 
                 Vector3Int dungeonSize = tilemapCom.size;
                 float size = dungeonSize.y / 2f;
