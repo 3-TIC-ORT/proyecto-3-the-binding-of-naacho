@@ -16,6 +16,10 @@ public class NaachoIcon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (instancedPlayerIcon == null)
+        {
+            instancedPlayerIcon = Instantiate(playerIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
+        }
         instancedPlayerIcon.transform.position=transform.position;  
     }
 }

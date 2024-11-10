@@ -18915,6 +18915,8 @@ MonoBehaviour:
   - {fileID: 717600851557498300, guid: 06c28bc77234d6f43a02dd4d159139af, type: 3}
   NTclosedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   roomIcon: {fileID: 5182487236174423490, guid: a4c55ea06011b7e459f144368609cf1a, type: 3}
+  visitedRoomColor: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 1}
+  nextRoomsToBeVisitedColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
   BasicEnemies:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
   - {fileID: 504261022165769184, guid: 0a5478d7a486e614eaf6a2677ca4e80e, type: 3}

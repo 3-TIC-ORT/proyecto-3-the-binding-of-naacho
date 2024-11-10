@@ -65,6 +65,7 @@ public class DoorTrigger : MonoBehaviour
     {
         float nextDoorDistance = templates.verticalDoorToDoorRoomArea.y + 1f;
         float nextRoomCenter = templates.centerBetweenVerticaltalRooms;
+
         // Identificar si el jugador está a la abajo de este objeto (puerta) o no
         // y así mover el jugador para arriba o a la abajo (en este caso que es una puerta vertical).
         if (playerPos.y - transform.position.y < 0)
@@ -72,6 +73,7 @@ public class DoorTrigger : MonoBehaviour
             cameraAimTransform.DOMoveX(transform.position.x, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveY(transform.position.y + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime));};
             playerPos.y += nextDoorDistance;
+            VisitSpawnPoints(transform.position + new Vector3(0,nextRoomCenter,0));
             player.GetComponent<Transform>().position = playerPos;
         }
         else
@@ -79,6 +81,7 @@ public class DoorTrigger : MonoBehaviour
             cameraAimTransform.DOMoveX(transform.position.x, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveY(transform.position.y - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.y -= nextDoorDistance;
+            VisitSpawnPoints(transform.position + new Vector3(0, -nextRoomCenter, 0));
             player.GetComponent<Transform>().position = playerPos;
         }
     }
@@ -91,6 +94,7 @@ public class DoorTrigger : MonoBehaviour
             cameraAimTransform.DOMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveX(transform.position.x + nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.x += nextDoorDistance;
+            VisitSpawnPoints(transform.position + new Vector3(nextRoomCenter, 0, 0));
             player.GetComponent<Transform>().position = playerPos;
         }
         else
@@ -98,6 +102,7 @@ public class DoorTrigger : MonoBehaviour
             cameraAimTransform.DOMoveY(transform.position.y, cameraTransitionSpeed).SetEase(Ease.Linear);
             cameraAimTransform.DOMoveX(transform.position.x - nextRoomCenter, cameraTransitionSpeed).SetEase(Ease.Linear).onComplete = () => { StartCoroutine(ManageCameraAndTime(cameraAim.pauseTime)); };
             playerPos.x -= nextDoorDistance;
+            VisitSpawnPoints(transform.position + new Vector3(-nextRoomCenter, 0, 0));
             player.GetComponent<Transform>().position = playerPos;
         }
     }
@@ -134,5 +139,18 @@ public class DoorTrigger : MonoBehaviour
         }
 
         return children;
+    }
+
+    private void VisitSpawnPoints(Vector2 spawnPointPosiiton)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPointPosiiton, 1f);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.gameObject.CompareTag("SpawnPoint"))
+            {
+                RoomSpawner roomSpawnerCom = collider.gameObject.GetComponent<RoomSpawner>();
+                roomSpawnerCom.VisitChain();
+            }
+        }
     }
 }

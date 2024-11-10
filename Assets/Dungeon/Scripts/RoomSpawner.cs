@@ -348,6 +348,44 @@ public class RoomSpawner : MonoBehaviour
     }
     private void SpawnRoomIcon()
     {
-        Instantiate(templates.roomIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
+        roomIcon = Instantiate(templates.roomIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
+    }
+
+    public void VisitChain()
+    {
+        visited = true;
+        ChangeIconColor(templates.visitedRoomColor);
+        Vector2[] directions = { Vector2.up, Vector2.down, Vector2.right, Vector2.left };
+        foreach (Vector2 direction in directions)
+        {
+            Ray ray = new Ray(transform.position, direction);
+            float magnitude = 1;
+            while (true)
+            {
+                RaycastHit2D[] colliders = Physics2D.RaycastAll(ray.origin, ray.direction, magnitude);
+                foreach (RaycastHit2D collider in colliders)
+                {
+                    if (collider.collider.gameObject.CompareTag("SpawnPoint"))
+                    {
+                        RoomSpawner roomSpawnerCom = collider.collider.gameObject.GetComponent<RoomSpawner>();
+                        if (!roomSpawnerCom.visited)
+                        {
+                            roomSpawnerCom.visited = true;
+                            roomSpawnerCom.VisitChain();
+                        }
+                    }
+                    else if (collider.collider.gameObject.CompareTag("Room"))
+                    {
+                        return;
+                    }
+                }
+                magnitude++;
+            }
+        }
+    }
+    public void ChangeIconColor(Color color)
+    {
+        SpriteRenderer sp = roomIcon.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        sp.color = color;
     }
 }
