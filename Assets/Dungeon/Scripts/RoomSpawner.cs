@@ -91,26 +91,23 @@ public class RoomSpawner : MonoBehaviour
                 {
                     int rand = Random.Range(0, templates.NTdownRooms.Length);
                     Instantiate(templates.NTdownRooms[rand], transform.position, Quaternion.identity, grid.transform);
-                    SpawnEnemies();
                 }
                 else if (openingDirection == 2)
                 {
                     int rand = Random.Range(0, templates.NTtopRooms.Length);
                     Instantiate(templates.NTtopRooms[rand], transform.position, Quaternion.identity, grid.transform);
-                    SpawnEnemies();
                 }
                 else if (openingDirection == 3)
                 {
                     int rand = Random.Range(0, templates.NTleftRooms.Length);
                     Instantiate(templates.NTleftRooms[rand], transform.position, Quaternion.identity, grid.transform);
-                    SpawnEnemies();
                 }
                 else if (openingDirection == 4)
                 {
                     int rand = Random.Range(0, templates.NTrightRooms.Length);
                     Instantiate(templates.NTrightRooms[rand], transform.position, Quaternion.identity, grid.transform);
-                    SpawnEnemies();
                 }
+                SpawnEnemies();
             }
             // Ac� si pueden spawnear ClosedRooms
             else if (templates.roomsGenerated < templates.roomsLimit)
