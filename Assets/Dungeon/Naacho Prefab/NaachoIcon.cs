@@ -18,6 +18,7 @@ public class NaachoIcon : MonoBehaviour
     {
         if (instancedPlayerIcon == null)
         {
+            if (minimapIconsContainer == null) minimapIconsContainer = GameObject.FindGameObjectWithTag("MinimapIconsContainer");
             instancedPlayerIcon = Instantiate(playerIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
         }
         instancedPlayerIcon.transform.position=transform.position;  

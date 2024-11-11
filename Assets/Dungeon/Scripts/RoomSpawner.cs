@@ -349,7 +349,7 @@ public class RoomSpawner : MonoBehaviour
     private void SpawnRoomIcon()
     {
         roomIcon = Instantiate(templates.roomIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
-    }
+    } 
 
     public void VisitChain()
     {
@@ -362,6 +362,7 @@ public class RoomSpawner : MonoBehaviour
             float magnitude = 1;
             while (true)
             {
+                bool wallTouched=false;
                 RaycastHit2D[] colliders = Physics2D.RaycastAll(ray.origin, ray.direction, magnitude);
                 foreach (RaycastHit2D collider in colliders)
                 {
@@ -374,12 +375,27 @@ public class RoomSpawner : MonoBehaviour
                             roomSpawnerCom.VisitChain();
                         }
                     }
+                    else if (collider.collider.gameObject.CompareTag("RoomConector"))
+                    {
+                        collider.collider.gameObject.GetComponent<RoomConector>().ChangeIconColor(templates.visitedRoomColor);
+                    }
+                    else if (collider.collider.gameObject.CompareTag("DoorTrigger"))
+                    {
+                        DoorTrigger doorTriggerCom = collider.collider.gameObject.GetComponent<DoorTrigger>();
+                        SpriteRenderer spriteRendererCom = doorTriggerCom.doorIcon.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                        if (!doorTriggerCom.visited) 
+                        {
+                            spriteRendererCom.color = templates.doorsColor;
+                        }
+                    }
                     else if (collider.collider.gameObject.CompareTag("Room"))
                     {
-                        return;
+                        wallTouched = true;
                     }
                 }
+                if (wallTouched) break;
                 magnitude++;
+                
             }
         }
     }

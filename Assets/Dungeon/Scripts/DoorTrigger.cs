@@ -17,6 +17,9 @@ public class DoorTrigger : MonoBehaviour
     private DoorDisabler doorDisabler;
     public float OcclusionCullingDistance;
     public float subtractSize;
+    public bool visited;
+    public GameObject doorIcon;
+    private GameObject minimapIconsContainer;
     private void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
@@ -25,11 +28,14 @@ public class DoorTrigger : MonoBehaviour
         cameraAimTransform = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<Transform>();
         cameraAim = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<CameraAim>();
         doorDisabler = GameObject.FindGameObjectWithTag("Player").GetComponent<DoorDisabler>();
+        minimapIconsContainer = GameObject.FindGameObjectWithTag("MinimapIconsContainer");
         // Si es una puerta vertical entonces rote la puerta 90°
         if (isVertical)
         {
             transform.rotation = Quaternion.Euler(0, 0, 90);
+            doorIcon = Instantiate(templates.doorIcon, transform.position, Quaternion.Euler(0, 0, 90),minimapIconsContainer.transform);
         }
+        else doorIcon = Instantiate(templates.doorIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
         transform.localScale = new Vector3(templates.horizontalDoorToDoorRoomArea.x-subtractSize, 1.6f, 1);
     }
     private void Update()

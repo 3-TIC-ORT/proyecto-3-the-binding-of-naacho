@@ -29,8 +29,10 @@ public class RoomTemplates : MonoBehaviour
     public GameObject NTclosedRoom;
     [Header("Room Stuff")]
     public GameObject roomIcon;
+    public GameObject doorIcon;
     public Color visitedRoomColor;
     public Color nextRoomsToBeVisitedColor;
+    public Color doorsColor;
     [Header("Enemies")]
     public GameObject[] BasicEnemies;
     [Header("Jefes")]

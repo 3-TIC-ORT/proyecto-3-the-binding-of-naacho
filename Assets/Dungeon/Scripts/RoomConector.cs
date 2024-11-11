@@ -14,6 +14,11 @@ public class RoomConector : MonoBehaviour
     public bool doorsDestroyed=false;
     public bool spawnPointMoved=false;
     public bool colisioneperonosecumplio = false;
+    //Imitan a un spawnPoint para poner íconos en el minimapa en caso de formar una habitación grande.
+    public bool visited;
+    private GameObject roomIcon;
+    private GameObject minimapIconsContainer;
+
     [Tooltip("Es el área dentro de una habitación grande horizontal. Se usa para agrandar la cámara si la cámara está dentro")]
     public Vector2 horizontalConectionSizeArea;
     public Vector2 verticalConectionSizeArea;
@@ -28,6 +33,7 @@ public class RoomConector : MonoBehaviour
         if (pointDirection==1) transform.Translate(0,vDistance,0);
         else transform.Translate(hDistance,0,0);
         targetTilemap=GameObject.Find("Entry Room").GetComponent<Tilemap>();
+        minimapIconsContainer = GameObject.FindGameObjectWithTag("MinimapIconsContainer");
         // Si aparezco en el vacío de Unity, destruyeme.
         if (targetTilemap.GetTile(targetTilemap.WorldToCell(transform.position)) == null) Destroy(gameObject);
     }
@@ -130,6 +136,7 @@ public class RoomConector : MonoBehaviour
 
         }
         DestroyExtraRoomConectors();
+        SpawnRoomIcon();
     }
     // Si hay más de un roomConector en un lugar entonces destruí a todos menos a uno. Para lograrlo utilizo el ID único de cada GameObject
     private void DestroyExtraRoomConectors()
@@ -160,5 +167,14 @@ public class RoomConector : MonoBehaviour
     void DestroyThis()
     {
         Destroy(gameObject.transform.parent.gameObject);
+    }
+    private void SpawnRoomIcon()
+    {
+        roomIcon = Instantiate(templates.roomIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
+    }
+    public void ChangeIconColor(Color color)
+    {
+        SpriteRenderer sp = roomIcon.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        sp.color = color;
     }
 }
