@@ -31,7 +31,8 @@ public class RoomTemplates : MonoBehaviour
     public GameObject roomIcon;
     public GameObject doorIcon;
     public Color visitedRoomColor;
-    public Color nextRoomsToBeVisitedColor;
+    public Color treasureRoomColor;
+    public Color bossRoomColor;
     public Color doorsColor;
     [Header("Enemies")]
     public GameObject[] BasicEnemies;

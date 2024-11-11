@@ -354,7 +354,9 @@ public class RoomSpawner : MonoBehaviour
     public void VisitChain()
     {
         visited = true;
-        ChangeIconColor(templates.visitedRoomColor);
+        if (treasureRoom) ChangeIconColor(templates.treasureRoomColor);
+        else if (bossRoom) ChangeIconColor(templates.bossRoomColor);
+        else ChangeIconColor(templates.visitedRoomColor);
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.right, Vector2.left };
         foreach (Vector2 direction in directions)
         {
