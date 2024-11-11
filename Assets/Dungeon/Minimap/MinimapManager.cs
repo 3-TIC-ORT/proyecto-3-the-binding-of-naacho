@@ -8,13 +8,24 @@ public class MinimapManager : MonoBehaviour
     private Camera myCamera;
     private bool cameraSizeSet;
     private TilemapMerger merger;
+    private GameObject minimapCanvas;
+    private bool minimapCanvasActivated;
     void Start()
     {
         myCamera = GetComponent<Camera>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
+        minimapCanvas = transform.GetChild(0).gameObject;
     }
 
     void Update()
+    {
+        SetCameraSize();
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            minimapCanvas.SetActive(!minimapCanvas.activeSelf);
+        }
+    }
+    private void SetCameraSize()
     {
         if (!cameraSizeSet)
         {
@@ -27,7 +38,7 @@ public class MinimapManager : MonoBehaviour
                 Vector3Int cellCenter = new Vector3Int(
                     (bounds.xMin + bounds.xMax) / 2,
                     (bounds.yMin + bounds.yMax) / 2,
-                    -1 // Esto igual se pone en 0 automáticamente
+                    -1 // Esto igual se pone en 0 automï¿½ticamente
                 );
 
                 Vector3 worldPosition = tilemapCom.CellToWorld(cellCenter);
