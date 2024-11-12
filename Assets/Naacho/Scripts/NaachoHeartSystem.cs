@@ -67,16 +67,13 @@ public class NaachoHeartSystem : MonoBehaviour
     {
         NaachoHitbox = GetComponent<BoxCollider2D>();
         SpRenderer = GetComponent<SpriteRenderer>();
-        heartsRenderer = GameObject.Find("LocalCanvas").transform
-            .Find("Life")
-            .GetComponent<TextTest>();
+        heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
         defaultColor = SpRenderer.color;
         Life = new Heart[MAX_LIFE];
         for (int i = 0; startingLife > i - 1; i++)
         {
             Life[i] = new Heart();
         }
-        heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
         LifeAmount = GetLifeAmount();
 
         heartsRenderer.UIUpdate(LifeAmount);
@@ -101,6 +98,8 @@ public class NaachoHeartSystem : MonoBehaviour
     void UpdateLife()
     {
         LifeAmount = GetLifeAmount();
+        if(heartsRenderer == null)
+            heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
         heartsRenderer.UIUpdate(LifeAmount);
     }
 
