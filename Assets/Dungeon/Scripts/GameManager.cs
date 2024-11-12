@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private TilemapMerger merger;
     [Tooltip("Marca si la c�mara se est� moviendo al Naacho ser lastimado")]
     public bool nachoNullPrinted;
+    private bool haveToDie;
     private void Awake()
     {
         Application.targetFrameRate = 55;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (haveToDie && FadeManager.Instance.fadeInFinished) SceneManager.LoadScene("GameOver");
         if (Input.GetKeyDown(KeyCode.P)) Application.targetFrameRate = 55;
         else if (Input.GetKeyDown(KeyCode.O)) Application.targetFrameRate = 30;
         else if (Input.GetKeyDown(KeyCode.I)) Application.targetFrameRate = 10;
@@ -66,11 +68,7 @@ public class GameManager : MonoBehaviour
         DG.Tweening.DOTween.KillAll();
         FadeManager.Instance.FadeIn();
         yield return null;
-        while (!FadeManager.Instance.fadeInFinished)
-        {
-            yield return null;
-        }
-        SceneManager.LoadScene("GameOver");
+        haveToDie = true;
     }
     public IEnumerator ReloadScene()
     {
