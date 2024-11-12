@@ -48,10 +48,10 @@ public class MinimapManager : MonoBehaviour
 
                 Vector3Int dungeonSize = tilemapCom.size;
                 float size = dungeonSize.y / 2f;
-                float anchoVisible = size * 2 * 1.6f;
+                float anchoVisible = size * 2;
                 if (anchoVisible < dungeonSize.x)
                 {
-                    size = dungeonSize.x / (2f * 1.6f);
+                    size = dungeonSize.x/2;
                 }
                 myCamera.orthographicSize = size;
 
