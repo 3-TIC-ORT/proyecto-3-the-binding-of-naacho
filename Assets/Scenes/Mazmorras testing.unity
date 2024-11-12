@@ -20439,6 +20439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148e9b4e0f15bd24a9ebeccf696e2497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimapCanvas: {fileID: 0}
 --- !u!114 &1484135369
 MonoBehaviour:
   m_ObjectHideFlags: 0
