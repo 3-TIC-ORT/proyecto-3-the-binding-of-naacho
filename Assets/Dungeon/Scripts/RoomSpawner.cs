@@ -22,6 +22,7 @@ public class RoomSpawner : MonoBehaviour
     public bool itemSpawned;
     public bool visited;
     public bool LwithSpawnPoint;
+    public bool showInMapInStart;
     private GameObject roomIcon;
     private GameObject minimapIconsContainer;
     public TileBase holeTile;
@@ -37,6 +38,11 @@ public class RoomSpawner : MonoBehaviour
         Invoke("Spawn", 0.1f);
         ID = GetInstanceID();
         if (LwithSpawnPoint) SpawnEnemies();
+        if (showInMapInStart) 
+        {
+            SpawnRoomIcon();
+            Invoke("VisitChain",0.5f);
+        }
     }
     private void Update()
     {
