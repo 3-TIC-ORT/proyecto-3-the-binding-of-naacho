@@ -118,6 +118,7 @@ public class NaachoHeartSystem : MonoBehaviour
 
     public void Damage(float dp = .5f)
     {
+        MinimapManager.Instance.minimapCanvas.SetActive(false);
         if (!PlayerManager.Instance.cameraIsShaking && !PlayerManager.Instance.correctingCamera) 
             Feedback();
         StartCoroutine(VisualDamage());

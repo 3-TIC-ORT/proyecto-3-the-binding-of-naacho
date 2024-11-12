@@ -5,11 +5,23 @@ using UnityEngine.Tilemaps;
 
 public class MinimapManager : MonoBehaviour
 {
+    public static MinimapManager Instance {get; private set;}
     private Camera myCamera;
     private bool cameraSizeSet;
     private TilemapMerger merger;
-    private GameObject minimapCanvas;
+    public GameObject minimapCanvas;
     private bool minimapCanvasActivated;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         myCamera = GetComponent<Camera>();
