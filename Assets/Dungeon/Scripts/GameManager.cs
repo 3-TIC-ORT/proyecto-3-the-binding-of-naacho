@@ -29,16 +29,15 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (haveToDie && FadeManager.Instance.fadeInFinished) SceneManager.LoadScene("GameOver");
+        if (haveToDie && FadeManager.Instance.fadeInFinished)
+        {
+            SceneManager.LoadScene("GameOver");
+            Destroy(gameObject);
+        }
         if (Input.GetKeyDown(KeyCode.P)) Application.targetFrameRate = 55;
         else if (Input.GetKeyDown(KeyCode.O)) Application.targetFrameRate = 30;
         else if (Input.GetKeyDown(KeyCode.I)) Application.targetFrameRate = 10;
         else if (Input.GetKeyDown(KeyCode.U)) Application.targetFrameRate = 5;
-        if (SceneManager.GetActiveScene().name != "Mazmorras testing")
-        {
-            Destroy(gameObject);
-        }
-
     }
     void Start()
     {
@@ -63,11 +62,10 @@ public class GameManager : MonoBehaviour
         FadeManager.Instance.FadeOut();
         stop = false;
     }
-    public IEnumerator Death()
+    public void Death()
     {
         DG.Tweening.DOTween.KillAll();
         FadeManager.Instance.FadeIn();
-        yield return null;
         haveToDie = true;
     }
     public IEnumerator ReloadScene()

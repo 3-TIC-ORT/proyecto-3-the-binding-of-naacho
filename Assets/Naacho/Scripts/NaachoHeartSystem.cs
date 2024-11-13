@@ -16,7 +16,6 @@ public class Heart
 
     public HeartTypes heartType = HeartTypes.Normal;
     public float Amount;
-
     public bool NotIsFull()
     {
         return Amount < 1f;
@@ -45,6 +44,7 @@ public class NaachoHeartSystem : MonoBehaviour
     public Heart[] Life;
     public const int MAX_LIFE = 12;
     public float LifeAmount;
+    public bool dead;
 
     public int GetMaxLife()
     {
@@ -123,7 +123,7 @@ public class NaachoHeartSystem : MonoBehaviour
             Feedback();
         StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
-        if (heartIdx < 0 || Life[heartIdx].Amount <= 0) StartCoroutine(DeathSet());
+        if (heartIdx < 0 || Life[heartIdx].Amount <= 0 && !dead) DeathSet();
 
         if(GameManager.Instance.stop) return;
         Heart hrt = Life[heartIdx];
@@ -137,11 +137,11 @@ public class NaachoHeartSystem : MonoBehaviour
         }
         UpdateLife();
     }
-    IEnumerator DeathSet()
+    private void DeathSet()
     {
+        dead=true;
         GameManager.Instance.stop = true;
-        StartCoroutine(GameManager.Instance.Death());   
-        yield return null;
+        GameManager.Instance.Death();   
         GetComponent<DoorDisabler>().enabled = false;
         heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
         // Despu�s hay que dejarlo quieto con la animaci�n de muerto :v
