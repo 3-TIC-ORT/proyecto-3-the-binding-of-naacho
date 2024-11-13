@@ -7,7 +7,7 @@ public class LightSettings : MonoBehaviour
 {
     private Light2D _light;
     [Tooltip
-        ("Sirve para rotar la luz 90°. Fue hecha para las luces de los roomConectors, pero tal vez se podría usar para otra cosa." +
+        ("Sirve para rotar la luz 90ï¿½. Fue hecha para las luces de los roomConectors, pero tal vez se podrï¿½a usar para otra cosa." +
         "Si no se busca hacer nada de este estilo, dejar en false")
     ]
     public bool isVertical;
@@ -33,10 +33,11 @@ public class LightSettings : MonoBehaviour
     {
         if (player != null) 
         {
-            // Si el jugador está lo suficientemente lejos, desactiva el componente de light para ahorrar recursos.
+            // Si el jugador estï¿½ lo suficientemente lejos, desactiva el componente de light para ahorrar recursos.
             if ((transform.position-player.transform.position).magnitude>OcclusionCullingDistance) _light.enabled = false;
             else if (!isDoorLight) _light.enabled = true;
-            else (doorDisabler.isFighting) = false;
+            else if (!doorDisabler.isFighting) _light.enabled=true;
+            else _light.enabled=false;
         }
         else if (!GameManager.Instance.nachoNullPrinted)
         {
