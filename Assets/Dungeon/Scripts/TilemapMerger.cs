@@ -101,20 +101,10 @@ public class TilemapMerger : MonoBehaviour
                     tilemap.SetTile(pos, null);
                 }
             }
-            // Se llama dos veces INTENCIONALMENTE, para así eliminar todos los componentes aunque algunos la primera vez no lo hagan
-            // por dependencias
-            DestroyAllComponents(tilemap.gameObject);
-            DestroyAllComponents(tilemap.gameObject);
+            Destroy(tilemap.gameObject.GetComponent<TilemapRenderer>());
+            Destroy(tilemap.gameObject.GetComponent<Tilemap>());
         }
 
-    }
-    private void DestroyAllComponents(GameObject _object)
-    {
-        Component[] components = _object.gameObject.GetComponents<Component>();
-        foreach (Component component in components)
-        {
-            Destroy(component);
-        }
     }
     
 }

@@ -213,6 +213,7 @@ public class RoomSpawner : MonoBehaviour
                 {
                     grid = GameObject.Find("Grid");
                     templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+                    roomsContainer = GameObject.FindGameObjectWithTag("RoomsContainer");
 
                     Instantiate(templates.closedRoom, transform.position, Quaternion.identity, roomsContainer.transform);
                     spawnedClosedRoom = true;

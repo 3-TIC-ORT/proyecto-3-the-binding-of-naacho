@@ -15,6 +15,7 @@ public class RoomTemplates : MonoBehaviour
     public bool treasureRoomSpawned = false;
     public bool bossRoomSpawned=false;
     private GameObject grid;
+    private GameObject roomsContainer;
     [Header("Room List")]
     public GameObject[] downRooms;
     public GameObject[] topRooms;
@@ -67,6 +68,7 @@ public class RoomTemplates : MonoBehaviour
     void Start()
     {
         grid = GameObject.Find("Grid");
+        roomsContainer = GameObject.FindGameObjectWithTag("RoomsContainer");
         StartCoroutine(PreventClosing());
     }
     // Se fija que cuando no se generan más rooms que la roomMin haya sido respetado.
@@ -95,7 +97,7 @@ public class RoomTemplates : MonoBehaviour
     private void CreateRoom()
     {
         Debug.Log("Se creo una room porque la mazmorra se cerró sola :v");
-        List<GameObject> tilemaps = GetChildren(grid, false,"");
+        List<GameObject> tilemaps = GetChildren(roomsContainer, false,"");
         // Coordenada X más a la izquierda (Por defecto es 1607, el cumple de Felipe ¿Daniel? Doval Ferrari<3)
         float lefterX = 1607;
         // Vector 2 más a la izquierda (es redundante con lo de arriba, ya se)
