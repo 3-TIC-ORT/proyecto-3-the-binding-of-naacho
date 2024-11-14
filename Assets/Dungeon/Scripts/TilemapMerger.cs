@@ -99,6 +99,11 @@ public class TilemapMerger : MonoBehaviour
                     tilemap.SetTile(pos, null);
                 }
             }
+            Component[] components = tilemap.gameObject.GetComponents<Component>();
+            foreach (Component component in components) 
+            {
+                Destroy(component);
+            }
         }
     }
     

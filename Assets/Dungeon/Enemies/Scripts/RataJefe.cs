@@ -19,6 +19,7 @@ public class RataJefe : Enemy
     public Vector2[] ballsConfiguration;
     public GameObject cheeseBall;
     public float cheeseBallSpeed;
+    public float timeBeforeFight;
     private bool isThrowingBalls;
     public override void Update()
     {
@@ -34,7 +35,7 @@ public class RataJefe : Enemy
         isBoss = true;
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(Attack());
+        StartCoroutine("Attack", timeBeforeFight);
         //animator = gameObject.GetComponent<Animator>();
     }
 
@@ -53,13 +54,12 @@ public class RataJefe : Enemy
         //rb.AddForce(AttackDirection * embestidaSpeed * (2 - HealthPoints / maxHealth), ForceMode2D.Impulse);
         rb.AddForce(AttackDirection * embestidaSpeed, ForceMode2D.Impulse);
 
-        yield return new WaitForSecondsRealtime(embestidaDuration * (HealthPoints / maxHealth));
+        yield return new WaitForSecondsRealtime(embestidaDuration);
 
-        DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, finishEmbestidaDuration* (HealthPoints / maxHealth));
-
-        yield return new WaitForSecondsRealtime(finishEmbestidaDuration);
-
-        StartCoroutine(Attack());
+        DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, finishEmbestidaDuration).onComplete=()=> 
+        {
+            StartCoroutine(Attack()); 
+        };
     }
     IEnumerator CreateCheeseEnemy()
     {

@@ -29,6 +29,10 @@ public class SlowEnemiesModifier : ProyectilModifier
             else enemyCom.effects.timeSlowed -= 2f;
 
         }
+        else if (col.gameObject.CompareTag("Room"))
+        {
+            Destroy(gameObject);
+        }
     }
     IEnumerator ChangeEnemySpeed(Enemy enemyCom)
     {

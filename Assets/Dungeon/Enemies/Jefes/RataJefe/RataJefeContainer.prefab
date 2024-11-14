@@ -40,6 +40,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3477848862044520741}
     m_Modifications:
+    - target: {fileID: 838907704328385043, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
+      propertyPath: cheeseBallSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 838907704328385043, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
+      propertyPath: timeBeforeFight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 838907704328385043, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
+      propertyPath: ballsConfiguration.Array.data[0].x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 838907704328385043, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
+      propertyPath: ballsConfiguration.Array.data[1].x
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3930065620738826558, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
       propertyPath: m_Name
       value: RataJefe

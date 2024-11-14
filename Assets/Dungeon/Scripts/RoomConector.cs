@@ -132,8 +132,6 @@ public class RoomConector : MonoBehaviour
                 targetTilemap.SetTile(pos, null);
                 targetTilemap.SetTile(pos, tileConector);
             }
-            yield return null;
-
         }
         DestroyExtraRoomConectors();
         SpawnRoomIcon();
