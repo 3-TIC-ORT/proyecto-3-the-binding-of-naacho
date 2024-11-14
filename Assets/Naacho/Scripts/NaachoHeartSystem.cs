@@ -123,7 +123,7 @@ public class NaachoHeartSystem : MonoBehaviour
             Feedback();
         StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
-        if (heartIdx < 0 || Life[heartIdx].Amount <= 0 && !dead) DeathSet();
+        if ((heartIdx < 0 || Life[heartIdx].Amount <= 0) && !dead) DeathSet();
 
         if(GameManager.Instance.stop) return;
         Heart hrt = Life[heartIdx];

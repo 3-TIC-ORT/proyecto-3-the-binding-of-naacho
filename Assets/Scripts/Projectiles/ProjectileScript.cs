@@ -60,7 +60,7 @@ public class ProjectileScript : MonoBehaviour
         if (!dontDestroyWhenCollided)
         {
             onDestruction();
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject);
         }
     }
 

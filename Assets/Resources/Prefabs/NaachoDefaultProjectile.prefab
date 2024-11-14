@@ -58,7 +58,11 @@ MonoBehaviour:
   - BigRoomTrigger
   isEnemy: 0
   InitialVelocity: {x: 0, y: 0, z: 0}
+  dontDestroyWhenCollided: 0
+  dontDestroyWhenDistance: 0
   InitialIgnoreFrames: 1
+  col: {fileID: 0}
+  rb2D: {fileID: 0}
 --- !u!50 &1217812606565131716
 Rigidbody2D:
   serializedVersion: 4
