@@ -25,6 +25,7 @@ public class RoomSpawner : MonoBehaviour
     public bool showInMapInStart;
     private GameObject roomIcon;
     private GameObject minimapIconsContainer;
+    private GameObject roomsContainer;
     public TileBase holeTile;
     public GameObject itemHolder;
     public int ID;
@@ -35,6 +36,7 @@ public class RoomSpawner : MonoBehaviour
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
         targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
         minimapIconsContainer = GameObject.FindGameObjectWithTag("MinimapIconsContainer");
+        roomsContainer = GameObject.FindGameObjectWithTag("RoomsContainer");
         Invoke("Spawn", 0.1f);
         ID = GetInstanceID();
         if (LwithSpawnPoint) SpawnEnemies();
@@ -97,22 +99,22 @@ public class RoomSpawner : MonoBehaviour
                 if (openingDirection == 1)
                 {
                     int rand = Random.Range(0, templates.NTdownRooms.Length);
-                    Instantiate(templates.NTdownRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    Instantiate(templates.NTdownRooms[rand], transform.position, Quaternion.identity, roomsContainer.transform);
                 }
                 else if (openingDirection == 2)
                 {
                     int rand = Random.Range(0, templates.NTtopRooms.Length);
-                    Instantiate(templates.NTtopRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    Instantiate(templates.NTtopRooms[rand], transform.position, Quaternion.identity, roomsContainer.transform);
                 }
                 else if (openingDirection == 3)
                 {
                     int rand = Random.Range(0, templates.NTleftRooms.Length);
-                    Instantiate(templates.NTleftRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    Instantiate(templates.NTleftRooms[rand], transform.position, Quaternion.identity, roomsContainer.transform);
                 }
                 else if (openingDirection == 4)
                 {
                     int rand = Random.Range(0, templates.NTrightRooms.Length);
-                    Instantiate(templates.NTrightRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    Instantiate(templates.NTrightRooms[rand], transform.position, Quaternion.identity, roomsContainer.transform);
                 }
                 SpawnEnemies();
             }
@@ -122,25 +124,25 @@ public class RoomSpawner : MonoBehaviour
                 if (openingDirection == 1)
                 {
                     int rand = Random.Range(0, templates.downRooms.Length);
-                    GameObject newRoom = Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    GameObject newRoom = Instantiate(templates.downRooms[rand], transform.position, Quaternion.identity, roomsContainer.transform);
                     SpawnSpecialRoom(rand,templates.downRooms,"D",false, newRoom);
                 }
                 else if (openingDirection == 2)
                 {
                     int rand = Random.Range(0, templates.topRooms.Length);
-                    GameObject newRoom = Instantiate(templates.topRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    GameObject newRoom = Instantiate(templates.topRooms[rand], transform.position, Quaternion.identity, roomsContainer.transform);
                     SpawnSpecialRoom(rand, templates.topRooms, "T",false, newRoom);
                 }
                 else if (openingDirection == 3)
                 {
                     int rand = Random.Range(0, templates.leftRooms.Length);
-                    GameObject newRoom = Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    GameObject newRoom = Instantiate(templates.leftRooms[rand], transform.position, Quaternion.identity, roomsContainer.transform);
                     SpawnSpecialRoom(rand, templates.leftRooms, "L",false, newRoom);
                 }
                 else if (openingDirection == 4)
                 {
                     int rand = Random.Range(0, templates.rightRooms.Length);
-                    GameObject newRoom = Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity, grid.transform);
+                    GameObject newRoom = Instantiate(templates.rightRooms[rand], transform.position, Quaternion.identity, roomsContainer.transform);
                     SpawnSpecialRoom(rand, templates.rightRooms, "R", false, newRoom);
                 }
                 
@@ -154,7 +156,7 @@ public class RoomSpawner : MonoBehaviour
                     // Expresi�n lambda. go es como la variable de i en un for. Se transforma en cada elemento de la lista y devuelve
                     // al elemento que cumpla la condici�n.
                     GameObject downRoom = downList.Find(go => go.name == "D");
-                    GameObject newRoom = Instantiate(downRoom, transform.position, Quaternion.identity, grid.transform);
+                    GameObject newRoom = Instantiate(downRoom, transform.position, Quaternion.identity, roomsContainer.transform);
                     SpawnSpecialRoom(1607, templates.downRooms, "D", true, newRoom);
 
                 }
@@ -162,21 +164,21 @@ public class RoomSpawner : MonoBehaviour
                 {
                     List<GameObject> upList = new List<GameObject>(templates.topRooms);
                     GameObject upRoom = upList.Find(go => go.name == "T");
-                    GameObject newRoom = Instantiate(upRoom, transform.position, Quaternion.identity, grid.transform);
+                    GameObject newRoom = Instantiate(upRoom, transform.position, Quaternion.identity, roomsContainer.transform);
                     SpawnSpecialRoom(1607, templates.downRooms, "D", true, newRoom);
                 }
                 else if (openingDirection == 3)
                 {
                     List<GameObject> leftList = new List<GameObject>(templates.leftRooms);
                     GameObject leftRoom = leftList.Find(go => go.name == "L");
-                    GameObject newRoom = Instantiate(leftRoom, transform.position, Quaternion.identity, grid.transform);
+                    GameObject newRoom = Instantiate(leftRoom, transform.position, Quaternion.identity, roomsContainer.transform);
                     SpawnSpecialRoom(1607, templates.downRooms, "D", true, newRoom);
                 }
                 else if (openingDirection == 4)
                 {
                     List<GameObject> rightList = new List<GameObject>(templates.rightRooms);
                     GameObject rightRoom = rightList.Find(go => go.name == "R");
-                    GameObject newRoom = Instantiate(rightRoom, transform.position, Quaternion.identity, grid.transform);
+                    GameObject newRoom = Instantiate(rightRoom, transform.position, Quaternion.identity, roomsContainer.transform);
                     SpawnSpecialRoom(1607, templates.downRooms, "D", true, newRoom);
                 }
             }
@@ -212,7 +214,7 @@ public class RoomSpawner : MonoBehaviour
                     grid = GameObject.Find("Grid");
                     templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
 
-                    Instantiate(templates.closedRoom, transform.position, Quaternion.identity, grid.transform);
+                    Instantiate(templates.closedRoom, transform.position, Quaternion.identity, roomsContainer.transform);
                     spawnedClosedRoom = true;
                     col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
                     col.GetComponent<RoomSpawner>().spawned = true;

@@ -7,6 +7,7 @@ public class TilemapMerger : MonoBehaviour
 {
     private RoomTemplates templates;
     public Grid grid; // Asigna aquí tu Grid
+    private GameObject roomsContainer;
     public Tilemap targetTilemap; // El Tilemap donde se fusionarán todos los tiles
     public bool tilemapsMerged;
 
@@ -14,6 +15,7 @@ public class TilemapMerger : MonoBehaviour
     {
         GameManager.Instance.stop = true;
         templates = GetComponent<RoomTemplates>();
+        roomsContainer = GameObject.FindGameObjectWithTag("RoomsContainer");
         StartCoroutine(WaitForMergeTilemaps());
     }
     // Espera a que no se generen más rooms para llamar a MergeTilemaps()
@@ -30,7 +32,7 @@ public class TilemapMerger : MonoBehaviour
     {
         List<Tilemap> childTilemaps = new List<Tilemap>();
 
-        foreach (Transform child in grid.transform)
+        foreach (Transform child in roomsContainer.transform)
         {
             Tilemap tilemap = child.GetComponent<Tilemap>();
             if (tilemap != null && tilemap != targetTilemap)
