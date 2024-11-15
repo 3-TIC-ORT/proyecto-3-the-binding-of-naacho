@@ -11,7 +11,7 @@ public class RoomTemplates : MonoBehaviour
     public bool minCompleted=false;
     public int treasureRoomsAmount;
     public int currentTreasureRooms=0;
-    // Su nombre debería ser treasureRoomsSpawned (notar el plural de Rooms). 
+    // Su nombre deberï¿½a ser treasureRoomsSpawned (notar el plural de Rooms). 
     public bool treasureRoomSpawned = false;
     public bool bossRoomSpawned=false;
     private GameObject grid;
@@ -35,6 +35,9 @@ public class RoomTemplates : MonoBehaviour
     public Color treasureRoomColor;
     public Color bossRoomColor;
     public Color doorsColor;
+    public TileBase[] obstaclesTiles;
+    [Tooltip("Para elegir las posibles formas en las que pueden aparacer los obstacles")]
+    public bool[,][] obstaclesMatrix;
     [Header("Enemies")]
     public GameObject[] BasicEnemies;
     [Header("Jefes")]
@@ -50,13 +53,13 @@ public class RoomTemplates : MonoBehaviour
     public GameObject LWithSpawnPoint;
     [Tooltip
     (
-        "Es el área entre la puerta de una room y la otra, siempre que ambas estén horizontalmente alineadas. " +
+        "Es el ï¿½rea entre la puerta de una room y la otra, siempre que ambas estï¿½n horizontalmente alineadas. " +
         "No modifica su volumen al cambiarlo, esto es para los roomConectors. No cambiar si no se van a cambiar las rooms a mano. " 
     )]
     public Vector3Int horizontalDoorToDoorRoomArea;
     [Tooltip
     (
-        "Es el área entre la puerta de una room y la otra, siempre que ambas estén verticalmente alineadas. " +
+        "Es el ï¿½rea entre la puerta de una room y la otra, siempre que ambas estï¿½n verticalmente alineadas. " +
         "No modifica su volumen al cambiarlo, esto es para los roomConectors. No cambiar si no se van a cambiar las rooms a mano. "
     )]
     public Vector3Int verticalDoorToDoorRoomArea;
@@ -71,7 +74,7 @@ public class RoomTemplates : MonoBehaviour
         roomsContainer = GameObject.FindGameObjectWithTag("RoomsContainer");
         StartCoroutine(PreventClosing());
     }
-    // Se fija que cuando no se generan más rooms que la roomMin haya sido respetado.
+    // Se fija que cuando no se generan mï¿½s rooms que la roomMin haya sido respetado.
     IEnumerator PreventClosing()
     {
         int lastRoomsGenerated = -1;
@@ -84,8 +87,8 @@ public class RoomTemplates : MonoBehaviour
         {
             CreateRoom();
         }
-        // Si la generación de mazmorras paró y no se creo la treasure o la boss room, reinicia la escena. 
-        // Perdón, pero fue vencido por este problema :'v
+        // Si la generaciï¿½n de mazmorras parï¿½ y no se creo la treasure o la boss room, reinicia la escena. 
+        // Perdï¿½n, pero fue vencido por este problema :'v
         else if (!treasureRoomSpawned || !bossRoomSpawned)
         {
             SceneManager.LoadScene("Mazmorras testing");
@@ -93,29 +96,29 @@ public class RoomTemplates : MonoBehaviour
         else minCompleted = true;
         yield return new WaitForSecondsRealtime(1f);
     }
-    // Si la mazmorra se autocerró, cree una room en el tilemap más a la izquierda existente.
+    // Si la mazmorra se autocerrï¿½, cree una room en el tilemap mï¿½s a la izquierda existente.
     private void CreateRoom()
     {
-        Debug.Log("Se creo una room porque la mazmorra se cerró sola :v");
+        Debug.Log("Se creo una room porque la mazmorra se cerrï¿½ sola :v");
         List<GameObject> tilemaps = GetChildren(roomsContainer, false,"");
-        // Coordenada X más a la izquierda (Por defecto es 1607, el cumple de Felipe ¿Daniel? Doval Ferrari<3)
+        // Coordenada X mï¿½s a la izquierda (Por defecto es 1607, el cumple de Felipe ï¿½Daniel? Doval Ferrari<3)
         float lefterX = 1607;
-        // Vector 2 más a la izquierda (es redundante con lo de arriba, ya se)
+        // Vector 2 mï¿½s a la izquierda (es redundante con lo de arriba, ya se)
         Vector2 lefterRoomPosition=Vector2.zero;
         foreach (GameObject tilemap in tilemaps)
         {
-            // Agarrá todos los spawnPoints del tilemap iterado (podría cambiarle el nombre pero ya estoy comentando el código, y no de manera placentera)
+            // Agarrï¿½ todos los spawnPoints del tilemap iterado (podrï¿½a cambiarle el nombre pero ya estoy comentando el cï¿½digo, y no de manera placentera)
             List<GameObject> roomSpawners = GetChildren(tilemap, true, "SpawnPoint");
             foreach (GameObject roomSpawnerGameObject in roomSpawners)
             {
                 // Componente roomSpawner de cada SpawnPoint
                 RoomSpawner roomSpawner = roomSpawnerGameObject.GetComponent<RoomSpawner>();
-                // No queremos crear una habitación al lado de una bossRoom o Treasure room (solo se conectan a otra única habitación) 
+                // No queremos crear una habitaciï¿½n al lado de una bossRoom o Treasure room (solo se conectan a otra ï¿½nica habitaciï¿½n) 
                 if (!roomSpawner.spawnedClosedRoom && !roomSpawner.treasureRoom && !roomSpawner.bossRoom)
                 {
                     // X del spawnPoint
                     Vector2 roomSpawnerGameObjectPosition = roomSpawnerGameObject.GetComponent<Transform>().position;
-                    // Si es el que está más a la izquierda hasta ahora, entonces cambia el valor de lefterRoomPosition
+                    // Si es el que estï¿½ mï¿½s a la izquierda hasta ahora, entonces cambia el valor de lefterRoomPosition
                     if (roomSpawnerGameObjectPosition.x < lefterX)
                     {
                         lefterX = roomSpawnerGameObjectPosition.x;
@@ -126,8 +129,8 @@ public class RoomTemplates : MonoBehaviour
             
         }
         List<GameObject> listLeftRooms = new List<GameObject>(leftRooms);
-        // Instanciá una nueva habitación a la derecha de la habitaicón más a la izquierda.
-        Instantiate(LWithSpawnPoint, lefterRoomPosition + (Vector2.left*26), Quaternion.identity,grid.transform);
+        // Instanciï¿½ una nueva habitaciï¿½n a la derecha de la habitaicï¿½n mï¿½s a la izquierda.
+        Instantiate(LWithSpawnPoint, lefterRoomPosition + (Vector2.left*26), Quaternion.identity,roomsContainer.transform);
         StartCoroutine(PreventClosing());
     }
 

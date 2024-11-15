@@ -25,6 +25,7 @@ TagManager:
   - TransitionScreen
   - MinimapIconsContainer
   - RoomsContainer
+  - DecoracionContainer
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,7 @@ public class RoomSpawner : MonoBehaviour
 
     private bool roomConectorsSpawned;
     public bool spawned = false;
+    public bool specialRoom = false;
     public bool spawnedClosedRoom=false;
     public bool bossRoom = false;
     public bool treasureRoom = false;
@@ -217,7 +218,9 @@ public class RoomSpawner : MonoBehaviour
 
                     Instantiate(templates.closedRoom, transform.position, Quaternion.identity, roomsContainer.transform);
                     spawnedClosedRoom = true;
+                    specialRoom=true;
                     col.GetComponent<RoomSpawner>().spawnedClosedRoom = true;
+                    col.GetComponent<RoomSpawner>().specialRoom=true;
                     col.GetComponent<RoomSpawner>().spawned = true;
                 }
 
@@ -268,6 +271,7 @@ public class RoomSpawner : MonoBehaviour
         templates.currentTreasureRooms += 1;
         if (templates.currentTreasureRooms >= templates.treasureRoomsAmount) templates.treasureRoomSpawned = true;
         treasureRoom = true;
+        specialRoom=true;
         GameObject.Find("TreasureRoomImage").GetComponent<Transform>().position = transform.position;
         // Como es una SpecialRoom, le cambiamos el color para que se vea extravagante
         SetLighting(true,room);
@@ -282,6 +286,7 @@ public class RoomSpawner : MonoBehaviour
         SpawnBoss();
         templates.bossRoomSpawned = true;
         bossRoom = true;
+        specialRoom=true;
         GameObject.Find("BossRoomImage").GetComponent<Transform>().position = transform.position;
         SetLighting(false,room);
     }
