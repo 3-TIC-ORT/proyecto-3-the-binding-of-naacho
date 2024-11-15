@@ -81,9 +81,14 @@ public class NaachoHeartSystem : MonoBehaviour
     }
 
     void getRenderer() {
-        heartsRenderer = GameObject.Find("LocalCanvas").transform
-            .Find("Life").GetComponent<TextTest>();
-
+        Transform localCanvas = GameObject.Find("LocalCanvas").transform;
+        foreach(Transform child in localCanvas) {
+            if(child.name == "Life") {
+                heartsRenderer = child.gameObject.GetComponent<TextTest>();
+                return;
+            }
+            print(child.name);
+        }
     }
 
     public float GetLifeAmount()
@@ -128,9 +133,13 @@ public class NaachoHeartSystem : MonoBehaviour
         MinimapManager.Instance.minimapCanvas.SetActive(false);
         if (!PlayerManager.Instance.cameraIsShaking && !PlayerManager.Instance.correctingCamera) 
             Feedback();
+        if(dead) return;
         StartCoroutine(VisualDamage());
         int heartIdx = FindLastFullHeart();
-        if ((heartIdx < 0 || Life[heartIdx].Amount <= 0) && !dead) DeathSet();
+        if ((heartIdx < 0) && !dead) {
+            DeathSet();
+            return;
+        }
 
         if(GameManager.Instance.stop) return;
         Heart hrt = Life[heartIdx];
@@ -142,6 +151,9 @@ public class NaachoHeartSystem : MonoBehaviour
             dp -= -hrt.Amount;
             Damage(dp);
         }
+
+        if ((heartIdx < 0 || (heartIdx == 0 && Life[heartIdx].Amount <= 0)) && !dead) DeathSet();
+
         UpdateLife();
     }
     private void DeathSet()
