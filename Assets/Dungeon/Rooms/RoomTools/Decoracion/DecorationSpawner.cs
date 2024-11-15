@@ -24,11 +24,11 @@ public class DecorationSpawner : MonoBehaviour
         }
         if (roomSpawner.spawned && !roomSpawner.spawnedClosedRoom)
         {
-            if (!spawnObstacles && !roomSpawner.specialRoom && !roomSpawner.showInMapInStart)
+            if (spawnObstacles && !decorationSpawned && !roomSpawner.specialRoom && !roomSpawner.showInMapInStart)
             {
                 SpawnObstacles();
             }
-            else if (!spawnObstacles)
+            else if (!spawnObstacles && !decorationSpawned)
             {
                 // Spawnear algo normal, como piedritas. Cosas que no afecten al jugador
             }
@@ -37,6 +37,7 @@ public class DecorationSpawner : MonoBehaviour
     // Por ahora solo son tiles.
     private void SpawnObstacles()
     {
+        decorationSpawned = true;
         int rand = Random.Range(0,templates.obstacles.Length);
         Instantiate(templates.obstacles[rand],transform.position,Quaternion.identity,decorationContainer.transform);
     }
