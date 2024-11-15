@@ -12,7 +12,7 @@ public class ProjectileCreator : MonoBehaviour
         GameObject proj = Instantiate(prefab, position, Quaternion.identity);
         foreach (string modifier in modifiers)
         {
-            if(HasDuplicated) {
+            if(modifier == "DividingProjectile" && HasDuplicated) {
                 print($"{modifier}, {modifier == "DividingProjectile"}");
                 continue;
             }

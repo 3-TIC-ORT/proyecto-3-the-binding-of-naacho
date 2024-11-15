@@ -40,7 +40,7 @@ public class NaachoHeartSystem : MonoBehaviour
     [SerializeField] private BoxCollider2D NaachoHitbox;
     [SerializeField] private Color defaultColor;
     public int iframeTime;
-    public int startingLife = 3;
+    public int startingLife;
     public Heart[] Life;
     public const int MAX_LIFE = 12;
     public float LifeAmount;
@@ -59,7 +59,9 @@ public class NaachoHeartSystem : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "Mazmorras testing")
         {
+            ProjectileCreator.modifiers.Clear();
             Destroy(gameObject);
+            return;
         }
         if(heartsRenderer == null) getRenderer();
     }
@@ -71,7 +73,7 @@ public class NaachoHeartSystem : MonoBehaviour
         heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
         defaultColor = SpRenderer.color;
         Life = new Heart[MAX_LIFE];
-        for (int i = 0; startingLife > i - 1; i++)
+        for (int i = 0; startingLife > i; i++)
         {
             Life[i] = new Heart();
         }

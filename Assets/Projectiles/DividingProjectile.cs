@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DividingProjectile : ProyectilModifier
 {
-    [SerializeField] protected int FramesUntilDivision = 20;
+    [SerializeField] protected int FramesUntilDivision = 10;
     [SerializeField] protected uint DivisionAmount = 3;
     [SerializeField] protected Object DivisionProjectile; 
     [SerializeField] protected Rigidbody2D rb2D; 
     [SerializeField] private int counter = 0;
+    [SerializeField] private int TotalAngle = 100;
 
     public override void Start() {
         base.Start();
@@ -24,7 +25,7 @@ public class DividingProjectile : ProyectilModifier
         if(FramesUntilDivision <= counter) {
             float direction = Mathf.Atan2(rb2D.velocity.x, rb2D.velocity.y);
             direction *= Mathf.Rad2Deg;
-            direction += 170 / DivisionAmount;
+            direction += TotalAngle / DivisionAmount;
             direction -= 90;
             for(int i = 0; i < DivisionAmount; i++) {
                 GameObject proj = ProjectileCreator.createProjectile(
@@ -37,7 +38,7 @@ public class DividingProjectile : ProyectilModifier
                         5, 0.3f,
                         true
                         );
-                direction -= 170 / DivisionAmount;
+                direction -= TotalAngle / DivisionAmount;
                 print(proj.GetComponent<Rigidbody2D>().velocity);
             }
             Destroy(gameObject);
