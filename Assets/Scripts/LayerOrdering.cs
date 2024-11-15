@@ -59,7 +59,7 @@ public class LayerOrdering : MonoBehaviour
                 }
                 SpRenderer.sortingOrder = baseLayer + 1;
             }
-            print($"{closest.sortingOrder}, {SpRenderer.sortingOrder}");
+            //print($"{closest.sortingOrder}, {SpRenderer.sortingOrder}");
         }
     }
 
