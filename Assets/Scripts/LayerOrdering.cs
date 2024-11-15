@@ -36,6 +36,7 @@ public class LayerOrdering : MonoBehaviour
         foreach(Collider2D other in Collisions) {
             SpriteRenderer otherSpR;
             if(!other.TryGetComponent<SpriteRenderer>(out otherSpR)) continue;
+            if(other.gameObject.layer == 3) continue;
             float newDist = Vector3.Distance(other.transform.position, transform.position);
             if(newDist < oldDist) {
                 oldDist = newDist;
@@ -47,9 +48,15 @@ public class LayerOrdering : MonoBehaviour
             //print($"{closest.transform.position.y}, {transform.position.y}");
             if(closest.transform.position.y < transform.position.y) {
                 closest.sortingOrder = baseLayer + 1;
+                foreach(Transform child in closest.transform) {
+                    child.GetComponent<SpriteRenderer>().sortingOrder = closest.sortingOrder + 1;
+                }
                 SpRenderer.sortingOrder = baseLayer;
             } else {
                 closest.sortingOrder = baseLayer;
+                foreach(Transform child in closest.transform) {
+                    child.GetComponent<SpriteRenderer>().sortingOrder = closest.sortingOrder - 1;
+                }
                 SpRenderer.sortingOrder = baseLayer + 1;
             }
             //print($"{closest.sortingOrder}, {SpRenderer.sortingOrder}");
