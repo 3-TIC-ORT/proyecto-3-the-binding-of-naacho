@@ -37,7 +37,7 @@ public class RoomTemplates : MonoBehaviour
     public Color doorsColor;
     public TileBase[] obstaclesTiles;
     [Tooltip("Para elegir las posibles formas en las que pueden aparacer los obstacles")]
-    public bool[,][] obstaclesMatrix;
+    public List<List<bool>> obstaclesMatrix;
     [Header("Enemies")]
     public GameObject[] BasicEnemies;
     [Header("Jefes")]
@@ -151,3 +151,4 @@ public class RoomTemplates : MonoBehaviour
         return children;
     }
 }
+
