@@ -8,17 +8,23 @@ public class DecorationSpawner : MonoBehaviour
     private RoomSpawner roomSpawner;
     private bool spawnObstacles;
     private bool decorationSpawned;
+    private GameObject decorationContainer;
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        roomSpawner = GetComponent<RoomSpawner>();
+        decorationContainer = GameObject.FindGameObjectWithTag("DecorationContainer");
+        roomSpawner = gameObject.GetComponent<RoomSpawner>();
         spawnObstacles = Random.value>0.5f;
     }
     void Update()
     {
+        if(roomSpawner == null) {
+            Start();
+            return;
+        }
         if (roomSpawner.spawned && !roomSpawner.spawnedClosedRoom)
         {
-            if (spawnObstacles && !roomSpawner.specialRoom)
+            if (!spawnObstacles && !roomSpawner.specialRoom && !roomSpawner.showInMapInStart)
             {
                 SpawnObstacles();
             }
@@ -31,49 +37,7 @@ public class DecorationSpawner : MonoBehaviour
     // Por ahora solo son tiles.
     private void SpawnObstacles()
     {
-
+        int rand = Random.Range(0,templates.obstacles.Length);
+        Instantiate(templates.obstacles[rand],transform.position,Quaternion.identity,decorationContainer.transform);
     }
 }
-[System.Serializable]
-public class Matrix
-{
-    public int rows;
-    public int columns;
-    public List<List<bool>> data;
-
-    public Matrix(int rows, int columns)
-    {
-        this.rows=rows;
-        this.columns=columns;
-        data = new List<List<bool>>();
-
-        for (int x=0; x<rows; x++)
-        {
-            List<bool> row = new List<bool>();
-            for (int y=0; y<columns; y++)
-            {
-                row.Add(false);
-            }
-            data.Add(row);
-        }
-    }
-}
-public class ArrayOfMatrices : MonoBehaviour
-    {
-        public int matricesAmount;
-        private RoomTemplates templates;
-        private void Start() 
-        {
-            templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        }
-        public List<Matrix> matrices;
-        [ContextMenu(" Crear Array de Matrices")]
-        private void CreateMatricesDecoration()
-        {
-            matrices = new List<Matrix>
-            {
-                new Matrix((int)templates.insideRoomArea.x,(int)templates.insideRoomArea.y)
-            };
-        }
-
-    }

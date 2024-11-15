@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4462757793962127385}
   - component: {fileID: 8348292914006823559}
   - component: {fileID: 2412405733112049578}
+  - component: {fileID: 7829508714770574831}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: SpawnPoint
@@ -48,11 +49,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingDirection: 0
   spawned: 0
+  specialRoom: 0
   spawnedClosedRoom: 0
   bossRoom: 0
   treasureRoom: 0
+  itemSpawned: 0
+  visited: 0
+  LwithSpawnPoint: 0
+  showInMapInStart: 0
   holeTile: {fileID: 11400000, guid: f9696e9cf4c3247408440e3058053db6, type: 2}
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
+  ID: 0
 --- !u!61 &8348292914006823559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,3 +132,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7829508714770574831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267168768725885106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761733395c6b50643a09a4cf48b5207b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

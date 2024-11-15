@@ -18995,7 +18995,8 @@ MonoBehaviour:
   treasureRoomColor: {r: 0.9473977, g: 1, b: 0, a: 1}
   bossRoomColor: {r: 1, g: 0, b: 0, a: 1}
   doorsColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
-  obstaclesTiles: []
+  obstacles:
+  - {fileID: 717600851557498300, guid: 248cecf0e70c96e488a84d174153233c, type: 3}
   BasicEnemies:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
   - {fileID: 504261022165769184, guid: 0a5478d7a486e614eaf6a2677ca4e80e, type: 3}
@@ -20566,7 +20567,7 @@ GameObject:
   - component: {fileID: 1541095948}
   m_Layer: 0
   m_Name: DecoracionContainer
-  m_TagString: Untagged
+  m_TagString: DecorationContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
