@@ -1,20 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TextTest : MonoBehaviour
 {
     [SerializeField] private NaachoHeartSystem naachoHeartSystem;
-    private Image img;
+    [SerializeField] private Sprite img;
 
-    void Awake() {
-        img = GetComponent<Image>();
-    }
     // Update is called once per frame
     public void UIUpdate(float life)
     {
-        img.color = new Color(0.1f * life, 1, 1, 0.6f);
+        GameObject heartimg = null;
+
+        foreach(Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+
+        foreach(Heart heart in naachoHeartSystem.Life) {
+            if(heart == null || heart.Amount <= 0) continue;
+
+            GameObject hrt = new GameObject("Heart");
+
+            if(heartimg == null)
+                hrt.transform.position = transform.position;
+            else {
+                hrt.transform.position = heartimg.transform.position;
+                hrt.transform.position += Vector3.right * 50;
+            }
+
+            hrt.transform.localScale = Vector3.one * 0.5f;
+            Image image = hrt.AddComponent<Image>();
+            image.sprite = img;
+
+            image.type = Image.Type.Filled;
+            image.fillMethod = Image.FillMethod.Horizontal;
+            image.fillAmount = heart.Amount;
+
+            hrt.transform.SetParent(transform);
+            heartimg = hrt;
+        }
     }
 }
