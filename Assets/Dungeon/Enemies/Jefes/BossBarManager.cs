@@ -41,7 +41,7 @@ public class BossBarManager : MonoBehaviour
         float generalHealth = 0;
         foreach (GameObject enemy in enemies)
         {
-            if (enemy!=null) 
+            if (enemy != null) 
             {
                 Enemy enemyComponent = enemy.GetComponent<Enemy>();
                 if (enemyComponent!=null && !IDs.Contains(enemyComponent.ID))
@@ -58,6 +58,7 @@ public class BossBarManager : MonoBehaviour
                 }
             }
         }
+        if(totalMaxHealth == 0) return; // Evita 0 / 0
         rellenoBossBar.fillAmount = generalHealth / totalMaxHealth;
     }
 

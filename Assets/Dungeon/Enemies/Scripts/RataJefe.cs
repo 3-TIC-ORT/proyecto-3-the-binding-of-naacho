@@ -21,6 +21,7 @@ public class RataJefe : Enemy
     public float cheeseBallSpeed;
     public float timeBeforeFight;
     private bool isThrowingBalls;
+
     public override void Update()
     {
         base.Update();

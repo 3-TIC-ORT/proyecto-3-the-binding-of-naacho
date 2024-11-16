@@ -10,7 +10,10 @@ public class NaachoIcon : MonoBehaviour
     void Start()
     {
         minimapIconsContainer = GameObject.FindGameObjectWithTag("MinimapIconsContainer");
-        instancedPlayerIcon=Instantiate(playerIcon,transform.position,Quaternion.identity,minimapIconsContainer.transform);
+        instancedPlayerIcon = Instantiate(
+                playerIcon, transform.position,
+                Quaternion.identity, minimapIconsContainer.transform
+                );
     }
 
     // Update is called once per frame
@@ -18,9 +21,17 @@ public class NaachoIcon : MonoBehaviour
     {
         if (instancedPlayerIcon == null)
         {
-            if (minimapIconsContainer == null) minimapIconsContainer = GameObject.FindGameObjectWithTag("MinimapIconsContainer");
-            instancedPlayerIcon = Instantiate(playerIcon, transform.position, Quaternion.identity, minimapIconsContainer.transform);
+            if (minimapIconsContainer == null) 
+                minimapIconsContainer = GameObject.FindGameObjectWithTag("MinimapIconsContainer");
+            if(minimapIconsContainer == null) {
+                Debug.LogWarning("minimapIconsContainer es null, saliendo de la función");
+                return;
+            }
+            instancedPlayerIcon = Instantiate(
+                    playerIcon, transform.position, 
+                    Quaternion.identity, minimapIconsContainer.transform
+                    );
         }
-        instancedPlayerIcon.transform.position=transform.position;  
+        instancedPlayerIcon.transform.position = transform.position;  
     }
 }

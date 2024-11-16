@@ -20481,8 +20481,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7930061495138171272, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: iframeTime
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930061495138171272, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: startingLife
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7930061495138171272, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
       propertyPath: heartsRenderer

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class TextTest : MonoBehaviour
 {
-    [SerializeField] private NaachoHeartSystem naachoHeartSystem;
-    [SerializeField] private Sprite img;
+    public NaachoHeartSystem naachoHeartSystem;
+    public Sprite img;
 
     // Update is called once per frame
     public void UIUpdate(float life)

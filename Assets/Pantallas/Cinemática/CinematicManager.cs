@@ -9,9 +9,14 @@ public class CinematicManager : MonoBehaviour
     void Start()
     {
         FadeManager.Instance.FadeOut();
+#if !UNITY_STANDALONE_LINUX || !UNITY_EDITOR_LINUX
         myVideoPlayer.loopPointReached += StartChangingScene;
+        print("HOLA");
+#elif UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX
+        StartChangingScene();
+#endif
     }
-    private void StartChangingScene(VideoPlayer vp)
+    private void StartChangingScene(VideoPlayer vp = null)
     {
         StartCoroutine(ChangeScene());
     }

@@ -70,7 +70,7 @@ public class NaachoHeartSystem : MonoBehaviour
     {
         NaachoHitbox = GetComponent<BoxCollider2D>();
         SpRenderer = GetComponent<SpriteRenderer>();
-        heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
+        getRenderer();
         defaultColor = SpRenderer.color;
         Life = new Heart[MAX_LIFE];
         for (int i = 0; startingLife > i; i++)
@@ -87,10 +87,12 @@ public class NaachoHeartSystem : MonoBehaviour
         foreach(Transform child in localCanvas) {
             if(child.name == "Life") {
                 heartsRenderer = child.gameObject.GetComponent<TextTest>();
+                print(child.name);
                 return;
             }
             print(child.name);
         }
+        heartsRenderer.naachoHeartSystem = this;
     }
 
     public float GetLifeAmount()
@@ -112,8 +114,8 @@ public class NaachoHeartSystem : MonoBehaviour
     void UpdateLife()
     {
         LifeAmount = GetLifeAmount();
-        if(heartsRenderer == null)
-            heartsRenderer = GameObject.Find("Life").GetComponent<TextTest>();
+        if(heartsRenderer == null || heartsRenderer.naachoHeartSystem == null)
+            getRenderer();
         heartsRenderer.UIUpdate(LifeAmount);
     }
 
@@ -230,7 +232,7 @@ public class NaachoHeartSystem : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Damage(.5f);
-            StartCoroutine(Iframes(collision.collider));
+            StartCoroutine(Iframes());
         }
     }
 
@@ -243,7 +245,7 @@ public class NaachoHeartSystem : MonoBehaviour
         else if (other.CompareTag("Projectile") && other.GetComponent<ProjectileScript>().isEnemy)
         {
             Damage(other.GetComponent<ProjectileScript>().Damage);
-            StartCoroutine(Iframes(other));
+            StartCoroutine(Iframes());
         }
     }
 
@@ -259,9 +261,12 @@ public class NaachoHeartSystem : MonoBehaviour
         SpRenderer.color = defaultColor;
     }
 
-    IEnumerator Iframes(Collider2D enemy)
+    public IEnumerator Iframes(Collider2D other = null)
     {
         gameObject.layer = 9;
+        if(other != null) {
+            Physics2D.IgnoreCollision(NaachoHitbox, other, true);
+        }
         for (int i = 0; i < iframeTime; i++)
         {
             if (i % 4 == 0) SpRenderer.enabled = false;
@@ -270,5 +275,8 @@ public class NaachoHeartSystem : MonoBehaviour
         }
         SpRenderer.enabled = true;
         gameObject.layer = 0;
+        if(other != null) {
+            Physics2D.IgnoreCollision(NaachoHitbox, other, false);
+        }
     }
 }
