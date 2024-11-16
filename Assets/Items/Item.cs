@@ -60,7 +60,7 @@ public class Item : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            text.enabled = false;
+            if (text!=null) text.enabled = false;
         }
     }
     public virtual void onPickup()

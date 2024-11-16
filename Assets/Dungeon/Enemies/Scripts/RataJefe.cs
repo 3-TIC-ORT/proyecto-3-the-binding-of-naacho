@@ -6,9 +6,11 @@ using DG.Tweening;
 public class RataJefe : Enemy
 {
     private Animator animator;
+    private AnimatorStateInfo animStateInfo;
     private Transform playerPos;
     private Rigidbody2D rb;
     private int[] attacksIdentifications = { 0, 1, 2 };
+    [Tooltip("Tener en cuenta que si el valor es muy bajo entonces las animaciones podrían romperse")]
     public float delayBetweenAttacks;
     [Header("Embestida Stuff")]
     public float embestidaSpeed;
@@ -25,9 +27,11 @@ public class RataJefe : Enemy
     public override void Update()
     {
         base.Update();
+        animator = GetComponent<Animator>();
         if (GameManager.Instance.stop) return;
         Vector2 playerDir = (Vector2)(Player.transform.position - transform.position).normalized;
         CheckMainDirection(playerDir);
+        animStateInfo = animator.GetCurrentAnimatorStateInfo(0);
     }
     public override void Start()
     {
@@ -51,12 +55,18 @@ public class RataJefe : Enemy
     }
     IEnumerator Embestida()
     {
+        animator.SetTrigger("EmbestidaEmpezar");
+        while (!animStateInfo.IsName("embestida"))
+        {
+            yield return null;
+        }
         Vector2 AttackDirection = (playerPos.position - transform.position).normalized;
         //rb.AddForce(AttackDirection * embestidaSpeed * (2 - HealthPoints / maxHealth), ForceMode2D.Impulse);
         rb.AddForce(AttackDirection * embestidaSpeed, ForceMode2D.Impulse);
 
         yield return new WaitForSecondsRealtime(embestidaDuration);
 
+        animator.SetTrigger("EmbestidaFinalizar");
         DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, finishEmbestidaDuration).onComplete=()=> 
         {
             StartCoroutine(Attack()); 
@@ -64,13 +74,22 @@ public class RataJefe : Enemy
     }
     IEnumerator CreateCheeseEnemy()
     {
+        animator.SetTrigger("Escupir");
+        while(!animStateInfo.IsName("escupirFinalizar"))
+        {
+            yield return null;
+        }
         GetComponent<CheeseEnemyGenerator>().GenerateCheese(GetComponent<BoxCollider2D>());
-        yield return null;
         StartCoroutine(Attack());
     }
     IEnumerator CheeseBallsAttack()
     {
+        animator.SetTrigger("Jump");
         Vector2 configuration = ballsConfiguration[Random.Range(0,ballsConfiguration.Length)];
+        while(!animStateInfo.IsName("jumpFinalizar"))
+        {
+            yield return null;
+        }
         GenerateBalls((int)configuration.x, configuration.y);
         yield return new WaitForSecondsRealtime(1.5f);
         StartCoroutine(Attack());

@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: ballsConfiguration.Array.data[1].x
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1089474870915109550, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3930065620738826558, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
       propertyPath: m_Name
       value: RataJefe
