@@ -8,6 +8,8 @@ public class TextTest : MonoBehaviour
 {
     public NaachoHeartSystem naachoHeartSystem;
     public Sprite img;
+    public float HeartSize = 0.3f;
+    public float HeartOffset = 50;
 
     // Update is called once per frame
     public void UIUpdate(float life)
@@ -18,6 +20,9 @@ public class TextTest : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        if(naachoHeartSystem == null)
+            naachoHeartSystem = GameObject.Find("Naacho").GetComponent<NaachoHeartSystem>();
+
         foreach(Heart heart in naachoHeartSystem.Life) {
             if(heart == null || heart.Amount <= 0) continue;
 
@@ -27,10 +32,10 @@ public class TextTest : MonoBehaviour
                 hrt.transform.position = transform.position;
             else {
                 hrt.transform.position = heartimg.transform.position;
-                hrt.transform.position += Vector3.right * 50;
+                hrt.transform.position += Vector3.right * HeartOffset;
             }
 
-            hrt.transform.localScale = Vector3.one * 0.5f;
+            hrt.transform.localScale = Vector3.one * HeartSize;
             Image image = hrt.AddComponent<Image>();
             image.sprite = img;
 

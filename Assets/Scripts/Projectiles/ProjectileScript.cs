@@ -71,7 +71,8 @@ public class ProjectileScript : MonoBehaviour
         //print($"{enemrb.velocity}");
         yield return new WaitForSeconds(0.2f);
         //print($"{enemrb.velocity}");
-        enemrb.GetComponent<Enemy>().hasKnockback = false;
+        if(enemrb != null)
+            enemrb.GetComponent<Enemy>().hasKnockback = false;
         //print($"{enemrb.velocity}");
     }
 

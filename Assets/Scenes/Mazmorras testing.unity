@@ -19271,7 +19271,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   naachoHeartSystem: {fileID: 1774554973}
-  img: {fileID: -359468502, guid: 906ea5695bb0c4c67bfcea092f0af493, type: 3}
+  img: {fileID: 21300000, guid: c1a34d6b504b16a449121148756bf71d, type: 3}
+  HeartSize: 0.2
+  HeartOffset: 20
 --- !u!1001 &577568719
 PrefabInstance:
   m_ObjectHideFlags: 0
