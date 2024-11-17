@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
-
+using DG.Tweening;
 public abstract class Enemy : MonoBehaviour
 {
     public string Name;
@@ -24,6 +24,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected SpriteRenderer SpRenderer;
     public Color defaultColor;
+    public float visualDamageDuration = 0.15f;
     protected BoxCollider2D Col2D;
     protected Rigidbody2D rb2D;
     protected GameObject Player;
@@ -102,7 +103,7 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Damage(float dp)
     {
         HealthPoints -= dp;
-        StartCoroutine(VisualDamage());
+        VisualDamage();
         if (HealthPoints <= 0 && !isDead) {
             isDead = true;
             StartCoroutine(OnDeath());
@@ -116,15 +117,18 @@ public abstract class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public virtual IEnumerator VisualDamage()
+    public virtual void VisualDamage()
     {
-        SpRenderer.color = Color.red;
-
-        while (SpRenderer.color.g + SpRenderer.color.b < 2f)
+        if (!hasKnockback)
         {
-            SpRenderer.color = new Color(SpRenderer.color.r, SpRenderer.color.g+0.05f, SpRenderer.color.b+0.05f);
-            yield return null;
+            hasKnockback = true;
+            Color previousColor = SpRenderer.color;
+            SpRenderer.color = Color.red;
+            SpRenderer.DOColor(previousColor, visualDamageDuration).onComplete=()=>
+            {
+                hasKnockback=false;
+            };
         }
-        SpRenderer.color = defaultColor;
+  
     }
 }

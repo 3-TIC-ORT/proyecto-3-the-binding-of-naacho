@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
     public bool changeProyectilColor;
     protected GameObject Naacho;
     private SpriteRenderer spriteRenderer;
+    private CircleCollider2D circleCollider;
     protected NaachoController naachoController;
     protected NaachoHeartSystem naachoHeartSystem;
 
@@ -35,6 +36,8 @@ public class Item : MonoBehaviour
         animationSpeed = 1.5f;
         heightVariation = 0.6f;
         spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider.radius = 3.5f;
         childTransfrom = transform.GetChild(0).GetComponent<Transform>();  
         text = GameObject.Find("ItemExplanation").GetComponent<TextMeshProUGUI>();
         text.text = itemExplanation;

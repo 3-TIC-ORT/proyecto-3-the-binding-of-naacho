@@ -46,6 +46,11 @@ public class RataJefe : Enemy
 
     IEnumerator Attack()
     {
+        while (!animStateInfo.IsName("idle"))
+        {
+            yield return null;
+        }
+        AdjustColliderWithSprite();
         //yield return new WaitForSecondsRealtime(delayBetweenAttacks * (HealthPoints / maxHealth));
         yield return new WaitForSecondsRealtime(delayBetweenAttacks);
         int rand = Random.Range(0, attacksIdentifications.Length);
@@ -60,6 +65,7 @@ public class RataJefe : Enemy
         {
             yield return null;
         }
+        AdjustColliderWithSprite();
         Vector2 AttackDirection = (playerPos.position - transform.position).normalized;
         //rb.AddForce(AttackDirection * embestidaSpeed * (2 - HealthPoints / maxHealth), ForceMode2D.Impulse);
         rb.AddForce(AttackDirection * embestidaSpeed, ForceMode2D.Impulse);
@@ -110,6 +116,15 @@ public class RataJefe : Enemy
             proyectilScript.speed = cheeseBallSpeed;
             proyectilScript.rataCollider=GetComponent<BoxCollider2D>();
             ballsGenerated++;
+        }
+    }
+
+    private void AdjustColliderWithSprite()
+    {
+        if (SpRenderer != null && Col2D!=null)
+        {
+            Col2D.size=SpRenderer.bounds.size;
+            Col2D.offset = SpRenderer.bounds.center - transform.position;
         }
     }
     // Ve donde se está moviendo, si mayormente para un eje o para el otro. En función de eso setea la animación correspondiente.

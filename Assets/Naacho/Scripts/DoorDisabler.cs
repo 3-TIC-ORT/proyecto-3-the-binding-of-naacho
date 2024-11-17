@@ -154,7 +154,8 @@ public class DoorDisabler : MonoBehaviour
     }
     IEnumerator DisableLightAfterAnimation(Light2D light)
     {
-        yield return new WaitForSecondsRealtime(doorAnimationTime*leftUpDoorAnimation.Length);
+        float transitionSpeed = GameObject.Find("DoorTrigger").GetComponent<DoorTrigger>().cameraTransitionSpeed;
+        yield return new WaitForSecondsRealtime(doorAnimationTime*leftUpDoorAnimation.Length+transitionSpeed-0.05f);
         light.enabled = false;
     }
     void Update()
