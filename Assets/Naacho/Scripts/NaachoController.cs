@@ -36,13 +36,27 @@ public class NaachoController : MonoBehaviour
             animator.SetFloat("DirX", 0);
             return;
         }
-        if (haveToMove)
+
+        Vector2 movement = getMovement().normalized;
+
+        if (movement != Vector2.zero)
         {
-            Vector2 movement = getMovement().normalized;
             rb2D.velocity = Speed * movement;
             animator.SetFloat("DirY", movement.y);
             animator.SetFloat("DirX", movement.x);
             animator.SetBool("Idle", false);
+        }
+        else 
+        {
+            rb2D.velocity *= Friction;
+
+            animator.SetBool("Idle", true);
+            animator.SetFloat("DirY", 0);
+            animator.SetFloat("DirX", 0);
+            if (rb2D.velocity.magnitude < 0.1f)
+            {
+                rb2D.velocity = Vector2.zero;
+            }
         }
     }
     Vector2 getMovement() 
@@ -114,14 +128,6 @@ public class NaachoController : MonoBehaviour
 
         Vector2 movement = getMovement().normalized;
         if (IHaveToMove()) haveToMove = true;
-        else
-        {
-            haveToMove = false;
-            rb2D.velocity *= Friction;
-            animator.SetFloat("DirY", 0);
-            animator.SetFloat("DirX", 0);
-            animator.SetBool("Idle", true);
-        }
 
         Vector2 ShootDir = getShootDir();
         if (ShootDir.x != 0 || ShootDir.y != 0)
