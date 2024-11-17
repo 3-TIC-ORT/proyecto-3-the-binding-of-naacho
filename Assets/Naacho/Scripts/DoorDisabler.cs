@@ -48,7 +48,7 @@ public class DoorDisabler : MonoBehaviour
         }
     }
     // Dale el nuevo Tile para la puerta. Dale la posición del spawnPoint detectado.
-    public void detectDoors(bool closing, Vector2 spawnPointPos, bool enableDoorLights)
+    public void detectDoors(bool closing, Vector2 spawnPointPos)
     {
         float hDistanciaBetweenDoorAndSpawnPoint = roomTemplates.centerBetweenHorizontalRooms * 2 - (roomTemplates.centerBetweenHorizontalRooms + roomTemplates.horizontalDoorToDoorRoomArea.x / 2);
         float vDistanciaBetweenDoorAndSpawnPoint = roomTemplates.centerBetweenVerticaltalRooms * 2 - (roomTemplates.centerBetweenVerticaltalRooms + roomTemplates.verticalDoorToDoorRoomArea.y / 2);
@@ -71,17 +71,27 @@ public class DoorDisabler : MonoBehaviour
                 {
                     ChangeDoor(closing, doorPos, direction.unitVector);
                 }
-                else if (col != null && col.gameObject.CompareTag("RoomLight"))
-                {
-                    col.GetComponent<Light2D>().enabled = enableDoorLights;
-                }
             }
         }
     }
     // Si doorDirection es (1,0) entonces la puerta es la puerta de la derecha de la room.
     void ChangeDoor(bool closing, Vector2 doorPos, Vector2 doorDirection)
     {
+        // Es una lista de listas porque son dos listas de sprites. Una para la parte izquierda y otra para la parte derecha de la puerta.
         List<List<Sprite>> sprites = CorrespondingSprites(doorDirection);
+
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(doorPos, new Vector2(0.5f,0.5f),0);
+        foreach (Collider2D col in colliders)
+        {
+            if (col != null && col.gameObject.CompareTag("RoomLight"))
+            {
+                Light2D light = col.gameObject.GetComponent<Light2D>();
+                // Desactivar la luz después de la animación de cierre de la puerta
+                if (closing) StartCoroutine(DisableLightAfterAnimation(light));
+                else light.enabled = true;
+            }
+        }
+
         if (!closing)
         {
             StartCoroutine(ChangeDoorSprite(sprites, doorPos, false));
@@ -116,6 +126,7 @@ public class DoorDisabler : MonoBehaviour
             yield return new WaitForSecondsRealtime(doorAnimationTime);
         }
     }
+    // Es una lista de listas porque son dos listas de sprites. Una para la parte izquierda y otra para la parte derecha de la puerta.
     List<List<Sprite>> CorrespondingSprites(Vector2 doorDirection)
     {
         List<List<Sprite>> list = new List<List<Sprite>>();
@@ -140,6 +151,11 @@ public class DoorDisabler : MonoBehaviour
             list.Add(downRightDoorAnimation.ToList<Sprite>());
         }
         return list;
+    }
+    IEnumerator DisableLightAfterAnimation(Light2D light)
+    {
+        yield return new WaitForSecondsRealtime(doorAnimationTime*leftUpDoorAnimation.Length);
+        light.enabled = false;
     }
     void Update()
     {
@@ -182,7 +198,7 @@ public class DoorDisabler : MonoBehaviour
                     {
                         spawnPointsClosed.Add(roomSpawner.ID);
                         Vector2 position = roomSpawner.gameObject.transform.position;
-                        detectDoors(true, position, false);
+                        detectDoors(true, position);
                     }
                 }
             }
@@ -200,7 +216,7 @@ public class DoorDisabler : MonoBehaviour
                     {
                         spawnPointsClosed.Remove(roomSpawner.ID);
                         Vector2 position = roomSpawner.gameObject.transform.position;
-                        detectDoors(false, position, true);
+                        detectDoors(false, position);
                     }
                 }
             }

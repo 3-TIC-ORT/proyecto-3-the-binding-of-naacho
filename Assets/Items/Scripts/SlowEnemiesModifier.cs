@@ -40,7 +40,7 @@ public class SlowEnemiesModifier : ProyectilModifier
         enemyCom.Speed /= 2;
         while (enemyCom.effects.timeSlowed < maxTime)
         {
-            if (!enemyCom.hasKnockback)
+            if (!enemyCom.hasKnockback && enemyCom!=null)
             {
                 enemySR.color = Color.yellow;
             }

@@ -19,7 +19,7 @@ public class CinematicManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.anyKey && !changingScene)
+        if (Input.anyKey && !changingScene && FadeManager.Instance.fadeOutFinished)
         {
             changingScene = true;
             StartCoroutine(ChangeScene());

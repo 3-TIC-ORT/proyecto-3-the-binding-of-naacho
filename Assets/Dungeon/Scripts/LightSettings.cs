@@ -34,10 +34,15 @@ public class LightSettings : MonoBehaviour
         if (player != null) 
         {
             // Si el jugador est� lo suficientemente lejos, desactiva el componente de light para ahorrar recursos.
-            if ((transform.position-player.transform.position).magnitude>OcclusionCullingDistance) _light.enabled = false;
+            if (!isDoorLight && (transform.position - player.transform.position).magnitude > OcclusionCullingDistance) _light.enabled = false;
             else if (!isDoorLight) _light.enabled = true;
-            else if (!doorDisabler.isFighting) _light.enabled=true;
-            else _light.enabled=false;
+            else if (isDoorLight && !doorDisabler.isFighting && (transform.position - player.transform.position).magnitude < OcclusionCullingDistance)
+            {
+                _light.enabled = true;
+            }
+            else if (isDoorLight && !doorDisabler.isFighting) _light.enabled = false;
+            //else if (!doorDisabler.isFighting) _light.enabled=true;
+            //else _light.enabled=false;
         }
         else if (!GameManager.Instance.nachoNullPrinted)
         {
