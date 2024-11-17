@@ -21,7 +21,7 @@ public class CheeseProyectile : MonoBehaviour
         {
             if (colTag == "Player")
             {
-                col.gameObject.GetComponent<NaachoHeartSystem>().Damage(1);
+                col.gameObject.GetComponent<NaachoHeartSystem>().Damage();
                 Destroy(gameObject);
             }
             else if (Random.value < 0.2f)

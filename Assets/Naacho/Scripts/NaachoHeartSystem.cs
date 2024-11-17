@@ -230,23 +230,15 @@ public class NaachoHeartSystem : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Damage(.5f);
-            StartCoroutine(Iframes());
-        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Item"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            other.GetComponent<Item>().onPickup();
-        }
-        else if (other.CompareTag("Projectile") && other.GetComponent<ProjectileScript>().isEnemy)
-        {
-            Damage(other.GetComponent<ProjectileScript>().Damage);
-            StartCoroutine(Iframes());
+            Damage(.5f);
+            StartCoroutine(Iframes(other));
         }
     }
 
