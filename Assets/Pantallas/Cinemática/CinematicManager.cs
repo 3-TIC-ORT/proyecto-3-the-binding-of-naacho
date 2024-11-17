@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CinematicManager : MonoBehaviour
 {
     public VideoPlayer myVideoPlayer;
+    public bool changingScene;
     void Start()
     {
         FadeManager.Instance.FadeOut();
@@ -16,9 +17,17 @@ public class CinematicManager : MonoBehaviour
         StartChangingScene();
 #endif
     }
+    private void Update()
+    {
+        if (Input.anyKey && !changingScene)
+        {
+            changingScene = true;
+            StartCoroutine(ChangeScene());
+        }
+    }
     private void StartChangingScene(VideoPlayer vp = null)
     {
-        StartCoroutine(ChangeScene());
+        if (!changingScene) StartCoroutine(ChangeScene());
     }
     IEnumerator ChangeScene()
     {
