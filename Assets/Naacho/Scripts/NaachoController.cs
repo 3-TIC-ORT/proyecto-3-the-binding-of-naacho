@@ -6,7 +6,6 @@ public class NaachoController : MonoBehaviour
 {
     public int Speed;
     public float Friction;
-    bool haveToMove;
     public GameObject ProjectilePrefab;
     public float shotSpray;
     public float shootSpeed;
@@ -76,11 +75,6 @@ public class NaachoController : MonoBehaviour
 
         return new Vector2(horizontalMovement, verticalMovement);
     }
-    bool IHaveToMove()
-    {
-        if (getMovement() != Vector2.zero) return true;
-        else return false;
-    }
     Vector2 getShootDir()
     {
         float horizontalMovement = 0;
@@ -127,7 +121,6 @@ public class NaachoController : MonoBehaviour
         ShootTimeCounter += Time.deltaTime;
 
         Vector2 movement = getMovement().normalized;
-        if (IHaveToMove()) haveToMove = true;
 
         Vector2 ShootDir = getShootDir();
         if (ShootDir.x != 0 || ShootDir.y != 0)
