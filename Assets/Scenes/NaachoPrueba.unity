@@ -351,7 +351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581add980ea8545d4b50b1b15cb15601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1866825594}
+  naachoHeartSystem: {fileID: 0}
+  img: {fileID: 0}
 --- !u!1 &785300351
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,11 +711,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1866825594 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8020641590110592584, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
-  m_PrefabInstance: {fileID: 189238896}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1952713604
 PrefabInstance:
   m_ObjectHideFlags: 0

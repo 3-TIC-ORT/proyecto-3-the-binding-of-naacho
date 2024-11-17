@@ -49,13 +49,13 @@ public class LayerOrdering : MonoBehaviour
             if(closest.transform.position.y < transform.position.y) {
                 closest.sortingOrder = baseLayer + 1;
                 foreach(Transform child in closest.transform) {
-                    child.GetComponent<SpriteRenderer>().sortingOrder = closest.sortingOrder + 1;
+                    child.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = closest.sortingOrder + 1;
                 }
                 SpRenderer.sortingOrder = baseLayer;
             } else {
                 closest.sortingOrder = baseLayer;
                 foreach(Transform child in closest.transform) {
-                    child.GetComponent<SpriteRenderer>().sortingOrder = closest.sortingOrder - 1;
+                    child.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = closest.sortingOrder - 1;
                 }
                 SpRenderer.sortingOrder = baseLayer + 1;
             }

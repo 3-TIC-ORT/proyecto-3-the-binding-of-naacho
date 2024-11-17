@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6714608727884649795
+--- !u!1 &911461549176660277
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,58 +8,64 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2640750563527237661}
-  - component: {fileID: 6438782898629837710}
-  - component: {fileID: 8154203147537788933}
-  - component: {fileID: 7454985186559790424}
-  m_Layer: 3
-  m_Name: BalasTeledirigidas
+  - component: {fileID: 8497231095849239439}
+  - component: {fileID: 2092687667470170137}
+  - component: {fileID: -5892361590894156966}
+  m_Layer: 0
+  m_Name: PlantillaItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2640750563527237661
+--- !u!4 &8497231095849239439
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714608727884649795}
+  m_GameObject: {fileID: 911461549176660277}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78.28258, y: -11.42382, z: 0.15963374}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3863970718982173393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6438782898629837710
+--- !u!114 &2092687667470170137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714608727884649795}
+  m_GameObject: {fileID: 911461549176660277}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5e0a6d499a0f4f59807f4d270e35624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modifier: 1
+  modifier: 0
   changeProyectilColor: 1
+  speedVariation: 0
+  shotSprayVariation: 0
+  shootSpeedVariation: 0
+  fireRateVariation: 0
+  rangeVariation: 0
+  damageVariation: 0
   animationSpeed: 1
   heightVariation: 0
   oclussionCulling: 35
   textOclussionCulling: 13
-  itemExplanation: Your projectiles follow enemies
---- !u!58 &8154203147537788933
+  itemExplanation: 
+--- !u!58 &-5892361590894156966
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714608727884649795}
+  m_GameObject: {fileID: 911461549176660277}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -87,14 +93,46 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6
---- !u!212 &7454985186559790424
+  m_Radius: 4
+--- !u!1 &2979985620371809886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3863970718982173393}
+  - component: {fileID: 6675386203042097585}
+  m_Layer: 0
+  m_Name: Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3863970718982173393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979985620371809886}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8497231095849239439}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &6675386203042097585
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714608727884649795}
+  m_GameObject: {fileID: 2979985620371809886}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

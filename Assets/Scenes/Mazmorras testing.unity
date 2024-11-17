@@ -19138,13 +19138,13 @@ MonoBehaviour:
   doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
   items:
-  - {fileID: 2255056283135363523, guid: 5c4ce46a3bf8c4107882c12a8b69b456, type: 3}
-  - {fileID: 3764741258683837243, guid: 60bfd6cfad79a4a709881ffab734a15d, type: 3}
+  - {fileID: 5415049261347781878, guid: 4277924511154284d9cad5e27e2bddd9, type: 3}
+  - {fileID: 6257593552224073672, guid: 13412e8d072542543adf39fbfd61285f, type: 3}
   specialItems:
-  - {fileID: 6714608727884649795, guid: 2b790184ab4ebbf4aa1fa0ac20cb4e3c, type: 3}
-  - {fileID: 7481460279386920638, guid: d9a087ae21ca4b642b0ad3e9fef4e2a0, type: 3}
-  - {fileID: 2255056283135363523, guid: 835e8e67c152b2c11bc1c3d9724026f6, type: 3}
-  - {fileID: 5812606925961064662, guid: a79ca2b627cff9d42a7936c9d48b3ebf, type: 3}
+  - {fileID: 9024307348955615377, guid: 9722dfa24b74aae409f457e21ea369bc, type: 3}
+  - {fileID: 2383271661127107022, guid: eea93527eab221540a5f3d88c2f97cb5, type: 3}
+  - {fileID: 5222497521300365866, guid: 25ed171b1d1138e4d9f3b7782d1bcedd, type: 3}
+  - {fileID: 2660735176227426789, guid: 29fcff24a1cc90641ae5659ca1c00ebd, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
   LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 10, y: 10, z: 1}

@@ -12,6 +12,14 @@ public class Item : MonoBehaviour
     protected NaachoController naachoController;
     protected NaachoHeartSystem naachoHeartSystem;
 
+    [Header("Parámetros para cambiar las stats de Naacho")]
+    public int speedVariation;
+    public float shotSprayVariation;
+    public float shootSpeedVariation;
+    public float fireRateVariation;
+    public float rangeVariation;
+    public float damageVariation;
+
     [Header("Parámetros para la animación de flotar")]
     public float animationSpeed;
     public float heightVariation;
@@ -21,17 +29,19 @@ public class Item : MonoBehaviour
     public float textOclussionCulling;
     public string itemExplanation;
     private TextMeshProUGUI text;
+    private Transform childTransfrom;
     
     public void Start() {
         animationSpeed = 1.5f;
         heightVariation = 0.6f;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        childTransfrom = transform.GetChild(0).GetComponent<Transform>();  
         text = GameObject.Find("ItemExplanation").GetComponent<TextMeshProUGUI>();
         text.text = itemExplanation;
         Naacho = GameObject.Find("Naacho");
         naachoController = Naacho.GetComponent<NaachoController>();
         naachoHeartSystem = Naacho.GetComponent<NaachoHeartSystem>();
-        transform.DOMoveY(transform.position.y + heightVariation, animationSpeed).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        childTransfrom.DOMoveY(childTransfrom.position.y + heightVariation, animationSpeed).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
     private void Update()
     {
@@ -74,7 +84,17 @@ public class Item : MonoBehaviour
                         ));
             if (changeProyectilColor) ChangeProyectilColor();
         }
+        ChangeNaachoStats();
         Destroy(gameObject);
+    }
+    public virtual void ChangeNaachoStats()
+    {
+        naachoController.Speed += speedVariation;
+        naachoController.shotSpray += shotSprayVariation;
+        naachoController.shootSpeed += shootSpeedVariation;
+        naachoController.FireRate += fireRateVariation;
+        naachoController.Range += rangeVariation;
+        naachoController.Damage += damageVariation;
     }
     public virtual void ChangeProyectilColor()
     {

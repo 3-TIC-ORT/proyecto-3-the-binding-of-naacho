@@ -35,7 +35,7 @@ public class ItemHolder : MonoBehaviour
             templates.specialItems.Remove(itemToSpawn);
 
         }
-        item = Instantiate(itemToSpawn, transform.position + Vector3.up * 0.5f, Quaternion.identity, gameObject.transform);
+        item = Instantiate(itemToSpawn, transform.position, Quaternion.identity, gameObject.transform);
     }
     private void Update()
     {
@@ -53,7 +53,7 @@ public class ItemHolder : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player") && item!=null)
         {
             Item itemComponent = item.GetComponent<Item>();
             itemComponent.onPickup();
