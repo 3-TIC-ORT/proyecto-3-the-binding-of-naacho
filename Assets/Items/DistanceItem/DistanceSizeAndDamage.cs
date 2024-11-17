@@ -5,7 +5,7 @@ using UnityEngine;
 public class DistanceSizeAndDamage : ProyectilModifier
 {
     public float growingSize=0.06f;
-    public float growingDamage=0.04f;
+    public float growingDamage=0.07f;
     public override void Start()
     {
         base.Start();

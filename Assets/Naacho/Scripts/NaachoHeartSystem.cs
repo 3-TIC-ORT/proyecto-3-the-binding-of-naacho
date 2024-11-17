@@ -60,6 +60,7 @@ public class NaachoHeartSystem : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "Mazmorras testing")
         {
             ProjectileCreator.modifiers.Clear();
+            ProjectileCreator.proyectilColor = new Color(1, 1, 1, 1);
             Destroy(gameObject);
             return;
         }
