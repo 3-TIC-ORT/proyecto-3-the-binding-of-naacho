@@ -11,8 +11,15 @@ public class TextTest : MonoBehaviour
     public float HeartSize = 0.3f;
     public float HeartOffset = 50;
 
-    // Update is called once per frame
-    public void UIUpdate(float life)
+    void Start() {
+        UIUpdate();
+    }
+
+    void Update() {
+        UIUpdate();
+    }
+
+    public void UIUpdate()
     {
         GameObject heartimg = null;
 
@@ -23,6 +30,10 @@ public class TextTest : MonoBehaviour
         if(naachoHeartSystem == null)
             naachoHeartSystem = GameObject.Find("Naacho").GetComponent<NaachoHeartSystem>();
 
+        if(naachoHeartSystem == null || naachoHeartSystem.Life == null) {
+            Debug.LogWarning("No se encontró vida, esto es normal la si se recarga la escena");
+            return;
+        }
         foreach(Heart heart in naachoHeartSystem.Life) {
             if(heart == null || heart.Amount <= 0) continue;
 
