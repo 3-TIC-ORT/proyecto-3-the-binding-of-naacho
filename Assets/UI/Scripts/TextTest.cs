@@ -8,7 +8,7 @@ public class TextTest : MonoBehaviour
 {
     public NaachoHeartSystem naachoHeartSystem;
     public Sprite img;
-    public float HeartSize = 0.3f;
+    public float HeartSize = 0.7f;
     public float HeartOffset = 50;
 
     void Start() {
@@ -53,6 +53,10 @@ public class TextTest : MonoBehaviour
             image.type = Image.Type.Filled;
             image.fillMethod = Image.FillMethod.Horizontal;
             image.fillAmount = heart.Amount;
+
+            RectTransform transf = image.GetComponent<RectTransform>();
+            transf.anchorMax = Vector2.up;
+            transf.anchorMin = Vector2.up;
 
             hrt.transform.SetParent(transform);
             heartimg = hrt;
