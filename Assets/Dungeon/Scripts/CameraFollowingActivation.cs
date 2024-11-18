@@ -31,8 +31,8 @@ public class CameraFollowingActivation : MonoBehaviour
     void Start()
     {
         // PORQUE LOS RAYS EMPIEZAN EN LAS PATAS DE NAACHO Y POR ESO NO TIENEN LA MISMA LONGITUD
-        upRayLongitude = HalfRoomYDistance + 0.55f;
-        downRayLongitude = HalfRoomYDistance - 0.55f;
+        upRayLongitude = HalfRoomYDistance;
+        downRayLongitude = HalfRoomYDistance;
         cameraTarget = GameObject.FindGameObjectWithTag("CameraAim").GetComponent<CameraAim>();
     }
 
@@ -159,19 +159,19 @@ public class CameraFollowingActivation : MonoBehaviour
         Color rayColorRight = Color.green;
         Color rayColorLeft = Color.green;
 
-        upRay = new Ray(transform.position + Vector3.down * 0.55f, Vector2.up);
+        upRay = new Ray(transform.position, Vector2.up);
         upColliders = Physics2D.RaycastAll(upRay.origin, upRay.direction, upRayLongitude);
         if (upColliders.Length > 1) rayColorUp = Color.blue;
 
-        downRay = new Ray(transform.position + Vector3.down * 0.55f, Vector2.down);
+        downRay = new Ray(transform.position, Vector2.down);
         downColliders = Physics2D.RaycastAll(downRay.origin, downRay.direction, downRayLongitude);
         if (downColliders.Length > 1) rayColorDown = Color.blue;
 
-        rightRay = new Ray(transform.position + Vector3.down * 0.55f, Vector2.right);
+        rightRay = new Ray(transform.position, Vector2.right);
         rightColliders = Physics2D.RaycastAll(rightRay.origin, rightRay.direction, HalfRoomXDistance);
         if (rightColliders.Length > 1) rayColorRight = Color.blue;
 
-        leftRay = new Ray(transform.position + Vector3.down * 0.55f, Vector2.left);
+        leftRay = new Ray(transform.position, Vector2.left);
         leftColliders = Physics2D.RaycastAll(leftRay.origin, leftRay.direction, HalfRoomXDistance);
         if (leftColliders.Length > 1) rayColorLeft = Color.blue;
 
