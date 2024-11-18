@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1963746019582757192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0.04, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -172,8 +172,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.005000025, y: -0.0011000037, z: 0}
-    m_Extent: {x: 0.99880004, y: 1.0018001, z: 0}
+    m_Center: {x: -0.0033499897, y: 0.00044998527, z: 0}
+    m_Extent: {x: 0.99944997, y: 0.99724996, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -303,7 +303,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -359468502, guid: 906ea5695bb0c4c67bfcea092f0af493, type: 3}
+  m_Sprite: {fileID: 1887422200, guid: 7c87e70e39f14af5abed9ce85aea148c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -346,11 +346,11 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.036941722, y: -0.09796343}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.37, y: 0.38}
+    pivot: {x: 0.47631326, y: 0.51522666}
+    oldSize: {x: 0.18, y: 0.15}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -391,11 +391,11 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03694172, y: -0.09796343}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.37, y: 0.38}
+    pivot: {x: 0.47631326, y: 0.51522666}
+    oldSize: {x: 0.18, y: 0.15}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -451,7 +451,9 @@ MonoBehaviour:
   FireRate: 4
   Range: 12
   Damage: 1
-  ShootingOffset: {x: -0.15, y: -0.35}
+  ShootingOffset: {x: 0, y: 0}
+  animatorBody: {fileID: 0}
+  animatorHead: {fileID: 0}
 --- !u!114 &4274172619971887666
 MonoBehaviour:
   m_ObjectHideFlags: 0

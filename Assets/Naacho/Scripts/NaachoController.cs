@@ -20,6 +20,8 @@ public class NaachoController : MonoBehaviour
     private Rigidbody2D rb2D;
     [SerializeField] private Animator animatorBody;
     [SerializeField] private Animator animatorHead;
+    [SerializeField] private Vector2 HeadOffset;
+    private Vector3 headPos;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,7 @@ public class NaachoController : MonoBehaviour
                 break;
             }
         }
+        headPos = animatorHead.transform.localPosition;
     }
     private void FixedUpdate()
     {
@@ -39,8 +42,8 @@ public class NaachoController : MonoBehaviour
         {
             rb2D.velocity = Vector2.zero;
             animatorBody.SetBool("Idle", true);
-            animatorBody.SetFloat("DirY", 0);
-            animatorBody.SetFloat("DirX", 0);
+            animatorBody.SetBool("Vertical", false);
+            animatorBody.SetBool("Strafe", false);
             return;
         }
 
@@ -49,29 +52,21 @@ public class NaachoController : MonoBehaviour
         if (movement != Vector2.zero)
         {
             rb2D.velocity = Speed * movement;
-            animatorBody.SetFloat("DirY", movement.y);
-            animatorBody.SetFloat("DirX", movement.x);
             animatorBody.SetBool("Idle", false);
-
-            if(!isFiring) {
-                animatorHead.enabled = Mathf.Abs(movement.x) + Mathf.Abs(movement.y) > 0;
-                animatorHead.SetBool("Arriba", movement.y > 0);
-                animatorHead.SetBool("Abajo", movement.y < 0);
-                animatorHead.SetBool("Costado", movement.x != 0);
-                animatorHead.GetComponent<SpriteRenderer>().flipX = movement.x < 0;
-                print(Mathf.Abs(movement.x) + Mathf.Abs(movement.y) > 0);
-                print(movement.y > 0);
-                print(movement.y < 0);
-                print(movement.x != 0);
+            animatorBody.SetBool("Vertical", Mathf.Abs(movement.y) > 0);
+            animatorBody.SetBool("Strafe", false);
+            if(Mathf.Abs(movement.y) <= 0){
+                animatorBody.SetBool("Vertical", false);
+                animatorBody.SetBool("Strafe", Mathf.Abs(movement.x) > 0);
             }
-        }
-        else 
-        {
+            animatorBody.GetComponent<SpriteRenderer>().flipX = movement.x < 0;
+
+        } else {
             rb2D.velocity *= Friction;
 
             animatorBody.SetBool("Idle", true);
-            animatorBody.SetFloat("DirY", 0);
-            animatorBody.SetFloat("DirX", 0);
+            animatorBody.SetBool("Vertical", false);
+            animatorBody.SetBool("Strafe", false);
             if (rb2D.velocity.magnitude < 0.1f)
             {
                 rb2D.velocity = Vector2.zero;
@@ -115,26 +110,30 @@ public class NaachoController : MonoBehaviour
             verticalMovement = -1;
         }
 
+
         if(verticalMovement == -1) {
             animatorHead.GetComponent<SpriteRenderer>().flipX = false;
             animatorHead.SetBool("Abajo", true);
             animatorHead.SetBool("Arriba", false);
             animatorHead.SetBool("Costado", false);
+            animatorHead.transform.localPosition = headPos;
         } else if(verticalMovement == 1) {
             animatorHead.GetComponent<SpriteRenderer>().flipX = false;
             animatorHead.SetBool("Abajo", false);
             animatorHead.SetBool("Arriba", true);
             animatorHead.SetBool("Costado", false);
+            animatorHead.transform.localPosition = headPos;
         } else if(Mathf.Abs(horizontalMovement) == 1) {
             animatorHead.GetComponent<SpriteRenderer>().flipX = false;
             animatorHead.SetBool("Abajo", false);
             animatorHead.SetBool("Arriba", false);
             animatorHead.SetBool("Costado", true);
-            print(horizontalMovement);
-            if(horizontalMovement < 0)
+            if(horizontalMovement < 0) {
                 animatorHead.GetComponent<SpriteRenderer>().flipX = true;
-            else
-                animatorHead.GetComponent<SpriteRenderer>().flipX = false;
+                animatorHead.transform.localPosition = headPos;
+            } else {
+                animatorHead.transform.localPosition = headPos + (Vector3)HeadOffset;
+            }
         }
 
         return new Vector2(horizontalMovement, verticalMovement);
@@ -157,8 +156,8 @@ public class NaachoController : MonoBehaviour
         if(GameManager.Instance.stop) {
             rb2D.velocity = Vector2.zero;
             animatorBody.SetBool("Idle", true);
-            animatorBody.SetFloat("DirY", 0);
-            animatorBody.SetFloat("DirX", 0);
+            animatorBody.SetBool("Vertical", false);
+            animatorBody.SetBool("Strafe", false);
             return;
         }
         ShootTimeCounter += Time.deltaTime;
@@ -178,8 +177,38 @@ public class NaachoController : MonoBehaviour
 
         } else {
             isFiring = false;
-            if(getMovement() == Vector2.zero)
+        }
+
+        if(!isFiring) {
+            if(movement == Vector2.zero) {
                 StartCoroutine(ShootIdle());
+                return;
+            }
+            animatorHead.enabled = Mathf.Abs(movement.x) + Mathf.Abs(movement.y) > 0;
+            if(movement.y > 0) {
+                animatorHead.SetBool("Arriba", true);
+                animatorHead.SetBool("Abajo", false);
+                animatorHead.SetBool("Costado", false);
+            } else if(movement.y < 0) {
+                animatorHead.SetBool("Arriba", false);
+                animatorHead.SetBool("Abajo", true);
+                animatorHead.SetBool("Costado", false);
+            } else if(movement.x != 0) {
+                animatorHead.SetBool("Arriba", false);
+                animatorHead.SetBool("Abajo", false);
+                animatorHead.SetBool("Costado", true);
+            } else {
+                animatorHead.SetBool("Arriba", false);
+                animatorHead.SetBool("Abajo", true);
+                animatorHead.SetBool("Costado", false);
+            }
+            if(movement.x > 0 && animatorHead.GetBool("Costado")) {
+                print(movement.x);
+                animatorHead.transform.localPosition = headPos + (Vector3)HeadOffset;
+            } else {
+                animatorHead.GetComponent<SpriteRenderer>().flipX = movement.x < 0 && animatorHead.GetBool("Costado");
+                animatorHead.transform.localPosition = headPos;
+            }
         }
     }
 
@@ -188,6 +217,7 @@ public class NaachoController : MonoBehaviour
         animatorHead.SetBool("Abajo", true);
         animatorHead.SetBool("Arriba", false);
         animatorHead.SetBool("Costado", false);
+        animatorHead.transform.localPosition = headPos;
 
         yield return null;
         animatorHead.enabled = false;
