@@ -13,7 +13,6 @@ public class ProjectileCreator : MonoBehaviour
         foreach (string modifier in modifiers)
         {
             if(modifier == "DividingProjectile" && HasDuplicated) {
-                print($"{modifier}, {modifier == "DividingProjectile"}");
                 continue;
             }
             Type type = Type.GetType(modifier);

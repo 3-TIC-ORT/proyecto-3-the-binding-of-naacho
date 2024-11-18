@@ -88,13 +88,10 @@ public class NaachoHeartSystem : MonoBehaviour
         foreach(Transform child in localCanvas) {
             if(child.name == "Life") {
                 heartsRenderer = child.gameObject.GetComponent<TextTest>();
-                print(child.name);
                 return;
             }
-            print(child.name);
         }
         heartsRenderer.naachoHeartSystem = this;
-        print(heartsRenderer.naachoHeartSystem);
     }
 
     public float GetLifeAmount()

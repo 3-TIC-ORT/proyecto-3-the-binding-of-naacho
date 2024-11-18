@@ -80,7 +80,6 @@ public class Item : MonoBehaviour
     {
         if (modifier != ProyectilModifier.Modifiers.None)
         {
-            print(Enum.GetName(typeof(ProyectilModifier.Modifiers), modifier));
             ProjectileCreator.modifiers.Add(Enum.GetName(
                         typeof(ProyectilModifier.Modifiers),
                         modifier
