@@ -23,6 +23,7 @@ public class DoorDisabler : MonoBehaviour
     public Sprite[] downRightDoorAnimation;
     [Tooltip("El tiempo que tarda una puerta en cerrarse o abrirse")]
     public float doorAnimationTime;
+    public float doorTotalAnimationTime;
     EnemyEnabler enemyEnabler;
     public bool isFighting;
     BoxCollider2D ActivationArea;
@@ -35,6 +36,7 @@ public class DoorDisabler : MonoBehaviour
         targetTilemap = GameObject.Find("Entry Room").GetComponent<Tilemap>();
         roomTemplates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         ActivationArea = GetComponent<BoxCollider2D>();
+        doorTotalAnimationTime = doorAnimationTime * leftUpDoorAnimation.Length;
     }
     public class VectorWithUnit
     {
@@ -87,8 +89,8 @@ public class DoorDisabler : MonoBehaviour
             {
                 Light2D light = col.gameObject.GetComponent<Light2D>();
                 // Desactivar la luz después de la animación de cierre de la puerta
-                if (closing) StartCoroutine(DisableLightAfterAnimation(light));
-                else light.enabled = true;
+                if (closing) StartCoroutine(TweenLightOpacity(0,true, doorTotalAnimationTime, light));
+                else StartCoroutine(TweenLightOpacity(1,false, doorTotalAnimationTime, light));
             }
         }
 
@@ -152,11 +154,14 @@ public class DoorDisabler : MonoBehaviour
         }
         return list;
     }
-    IEnumerator DisableLightAfterAnimation(Light2D light)
+  
+    IEnumerator TweenLightOpacity(float targetOpacity,bool wait, float duration, Light2D light)
     {
         float transitionSpeed = GameObject.Find("DoorTrigger").GetComponent<DoorTrigger>().cameraTransitionSpeed;
-        yield return new WaitForSecondsRealtime(doorAnimationTime*leftUpDoorAnimation.Length+transitionSpeed-0.05f);
-        light.enabled = false;
+        if (wait) yield return new WaitForSecondsRealtime(transitionSpeed - 0.05f);
+        Color currentColor = light.color;
+        DOTween.To(() =>
+        light.color, x => light.color = x, new Color(currentColor.r, currentColor.g, currentColor.b, targetOpacity), duration);
     }
     void Update()
     {
