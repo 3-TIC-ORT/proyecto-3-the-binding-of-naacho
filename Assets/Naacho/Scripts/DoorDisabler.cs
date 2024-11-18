@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
-
+using DG.Tweening;
 public class DoorDisabler : MonoBehaviour
 {
     private GameObject grid;

@@ -30,7 +30,8 @@ public class RataJefe : Enemy
         animator = GetComponent<Animator>();
         if (GameManager.Instance.stop) return;
         Vector2 playerDir = (Vector2)(Player.transform.position - transform.position).normalized;
-        CheckMainDirection(playerDir);
+        FlipSprite(playerDir);
+        //CheckMainDirection(playerDir);
         animStateInfo = animator.GetCurrentAnimatorStateInfo(0);
     }
     public override void Start()
@@ -127,41 +128,48 @@ public class RataJefe : Enemy
             Col2D.offset = SpRenderer.bounds.center - transform.position;
         }
     }
-    // Ve donde se está moviendo, si mayormente para un eje o para el otro. En función de eso setea la animación correspondiente.
-    private void CheckMainDirection(Vector3 direction)
-    {
-        //if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
-        //{
-        //    if (direction.y > 0)
-        //    {
-        //        animator.SetBool("up", true);
-        //        animator.SetBool("down", false);
-        //        animator.SetBool("horizontal", false);
-        //    }
-        //    else
-        //    {
-        //        animator.SetBool("down", true);
-        //        animator.SetBool("up", false);
-        //        animator.SetBool("horizontal", false);
-        //    }
-        //}
-        //else
-        //{
-        //    if (direction.x > 0)
-        //    {
-        //        SpRenderer.flipX = true;
-        //        animator.SetBool("horizontal", true);
-        //        animator.SetBool("up", false);
-        //        animator.SetBool("down", false);
 
-        //    }
-        //    else
-        //    {
-        //        SpRenderer.flipX = false;
-        //        animator.SetBool("horizontal", true);
-        //        animator.SetBool("up", false);
-        //        animator.SetBool("down", false);
-        //    }
-        //}
+    private void FlipSprite(Vector2 vector)
+    {
+        if (vector.x>0) SpRenderer.flipX = true;
+        else SpRenderer.flipX = false;  
     }
+
+    // Ve donde se está moviendo, si mayormente para un eje o para el otro. En función de eso setea la animación correspondiente.
+    //private void CheckMainDirection(Vector3 direction)
+    //{
+    //    if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+    //    {
+    //        if (direction.y > 0)
+    //        {
+    //            animator.SetBool("up", true);
+    //            animator.SetBool("down", false);
+    //            animator.SetBool("horizontal", false);
+    //        }
+    //        else
+    //        {
+    //            animator.SetBool("down", true);
+    //            animator.SetBool("up", false);
+    //            animator.SetBool("horizontal", false);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (direction.x > 0)
+    //        {
+    //            SpRenderer.flipX = true;
+    //            animator.SetBool("horizontal", true);
+    //            animator.SetBool("up", false);
+    //            animator.SetBool("down", false);
+
+    //        }
+    //        else
+    //        {
+    //            SpRenderer.flipX = false;
+    //            animator.SetBool("horizontal", true);
+    //            animator.SetBool("up", false);
+    //            animator.SetBool("down", false);
+    //        }
+    //    }
+    //}
 }

@@ -36,6 +36,10 @@ PrefabInstance:
       propertyPath: textOclussionCulling
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 6675386203042097585, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7044a3ef420318c4eb25ad11c4615524, type: 3}
     - target: {fileID: 8497231095849239439, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
