@@ -1,6 +1,5 @@
-using System;
+using System.Collections.Generic;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -37,6 +36,7 @@ public class NaachoHeartSystem : MonoBehaviour
 {
     [SerializeField] private TextTest heartsRenderer;
     [SerializeField] private SpriteRenderer SpRenderer;
+    [SerializeField] private SpriteRenderer HeadRenderer;
     [SerializeField] private BoxCollider2D NaachoHitbox;
     [SerializeField] private Color defaultColor;
     public int iframeTime;
@@ -45,6 +45,8 @@ public class NaachoHeartSystem : MonoBehaviour
     public const int MAX_LIFE = 12;
     public float LifeAmount;
     public bool dead;
+
+    private int enemyHits;
 
     public int GetMaxLife()
     {
@@ -65,6 +67,10 @@ public class NaachoHeartSystem : MonoBehaviour
             return;
         }
         if(heartsRenderer == null) getRenderer();
+        if(enemyHits > 0) {
+            enemyHits = 0;
+            Damage();
+        }
     }
 
     void Start()
@@ -81,6 +87,11 @@ public class NaachoHeartSystem : MonoBehaviour
         LifeAmount = GetLifeAmount();
 
         heartsRenderer.UIUpdate();
+        foreach(Transform child in transform) {
+            if(child.name == "Cabeza") {
+                HeadRenderer = child.GetComponent<SpriteRenderer>();
+            }
+        }
     }
 
     void getRenderer() {
@@ -226,16 +237,11 @@ public class NaachoHeartSystem : MonoBehaviour
         UpdateLife();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Damage(.5f);
+            enemyHits++;
             StartCoroutine(Iframes(other));
         }
     }
@@ -243,10 +249,14 @@ public class NaachoHeartSystem : MonoBehaviour
     IEnumerator VisualDamage()
     {
         SpRenderer.color = Color.red;
+        HeadRenderer.color = Color.red;
 
         while (SpRenderer.color.g + SpRenderer.color.b < 2f)
         {
-            SpRenderer.color = new Color(SpRenderer.color.r, SpRenderer.color.g + 0.05f, SpRenderer.color.b + 0.05f);
+            SpRenderer.color = 
+                new Color(SpRenderer.color.r, SpRenderer.color.g + 0.05f, SpRenderer.color.b + 0.05f);
+            HeadRenderer.color = 
+                new Color(HeadRenderer.color.r, HeadRenderer.color.g+0.05f, HeadRenderer.color.g+0.05f);
             yield return null;
         }
         SpRenderer.color = defaultColor;
@@ -260,11 +270,12 @@ public class NaachoHeartSystem : MonoBehaviour
         }
         for (int i = 0; i < iframeTime; i++)
         {
-            if (i % 4 == 0) SpRenderer.enabled = false;
-            else SpRenderer.enabled = true;
+            SpRenderer.enabled = i%4 == 0;
+            HeadRenderer.enabled = i%4 == 0;
             yield return null;
         }
         SpRenderer.enabled = true;
+        HeadRenderer.enabled = true;
         gameObject.layer = 0;
         if(other != null) {
             Physics2D.IgnoreCollision(NaachoHitbox, other, false);

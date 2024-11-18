@@ -121,6 +121,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (!hasKnockback)
         {
+            if(SpRenderer == null) return;
             hasKnockback = true;
             Color previousColor = SpRenderer.color;
             SpRenderer.color = Color.red;
