@@ -80,7 +80,7 @@ public class NaachoHeartSystem : MonoBehaviour
         }
         LifeAmount = GetLifeAmount();
 
-        heartsRenderer.UIUpdate(LifeAmount);
+        heartsRenderer.UIUpdate();
     }
 
     void getRenderer() {
@@ -94,6 +94,7 @@ public class NaachoHeartSystem : MonoBehaviour
             print(child.name);
         }
         heartsRenderer.naachoHeartSystem = this;
+        print(heartsRenderer.naachoHeartSystem);
     }
 
     public float GetLifeAmount()
@@ -117,7 +118,7 @@ public class NaachoHeartSystem : MonoBehaviour
         LifeAmount = GetLifeAmount();
         if(heartsRenderer == null || heartsRenderer.naachoHeartSystem == null)
             getRenderer();
-        heartsRenderer.UIUpdate(LifeAmount);
+        heartsRenderer.UIUpdate();
     }
 
     public int FindLastFullHeart()
