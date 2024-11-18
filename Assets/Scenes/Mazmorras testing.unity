@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.69803923}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -19115,7 +19115,7 @@ MonoBehaviour:
   NTclosedRoom: {fileID: 717600851557498300, guid: ae61f2496c1b14d0e996c908154b5b32, type: 3}
   roomIcon: {fileID: 5182487236174423490, guid: a4c55ea06011b7e459f144368609cf1a, type: 3}
   doorIcon: {fileID: 3848807636743925899, guid: 2a1f7193e260c6e4bb1222747a43f6c2, type: 3}
-  visitedRoomColor: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 1}
+  visitedRoomColor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   treasureRoomColor: {r: 0.9473977, g: 1, b: 0, a: 1}
   bossRoomColor: {r: 1, g: 0, b: 0, a: 1}
   doorsColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
