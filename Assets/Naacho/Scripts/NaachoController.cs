@@ -203,7 +203,6 @@ public class NaachoController : MonoBehaviour
                 animatorHead.SetBool("Costado", false);
             }
             if(movement.x > 0 && animatorHead.GetBool("Costado")) {
-                print(movement.x);
                 animatorHead.transform.localPosition = headPos + (Vector3)HeadOffset;
             } else {
                 animatorHead.GetComponent<SpriteRenderer>().flipX = movement.x < 0 && animatorHead.GetBool("Costado");

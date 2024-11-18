@@ -12,7 +12,6 @@ public class CinematicManager : MonoBehaviour
         FadeManager.Instance.FadeOut();
 #if !UNITY_STANDALONE_LINUX || !UNITY_EDITOR_LINUX
         myVideoPlayer.loopPointReached += StartChangingScene;
-        print("HOLA");
 #elif UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX
         StartChangingScene();
 #endif

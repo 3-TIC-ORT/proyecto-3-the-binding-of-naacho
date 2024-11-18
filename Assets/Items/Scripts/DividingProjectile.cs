@@ -39,7 +39,6 @@ public class DividingProjectile : ProyectilModifier
                         true
                         );
                 direction -= TotalAngle / DivisionAmount;
-                print(proj.GetComponent<Rigidbody2D>().velocity);
             }
             Destroy(gameObject);
         }
