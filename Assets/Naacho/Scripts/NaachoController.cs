@@ -13,26 +13,34 @@ public class NaachoController : MonoBehaviour
     public float Range;
     public float Damage;
     private float ShootTimeCounter = 0;
+    private bool isFiring;
 
     [SerializeField] Vector2 ShootingOffset;
     private ProjectileCreator ProjectileScript;
     private Rigidbody2D rb2D;
-    private Animator animator;
+    [SerializeField] private Animator animatorBody;
+    [SerializeField] private Animator animatorHead;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        animatorBody = GetComponent<Animator>();
+        foreach(Transform child in transform) {
+            if(child.name == "Cabeza") {
+                animatorHead = child.gameObject.GetComponent<Animator>();
+                break;
+            }
+        }
     }
     private void FixedUpdate()
     {
         if (GameManager.Instance.stop)
         {
             rb2D.velocity = Vector2.zero;
-            animator.SetBool("Idle", true);
-            animator.SetFloat("DirY", 0);
-            animator.SetFloat("DirX", 0);
+            animatorBody.SetBool("Idle", true);
+            animatorBody.SetFloat("DirY", 0);
+            animatorBody.SetFloat("DirX", 0);
             return;
         }
 
@@ -41,17 +49,29 @@ public class NaachoController : MonoBehaviour
         if (movement != Vector2.zero)
         {
             rb2D.velocity = Speed * movement;
-            animator.SetFloat("DirY", movement.y);
-            animator.SetFloat("DirX", movement.x);
-            animator.SetBool("Idle", false);
+            animatorBody.SetFloat("DirY", movement.y);
+            animatorBody.SetFloat("DirX", movement.x);
+            animatorBody.SetBool("Idle", false);
+
+            if(!isFiring) {
+                animatorHead.enabled = Mathf.Abs(movement.x) + Mathf.Abs(movement.y) > 0;
+                animatorHead.SetBool("Arriba", movement.y > 0);
+                animatorHead.SetBool("Abajo", movement.y < 0);
+                animatorHead.SetBool("Costado", movement.x != 0);
+                animatorHead.GetComponent<SpriteRenderer>().flipX = movement.x < 0;
+                print(Mathf.Abs(movement.x) + Mathf.Abs(movement.y) > 0);
+                print(movement.y > 0);
+                print(movement.y < 0);
+                print(movement.x != 0);
+            }
         }
         else 
         {
             rb2D.velocity *= Friction;
 
-            animator.SetBool("Idle", true);
-            animator.SetFloat("DirY", 0);
-            animator.SetFloat("DirX", 0);
+            animatorBody.SetBool("Idle", true);
+            animatorBody.SetFloat("DirY", 0);
+            animatorBody.SetFloat("DirX", 0);
             if (rb2D.velocity.magnitude < 0.1f)
             {
                 rb2D.velocity = Vector2.zero;
@@ -94,6 +114,29 @@ public class NaachoController : MonoBehaviour
             horizontalMovement = Random.Range(-shotSpray, shotSpray);
             verticalMovement = -1;
         }
+
+        if(verticalMovement == -1) {
+            animatorHead.GetComponent<SpriteRenderer>().flipX = false;
+            animatorHead.SetBool("Abajo", true);
+            animatorHead.SetBool("Arriba", false);
+            animatorHead.SetBool("Costado", false);
+        } else if(verticalMovement == 1) {
+            animatorHead.GetComponent<SpriteRenderer>().flipX = false;
+            animatorHead.SetBool("Abajo", false);
+            animatorHead.SetBool("Arriba", true);
+            animatorHead.SetBool("Costado", false);
+        } else if(Mathf.Abs(horizontalMovement) == 1) {
+            animatorHead.GetComponent<SpriteRenderer>().flipX = false;
+            animatorHead.SetBool("Abajo", false);
+            animatorHead.SetBool("Arriba", false);
+            animatorHead.SetBool("Costado", true);
+            print(horizontalMovement);
+            if(horizontalMovement < 0)
+                animatorHead.GetComponent<SpriteRenderer>().flipX = true;
+            else
+                animatorHead.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
         return new Vector2(horizontalMovement, verticalMovement);
     }
 
@@ -113,9 +156,9 @@ public class NaachoController : MonoBehaviour
     {
         if(GameManager.Instance.stop) {
             rb2D.velocity = Vector2.zero;
-            animator.SetBool("Idle", true);
-            animator.SetFloat("DirY", 0);
-            animator.SetFloat("DirX", 0);
+            animatorBody.SetBool("Idle", true);
+            animatorBody.SetFloat("DirY", 0);
+            animatorBody.SetFloat("DirX", 0);
             return;
         }
         ShootTimeCounter += Time.deltaTime;
@@ -125,12 +168,28 @@ public class NaachoController : MonoBehaviour
         Vector2 ShootDir = getShootDir();
         if (ShootDir.x != 0 || ShootDir.y != 0)
         {
+            isFiring = true;
+            animatorHead.enabled = true;
             if (ShootTimeCounter >= 1/FireRate)
             {
                 Shoot(ShootDir * shootSpeed + rb2D.velocity/4);
                 ShootTimeCounter = 0;
             }
 
+        } else {
+            isFiring = false;
+            if(getMovement() == Vector2.zero)
+                StartCoroutine(ShootIdle());
         }
+    }
+
+    IEnumerator ShootIdle() {
+        animatorHead.GetComponent<SpriteRenderer>().flipX = false;
+        animatorHead.SetBool("Abajo", true);
+        animatorHead.SetBool("Arriba", false);
+        animatorHead.SetBool("Costado", false);
+
+        yield return null;
+        animatorHead.enabled = false;
     }
 }
