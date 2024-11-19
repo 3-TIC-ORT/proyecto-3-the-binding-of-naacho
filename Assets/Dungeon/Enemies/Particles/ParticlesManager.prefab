@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onDeathParticlesPrefab: {fileID: 8849855263897674476, guid: e373645b71b66d04b9b4f9112b585aa9, type: 3}
+  CheeseBallParticle: {fileID: 9138484811784213627, guid: e09d8913964519b4a82e8569649141a4, type: 3}

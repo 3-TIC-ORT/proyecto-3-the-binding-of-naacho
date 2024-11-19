@@ -58,6 +58,7 @@ MonoBehaviour:
   isBoss: 0
   hasKnockback: 0
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  visualDamageDuration: 0.15
   readableMaxHealth: 0
   ID: 0
   delayBetweenAttacks: 1.5
@@ -68,7 +69,7 @@ MonoBehaviour:
   - {x: 13, y: 0}
   - {x: 13, y: 36}
   cheeseBall: {fileID: 7353566211661279237, guid: 1efad4d5d179a3f428d353a38a85ae37, type: 3}
-  cheeseBallSpeed: 11
+  cheeseBallSpeed: 9
   timeBeforeFight: 0
 --- !u!61 &3081403162575395680
 BoxCollider2D:
