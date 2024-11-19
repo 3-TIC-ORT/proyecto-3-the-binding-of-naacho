@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6098366803993524958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4661231, y: -0.019660085, z: 0.08026819}
+  m_LocalPosition: {x: 0, y: 0, z: 0.08026819}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDeathParticlesPrefab: {fileID: 8849855263897674476, guid: e373645b71b66d04b9b4f9112b585aa9, type: 3}
   CheeseBallParticle: {fileID: 9138484811784213627, guid: e09d8913964519b4a82e8569649141a4, type: 3}
+  onPickUpItemParticle: {fileID: 2005392508227556243, guid: 839d33c20dceafb4f9128f48d585b2eb, type: 3}
+  generalContainer: {fileID: 0}

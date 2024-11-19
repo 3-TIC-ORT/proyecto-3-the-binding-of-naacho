@@ -19326,6 +19326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParticlesManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7859949251502962373, guid: b985fc1e1bf3a8d4ea6047a34a3d9223, type: 3}
+      propertyPath: onPickUpItemParticle
+      value: 
+      objectReference: {fileID: 2005392508227556243, guid: 839d33c20dceafb4f9128f48d585b2eb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

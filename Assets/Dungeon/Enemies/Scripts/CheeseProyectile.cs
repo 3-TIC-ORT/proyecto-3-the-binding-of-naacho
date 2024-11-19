@@ -15,7 +15,8 @@ public class CheeseProyectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(speed * angle, ForceMode2D.Impulse);
         willGenerateCheese = Random.value < 0.2f;
-        if (willGenerateCheese) ParticlesManager.Instance.InstanceCheeseBallParticle(transform.position, transform);
+        GameObject particle = ParticlesManager.Instance.CheeseBallParticle;
+        if (willGenerateCheese) ParticlesManager.Instance.InstanceParticle(particle,transform.position, transform);
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

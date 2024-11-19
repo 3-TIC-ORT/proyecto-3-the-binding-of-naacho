@@ -87,6 +87,7 @@ public class Item : MonoBehaviour
             if (changeProyectilColor) ChangeProyectilColor();
         }
         ChangeNaachoStats();
+        
         Destroy(gameObject);
     }
     public virtual void ChangeNaachoStats()

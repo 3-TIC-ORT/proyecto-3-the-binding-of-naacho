@@ -57,6 +57,8 @@ public class ItemHolder : MonoBehaviour
         {
             Item itemComponent = item.GetComponent<Item>();
             itemComponent.onPickup();
+            GameObject particle = ParticlesManager.Instance.onPickUpItemParticle;
+            ParticlesManager.Instance.InstanceParticle(particle, transform.position, transform);
             GetComponent<ItemHolder>().enabled = false;
         }
     }

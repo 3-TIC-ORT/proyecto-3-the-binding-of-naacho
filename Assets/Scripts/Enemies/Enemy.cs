@@ -113,7 +113,9 @@ public abstract class Enemy : MonoBehaviour
     public virtual IEnumerator OnDeath() {
         yield return null;
         if (doorDisabler.enemiesIDsRecorded.Contains(ID)) doorDisabler.enemiesActivatedIDs.Remove(ID);
-        ParticlesManager.Instance.InstanceDeathParticle(transform.position);
+        GameObject particle = ParticlesManager.Instance.onDeathParticlesPrefab;
+        Transform generalContainer = ParticlesManager.Instance.generalContainer.transform;
+        ParticlesManager.Instance.InstanceParticle(particle,transform.position,generalContainer);
         Destroy(gameObject);
     }
 
