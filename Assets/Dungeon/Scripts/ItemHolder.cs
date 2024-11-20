@@ -22,7 +22,7 @@ public class ItemHolder : MonoBehaviour
     {
         GameObject itemToSpawn;
         int randA = Random.Range(0, 2);
-        randA = 1; // DESPUÉS SACAR PARA QUE EXISTAN LOS ITEMS NORMALESSSSSSSSSSSSSSSSS #I%#")¨%I$R)IR¨)$FI$RF$)
+        randA = 1; // DESPUï¿½S SACAR PARA QUE EXISTAN LOS ITEMS NORMALESSSSSSSSSSSSSSSSS #I%#")ï¿½%I$R)IRï¿½)$FI$RF$)
         if (randA == 0 || templates.specialItems.Count==0)
         {
             int randB = Random.Range(0, templates.items.Count * 2) / 2;
@@ -53,13 +53,13 @@ public class ItemHolder : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        GameObject particle = ParticlesManager.Instance.onPickUpItemParticle;
+        ParticlesManager.Instance.InstanceParticle(particle, transform.position, transform);
         if (col.gameObject.CompareTag("Player") && item!=null)
         {
             Item itemComponent = item.GetComponent<Item>();
             itemComponent.onPickup();
-            GameObject particle = ParticlesManager.Instance.onPickUpItemParticle;
-            ParticlesManager.Instance.InstanceParticle(particle, transform.position, transform);
-            GetComponent<ItemHolder>().enabled = false;
+            // GetComponent<ItemHolder>().enabled = false;
         }
     }
 }
