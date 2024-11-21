@@ -13,7 +13,7 @@ public class ProjectileScript : MonoBehaviour
     public bool dontDestroyWhenCollided;
     public bool dontDestroyWhenDistance;
     [Tooltip("Frames para ignorar cuando spawnea el projectil")]
-    [SerializeField] private int InitialIgnoreFrames = 4;
+    [SerializeField] private int InitialIgnoreFrames = 0;
     private int lifespan = 0;
 
     public CircleCollider2D col;

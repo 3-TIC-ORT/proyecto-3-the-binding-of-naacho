@@ -8,7 +8,7 @@ public class TextTest : MonoBehaviour
 {
     public NaachoHeartSystem naachoHeartSystem;
     public Sprite img;
-    public float HeartSize = 0.7f;
+    public float HeartSize = 1f;
     public float HeartOffset = 50;
 
     void Start() {
