@@ -6,6 +6,7 @@ public class NaachoSkater : Enemy
 {
     private Vector2[] directions = {new Vector2(-1,1), new Vector2(1,1), new Vector2(1,-1), new Vector2(-1,-1) };
     private CircleCollider2D _collider;
+    private Animator animator;
     private Vector2 playerPos;
 
     private float speedModifier;
@@ -15,6 +16,7 @@ public class NaachoSkater : Enemy
         playerPos = Player.GetComponent<Transform>().position;
         canRecieveKnockback = false;
         _collider = GetComponent<CircleCollider2D>();
+        animator = GetComponent<Animator>();
         Vector2 playerDir = (Vector2)(Player.transform.position - transform.position).normalized;
     }
     private void StartMovement(bool alejarseDeNacho)
@@ -56,5 +58,21 @@ public class NaachoSkater : Enemy
             else rb2D.velocity *= 0.5f;
         }
         if (rb2D.velocity==Vector2.zero && !GameManager.Instance.stop) StartMovement(false);
+        SetAnimation();
+    }
+    private void SetAnimation()
+    {
+        Vector2 direction = rb2D.velocity.normalized;
+        SpRenderer.flipX= direction.x>0 ? false : true;
+        if (direction.y>0)
+        {
+            animator.SetBool("back",true);
+            animator.SetBool("front", false);
+        }
+        else
+        {
+            animator.SetBool("back",false);
+            animator.SetBool("front", true);
+        }
     }
 }
