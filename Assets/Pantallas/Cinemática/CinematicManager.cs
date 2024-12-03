@@ -5,16 +5,16 @@ using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 public class CinematicManager : MonoBehaviour
 {
+    [SerializeField] string videoFileName;
     public VideoPlayer myVideoPlayer;
     public bool changingScene;
     void Start()
     {
         FadeManager.Instance.FadeOut();
-#if !UNITY_STANDALONE_LINUX || !UNITY_EDITOR_LINUX
+        string videoPath = System.IO.Path.Combine(Application.streamingAssetsPath, videoFileName);
+        myVideoPlayer.url = videoPath;
+        myVideoPlayer.Play();
         myVideoPlayer.loopPointReached += StartChangingScene;
-#elif UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX
-        StartChangingScene();
-#endif
     }
     private void Update()
     {
