@@ -54,12 +54,12 @@ public class ItemHolder : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         GameObject particle = ParticlesManager.Instance.onPickUpItemParticle;
-        ParticlesManager.Instance.InstanceParticle(particle, transform.position, transform);
         if (col.gameObject.CompareTag("Player") && item!=null)
         {
             Item itemComponent = item.GetComponent<Item>();
             itemComponent.onPickup();
-            // GetComponent<ItemHolder>().enabled = false;
+            ParticlesManager.Instance.InstanceParticle(particle, transform.position, transform);
+            GetComponent<ItemHolder>().enabled = false;
         }
     }
 }
