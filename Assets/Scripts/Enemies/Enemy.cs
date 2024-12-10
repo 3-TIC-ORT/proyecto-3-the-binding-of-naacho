@@ -55,8 +55,11 @@ public abstract class Enemy : MonoBehaviour
     public void AddSelfToPlayerList()
     {
         DoorDisabler doorDisabler = Player.GetComponent<DoorDisabler>();
-        doorDisabler.enemiesActivatedIDs.Add(ID);
-        doorDisabler.enemiesIDsRecorded.Add(ID);
+        if (!doorDisabler.enemiesActivatedIDs.Contains(ID))
+        {
+            doorDisabler.enemiesActivatedIDs.Add(ID);
+            doorDisabler.enemiesIDsRecorded.Add(ID);
+        }
     }
     // Update is called once per frame
     public virtual void Update() {
