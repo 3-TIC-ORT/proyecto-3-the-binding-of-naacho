@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
     public void UpdateDungeonMaterial()
     {
         depth++;
+        if (depth!=0) dungeonMaterial.SetFloat("_UsarTinte", 1);
         Color? color = dungeonColors[depth];
         if (color!=null)
         {
