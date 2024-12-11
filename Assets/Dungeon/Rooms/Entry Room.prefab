@@ -5406,7 +5406,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 1af3a831b523f464caf8dbbfcfa7e720, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5735,19 +5735,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8435823605812349227, guid: 70214fa498e2f1a4ebf2344f913a86ae, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.055600166
+      value: -0.051499844
       objectReference: {fileID: 0}
     - target: {fileID: 8435823605812349227, guid: 70214fa498e2f1a4ebf2344f913a86ae, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: 0.4053502
+      value: 0.40264988
       objectReference: {fileID: 0}
     - target: {fileID: 8435823605812349227, guid: 70214fa498e2f1a4ebf2344f913a86ae, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 15.1403
+      value: 15.1457
       objectReference: {fileID: 0}
     - target: {fileID: 8435823605812349227, guid: 70214fa498e2f1a4ebf2344f913a86ae, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 12.41165
+      value: 12.40965
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

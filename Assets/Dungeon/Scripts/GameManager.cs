@@ -8,6 +8,9 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public int depth;
+    public List<Color> dungeonColors = new List<Color>();
+    public Material dungeonMaterial;
     public bool stop;
     public float fadeSpeed;
     private Image screen;
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        depth = -1;
         stop = true;
         screen = GameObject.FindGameObjectWithTag("TransitionScreen").GetComponent<Image>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
@@ -59,6 +63,7 @@ public class GameManager : MonoBehaviour
             merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
             yield return null;
         }
+        UpdateDungeonMaterial();
         yield return new WaitForSecondsRealtime(2f);
         FadeManager.Instance.FadeOut();
         stop = false;
@@ -78,5 +83,18 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         StartCoroutine(WaitForTheDungeonToGenerate(true));
+    }
+    public void UpdateDungeonMaterial()
+    {
+        depth++;
+        Color? color = dungeonColors[depth];
+        if (color!=null)
+        {
+            dungeonMaterial.SetColor("_Tinte", dungeonColors[depth]);
+        }
+        else
+        {
+            Debug.Log("Se terminó el juego");
+        }
     }
 }
