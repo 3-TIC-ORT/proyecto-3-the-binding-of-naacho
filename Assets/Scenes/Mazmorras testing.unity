@@ -19127,13 +19127,21 @@ MonoBehaviour:
   - {fileID: 717600851557498300, guid: 634d914a0b8fb804aa3fb58d47c2f7b8, type: 3}
   - {fileID: 717600851557498300, guid: e4a6b8b9ce5d37b47a0ac6416a79dadf, type: 3}
   - {fileID: 717600851557498300, guid: 1354fe13c3f3c0e4a8547637d4c72ca5, type: 3}
-  BasicEnemies:
+  BasicEnemies0:
   - {fileID: 1574167197510431563, guid: 84197387221fab74886472a5c6fa160b, type: 3}
   - {fileID: 504261022165769184, guid: 0a5478d7a486e614eaf6a2677ca4e80e, type: 3}
   - {fileID: 504261022165769184, guid: 5a311779c29ab316baa182a1ce0b2633, type: 3}
   - {fileID: 9197746970188747554, guid: 2b2bc6f25de058d4891913a353453374, type: 3}
   - {fileID: 5847090063006628264, guid: abdbb1ba8a09de04faab5d514751d0b7, type: 3}
-  Jefes:
+  BasicEnemies1:
+  - {fileID: 504261022165769184, guid: 0a5478d7a486e614eaf6a2677ca4e80e, type: 3}
+  BasicEnemies2:
+  - {fileID: 9197746970188747554, guid: 2b2bc6f25de058d4891913a353453374, type: 3}
+  Bosses0:
+  - {fileID: 1059521551335919061, guid: de2ed677b0093d04a8eed41d635dbbd2, type: 3}
+  Bosses1:
+  - {fileID: 1059521551335919061, guid: de2ed677b0093d04a8eed41d635dbbd2, type: 3}
+  Bosses2:
   - {fileID: 1059521551335919061, guid: de2ed677b0093d04a8eed41d635dbbd2, type: 3}
   doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
@@ -19741,8 +19749,8 @@ MonoBehaviour:
   depth: 0
   dungeonColors:
   - {r: 0.8980392, g: 0.67058825, b: 0.16470589, a: 0}
-  - {r: 0.4745098, g: 1, b: 0.99215686, a: 0}
   - {r: 0.8980392, g: 0.67058825, b: 0.16470589, a: 0}
+  - {r: 0.4745098, g: 1, b: 0.99215686, a: 0}
   dungeonMaterial: {fileID: 2100000, guid: 1af3a831b523f464caf8dbbfcfa7e720, type: 2}
   stop: 0
   fadeSpeed: 0.75

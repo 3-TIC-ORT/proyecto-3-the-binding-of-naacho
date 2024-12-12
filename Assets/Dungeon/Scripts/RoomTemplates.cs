@@ -37,9 +37,15 @@ public class RoomTemplates : MonoBehaviour
     public Color doorsColor;
     public GameObject[] obstacles;
     [Header("Enemies")]
-    public GameObject[] BasicEnemies;
+    public GameObject[] BasicEnemies0;
+    public GameObject[] BasicEnemies1;
+    public GameObject[] BasicEnemies2;
+    public List<GameObject[]> EnemiesDepth = new List<GameObject[]>();
     [Header("Jefes")]
-    public GameObject[] Jefes;
+    public GameObject[] Bosses0;
+    public GameObject[] Bosses1;
+    public GameObject[] Bosses2;
+    public List<GameObject[]> BossesDepth= new List<GameObject[]>();
     [Header("Lights")]
     public GameObject doorLight;
     [Header("Items")]
@@ -68,6 +74,12 @@ public class RoomTemplates : MonoBehaviour
     
     void Start()
     {
+        EnemiesDepth.Add(BasicEnemies0);
+        EnemiesDepth.Add(BasicEnemies1);
+        EnemiesDepth.Add(BasicEnemies2);
+        BossesDepth.Add(Bosses0);
+        BossesDepth.Add(Bosses1);
+        BossesDepth.Add(Bosses2);
         grid = GameObject.Find("Grid");
         roomsContainer = GameObject.FindGameObjectWithTag("RoomsContainer");
         StartCoroutine(PreventClosing());

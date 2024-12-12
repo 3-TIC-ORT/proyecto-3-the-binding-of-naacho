@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         depth = -1;
+        dungeonMaterial.SetFloat("_UsarTinte", 0);
         stop = true;
         screen = GameObject.FindGameObjectWithTag("TransitionScreen").GetComponent<Image>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitForTheDungeonToGenerate(bool reloadTheScene)
     {
+        UpdateDungeonMaterial();
         if (reloadTheScene) SceneManager.LoadScene("Mazmorras testing");
         PlayerManager.Instance.GetComponent<Transform>().position = new Vector3(0, 0, 0);
         yield return new WaitForSecondsRealtime(0.5f);
@@ -63,7 +65,6 @@ public class GameManager : MonoBehaviour
             merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
             yield return null;
         }
-        UpdateDungeonMaterial();
         yield return new WaitForSecondsRealtime(2f);
         FadeManager.Instance.FadeOut();
         stop = false;

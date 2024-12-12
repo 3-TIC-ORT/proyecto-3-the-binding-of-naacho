@@ -245,8 +245,9 @@ public class RoomSpawner : MonoBehaviour
     // Su nombre lo dice. Sin comentarios.
     public void SpawnEnemies()
     {
-        int rand = Random.Range(0, templates.BasicEnemies.Length);
-        Instantiate(templates.BasicEnemies[rand], transform.position, Quaternion.identity, transform);
+        GameObject[] EnemyArray = templates.EnemiesDepth[GameManager.Instance.depth];
+        int rand = Random.Range(0,EnemyArray.Length);
+        Instantiate(EnemyArray[rand], transform.position, Quaternion.identity, transform);
     }
 
     // NO siempre crea una BossRoom
@@ -292,8 +293,9 @@ public class RoomSpawner : MonoBehaviour
     }
     private void SpawnBoss()
     {
-        int rand = Random.Range(0, templates.Jefes.Length);
-        Instantiate(templates.Jefes[rand], transform.position, Quaternion.identity, transform);
+        GameObject[] BossesArray = templates.BossesDepth[GameManager.Instance.depth];
+        int rand = Random.Range(0, BossesArray.Length);
+        Instantiate(BossesArray[rand], transform.position, Quaternion.identity, transform);
     }
     private void SpawnHole()
     {
