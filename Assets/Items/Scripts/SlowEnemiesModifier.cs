@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlowEnemiesModifier : ProyectilModifier
 {
     public float timer=0;
-    public float maxTime = 1.4f;
+    public float maxTime = 2;
     public override void Start()
     {
         base.Start();
@@ -26,7 +26,11 @@ public class SlowEnemiesModifier : ProyectilModifier
                 StartCoroutine(ChangeEnemySpeed(enemyCom));
                 enemyCom.effects.isSlowed = true;
             }
-            else enemyCom.effects.timeSlowed -= 2f;
+            else
+            {
+                enemyCom.effects.timeSlowed =0;
+                Destroy(gameObject);
+            }
 
         }
         else if (col.gameObject.CompareTag("Room"))
@@ -38,7 +42,7 @@ public class SlowEnemiesModifier : ProyectilModifier
     {
         SpriteRenderer enemySR = enemyCom.gameObject.GetComponent<SpriteRenderer>();
         enemyCom.Speed /= 2;
-        while (enemyCom.effects.timeSlowed < maxTime)
+        while (enemyCom!=null && enemyCom.effects.timeSlowed < maxTime)
         {
             if (!enemyCom.hasKnockback && enemyCom!=null)
             {
