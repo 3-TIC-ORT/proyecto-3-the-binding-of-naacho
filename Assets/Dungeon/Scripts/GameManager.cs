@@ -8,7 +8,7 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public int depth;
+    public static int depth;
     public List<Color> dungeonColors = new List<Color>();
     public Material dungeonMaterial;
     public bool stop;
@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         depth = -1;
-        dungeonMaterial.SetFloat("_UsarTinte", 0);
         stop = true;
         screen = GameObject.FindGameObjectWithTag("TransitionScreen").GetComponent<Image>();
         merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
@@ -56,7 +55,15 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitForTheDungeonToGenerate(bool reloadTheScene)
     {
         UpdateDungeonMaterial();
-        if (reloadTheScene) SceneManager.LoadScene("Mazmorras testing");
+        if (reloadTheScene)
+        {
+            if (depth<3) SceneManager.LoadScene("Mazmorras testing");
+            else
+            {
+                SceneManager.LoadScene("WinCinematic");
+                Destroy(gameObject);
+            }
+        }
         PlayerManager.Instance.GetComponent<Transform>().position = new Vector3(0, 0, 0);
         yield return new WaitForSecondsRealtime(0.5f);
         while (merger==null) merger = GameObject.FindGameObjectWithTag("Rooms").GetComponent<TilemapMerger>();
@@ -88,15 +95,5 @@ public class GameManager : MonoBehaviour
     public void UpdateDungeonMaterial()
     {
         depth++;
-        if (depth!=0) dungeonMaterial.SetFloat("_UsarTinte", 1);
-        Color? color = dungeonColors[depth];
-        if (color!=null)
-        {
-            dungeonMaterial.SetColor("_Tinte", dungeonColors[depth]);
-        }
-        else
-        {
-            Debug.Log("Se terminó el juego");
-        }
     }
 }

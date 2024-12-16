@@ -50,8 +50,17 @@ public class RoomTemplates : MonoBehaviour
     public GameObject doorLight;
     [Header("Items")]
     public GameObject itemHolder;
-    public List<GameObject> items;
-    public List<GameObject> specialItems;
+    public List<GameObject> allNormalItems;
+    public List<GameObject> allSpecialItems;
+    public static string[] allNormalItemsNames;
+    public static string[] allSpecialItemsNames;
+    public List<GameObject> normalDefaultItems;
+    public List<GameObject> specialDefaultItems;
+    public static string[] normalDefaultItemsNames;
+    public static string[] specialDefaultItemsNames;
+
+    public static List<GameObject> staticNormalItems;
+    public static List<GameObject> staticSpecialItems;
     [Header("Other")]
     public GameObject roomConector;
     public GameObject LWithSpawnPoint;
@@ -74,16 +83,35 @@ public class RoomTemplates : MonoBehaviour
     
     void Start()
     {
-        EnemiesDepth.Add(BasicEnemies0);
-        EnemiesDepth.Add(BasicEnemies1);
-        EnemiesDepth.Add(BasicEnemies2);
-        BossesDepth.Add(Bosses0);
-        BossesDepth.Add(Bosses1);
-        BossesDepth.Add(Bosses2);
+        SetAllItemsNames();
+        SetEnemiesByDepth();
+        SetUnlockedItems();
         grid = GameObject.Find("Grid");
         roomsContainer = GameObject.FindGameObjectWithTag("RoomsContainer");
         StartCoroutine(PreventClosing());
     }
+
+    private void SetAllItemsNames()
+    {
+        if (GameManager.depth==0)
+        {
+            normalDefaultItemsNames = ItemsNames(normalDefaultItems).ToArray();
+            specialDefaultItemsNames = ItemsNames(specialDefaultItems).ToArray();
+            allNormalItemsNames = ItemsNames(allNormalItems).ToArray();
+            allSpecialItemsNames = ItemsNames(allSpecialItems).ToArray();
+        }
+    }
+    private void SetUnlockedItems()
+    {
+        if (GameManager.depth==0)
+        {
+            ItemsUnlocked data = SaveManager.LoadItemsUnlocked();
+            staticNormalItems = GetItemsByNames(data.normalItemsNames,false);
+            staticSpecialItems = GetItemsByNames(data.specialItemsNames, true);
+            Debug.Log("DOKDOWD");
+        }
+    }
+
     // Se fija que cuando no se generan m�s rooms que la roomMin haya sido respetado.
     IEnumerator PreventClosing()
     {
@@ -159,6 +187,44 @@ public class RoomTemplates : MonoBehaviour
             }
         }
         return children;
+    }
+
+    List<string> ItemsNames(List<GameObject> items)
+    {
+        List<string> itemNames = new List<string>();
+        foreach (GameObject item in items) 
+        {
+            itemNames.Add(item.name);
+        }
+        return itemNames;
+    }
+    List<GameObject> GetItemsByNames(string[] itemsNames, bool specialItems)
+    {
+        List<GameObject> itemsUnlocked = new List<GameObject>();    
+        if (specialItems)
+        {
+            foreach (string itemName in itemsNames)
+            {
+                foreach (GameObject item in allSpecialItems) if (itemName==item.name) itemsUnlocked.Add(item);
+            }
+        }
+        else
+        {
+            foreach (string itemName in itemsNames)
+            {
+                foreach (GameObject item in allNormalItems) if (itemName == item.name) itemsUnlocked.Add(item);
+            }
+        }
+        return itemsUnlocked;
+    }
+    private void SetEnemiesByDepth()
+    {
+        EnemiesDepth.Add(BasicEnemies0);
+        EnemiesDepth.Add(BasicEnemies1);
+        EnemiesDepth.Add(BasicEnemies2);
+        BossesDepth.Add(Bosses0);
+        BossesDepth.Add(Bosses1);
+        BossesDepth.Add(Bosses2);
     }
 }
 

@@ -253,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 5144652428195971516, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1af3a831b523f464caf8dbbfcfa7e720, type: 2}
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 7178288638544261672, guid: 9647273d13fce7f409cd7843986a7c39, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
       value: -0.04674959
@@ -19145,14 +19145,22 @@ MonoBehaviour:
   - {fileID: 1059521551335919061, guid: de2ed677b0093d04a8eed41d635dbbd2, type: 3}
   doorLight: {fileID: 9047732444763578565, guid: 29f1811148f45504bbd5953cdae00f43, type: 3}
   itemHolder: {fileID: 8882149513424341528, guid: 78ab7c91cc786bf47a46c0c747f14740, type: 3}
-  items:
-  - {fileID: 5415049261347781878, guid: 4277924511154284d9cad5e27e2bddd9, type: 3}
+  allNormalItems:
   - {fileID: 6257593552224073672, guid: 13412e8d072542543adf39fbfd61285f, type: 3}
-  specialItems:
+  - {fileID: 5415049261347781878, guid: 4277924511154284d9cad5e27e2bddd9, type: 3}
   - {fileID: 9024307348955615377, guid: 9722dfa24b74aae409f457e21ea369bc, type: 3}
-  - {fileID: 2383271661127107022, guid: eea93527eab221540a5f3d88c2f97cb5, type: 3}
-  - {fileID: 5222497521300365866, guid: 25ed171b1d1138e4d9f3b7782d1bcedd, type: 3}
+  allSpecialItems:
   - {fileID: 2660735176227426789, guid: 29fcff24a1cc90641ae5659ca1c00ebd, type: 3}
+  - {fileID: 5222497521300365866, guid: 25ed171b1d1138e4d9f3b7782d1bcedd, type: 3}
+  - {fileID: 2383271661127107022, guid: eea93527eab221540a5f3d88c2f97cb5, type: 3}
+  normalDefaultItems:
+  - {fileID: 6257593552224073672, guid: 13412e8d072542543adf39fbfd61285f, type: 3}
+  - {fileID: 5415049261347781878, guid: 4277924511154284d9cad5e27e2bddd9, type: 3}
+  - {fileID: 9024307348955615377, guid: 9722dfa24b74aae409f457e21ea369bc, type: 3}
+  specialDefaultItems:
+  - {fileID: 2660735176227426789, guid: 29fcff24a1cc90641ae5659ca1c00ebd, type: 3}
+  - {fileID: 5222497521300365866, guid: 25ed171b1d1138e4d9f3b7782d1bcedd, type: 3}
+  - {fileID: 2383271661127107022, guid: eea93527eab221540a5f3d88c2f97cb5, type: 3}
   roomConector: {fileID: 717600851557498300, guid: ad8dad374f22aae4b8d0f327f4d7e37f, type: 3}
   LWithSpawnPoint: {fileID: 717600851557498300, guid: 92840de21d4a87a44981871f77a542fa, type: 3}
   horizontalDoorToDoorRoomArea: {x: 10, y: 10, z: 1}
@@ -19746,7 +19754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07ed15ade2922a4f842d30098ca2e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth: 0
   dungeonColors:
   - {r: 0.8980392, g: 0.67058825, b: 0.16470589, a: 0}
   - {r: 0.8980392, g: 0.67058825, b: 0.16470589, a: 0}

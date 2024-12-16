@@ -245,7 +245,7 @@ public class RoomSpawner : MonoBehaviour
     // Su nombre lo dice. Sin comentarios.
     public void SpawnEnemies()
     {
-        GameObject[] EnemyArray = templates.EnemiesDepth[GameManager.Instance.depth];
+        GameObject[] EnemyArray = templates.EnemiesDepth[GameManager.depth];
         int rand = Random.Range(0,EnemyArray.Length);
         Instantiate(EnemyArray[rand], transform.position, Quaternion.identity, transform);
     }
@@ -293,7 +293,7 @@ public class RoomSpawner : MonoBehaviour
     }
     private void SpawnBoss()
     {
-        GameObject[] BossesArray = templates.BossesDepth[GameManager.Instance.depth];
+        GameObject[] BossesArray = templates.BossesDepth[GameManager.depth];
         int rand = Random.Range(0, BossesArray.Length);
         Instantiate(BossesArray[rand], transform.position, Quaternion.identity, transform);
     }

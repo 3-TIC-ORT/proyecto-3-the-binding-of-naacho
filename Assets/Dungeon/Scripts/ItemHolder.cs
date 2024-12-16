@@ -23,17 +23,16 @@ public class ItemHolder : MonoBehaviour
         GameObject itemToSpawn;
         int randA = Random.Range(0, 2);
         randA = 1; // DESPU�S SACAR PARA QUE EXISTAN LOS ITEMS NORMALESSSSSSSSSSSSSSSSS #I%#")�%I$R)IR�)$FI$RF$)
-        if (randA == 0 || templates.specialItems.Count==0)
+        if (randA == 0 || RoomTemplates.staticSpecialItems.Count==0)
         {
-            int randB = Random.Range(0, templates.items.Count * 2) / 2;
-            itemToSpawn = templates.items[randB];
+            int randB = Random.Range(0, RoomTemplates.staticNormalItems.Count);
+            itemToSpawn = RoomTemplates.staticNormalItems[randB];
         }
         else
         {
-            int randB = Random.Range(0, templates.specialItems.Count * 2) / 2;
-            itemToSpawn = templates.specialItems[randB];
-            templates.specialItems.Remove(itemToSpawn);
-
+            int randB = Random.Range(0, RoomTemplates.staticSpecialItems.Count);
+            itemToSpawn = RoomTemplates.staticSpecialItems[randB];
+            RoomTemplates.staticSpecialItems.Remove(itemToSpawn);
         }
         item = Instantiate(itemToSpawn, transform.position, Quaternion.identity, gameObject.transform);
     }
