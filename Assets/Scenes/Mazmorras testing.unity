@@ -19149,6 +19149,7 @@ MonoBehaviour:
   - {fileID: 6257593552224073672, guid: 13412e8d072542543adf39fbfd61285f, type: 3}
   - {fileID: 5415049261347781878, guid: 4277924511154284d9cad5e27e2bddd9, type: 3}
   - {fileID: 9024307348955615377, guid: 9722dfa24b74aae409f457e21ea369bc, type: 3}
+  - {fileID: 5449899781328740158, guid: 7593001473c46f64a85edb4d1a23f20a, type: 3}
   allSpecialItems:
   - {fileID: 2660735176227426789, guid: 29fcff24a1cc90641ae5659ca1c00ebd, type: 3}
   - {fileID: 5222497521300365866, guid: 25ed171b1d1138e4d9f3b7782d1bcedd, type: 3}

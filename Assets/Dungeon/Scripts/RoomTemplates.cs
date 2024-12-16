@@ -108,7 +108,6 @@ public class RoomTemplates : MonoBehaviour
             ItemsUnlocked data = SaveManager.LoadItemsUnlocked();
             staticNormalItems = GetItemsByNames(data.normalItemsNames,false);
             staticSpecialItems = GetItemsByNames(data.specialItemsNames, true);
-            Debug.Log("DOKDOWD");
         }
     }
 
@@ -205,17 +204,44 @@ public class RoomTemplates : MonoBehaviour
         {
             foreach (string itemName in itemsNames)
             {
-                foreach (GameObject item in allSpecialItems) if (itemName==item.name) itemsUnlocked.Add(item);
+                bool found = false;
+                foreach (GameObject item in allSpecialItems)
+                {
+                    if (itemName == item.name)
+                    {
+                        itemsUnlocked.Add(item);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) ResetWhenItemIsNotFound(false, itemName);
             }
         }
         else
         {
             foreach (string itemName in itemsNames)
             {
-                foreach (GameObject item in allNormalItems) if (itemName == item.name) itemsUnlocked.Add(item);
+                bool found = false;
+                foreach (GameObject item in allNormalItems)
+                {
+                    if (itemName == item.name)
+                    {
+                        itemsUnlocked.Add(item);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) ResetWhenItemIsNotFound(true, itemName);
             }
         }
         return itemsUnlocked;
+    }
+
+    private void ResetWhenItemIsNotFound(bool normalItem, string itemName)
+    {
+        if (normalItem) Debug.LogError("No se encontró el normalItem llamado: " + itemName + ", los objetos desbloqueados se resetearán");
+        else Debug.LogError("No se encontró el specialItem llamado: " + itemName + ", los objetos desbloqueados se resetearán");
+        SaveManager.ResetItemsUnlocked();
     }
     private void SetEnemiesByDepth()
     {

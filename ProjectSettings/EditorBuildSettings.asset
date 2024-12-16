@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinCinematic.unity
     guid: dac7f1bb7dabd8f4b9519b594460a6a5
+  - enabled: 1
+    path: Assets/Scenes/ItemUnlocked.unity
+    guid: 161429cf74fd54f49bb332b4b8585db5
   m_configObjects: {}

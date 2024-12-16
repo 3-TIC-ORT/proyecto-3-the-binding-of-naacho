@@ -22,7 +22,7 @@ public class ItemHolder : MonoBehaviour
     {
         GameObject itemToSpawn;
         int randA = Random.Range(0, 2);
-        randA = 1; // DESPU�S SACAR PARA QUE EXISTAN LOS ITEMS NORMALESSSSSSSSSSSSSSSSS #I%#")�%I$R)IR�)$FI$RF$)
+        //randA = 1; // DESPU�S SACAR PARA QUE EXISTAN LOS ITEMS NORMALESSSSSSSSSSSSSSSSS #I%#")�%I$R)IR�)$FI$RF$)
         if (randA == 0 || RoomTemplates.staticSpecialItems.Count==0)
         {
             int randB = Random.Range(0, RoomTemplates.staticNormalItems.Count);

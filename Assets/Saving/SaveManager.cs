@@ -34,4 +34,11 @@ public static class SaveManager
         }
 
     }
+
+    public static void ResetItemsUnlocked()
+    {
+        SaveItemsUnlocked(RoomTemplates.normalDefaultItemsNames, RoomTemplates.specialDefaultItemsNames);
+        Debug.Log("Se saldrá del juego");
+        Application.Quit();
+    }
 }

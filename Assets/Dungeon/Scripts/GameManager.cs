@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         UpdateDungeonMaterial();
         if (reloadTheScene)
         {
+            DG.Tweening.DOTween.KillAll();
             if (depth<3) SceneManager.LoadScene("Mazmorras testing");
             else
             {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CinematicManager : MonoBehaviour
 {
     [SerializeField] string videoFileName;
+    [SerializeField] string sceneName;
     public VideoPlayer myVideoPlayer;
     public bool changingScene;
     void Start()
@@ -35,6 +36,6 @@ public class CinematicManager : MonoBehaviour
         {
             yield return null;
         }
-        SceneManager.LoadScene("Mazmorras testing");
+        SceneManager.LoadScene(sceneName);
     }
 }
