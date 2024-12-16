@@ -50,17 +50,24 @@ public class RoomTemplates : MonoBehaviour
     public GameObject doorLight;
     [Header("Items")]
     public GameObject itemHolder;
+
+    // Todos los items existentes en el juego
     public List<GameObject> allNormalItems;
     public List<GameObject> allSpecialItems;
     public static string[] allNormalItemsNames;
     public static string[] allSpecialItemsNames;
+
+    // Si no se jugó nunca o no se encontró un item guardado en la memoria, los items que le podrán tocar al jugador son estos
     public List<GameObject> normalDefaultItems;
     public List<GameObject> specialDefaultItems;
     public static string[] normalDefaultItemsNames;
     public static string[] specialDefaultItemsNames;
 
+    // Objetos que le quedan por tocar al jugador
     public static List<GameObject> staticNormalItems;
     public static List<GameObject> staticSpecialItems;
+
+    public static List<string> itemsTakenNames;
     [Header("Other")]
     public GameObject roomConector;
     public GameObject LWithSpawnPoint;
@@ -91,6 +98,7 @@ public class RoomTemplates : MonoBehaviour
         StartCoroutine(PreventClosing());
     }
 
+    // Define las listas de nombres de items
     private void SetAllItemsNames()
     {
         if (GameManager.depth==0)
@@ -101,10 +109,12 @@ public class RoomTemplates : MonoBehaviour
             allSpecialItemsNames = ItemsNames(allSpecialItems).ToArray();
         }
     }
+    // Resetea los items que le pueden tocar al jugador y los establece con los items guardados en la memoria
     private void SetUnlockedItems()
     {
         if (GameManager.depth==0)
         {
+            itemsTakenNames=new List<string>();
             ItemsUnlocked data = SaveManager.LoadItemsUnlocked();
             staticNormalItems = GetItemsByNames(data.normalItemsNames,false);
             staticSpecialItems = GetItemsByNames(data.specialItemsNames, true);

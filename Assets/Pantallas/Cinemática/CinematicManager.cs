@@ -11,11 +11,11 @@ public class CinematicManager : MonoBehaviour
     public bool changingScene;
     void Start()
     {
-        FadeManager.Instance.FadeOut();
         string videoPath = System.IO.Path.Combine(Application.streamingAssetsPath, videoFileName);
         myVideoPlayer.url = videoPath;
         myVideoPlayer.Play();
         myVideoPlayer.loopPointReached += StartChangingScene;
+        FadeManager.Instance.FadeOut();
     }
     private void Update()
     {

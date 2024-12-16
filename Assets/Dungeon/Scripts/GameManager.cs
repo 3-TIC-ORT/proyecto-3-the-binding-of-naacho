@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public static int depth;
+    public static float cronometer;
     public List<Color> dungeonColors = new List<Color>();
     public Material dungeonMaterial;
     public bool stop;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        cronometer += Time.deltaTime;
         if (haveToDie && FadeManager.Instance.fadeInFinished)
         {
             SceneManager.LoadScene("GameOver");
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        cronometer = 0;
         depth = -1;
         stop = true;
         screen = GameObject.FindGameObjectWithTag("TransitionScreen").GetComponent<Image>();
