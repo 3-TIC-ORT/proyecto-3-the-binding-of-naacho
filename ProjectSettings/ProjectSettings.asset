@@ -649,11 +649,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: TheBindingofNaacho
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: The Binding of Naacho inc
+  metroCertificateIssuer: The Binding of Naacho inc
+  metroCertificateNotAfter: 0073c367196fdc01
   metroApplicationDescription: The Binding of Naacho
   wsaImages: {}
   metroTileShortName: The Binding of Naacho

@@ -12,14 +12,12 @@ public class ItemUnlocker : MonoBehaviour
     private string[] unlockedNormalItemsNames;
     private string[] unlockedSpecialItemsNames;
     public TextMeshProUGUI itemText;
-    [SerializeField] float timeBeforeChangingScene;
     void Start()
     {
-        FadeManager.Instance.FadeOut();
-        StartCoroutine(UpdateItemsUnlocked());
+        UpdateItemsUnlocked();
     }
 
-    IEnumerator UpdateItemsUnlocked()
+    void UpdateItemsUnlocked()
     {
         allNormalItemsNames = RoomTemplates.allNormalItemsNames;
         allSpecialItemsNames = RoomTemplates.allSpecialItemsNames;
@@ -50,12 +48,6 @@ public class ItemUnlocker : MonoBehaviour
                 itemText.text = "No hay más objetos por desbloquear";
             }
         }
-
-        while (!FadeManager.Instance.fadeOutFinished)
-        {
-            yield return null;
-        }
-        StartCoroutine(ChangeScene(timeBeforeChangingScene));
     }
 
     private List<string> FilterLockedItems(string[] allItems, string[] unlockedItems)
@@ -78,16 +70,5 @@ public class ItemUnlocker : MonoBehaviour
             SaveManager.SaveItemsUnlocked(unlockedNormalItemsNames, localList.ToArray());
         }
         itemText.text = $"La tortuga se comió un {newItem}";
-    }
-
-    IEnumerator ChangeScene(float waitTime)
-    {
-        yield return new WaitForSecondsRealtime(waitTime);
-        FadeManager.Instance.FadeIn();
-        while (!FadeManager.Instance.fadeInFinished)
-        {
-            yield return null;
-        }
-        SceneManager.LoadScene("MainMenu");
     }
 }

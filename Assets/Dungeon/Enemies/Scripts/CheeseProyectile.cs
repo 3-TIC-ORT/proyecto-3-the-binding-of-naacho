@@ -39,10 +39,6 @@ public class CheeseProyectile : MonoBehaviour
                 queso.transform.position = transform.position;
                 queso.SetActive(true);
                 enemyEnabler.SetComponents(true);   
-                if (rataCollider != null)
-                {
-                    Physics2D.IgnoreCollision(queso.GetComponent<BoxCollider2D>(), rataCollider);
-                }
             }
             Destroy(gameObject);
         }
@@ -50,6 +46,10 @@ public class CheeseProyectile : MonoBehaviour
     IEnumerator CreateCheese()
     {
         queso = Instantiate(cheeseEnemy, transform.position, Quaternion.identity, transform.parent);
+        if (rataCollider != null)
+        {
+            Physics2D.IgnoreCollision(queso.GetComponent<BoxCollider2D>(), rataCollider);
+        }
         enemyEnabler = queso.GetComponent<EnemyEnabler>();
         enemyEnabler.GetComponentsReferences();
         enemyEnabler.SetComponents(true);

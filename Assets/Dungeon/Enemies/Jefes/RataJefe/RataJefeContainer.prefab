@@ -65,6 +65,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3081403162575395680, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081403162575395680, guid: 772e160cd83b1f74a830a39ee216d77a, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 3.8108108
       objectReference: {fileID: 0}

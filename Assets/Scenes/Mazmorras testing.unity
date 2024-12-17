@@ -20184,6 +20184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Naacho
       objectReference: {fileID: 0}
+    - target: {fileID: 8020641590110592584, guid: 7082b289f5f4de844a989f67a8fb7428, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

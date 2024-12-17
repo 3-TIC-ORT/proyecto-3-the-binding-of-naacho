@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class StatsUpdater : MonoBehaviour
 {
@@ -64,11 +62,11 @@ public class StatsUpdater : MonoBehaviour
         {
             if (itemTaken.timesTaken > 1)
             {
-                itemsTakenSingleString += $"{itemTaken.itemTakenName} * {itemTaken.timesTaken.ToString()}, ";
+                itemsTakenSingleString += $"{itemTaken.itemTakenName}*{itemTaken.timesTaken.ToString()}, ";
             }
             else itemsTakenSingleString += $"{itemTaken.itemTakenName}, ";
         }
-        return itemsTakenSingleString;
+        return itemsTakenSingleString.Replace("(Clone)","").Replace(" ","\n");
     }
     class ItemTaken
     {
