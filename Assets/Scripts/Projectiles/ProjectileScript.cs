@@ -10,7 +10,8 @@ public class ProjectileScript : MonoBehaviour
     public string[] WhitelistedTags = {"Player", "Projectile", "SpawnPoint", "Untagged", "RoomConector", "BigRoomTrigger"}; // Tags the Projectile will pass through
     public bool isEnemy;
     public Vector3 InitialVelocity;
-    public bool dontDestroyWhenCollided;
+    public bool dontDestroyWhenCollidedWall;
+    public bool dontDetroyWhenCollidedEnemy;
     public bool dontDestroyWhenDistance;
     [Tooltip("Frames para ignorar cuando spawnea el projectil")]
     [SerializeField] private int InitialIgnoreFrames = 0;
@@ -56,8 +57,13 @@ public class ProjectileScript : MonoBehaviour
                     StartCoroutine(ApplyKnockback(enemrb));
                 }
             }
+            if (!dontDetroyWhenCollidedEnemy)
+            {
+                onDestruction();
+                Destroy(gameObject);
+            }
         }
-        if (!dontDestroyWhenCollided)
+        if (!dontDestroyWhenCollidedWall && other.CompareTag("Room"))
         {
             onDestruction();
             Destroy(gameObject);

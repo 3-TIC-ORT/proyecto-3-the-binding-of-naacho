@@ -9,7 +9,7 @@ public class SlowEnemiesModifier : ProyectilModifier
     public override void Start()
     {
         base.Start();
-        proyectilScript.dontDestroyWhenCollided = true;
+        proyectilScript.dontDetroyWhenCollidedEnemy = true;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -17,25 +17,26 @@ public class SlowEnemiesModifier : ProyectilModifier
         if (col.gameObject.CompareTag("Enemy"))
         {
             proyectilScript.dontDestroyWhenDistance = true;
+            proyectilScript.dontDestroyWhenCollidedWall = true;
             spriteRenderer.enabled = false;
             m_collider.enabled = false;
             proyectilScript.enabled = false;
-            Enemy enemyCom = col.gameObject.GetComponent<Enemy>();
-            if (!enemyCom.effects.isSlowed)
+            if (col.gameObject!= null) 
             {
-                StartCoroutine(ChangeEnemySpeed(enemyCom));
-                enemyCom.effects.isSlowed = true;
+                Enemy enemyCom = col.gameObject.GetComponent<Enemy>();
+                if (!enemyCom.effects.isSlowed)
+                {
+                    StartCoroutine(ChangeEnemySpeed(enemyCom));
+                    enemyCom.effects.isSlowed = true;
+                }
+                else
+                {
+                    enemyCom.effects.timeSlowed =0;
+                    Destroy(gameObject);
+                }
             }
-            else
-            {
-                enemyCom.effects.timeSlowed =0;
-                Destroy(gameObject);
-            }
+            else Destroy(gameObject);
 
-        }
-        else if (col.gameObject.CompareTag("Room"))
-        {
-            Destroy(gameObject);
         }
     }
     IEnumerator ChangeEnemySpeed(Enemy enemyCom)
