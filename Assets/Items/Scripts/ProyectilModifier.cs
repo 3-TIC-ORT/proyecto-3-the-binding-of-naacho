@@ -11,7 +11,8 @@ public class ProyectilModifier : MonoBehaviour
         FollowEnemies,
         DistanceSizeAndDamage,
         DividingProjectile,
-        SlowEnemiesModifier
+        SlowEnemiesModifier,
+        BouncingModifier
     };
 
     protected ProjectileScript proyectilScript;
