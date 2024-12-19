@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modifier: 0
+  allIncompatibleItems: []
   changeProyectilColor: 1
   speedVariation: 5
   shotSprayVariation: 1.5

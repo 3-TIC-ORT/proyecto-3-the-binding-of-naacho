@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class BouncingModifier : ProyectilModifier
 {
-    public float rayLength = 0.1f;
+    public float rayLength = 0.5f;
+    public float maxLifeTime=3.5f;
+    public float currentLifeTime=0;
     private Rigidbody2D rb;
     public override void Start()
     {
         base.Start();
         proyectilScript.dontDestroyWhenCollidedWall = true;
         rb = GetComponent<Rigidbody2D>();
+        transform.localScale = new Vector3(3.5f, 3.5f, 2);
     }
 
     private void Update()
     {
+        currentLifeTime += Time.deltaTime;
+        if (!proyectilScript.dontDestroyWhenDistance && currentLifeTime>maxLifeTime) Destroy(gameObject);
         SimulateBounce();
     }
     void SimulateBounce()
@@ -33,8 +38,7 @@ public class BouncingModifier : ProyectilModifier
     {
         foreach (RaycastHit2D collider in colliders) 
         {
-            if (collider.collider.gameObject.CompareTag("Room")) Debug.Log("DDIDIDIDIDID");
-            if (collider.collider.gameObject.CompareTag("Room")) return collider;
+            if (collider.collider.gameObject.CompareTag("Room") || collider.collider.gameObject.CompareTag("DoorCameraTrigger")) return collider;
         }
         return null;
     }

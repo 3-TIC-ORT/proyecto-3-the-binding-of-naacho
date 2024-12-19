@@ -12,7 +12,9 @@ public class ProyectilModifier : MonoBehaviour
         DistanceSizeAndDamage,
         DividingProjectile,
         SlowEnemiesModifier,
-        BouncingModifier
+        BouncingModifier,
+        Cosenoidal,
+        BlackHole
     };
 
     protected ProjectileScript proyectilScript;
@@ -27,7 +29,6 @@ public class ProyectilModifier : MonoBehaviour
         m_collider = GetComponent<CircleCollider2D>();
     }
 
-    
     void Update()
     {
         

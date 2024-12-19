@@ -7,13 +7,13 @@ using static ProyectilModifier;
 public class ProjectileCreator : MonoBehaviour
 {
     public static List<string> modifiers = new List<string>();
-    //private void Start()
-    //{
-    //    ProjectileCreator.modifiers.Add(Enum.GetName(
-    //                    typeof(ProyectilModifier.Modifiers),
-    //                    ProyectilModifier.Modifiers.BouncingModifier
-    //                    ));
-    //}
+    private void Start()
+    {
+        //ProjectileCreator.modifiers.Add(Enum.GetName(
+        //                typeof(ProyectilModifier.Modifiers),
+        //                ProyectilModifier.Modifiers.Cosenoidal
+        //                ));
+    }
     public static Color proyectilColor = new Color(1,1,1,1);
     public static GameObject createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float range, float dp, bool HasDuplicated = false)
     {

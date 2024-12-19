@@ -97,6 +97,24 @@ public class RoomTemplates : MonoBehaviour
         roomsContainer = GameObject.FindGameObjectWithTag("RoomsContainer");
         StartCoroutine(PreventClosing());
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            string remainingNormalItems = "";
+            foreach (GameObject item in RoomTemplates.staticNormalItems)
+            {
+                remainingNormalItems += $"{item.name}, ";
+            }
+            string remainingSpecialItems = "";
+            foreach (GameObject item in RoomTemplates.staticSpecialItems)
+            {
+                remainingSpecialItems += $"{item.name}, ";
+            }
+            Debug.Log($"normal items que pueden tocar: {remainingNormalItems}");
+            Debug.Log($"special items que pueden tocar: {remainingSpecialItems}");
+        }
+    }
 
     // Define las listas de nombres de items
     private void SetAllItemsNames()

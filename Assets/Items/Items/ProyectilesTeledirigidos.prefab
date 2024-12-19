@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 911461549176660277, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: m_Name
-      value: ProyectilesTeledirigidosItem Variant
+      value: ProyectilesTeledirigidos
       objectReference: {fileID: 0}
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: modifier
@@ -36,6 +36,14 @@ PrefabInstance:
       propertyPath: textOclussionCulling
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
+      propertyPath: allIncompatibleItems.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
+      propertyPath: allIncompatibleItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 7647776252222895625, guid: be40ee1228d495b4db44720eab111b03, type: 3}
     - target: {fileID: 6675386203042097585, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 911461549176660277, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: m_Name
-      value: TestItem Variant
+      value: Cafe
       objectReference: {fileID: 0}
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: itemExplanation
@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: fireRateVariation
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
+      propertyPath: allIncompatibleItems.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
+      propertyPath: allIncompatibleItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 5449899781328740158, guid: 7593001473c46f64a85edb4d1a23f20a, type: 3}
     - target: {fileID: 6675386203042097585, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: m_Sprite
       value: 
