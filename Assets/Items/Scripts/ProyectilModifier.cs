@@ -14,7 +14,9 @@ public class ProyectilModifier : MonoBehaviour
         SlowEnemiesModifier,
         BouncingModifier,
         Cosenoidal,
-        BlackHole
+        BlackHole,
+        Rayo,
+        IluminacionDivina
     };
 
     protected ProjectileScript proyectilScript;

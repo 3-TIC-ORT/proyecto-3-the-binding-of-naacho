@@ -3,7 +3,8 @@ guid: fc64bc04e2575a84fb04e5f9a3ea55c9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - blackHoleMaterial: {fileID: 2100000, guid: b81f1dd7881079d48ad23d838eb6f026, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -56,6 +56,8 @@ MonoBehaviour:
   canRecieveKnockback: 1
   isBoss: 0
   hasKnockback: 0
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  visualDamageDuration: 0.4
   readableMaxHealth: 0
   ID: 0
 --- !u!61 &121051529398601780

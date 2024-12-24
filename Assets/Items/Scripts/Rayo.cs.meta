@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 74e6f71fa40220843b2adb158240a59f
+guid: 8f49349014582a942876648fcc761449
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - blackHolePrefab: {fileID: 4629089639770438623, guid: 93edaf033f4b05b4e87781d248067db5, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

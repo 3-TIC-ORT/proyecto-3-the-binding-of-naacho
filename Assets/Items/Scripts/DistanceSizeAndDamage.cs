@@ -13,6 +13,6 @@ public class DistanceSizeAndDamage : ProyectilModifier
     private void Update()
     {
         proyectilScript.Damage += growingDamage;
-        transform.localScale = new Vector3 (transform.localScale.x+growingSize, transform.localScale.y+growingSize, 1f);
+        transform.localScale += new Vector3 (growingSize, growingSize, 1f);
     }
 }

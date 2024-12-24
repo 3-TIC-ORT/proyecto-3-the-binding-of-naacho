@@ -26,6 +26,7 @@ TagManager:
   - MinimapIconsContainer
   - RoomsContainer
   - DecorationContainer
+  - ExtInitializer
   layers:
   - Default
   - TransparentFX

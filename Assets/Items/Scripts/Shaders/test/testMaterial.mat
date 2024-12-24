@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlackHoleMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 96aaf1cb04e05d4429567745b721ef21, type: 3}
+  m_Name: testMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 14d2ac35b83ba13478a71902aca9d0a3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,10 +23,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,15 +37,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CurrentAlpha: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Timer: 0
-    m_Colors:
-    - _RingColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Tinte: {r: 0.32729605, g: 0, b: 0.6603774, a: 0}
+    m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &4487536278057923477
+--- !u!114 &139466912915500513
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

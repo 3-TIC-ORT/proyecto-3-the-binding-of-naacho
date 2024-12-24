@@ -8,13 +8,19 @@ public class BlackHole : ProyectilModifier
     public override void Start()
     {
         base.Start();
+        blackHolePrefab = ExternInitializer.Instance.blackHoleExtPrefab;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Instantiate(blackHolePrefab,transform.position,Quaternion.identity, GameObject.FindGameObjectWithTag("GeneralContainer").transform);
+            if (blackHolePrefab != null) 
+            {         
+                Vector3 spawnPosition = col.gameObject.transform.position;  
+                GameObject blackHoleInstance = Instantiate(blackHolePrefab,spawnPosition,Quaternion.identity, GameObject.FindGameObjectWithTag("GeneralContainer").transform);
+                blackHoleInstance.GetComponent<BlackHoleExt>().impactedEnemy = col.gameObject.GetComponent<Enemy>();
+            }
         }
     }
 }

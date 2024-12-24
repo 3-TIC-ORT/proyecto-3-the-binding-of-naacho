@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cosenoidal : ProyectilModifier
 {
-    private float amplitude = 1.5f;
+    private float amplitude = 1.8f;
     private float frequency = 15;
     private float elapsedTime = 0;
     public override void Start()

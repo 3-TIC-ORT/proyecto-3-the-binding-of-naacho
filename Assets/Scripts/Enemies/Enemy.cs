@@ -19,6 +19,7 @@ public abstract class Enemy : MonoBehaviour
     {
         public bool isSlowed;
         public float timeSlowed=0;
+        public BlackHoleExt theMostAttractiveBlackHole;
     }
     public Effects effects;
 
