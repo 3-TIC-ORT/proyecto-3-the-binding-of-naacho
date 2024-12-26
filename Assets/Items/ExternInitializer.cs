@@ -14,6 +14,9 @@ public class ExternInitializer : MonoBehaviour
     public float IDmaxTimeAlive;
     public float IDdeathSpeed;
     public float IDradius;
+    [Header("SHADERS ###################################")]
+    public Material iluDivMaterial;
+    
 
     private void Awake()
     {

@@ -9,11 +9,13 @@ public class IluminacionDivina : ProyectilModifier
     public override void Start()
     {
         base.Start();
+        
         iluminacionDivinaExtPrefab = ExternInitializer.Instance.iluminacionDivinaExtPrefab;
-        isSpecial = Random.value > 0f;
+        isSpecial = Random.value > 0.9f;
         if (isSpecial)
         {
-            // Aplicar shader al proyectil
+            spriteRenderer.material = ExternInitializer.Instance.iluDivMaterial;
+            transform.localScale *= 2;
         }
     }
 

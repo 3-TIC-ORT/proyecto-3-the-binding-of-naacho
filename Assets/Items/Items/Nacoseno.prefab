@@ -136,7 +136,7 @@ MonoBehaviour:
   speedVariation: 0
   shotSprayVariation: 0
   shootSpeedVariation: 0
-  fireRateVariation: 0
+  fireRateVariation: 1
   rangeVariation: 0
   damageVariation: 0
   animationSpeed: 1

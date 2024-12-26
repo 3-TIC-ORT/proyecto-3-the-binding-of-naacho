@@ -19157,6 +19157,7 @@ MonoBehaviour:
   - {fileID: 7647776252222895625, guid: be40ee1228d495b4db44720eab111b03, type: 3}
   - {fileID: 5547628393166235077, guid: d617892250b448841a758750477bde94, type: 3}
   - {fileID: 4507532875475890741, guid: 9d8c17c5d4ac9f241b23ec080c25d2e5, type: 3}
+  - {fileID: 7358615822636860319, guid: b48601476418ff34a9aef9868a82012d, type: 3}
   normalDefaultItems:
   - {fileID: 6257593552224073672, guid: 13412e8d072542543adf39fbfd61285f, type: 3}
   - {fileID: 5415049261347781878, guid: 4277924511154284d9cad5e27e2bddd9, type: 3}
@@ -19390,6 +19391,7 @@ MonoBehaviour:
   IDmaxTimeAlive: 2
   IDdeathSpeed: 0.5
   IDradius: 2
+  iluDivMaterial: {fileID: -876546973899608171, guid: bcdbe34454a6f2f46aa9f6ba52d0aca0, type: 3}
 --- !u!4 &650555650
 Transform:
   m_ObjectHideFlags: 0

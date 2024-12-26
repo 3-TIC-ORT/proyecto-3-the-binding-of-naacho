@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: itemExplanation
-      value: +1.5 velocidad de ataque
+      value: +2 velocidad de ataque
       objectReference: {fileID: 0}
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: fireRateVariation
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: allIncompatibleItems.Array.size
