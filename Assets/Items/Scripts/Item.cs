@@ -6,6 +6,7 @@ using System;
 public class Item : MonoBehaviour
 {
     public ProyectilModifier.Modifiers modifier;
+    public NaachoModifier.Modifiers naachoModifiers;
     public GameObject[] allIncompatibleItems;
     public bool changeProyectilColor;
     protected GameObject Naacho;
