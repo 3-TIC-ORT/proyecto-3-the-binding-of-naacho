@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 911461549176660277, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: m_Name
-      value: RelentizarEnemigosItem Variant
+      value: RelentizarEnemigos
       objectReference: {fileID: 0}
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: modifier
@@ -27,6 +27,10 @@ PrefabInstance:
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: oclussionCulling
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
+      propertyPath: proyectilModifier
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: changeProyectilColor

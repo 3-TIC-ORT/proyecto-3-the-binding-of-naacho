@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e0a6d499a0f4f59807f4d270e35624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modifier: 5
+  proyectilModifier: 5
+  naachoModifiers: 0
+  allIncompatibleItems: []
   changeProyectilColor: 1
   speedVariation: 0
   shotSprayVariation: 0

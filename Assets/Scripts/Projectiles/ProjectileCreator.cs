@@ -13,6 +13,10 @@ public class ProjectileCreator : MonoBehaviour
                         typeof(ProyectilModifier.Modifiers),
                         ProyectilModifier.Modifiers.IluminacionDivina
                         ));
+
+        string name = Enum.GetName(typeof(NaachoModifier.Modifiers), NaachoModifier.Modifiers.PushAway);
+        Type type = Type.GetType(name);
+        PlayerManager.Instance.gameObject.AddComponent(type);
     }
     public static Color proyectilColor = new Color(1,1,1,1);
     public static GameObject createProjectile(GameObject prefab, Vector2 position, Vector2 velocity, float range, float dp, bool HasDuplicated = false)

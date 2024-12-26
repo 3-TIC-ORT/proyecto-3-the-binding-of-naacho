@@ -6,16 +6,14 @@ public class NaachoModifier : MonoBehaviour
 {
     public enum Modifiers
     {
-        None
+        None,
+        PushAway
     };
-    void Start()
+    protected NaachoController controller;
+    protected NaachoHeartSystem heartSystem;
+    public virtual void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        controller = GetComponent<NaachoController>();
+        heartSystem = GetComponent<NaachoHeartSystem>();
     }
 }

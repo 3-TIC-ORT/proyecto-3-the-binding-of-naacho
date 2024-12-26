@@ -19158,6 +19158,7 @@ MonoBehaviour:
   - {fileID: 5547628393166235077, guid: d617892250b448841a758750477bde94, type: 3}
   - {fileID: 4507532875475890741, guid: 9d8c17c5d4ac9f241b23ec080c25d2e5, type: 3}
   - {fileID: 7358615822636860319, guid: b48601476418ff34a9aef9868a82012d, type: 3}
+  - {fileID: 5631683187073709108, guid: c3080904cbbbd7b4a8c5a68bb377f851, type: 3}
   normalDefaultItems:
   - {fileID: 6257593552224073672, guid: 13412e8d072542543adf39fbfd61285f, type: 3}
   - {fileID: 5415049261347781878, guid: 4277924511154284d9cad5e27e2bddd9, type: 3}
@@ -19388,6 +19389,7 @@ MonoBehaviour:
   blackHoleExtPrefab: {fileID: 4629089639770438623, guid: 93edaf033f4b05b4e87781d248067db5, type: 3}
   rayoExtPrefab: {fileID: 1862973501298546206, guid: 0d66d07d859660f4cbfdccf9e17eb3aa, type: 3}
   iluminacionDivinaExtPrefab: {fileID: 7899350935653271769, guid: 77b1ec7fa59d6aa41a92ba60863a4468, type: 3}
+  pushAwayExtPrefab: {fileID: 713199907534483734, guid: f758b3cd3ad89f0498a6fe12b7899967, type: 3}
   IDmaxTimeAlive: 2
   IDdeathSpeed: 0.5
   IDradius: 2

@@ -29,6 +29,10 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
+      propertyPath: proyectilModifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092687667470170137, guid: 6aae085071e88814487bc3ff5051bdf4, type: 3}
       propertyPath: changeProyectilColor
       value: 1
       objectReference: {fileID: 0}

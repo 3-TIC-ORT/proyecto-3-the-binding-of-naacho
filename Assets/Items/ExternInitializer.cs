@@ -6,9 +6,12 @@ public class ExternInitializer : MonoBehaviour
 {
     public static ExternInitializer Instance { get; private set; }
     [Header("PREFABS #################################")]
+    [Header("Proyectil")]
     public GameObject blackHoleExtPrefab;
     public GameObject rayoExtPrefab;
     public GameObject iluminacionDivinaExtPrefab;
+    [Header("Naacho")]
+    public GameObject pushAwayExtPrefab;
     [Header("STATS ###################################")]
     [Header("Iluminacion Divina")]
     public float IDmaxTimeAlive;

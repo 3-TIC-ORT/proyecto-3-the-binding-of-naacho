@@ -2,11 +2,12 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class Item : MonoBehaviour
 {
-    public ProyectilModifier.Modifiers modifier;
-    public NaachoModifier.Modifiers naachoModifiers;
+    public ProyectilModifier.Modifiers proyectilModifier;
+    public NaachoModifier.Modifiers naachoModifier;
     public GameObject[] allIncompatibleItems;
     public bool changeProyectilColor;
     protected GameObject Naacho;
@@ -80,13 +81,19 @@ public class Item : MonoBehaviour
     }
     public virtual void onPickup()
     {
-        if (modifier != ProyectilModifier.Modifiers.None)
+        if (proyectilModifier != ProyectilModifier.Modifiers.None)
         {
             ProjectileCreator.modifiers.Add(Enum.GetName(
                         typeof(ProyectilModifier.Modifiers),
-                        modifier
+                        proyectilModifier
                         ));
             if (changeProyectilColor) ChangeProyectilColor();
+        }
+        if (naachoModifier != NaachoModifier.Modifiers.None)
+        {
+            string name = Enum.GetName(typeof(NaachoModifier.Modifiers), naachoModifier);
+            Type type = Type.GetType(name);
+            PlayerManager.Instance.gameObject.AddComponent(type);
         }
         ChangeNaachoStats();
         
